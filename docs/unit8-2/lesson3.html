@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>8.2 Lesson 3 · Radio Communication &amp; CreateAI</title>
+  <title>8.2 Lesson 3 · Radio Communication &amp; Encoding</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -204,93 +204,6 @@
     .main-task h3 { margin-top: 0; color: #7a4b00; font-size: 1.15rem; }
     .main-task p { margin-bottom: 0.3rem; color: #5a3a00; }
 
-    .demo-callout {
-      background: linear-gradient(135deg, #e8f4fd, #d4ecfb);
-      border: 2px solid #1e88e5;
-      border-radius: 20px;
-      padding: 1.4rem 1.8rem;
-      margin: 1.5rem 0;
-      display: flex;
-      align-items: flex-start;
-      gap: 1rem;
-    }
-    .demo-callout .badge {
-      background: #1e88e5;
-      color: white;
-      font-weight: 700;
-      font-size: 0.7rem;
-      text-transform: uppercase;
-      letter-spacing: 0.8px;
-      padding: 0.3rem 0.9rem;
-      border-radius: 30px;
-      white-space: nowrap;
-      flex-shrink: 0;
-    }
-    .demo-callout h3 { margin-top: 0; color: #0d47a1; font-size: 1.15rem; }
-    .demo-callout p { margin-bottom: 0.3rem; color: #0d3b6e; }
-    .demo-callout a {
-      color: #1e88e5;
-      font-weight: 600;
-      text-decoration: none;
-      border-bottom: 2px solid #1e88e5;
-    }
-
-    .pair-task {
-      background: linear-gradient(135deg, #f3e5f5, #e1bee7);
-      border: 2px solid #8e24aa;
-      border-radius: 20px;
-      padding: 1.4rem 1.8rem;
-      margin: 1.5rem 0;
-      display: flex;
-      align-items: flex-start;
-      gap: 1rem;
-    }
-    .pair-task .badge {
-      background: #8e24aa;
-      color: white;
-      font-weight: 700;
-      font-size: 0.7rem;
-      text-transform: uppercase;
-      letter-spacing: 0.8px;
-      padding: 0.3rem 0.9rem;
-      border-radius: 30px;
-      white-space: nowrap;
-      flex-shrink: 0;
-    }
-    .pair-task h3 { margin-top: 0; color: #4a148c; font-size: 1.15rem; }
-    .pair-task p { margin-bottom: 0.3rem; color: #3e1058; }
-
-    .tools-bar {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.8rem;
-      background: #f8fafc;
-      padding: 1rem 1.4rem;
-      border-radius: 16px;
-      border: 1px solid #dceaf7;
-      margin: 1rem 0;
-    }
-    .tool-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: white;
-      color: #0b2a4a;
-      padding: 0.6rem 1.2rem;
-      border-radius: 40px;
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 0.85rem;
-      border: 2px solid #b6cfe5;
-      transition: 0.2s;
-    }
-    .tool-btn:hover {
-      transform: translateY(-2px);
-      border-color: #2a6f97;
-      background: #f0f7ff;
-    }
-    .tool-btn i { color: #2a6f97; }
-
     .code-block {
       background: #0b1e2e;
       color: #e2edf7;
@@ -308,29 +221,6 @@
     .code-block .keyword { color: #ff9f7c; }
     .code-block .string { color: #b5d6a8; }
     .code-block .func { color: #7bb3ff; }
-
-    /* ===== WORKSHEET DATA TABLE ===== */
-    .data-table {
-      width: 100%;
-      border-collapse: collapse;
-      margin: 1rem 0;
-      font-family: 'JetBrains Mono', 'Fira Code', monospace;
-      font-size: 0.95rem;
-    }
-    .data-table td {
-      border: 2px solid #2a6f97;
-      padding: 0.7rem 0.9rem;
-      text-align: center;
-      background: #f8fafc;
-      font-weight: 600;
-      color: #0b2a4a;
-    }
-    .data-table td.index {
-      background: #e9eff8;
-      color: #475569;
-      font-size: 0.75rem;
-      font-weight: 500;
-    }
 
     /* ===== ALPHABET TABLE ===== */
     .alphabet-table {
@@ -361,156 +251,205 @@
       font-weight: 500;
     }
 
-    /* ===== INTERACTIVE SENSOR QUIZ ===== */
-    .sensor-quiz {
-      background: #f8fafc;
-      border: 2px solid #1e88e5;
-      border-radius: 20px;
-      padding: 1.4rem 1.8rem;
-      margin: 1.5rem 0;
-    }
-    .sensor-quiz h3 {
-      margin-top: 0;
-      color: #0d47a1;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .sensor-quiz .sensor-q {
+    /* ===== DATA TABLE ===== */
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
       margin: 1rem 0;
-      padding: 1rem 1.2rem;
-      background: white;
-      border-radius: 14px;
-      border: 1px solid #e5edf5;
+      font-size: 0.9rem;
     }
-    .sensor-quiz .sensor-q p {
-      font-weight: 600;
-      margin-bottom: 0.6rem;
+    .data-table th {
+      background: #0b2a4a;
+      color: white;
+      padding: 0.6rem;
+      text-align: left;
     }
-    .sensor-quiz .sensor-q button {
-      background: #eef6fc;
+    .data-table td {
+      border: 1px solid #dceaf7;
+      padding: 0.5rem;
+    }
+    .data-table input {
+      width: 100%;
       border: 1.5px solid #d4e3f0;
-      color: #0b2a4a;
-      padding: 0.5rem 1.1rem;
-      border-radius: 30px;
+      border-radius: 6px;
+      padding: 0.3rem 0.5rem;
+      font-family: inherit;
       font-size: 0.85rem;
-      margin: 0.2rem 0.3rem 0.2rem 0;
+    }
+    .data-table input:focus {
+      outline: none;
+      border-color: #2a6f97;
+      box-shadow: 0 0 0 2px rgba(42,111,151,0.15);
+    }
+    .data-table .check-btn {
+      background: #0b2a4a;
+      color: white;
+      border: none;
+      padding: 0.5rem 1.2rem;
+      border-radius: 30px;
+      font-weight: 600;
+      font-size: 0.8rem;
       cursor: pointer;
+      margin-top: 0.5rem;
       transition: 0.2s;
-      font-weight: 500;
     }
-    .sensor-quiz .sensor-q button:hover {
-      background: #dbeafe;
-      border-color: #7bb3ff;
-    }
-    .sensor-quiz .sensor-q button.correct {
-      background: #c8e6c9;
-      border-color: #2d8f2d;
-      color: #1b5e20;
-      font-weight: 700;
-    }
-    .sensor-quiz .sensor-q button.incorrect {
-      background: #ffcdd2;
-      border-color: #e53935;
-      color: #b71c1c;
-    }
-    .sensor-quiz .sensor-q .sensor-feedback {
+    .data-table .check-btn:hover { background: #1f6390; }
+    .data-table .feedback {
       font-size: 0.85rem;
       margin-top: 0.4rem;
-      min-height: 1.2rem;
       font-weight: 500;
     }
-    .sensor-quiz .sensor-q .sensor-feedback.ok { color: #2d8f2d; }
-    .sensor-quiz .sensor-q .sensor-feedback.no { color: #b71c1c; }
-    .sensor-quiz .reveal-answer {
+    .data-table .feedback.ok { color: #2d8f2d; }
+    .data-table .feedback.no { color: #b71c1c; }
+
+    /* ===== INTERACTIVE ENCODE/DECODE ===== */
+    .encode-box {
+      background: #f8fafc;
+      border: 2px solid #2a6f97;
+      border-radius: 16px;
+      padding: 1.2rem 1.4rem;
+      margin: 1rem 0;
+    }
+    .encode-box h4 {
+      margin-top: 0;
+      color: #0b2a4a;
+      font-size: 1rem;
+      margin-bottom: 0.6rem;
+    }
+    .encode-box .input-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      align-items: center;
+    }
+    .encode-box input[type="text"] {
+      flex: 1;
+      min-width: 200px;
+      padding: 0.6rem 1rem;
+      border: 2px solid #d4e3f0;
+      border-radius: 10px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.95rem;
+    }
+    .encode-box input[type="text"]:focus {
+      outline: none;
+      border-color: #2a6f97;
+      box-shadow: 0 0 0 3px rgba(42,111,151,0.15);
+    }
+    .encode-box button {
       background: #0b2a4a;
       color: white;
       border: none;
       padding: 0.6rem 1.4rem;
-      border-radius: 40px;
+      border-radius: 30px;
       font-weight: 600;
       font-size: 0.85rem;
       cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      margin-top: 0.5rem;
       transition: 0.2s;
     }
-    .sensor-quiz .reveal-answer:hover {
-      background: #1f6390;
+    .encode-box button:hover { background: #1f6390; }
+    .encode-box .result {
+      font-weight: 600;
+      font-size: 0.9rem;
+      margin-top: 0.4rem;
+      min-height: 1.4rem;
     }
-    .sensor-quiz .answer-reveal {
-      display: none;
-      margin-top: 0.8rem;
-      padding: 1rem 1.4rem;
-      background: #e8f5e9;
-      border-left: 5px solid #4caf50;
-      border-radius: 12px;
-    }
-    .sensor-quiz .answer-reveal.show { display: block; }
-    .sensor-quiz .answer-reveal strong { color: #1b5e20; }
+    .encode-box .result.ok { color: #2d8f2d; }
+    .encode-box .result.no { color: #b71c1c; }
 
-    .quiz {
-      background: #f8fafc;
-      border: 1px solid #dceaf7;
-      border-radius: 20px;
-      padding: 1.4rem 1.6rem;
-      margin: 1.2rem 0;
-    }
-    .quiz h3 { margin-top: 0; display: flex; align-items: center; gap: 8px; }
-    .quiz .q {
+    /* ===== WORD SPLIT TABLE ===== */
+    .word-split {
+      width: 100%;
+      border-collapse: collapse;
       margin: 1rem 0;
-      padding: 0.9rem 1.2rem;
-      background: white;
-      border-radius: 14px;
-      border: 1px solid #e5edf5;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.9rem;
     }
-    .quiz .q p { font-weight: 600; margin-bottom: 0.6rem; }
-    .quiz .q button {
-      background: #eef6fc;
+    .word-split th {
+      background: #0b2a4a;
+      color: white;
+      padding: 0.5rem;
+    }
+    .word-split td {
+      border: 1px solid #dceaf7;
+      padding: 0.5rem;
+      text-align: center;
+    }
+    .word-split td.blank {
+      background: #fff8e1;
+    }
+    .word-split input {
+      width: 50px;
+      text-align: center;
       border: 1.5px solid #d4e3f0;
-      color: #0b2a4a;
-      padding: 0.4rem 1rem;
-      border-radius: 30px;
+      border-radius: 6px;
+      padding: 0.3rem;
+      font-family: inherit;
       font-size: 0.85rem;
-      margin: 0.2rem 0.3rem 0.2rem 0;
-      cursor: pointer;
-      transition: 0.2s;
-      font-weight: 500;
     }
-    .quiz .q button:hover { background: #dbeafe; border-color: #7bb3ff; }
-    .quiz .q button.correct { background: #c8e6c9; border-color: #2d8f2d; color: #1b5e20; font-weight: 700; }
-    .quiz .q button.incorrect { background: #ffcdd2; border-color: #e53935; color: #b71c1c; }
-    .quiz .q .answer-feedback { font-size: 0.82rem; margin-top: 0.4rem; min-height: 1.2rem; font-weight: 500; }
-    .quiz .q .answer-feedback.ok { color: #2d8f2d; }
-    .quiz .q .answer-feedback.no { color: #b71c1c; }
 
-    .keyword-row {
+    /* ===== DRAG AND DROP ===== */
+    .drag-container {
       display: flex;
       flex-wrap: wrap;
-      gap: 0.8rem 1.2rem;
-      background: #f1f6fc;
-      padding: 0.8rem 1.2rem;
+      gap: 1.5rem;
+      margin: 1rem 0;
+    }
+    .drag-column {
+      flex: 1;
+      min-width: 250px;
+    }
+    .drag-column h4 {
+      color: #0b2a4a;
+      font-size: 0.95rem;
+      margin-bottom: 0.5rem;
+    }
+    .drag-items {
+      background: #f8fafc;
+      border: 2px dashed #b6cfe5;
       border-radius: 12px;
-      margin: 0.5rem 0 1rem 0;
+      padding: 0.8rem;
+      min-height: 200px;
     }
-    .keyword-row span {
+    .drag-item {
       background: white;
-      padding: 0.2rem 0.8rem;
-      border-radius: 20px;
-      border: 1px solid #dce4ed;
+      border: 2px solid #d4e3f0;
+      border-radius: 10px;
+      padding: 0.6rem 1rem;
+      margin-bottom: 0.5rem;
+      cursor: grab;
+      font-family: 'JetBrains Mono', monospace;
       font-size: 0.85rem;
+      font-weight: 600;
+      color: #0b2a4a;
+      transition: 0.2s;
+      user-select: none;
     }
-
-    .divider { margin: 2.5rem 0 0.5rem; border: 0; height: 1px; background: linear-gradient(to right, #d4e0ec, transparent); }
-
-    .project-divider {
-      margin: 3rem 0 1.5rem;
-      border: 0;
-      height: 3px;
-      background: linear-gradient(to right, #8e24aa, #1e88e5, transparent);
-      border-radius: 3px;
+    .drag-item:hover {
+      border-color: #2a6f97;
+      background: #f0f7ff;
+      transform: translateX(4px);
+    }
+    .drag-item.dragging {
+      opacity: 0.5;
+      transform: scale(0.98);
+    }
+    .drag-item.placed {
+      background: #e8f5e9;
+      border-color: #4caf50;
+      cursor: default;
+    }
+    .drop-zone {
+      background: #fff8e1;
+      border: 2px dashed #f9a825;
+      border-radius: 12px;
+      padding: 0.8rem;
+      min-height: 200px;
+    }
+    .drop-zone .placeholder {
+      color: #b45309;
+      font-style: italic;
+      font-size: 0.85rem;
     }
 
     /* ===== FOCUS TIMER ===== */
@@ -547,6 +486,25 @@
     }
     .focus-timer i { font-size: 0.9rem; opacity: 0.7; }
 
+    .keyword-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem 1.2rem;
+      background: #f1f6fc;
+      padding: 0.8rem 1.2rem;
+      border-radius: 12px;
+      margin: 0.5rem 0 1rem 0;
+    }
+    .keyword-row span {
+      background: white;
+      padding: 0.2rem 0.8rem;
+      border-radius: 20px;
+      border: 1px solid #dce4ed;
+      font-size: 0.85rem;
+    }
+
+    .divider { margin: 2.5rem 0 0.5rem; border: 0; height: 1px; background: linear-gradient(to right, #d4e0ec, transparent); }
+
     @media (max-width: 680px) {
       body { padding: 1rem; }
       .nav { flex-direction: column; align-items: flex-start; border-radius: 30px; gap: 0.6rem; }
@@ -554,9 +512,10 @@
       .page-header h1 { font-size: 1.8rem; flex-wrap: wrap; }
       .lesson-content { padding: 1.2rem 1.4rem; }
       .code-block { font-size: 0.8rem; padding: 0.8rem 1rem; }
-      .starter-callout, .main-task, .demo-callout, .pair-task { flex-direction: column; gap: 0.6rem; }
-      .data-table td { padding: 0.4rem 0.5rem; font-size: 0.75rem; }
+      .starter-callout, .main-task { flex-direction: column; gap: 0.6rem; }
+      .alphabet-table { font-size: 0.7rem; }
       .focus-timer { bottom: 1rem; right: 1rem; font-size: 0.9rem; padding: 0.6rem 1rem; }
+      .drag-container { flex-direction: column; }
     }
   </style>
 </head>
@@ -581,7 +540,7 @@
 
   <!-- ===== HEADER ===== -->
   <div class="page-header">
-    <h1><i class="fas fa-tower-broadcast"></i> Lesson 3 · Radio Communication &amp; CreateAI</h1>
+    <h1><i class="fas fa-tower-broadcast"></i> Lesson 3 · Radio Communication &amp; Encoding</h1>
     <div class="sub"><i class="fas fa-arrow-right" style="margin-right:6px;"></i> Student's Book pages 47–52</div>
   </div>
 
@@ -602,7 +561,7 @@
     <!-- Strand 3 / Machine Learning Link -->
     <div class="strand-box">
       <strong><i class="fas fa-brain" style="margin-right:6px;"></i> Strand 3 · Machine Learning Models &amp; Algorithms (The Pattern Architect)</strong>
-      <p>This lesson builds the algorithmic thinking, prediction, and rule-based logic that form the foundation of machine learning. The radio communication you learn here uses the same conditional logic that AI models use to evaluate inputs and classify data. When you write <code>IF button_a.was_pressed() THEN radio.send(message)</code>, you're writing exactly the kind of rule-based decision that powers machine learning classification.</p>
+      <p>This lesson builds the algorithmic thinking, prediction, and rule-based logic that form the foundation of machine learning. Encoding messages as numbers and decoding them back uses the same pattern-matching and rule-based evaluation that AI models use to classify data. The conditional logic you write (<code>IF button_a.was_pressed() THEN radio.send(message)</code>) is exactly the kind of rule that powers machine learning classification.</p>
     </div>
 
     <!-- ===== STARTER ===== -->
@@ -610,7 +569,7 @@
       <span class="badge">🔥 Starter</span>
       <div>
         <h3>Blooket Warm-Up</h3>
-        <p>Quick Blooket to recap pseudocode basics before we look at radio communication.</p>
+        <p>Quick Blooket to recap pseudocode basics before we look at radio communication and encoding.</p>
         <p><a href="https://play.blooket.com/host?id=68e248e2d5404af5a2c66704" target="_blank">▶ Open Blooket Starter</a></p>
       </div>
     </div>
@@ -642,70 +601,26 @@
       <strong>Important:</strong> The radio group must be <strong>unique</strong> to your pair. If another pair uses the same group, your messages could be intercepted!
     </div>
 
-    <!-- ===== ALPHABET ENCODING ===== -->
+    <!-- ===== ALPHABET ENCODING (MOVED HIGHER) ===== -->
     <h2>🔐 Encoding Messages with Alphabet Positions</h2>
     <p>Instead of sending words directly, we can send <strong>numbers that represent letters</strong>. Each letter has a position in the alphabet:</p>
 
     <table class="alphabet-table">
       <tr>
-        <th>A</th>
-        <th>B</th>
-        <th>C</th>
-        <th>D</th>
-        <th>E</th>
-        <th>F</th>
-        <th>G</th>
-        <th>H</th>
-        <th>I</th>
-        <th>J</th>
-        <th>K</th>
-        <th>L</th>
-        <th>M</th>
+        <th>A</th><th>B</th><th>C</th><th>D</th><th>E</th><th>F</th><th>G</th>
+        <th>H</th><th>I</th><th>J</th><th>K</th><th>L</th><th>M</th>
       </tr>
       <tr>
-        <td>1</td>
-        <td>2</td>
-        <td>3</td>
-        <td>4</td>
-        <td>5</td>
-        <td>6</td>
-        <td>7</td>
-        <td>8</td>
-        <td>9</td>
-        <td>10</td>
-        <td>11</td>
-        <td>12</td>
-        <td>13</td>
+        <td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td>
+        <td>8</td><td>9</td><td>10</td><td>11</td><td>12</td><td>13</td>
       </tr>
       <tr>
-        <th>N</th>
-        <th>O</th>
-        <th>P</th>
-        <th>Q</th>
-        <th>R</th>
-        <th>S</th>
-        <th>T</th>
-        <th>U</th>
-        <th>V</th>
-        <th>W</th>
-        <th>X</th>
-        <th>Y</th>
-        <th>Z</th>
+        <th>N</th><th>O</th><th>P</th><th>Q</th><th>R</th><th>S</th><th>T</th>
+        <th>U</th><th>V</th><th>W</th><th>X</th><th>Y</th><th>Z</th>
       </tr>
       <tr>
-        <td>14</td>
-        <td>15</td>
-        <td>16</td>
-        <td>17</td>
-        <td>18</td>
-        <td>19</td>
-        <td>20</td>
-        <td>21</td>
-        <td>22</td>
-        <td>23</td>
-        <td>24</td>
-        <td>25</td>
-        <td>26</td>
+        <td>14</td><td>15</td><td>16</td><td>17</td><td>18</td><td>19</td><td>20</td>
+        <td>21</td><td>22</td><td>23</td><td>24</td><td>25</td><td>26</td>
       </tr>
     </table>
 
@@ -714,106 +629,248 @@
       <strong>Example:</strong> "HELLO" = 8, 5, 12, 12, 15
     </div>
 
-    <!-- ===== WORKED EXAMPLE ===== -->
-    <h2>📝 Worked Example: Sending a Message</h2>
-    <p>Here's a MicroPython program that sends and receives messages:</p>
+    <!-- ===== INTERACTIVE TASK 1: DECODE ===== -->
+    <h2>✏️ Task 1: Decode the Message (10 mins)</h2>
+    <p>Use the alphabet table above to decode the following messages. Type your answer and click Check.</p>
 
-    <div class="code-block">
-<span class="keyword">from</span> microbit <span class="keyword">import</span> *<br>
-<span class="keyword">import</span> radio<br><br>
-radio.config(group=<span class="string">42</span>)<br>
-radio.on()<br><br>
-<span class="keyword">while</span> True:<br>
-&nbsp;&nbsp;&nbsp;&nbsp;message = radio.receive()<br>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">if</span> message:<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;display.scroll(<span class="string">"8, 5, 12, 12, 15"</span>) <span class="comment"># HELLO</span><br>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">if</span> button_a.is_pressed():<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;display.clear()<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;radio.send(<span class="string">'message'</span>)
+    <div class="encode-box">
+      <h4>🔍 Decode 1: 8, 5, 12, 12, 15</h4>
+      <div class="input-row">
+        <input type="text" id="decode1" placeholder="Type the word...">
+        <button onclick="checkDecode('decode1','hello')">Check</button>
+      </div>
+      <div class="result" id="decode1Result"></div>
     </div>
 
-    <h3>Step-by-step trace</h3>
-    <ol>
-      <li><strong>Import libraries</strong> — <code>microbit</code> and <code>radio</code>.</li>
-      <li><strong>Set radio group</strong> — <code>radio.config(group=42)</code> sets the channel.</li>
-      <li><strong>Turn on radio</strong> — <code>radio.on()</code> activates the radio.</li>
-      <li><strong>Main loop</strong> — the program runs forever.</li>
-      <li><strong>Check for messages</strong> — <code>message = radio.receive()</code> listens for incoming messages.</li>
-      <li><strong>If a message arrives</strong> — display the numbers 8, 5, 12, 12, 15 (which decode to HELLO).</li>
-      <li><strong>If button A is pressed</strong> — clear the display and send the message.</li>
-    </ol>
+    <div class="encode-box">
+      <h4>🔍 Decode 2: 13, 9, 3, 18, 15, 2, 9, 20</h4>
+      <div class="input-row">
+        <input type="text" id="decode2" placeholder="Type the word...">
+        <button onclick="checkDecode('decode2','microbit')">Check</button>
+      </div>
+      <div class="result" id="decode2Result"></div>
+    </div>
 
-    <!-- ===== MAIN TASK ===== -->
-    <div class="main-task">
-      <span class="badge">⭐ Main Task</span>
-      <div>
-        <h3>📝 Worksheet 10 — Radio Communication</h3>
-        <p>Complete <strong>Worksheet 10</strong> to practise working with radio communication.</p>
-        <p><strong>Worksheet 10 asks you to:</strong></p>
-        <ul style="margin-top:0.3rem;">
-          <li>Identify the radio group used in a program</li>
-          <li>Decode a message by replacing numbers with letters</li>
-          <li>Explain how a micro:bit sends a message to another micro:bit</li>
-          <li>Identify what needs to be unique between two micro:bits</li>
-          <li>Create a test plan to check the program works</li>
-          <li>Explain how to check the numbers are correct</li>
-        </ul>
+    <div class="encode-box">
+      <h4>🔍 Decode 3: 3, 15, 4, 9, 14, 7</h4>
+      <div class="input-row">
+        <input type="text" id="decode3" placeholder="Type the word...">
+        <button onclick="checkDecode('decode3','coding')">Check</button>
+      </div>
+      <div class="result" id="decode3Result"></div>
+    </div>
+
+    <div class="encode-box">
+      <h4>🔍 Decode 4: 18, 1, 4, 9, 15</h4>
+      <div class="input-row">
+        <input type="text" id="decode4" placeholder="Type the word...">
+        <button onclick="checkDecode('decode4','radio')">Check</button>
+      </div>
+      <div class="result" id="decode4Result"></div>
+    </div>
+
+    <div class="encode-box">
+      <h4>🔍 Decode 5: 19, 5, 3, 18, 5, 20</h4>
+      <div class="input-row">
+        <input type="text" id="decode5" placeholder="Type the word...">
+        <button onclick="checkDecode('decode5','secret')">Check</button>
+      </div>
+      <div class="result" id="decode5Result"></div>
+    </div>
+
+    <!-- ===== INTERACTIVE TASK 2: ENCODE ===== -->
+    <h2>✏️ Task 2: Encode the Message (10 mins)</h2>
+    <p>Now it's your turn. Encode the following words using the alphabet positions. Write the numbers separated by commas (e.g. <code>3, 1, 20</code>).</p>
+
+    <div class="encode-box">
+      <h4>🔐 Encode 1: "CAT"</h4>
+      <div class="input-row">
+        <input type="text" id="encode1" placeholder="e.g. 3, 1, 20">
+        <button onclick="checkEncode('encode1','3,1,20')">Check</button>
+      </div>
+      <div class="result" id="encode1Result"></div>
+    </div>
+
+    <div class="encode-box">
+      <h4>🔐 Encode 2: "DOG"</h4>
+      <div class="input-row">
+        <input type="text" id="encode2" placeholder="e.g. 4, 15, 7">
+        <button onclick="checkEncode('encode2','4,15,7')">Check</button>
+      </div>
+      <div class="result" id="encode2Result"></div>
+    </div>
+
+    <div class="encode-box">
+      <h4>🔐 Encode 3: "CODE"</h4>
+      <div class="input-row">
+        <input type="text" id="encode3" placeholder="e.g. 3, 15, 4, 5">
+        <button onclick="checkEncode('encode3','3,15,4,5')">Check</button>
+      </div>
+      <div class="result" id="encode3Result"></div>
+    </div>
+
+    <div class="encode-box">
+      <h4>🔐 Encode 4: "PYTHON"</h4>
+      <div class="input-row">
+        <input type="text" id="encode4" placeholder="e.g. 16, 25, 20...">
+        <button onclick="checkEncode('encode4','16,25,20,8,15,14')">Check</button>
+      </div>
+      <div class="result" id="encode4Result"></div>
+    </div>
+
+    <div class="encode-box">
+      <h4>🔐 Encode 5: "RADIO"</h4>
+      <div class="input-row">
+        <input type="text" id="encode5" placeholder="e.g. 18, 1, 4...">
+        <button onclick="checkEncode('encode5','18,1,4,9,15')">Check</button>
+      </div>
+      <div class="result" id="encode5Result"></div>
+    </div>
+
+    <!-- ===== INTERACTIVE TASK 3: WORD SPLIT ===== -->
+    <h2>✏️ Task 3: Split the Word (10 mins)</h2>
+    <p>Each letter in the word is represented by a number. Fill in the missing numbers in the table below.</p>
+
+    <table class="word-split">
+      <tr>
+        <th>Word</th>
+        <th>Letter 1</th>
+        <th>Letter 2</th>
+        <th>Letter 3</th>
+        <th>Letter 4</th>
+        <th>Letter 5</th>
+        <th>Letter 6</th>
+      </tr>
+      <tr>
+        <td><strong>HELLO</strong></td>
+        <td>8</td>
+        <td>5</td>
+        <td>12</td>
+        <td>12</td>
+        <td>15</td>
+        <td>—</td>
+      </tr>
+      <tr>
+        <td><strong>WORLD</strong></td>
+        <td>23</td>
+        <td>15</td>
+        <td>18</td>
+        <td>12</td>
+        <td><input type="text" id="ws1" placeholder="?"></td>
+        <td>—</td>
+      </tr>
+      <tr>
+        <td><strong>SCHOOL</strong></td>
+        <td>19</td>
+        <td>3</td>
+        <td>8</td>
+        <td><input type="text" id="ws2" placeholder="?"></td>
+        <td><input type="text" id="ws3" placeholder="?"></td>
+        <td>12</td>
+      </tr>
+      <tr>
+        <td><strong>MOBILE</strong></td>
+        <td><input type="text" id="ws4" placeholder="?"></td>
+        <td><input type="text" id="ws5" placeholder="?"></td>
+        <td>2</td>
+        <td>9</td>
+        <td>12</td>
+        <td>5</td>
+      </tr>
+      <tr>
+        <td><strong>KEYBOARD</strong></td>
+        <td>11</td>
+        <td>5</td>
+        <td><input type="text" id="ws6" placeholder="?"></td>
+        <td>2</td>
+        <td>15</td>
+        <td>1</td>
+      </tr>
+    </table>
+
+    <button class="check-btn" id="checkWordSplit" style="background:#0b2a4a; color:white; border:none; padding:0.6rem 1.4rem; border-radius:30px; font-weight:600; font-size:0.85rem; cursor:pointer; margin-top:0.5rem;">Check Answers</button>
+    <div class="feedback" id="wordSplitFeedback" style="margin-top:0.5rem; font-weight:600;"></div>
+
+    <!-- ===== INTERACTIVE TASK 4: DRAG AND DROP ===== -->
+    <h2>✏️ Task 4: Build the Program (15 mins)</h2>
+    <p>Drag the code blocks from the left into the correct order on the right to build a working radio program.</p>
+
+    <div class="drag-container">
+      <div class="drag-column">
+        <h4><i class="fas fa-puzzle-piece" style="color:#2a6f97;"></i> Code Blocks (drag these)</h4>
+        <div class="drag-items" id="dragItems">
+          <div class="drag-item" draggable="true" data-order="1">from microbit import *</div>
+          <div class="drag-item" draggable="true" data-order="2">import radio</div>
+          <div class="drag-item" draggable="true" data-order="3">radio.config(group=42)</div>
+          <div class="drag-item" draggable="true" data-order="4">radio.on()</div>
+          <div class="drag-item" draggable="true" data-order="5">while True:</div>
+          <div class="drag-item" draggable="true" data-order="6">    message = radio.receive()</div>
+          <div class="drag-item" draggable="true" data-order="7">    if message:</div>
+          <div class="drag-item" draggable="true" data-order="8">        display.scroll("8, 5, 12, 12, 15")</div>
+          <div class="drag-item" draggable="true" data-order="9">    if button_a.is_pressed():</div>
+          <div class="drag-item" draggable="true" data-order="10">        radio.send('message')</div>
+        </div>
+      </div>
+      <div class="drag-column">
+        <h4><i class="fas fa-check-circle" style="color:#4caf50;"></i> Your Program (drop here)</h4>
+        <div class="drop-zone" id="dropZone">
+          <div class="placeholder">Drag the code blocks here in the correct order...</div>
+        </div>
       </div>
     </div>
 
-    <!-- ===== PRACTICE 1: DECODE THE MESSAGE ===== -->
-    <h2>✏️ Practice 1: Decode the Message</h2>
-    <p>Use the alphabet table above to decode the following messages. Write the word in the box.</p>
+    <button class="check-btn" id="checkDrag" style="background:#0b2a4a; color:white; border:none; padding:0.6rem 1.4rem; border-radius:30px; font-weight:600; font-size:0.85rem; cursor:pointer; margin-top:0.5rem;">Check Order</button>
+    <div class="feedback" id="dragFeedback" style="margin-top:0.5rem; font-weight:600;"></div>
 
-    <div class="highlight-box">
-      <strong>Message 1:</strong> 8, 5, 12, 12, 15<br>
-      <input type="text" id="decode1" placeholder="Type your answer..." style="margin-top:0.4rem; padding:0.4rem 0.8rem; border:2px solid #d4e3f0; border-radius:8px; font-size:1rem; width:200px;">
-      <button onclick="checkDecode('decode1', 'hello')" style="margin-left:0.5rem; background:#0b2a4a; color:white; border:none; padding:0.4rem 1rem; border-radius:30px; cursor:pointer; font-weight:600;">Check</button>
-      <span id="decode1Result" style="margin-left:0.5rem; font-weight:600;"></span>
+    <!-- ===== INTERACTIVE TASK 5: TEST PLAN ===== -->
+    <h2>✏️ Task 5: Create a Test Plan (10 mins)</h2>
+    <p>Complete the test plan below to check that the radio program works correctly. Fill in the expected result for each test.</p>
+
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Test</th>
+          <th>Action</th>
+          <th>Expected Result</th>
+          <th>Pass/Fail</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>Press A on Micro:bit 1</td>
+          <td><input type="text" id="test1" placeholder="What should happen?"></td>
+          <td><input type="text" id="test1pf" placeholder="Pass/Fail"></td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>Press A on Micro:bit 2</td>
+          <td><input type="text" id="test2" placeholder="What should happen?"></td>
+          <td><input type="text" id="test2pf" placeholder="Pass/Fail"></td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>Wait 10 seconds without pressing anything</td>
+          <td><input type="text" id="test3" placeholder="What should happen?"></td>
+          <td><input type="text" id="test3pf" placeholder="Pass/Fail"></td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td>Press B on Micro:bit 1</td>
+          <td><input type="text" id="test4" placeholder="What should happen?"></td>
+          <td><input type="text" id="test4pf" placeholder="Pass/Fail"></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="highlight-box amber">
+      <i class="fas fa-question-circle" style="color:#b45309; margin-right:8px;"></i>
+      <strong>Think about it:</strong> What else could you test? What would happen if the radio groups were different? What if the battery runs out?
     </div>
 
-    <div class="highlight-box">
-      <strong>Message 2:</strong> 13, 9, 3, 18, 15, 2, 9, 20<br>
-      <input type="text" id="decode2" placeholder="Type your answer..." style="margin-top:0.4rem; padding:0.4rem 0.8rem; border:2px solid #d4e3f0; border-radius:8px; font-size:1rem; width:200px;">
-      <button onclick="checkDecode('decode2', 'microbit')" style="margin-left:0.5rem; background:#0b2a4a; color:white; border:none; padding:0.4rem 1rem; border-radius:30px; cursor:pointer; font-weight:600;">Check</button>
-      <span id="decode2Result" style="margin-left:0.5rem; font-weight:600;"></span>
-    </div>
-
-    <div class="highlight-box">
-      <strong>Message 3:</strong> 3, 15, 4, 9, 14, 7<br>
-      <input type="text" id="decode3" placeholder="Type your answer..." style="margin-top:0.4rem; padding:0.4rem 0.8rem; border:2px solid #d4e3f0; border-radius:8px; font-size:1rem; width:200px;">
-      <button onclick="checkDecode('decode3', 'coding')" style="margin-left:0.5rem; background:#0b2a4a; color:white; border:none; padding:0.4rem 1rem; border-radius:30px; cursor:pointer; font-weight:600;">Check</button>
-      <span id="decode3Result" style="margin-left:0.5rem; font-weight:600;"></span>
-    </div>
-
-    <!-- ===== PRACTICE 2: ENCODE A MESSAGE ===== -->
-    <h2>✏️ Practice 2: Encode a Message</h2>
-    <p>Now it's your turn. Encode the following words using the alphabet positions. Write the numbers in the box.</p>
-
-    <div class="highlight-box">
-      <strong>Word 1: "CAT"</strong><br>
-      <input type="text" id="encode1" placeholder="e.g. 3, 1, 20" style="margin-top:0.4rem; padding:0.4rem 0.8rem; border:2px solid #d4e3f0; border-radius:8px; font-size:1rem; width:250px;">
-      <button onclick="checkEncode('encode1', '3,1,20')" style="margin-left:0.5rem; background:#0b2a4a; color:white; border:none; padding:0.4rem 1rem; border-radius:30px; cursor:pointer; font-weight:600;">Check</button>
-      <span id="encode1Result" style="margin-left:0.5rem; font-weight:600;"></span>
-    </div>
-
-    <div class="highlight-box">
-      <strong>Word 2: "DOG"</strong><br>
-      <input type="text" id="encode2" placeholder="e.g. 4, 15, 7" style="margin-top:0.4rem; padding:0.4rem 0.8rem; border:2px solid #d4e3f0; border-radius:8px; font-size:1rem; width:250px;">
-      <button onclick="checkEncode('encode2', '4,15,7')" style="margin-left:0.5rem; background:#0b2a4a; color:white; border:none; padding:0.4rem 1rem; border-radius:30px; cursor:pointer; font-weight:600;">Check</button>
-      <span id="encode2Result" style="margin-left:0.5rem; font-weight:600;"></span>
-    </div>
-
-    <div class="highlight-box">
-      <strong>Word 3: "CODE"</strong><br>
-      <input type="text" id="encode3" placeholder="e.g. 3, 15, 4, 5" style="margin-top:0.4rem; padding:0.4rem 0.8rem; border:2px solid #d4e3f0; border-radius:8px; font-size:1rem; width:250px;">
-      <button onclick="checkEncode('encode3', '3,15,4,5')" style="margin-left:0.5rem; background:#0b2a4a; color:white; border:none; padding:0.4rem 1rem; border-radius:30px; cursor:pointer; font-weight:600;">Check</button>
-      <span id="encode3Result" style="margin-left:0.5rem; font-weight:600;"></span>
-    </div>
-
-    <!-- ===== PRACTICE 3: WRITE PSEUDOCODE ===== -->
-    <h2>✏️ Practice 3: Write Pseudocode</h2>
-    <p>Use the structure below to write pseudocode for a program that:</p>
+    <!-- ===== INTERACTIVE TASK 6: WRITE PSEUDOCODE ===== -->
+    <h2>✏️ Task 6: Write Pseudocode (10 mins)</h2>
+    <p>Write pseudocode for a program that:</p>
     <ul>
       <li>Sets the radio group to 42</li>
       <li>Loops forever</li>
@@ -834,220 +891,45 @@ radio.on()<br><br>
       <strong>Success criteria:</strong> Your pseudocode should use <code>START</code>, <code>STOP</code>, <code>LOOP</code>, <code>IF</code>, <code>THEN</code>, and <code>ENDIF</code>. It should include receiving a message, displaying it, and sending a message when a button is pressed.
     </div>
 
-    <!-- ===== PRACTICE 4: CREATE A TEST PLAN ===== -->
-    <h2>✏️ Practice 4: Create a Test Plan</h2>
-    <p>Complete the test plan below to check that your radio communication program works correctly.</p>
-
-    <table class="data-table" style="font-size:0.9rem;">
-      <tr>
-        <th style="background:#0b2a4a; color:white; padding:0.6rem;">Test</th>
-        <th style="background:#0b2a4a; color:white; padding:0.6rem;">Action</th>
-        <th style="background:#0b2a4a; color:white; padding:0.6rem;">Expected Result</th>
-        <th style="background:#0b2a4a; color:white; padding:0.6rem;">Pass/Fail</th>
-      </tr>
-      <tr>
-        <td>1</td>
-        <td>Press A on Micro:bit 1</td>
-        <td><input type="text" placeholder="What should happen?" style="width:100%; border:none; background:transparent; font-size:0.85rem;"></td>
-        <td><input type="text" placeholder="Pass/Fail" style="width:80px; border:none; background:transparent; font-size:0.85rem;"></td>
-      </tr>
-      <tr>
-        <td>2</td>
-        <td>Press A on Micro:bit 2</td>
-        <td><input type="text" placeholder="What should happen?" style="width:100%; border:none; background:transparent; font-size:0.85rem;"></td>
-        <td><input type="text" placeholder="Pass/Fail" style="width:80px; border:none; background:transparent; font-size:0.85rem;"></td>
-      </tr>
-      <tr>
-        <td>3</td>
-        <td>Wait for 10 seconds without pressing anything</td>
-        <td><input type="text" placeholder="What should happen?" style="width:100%; border:none; background:transparent; font-size:0.85rem;"></td>
-        <td><input type="text" placeholder="Pass/Fail" style="width:80px; border:none; background:transparent; font-size:0.85rem;"></td>
-      </tr>
-    </table>
-
-    <div class="highlight-box amber">
-      <i class="fas fa-question-circle" style="color:#b45309; margin-right:8px;"></i>
-      <strong>Think about it:</strong> What else could you test? What would happen if the radio groups were different? What if the battery runs out?
-    </div>
-
-    <!-- ============================================================ -->
-    <!-- ===== CREATEAI PROJECT ==================================== -->
-    <!-- ============================================================ -->
-
-    <hr class="project-divider" />
-
-    <div style="text-align:center; margin-bottom:1.5rem;">
-      <h2 style="border-left:none; padding-left:0; font-size:1.8rem; color:#4a148c;">
-        <i class="fas fa-robot" style="margin-right:10px;"></i> CreateAI Project
-      </h2>
-      <p style="color:#64748b; font-size:0.95rem; max-width:700px; margin:0 auto;">
-        This project connects the conditional logic you've been learning to real-world AI.
-        It runs across several lessons, with a show-and-tell at the end.
-      </p>
-    </div>
-
-    <!-- ===== TEACHER DEMO: CREATEAI ===== -->
-    <h2>🤖 Teacher Demo — CreateAI in Action</h2>
-
-    <div class="demo-callout">
-      <span class="badge">👨‍🏫 Demo</span>
-      <div>
-        <h3>Watch the teacher demonstrate CreateAI</h3>
-        <p>Your teacher will show you how to train an AI model using the micro:bit's sensors. Watch carefully — you'll need to answer some questions afterwards.</p>
-        <p><strong>Demo link:</strong> <a href="https://createai.microbit.org/data-samples" target="_blank">createai.microbit.org/data-samples</a></p>
-      </div>
-    </div>
-
-    <h3>🔍 What to look out for in the demo</h3>
-    <ul>
-      <li>How the teacher collects <strong>training data</strong> for each movement</li>
-      <li>How the <strong>AI model</strong> learns to recognise patterns</li>
-      <li>How the micro:bit <strong>reacts</strong> when the AI detects a movement</li>
-    </ul>
-
-    <!-- ===== INTERACTIVE SENSOR QUIZ ===== -->
-    <div class="sensor-quiz" id="sensorQuiz">
-      <h3><i class="fas fa-question-circle" style="color:#0d47a1;"></i> Class discussion — What sensors did the teacher use?</h3>
-      <p style="font-size:0.9rem; color:#475569;">After the demo, answer these questions to identify the sensors used. Click an answer to check if you're right.</p>
-
-      <div class="sensor-q" data-correct="b">
-        <p>1. Was the micro:bit detecting movement or orientation?</p>
-        <button data-opt="a">A. Orientation only</button>
-        <button data-opt="b">B. Both movement and orientation</button>
-        <button data-opt="c">C. Neither</button>
-        <button data-opt="d">D. Only sound</button>
-        <div class="sensor-feedback"></div>
-      </div>
-
-      <div class="sensor-q" data-correct="c">
-        <p>2. What sensor measures acceleration and tilt?</p>
-        <button data-opt="a">A. Light sensor</button>
-        <button data-opt="b">B. Temperature sensor</button>
-        <button data-opt="c">C. Accelerometer</button>
-        <button data-opt="d">D. Microphone</button>
-        <div class="sensor-feedback"></div>
-      </div>
-
-      <div class="sensor-q" data-correct="a">
-        <p>3. Could other sensors (light, sound, temperature) be used instead?</p>
-        <button data-opt="a">A. Yes, different sensors can be used for different projects</button>
-        <button data-opt="b">B. No, only the accelerometer works with AI</button>
-        <button data-opt="c">C. Only the light sensor works</button>
-        <button data-opt="d">D. Sensors cannot be used with AI</button>
-        <div class="sensor-feedback"></div>
-      </div>
-
-      <button class="reveal-answer" id="revealAnswerBtn">
-        <i class="fas fa-eye"></i> Reveal Key Sensors
-      </button>
-
-      <div class="answer-reveal" id="answerReveal">
-        <strong><i class="fas fa-check-circle" style="margin-right:6px;"></i> Key sensors used in CreateAI:</strong>
-        <p style="margin-top:0.4rem;">The <strong>accelerometer</strong> is the main sensor used for motion detection. It measures acceleration and tilt in three dimensions (X, Y, Z). Other sensors like the <strong>magnetometer</strong> (compass) or <strong>light sensor</strong> could also be used for different projects.</p>
-      </div>
-    </div>
-
-    <!-- ===== PAIRED PROJECT ===== -->
-    <h2>👥 Paired Project — Complete a CreateAI Tutorial</h2>
-
-    <div class="pair-task">
-      <span class="badge">👥 Pairs</span>
-      <div>
-        <h3>Work in pairs to complete one CreateAI tutorial</h3>
-        <p>Now it's your turn. In pairs, choose <strong>one</strong> of the official CreateAI tutorials below and work through it together.</p>
-        <p><strong>Choose ONE of these tutorials:</strong></p>
-        <ul style="margin-top:0.4rem;">
-          <li><strong>AI Storytelling Friend</strong> — train a model to recognise movements that tell a story.</li>
-          <li><strong>Simple AI Exercise Timer</strong> — use AI to detect exercise movements and count reps.</li>
-          <li><strong>AI Activity Timer</strong> — build a timer that responds to different activities.</li>
-          <li><strong>AI Sports Data Logger</strong> — log sports movements and track performance.</li>
-        </ul>
-        <p style="margin-top:0.4rem;"><em>All tutorials are available at <a href="https://createai.microbit.org/" target="_blank" style="color:#4a148c; font-weight:600;">createai.microbit.org</a>.</em></p>
-      </div>
-    </div>
-
-    <h3>🛠️ Step 1: Open CreateAI</h3>
-    <p>Go to <a href="https://createai.microbit.org/" target="_blank" style="color:#0d47a1; font-weight:600;">createai.microbit.org</a> and open the project tool. Make sure you and your partner are both logged in or working on the same computer.</p>
-
-    <h3>📹 Step 2: Choose and Complete Your Tutorial</h3>
-    <p>Pick <strong>one</strong> tutorial from the list above and follow it through. The tutorial will guide you through:</p>
-    <ol>
-      <li><strong>Collecting training data</strong> — record examples of each movement.</li>
-      <li><strong>Training the model</strong> — let the AI learn the patterns.</li>
-      <li><strong>Testing the model</strong> — check if the AI identifies movements correctly.</li>
-      <li><strong>Programming the micro:bit</strong> — use MakeCode to make the micro:bit react.</li>
-    </ol>
-
-    <div class="highlight-box" style="background:#fff8e1; border-left-color:#f9a825;">
-      <i class="fas fa-lightbulb" style="color:#b45309; margin-right:8px;"></i>
-      <strong>Teacher tip:</strong> If you need to edit the code for your program, use the <strong>MakeCode editor</strong>. Your teacher will show you how to open it from the CreateAI project page.
-    </div>
-
-    <h3>🎒 Homework — bring your materials for next lesson</h3>
-    <div class="highlight-box green" style="background:#e0ffee; border-left-color:#3cff8c;">
-      <i class="fas fa-box-open" style="color:#1b5e20; margin-right:8px;"></i>
-      <strong>Next lesson:</strong> You'll build a physical prototype of your AI project. Bring in materials to make your model move or react. Examples:
-      <ul style="margin-top:0.4rem;">
-        <li><strong>Elastic bands</strong> — to create a moving part or lever</li>
-        <li><strong>Small toys</strong> or figures — to be moved by your device</li>
-        <li><strong>Card, straws, tape, string</strong> — for building a simple mechanism</li>
-        <li><strong>Anything else</strong> you think you'll need to make your project move or react</li>
-      </ul>
-    </div>
-
-    <div class="highlight-box" style="background:#e0ffee; border-left-color:#3cff8c;">
-      <i class="fas fa-lightbulb" style="color:#1b5e20; margin-right:8px;"></i>
-      <strong>In the next lesson:</strong> You'll use the materials you brought in to build and test your prototype. At the end of the project, <strong>1 or 2 groups will be picked to demonstrate their program</strong> to the class in a show and tell.
-    </div>
-
     <!-- ===== SELF-CHECK QUIZ ===== -->
-    <div class="quiz" id="quiz">
-      <h3><i class="fas fa-circle-question" style="color:#2a6f97;"></i> Quick Self-Check</h3>
+    <div class="quiz" id="quiz" style="background:#f8fafc; border:1px solid #dceaf7; border-radius:20px; padding:1.4rem 1.6rem; margin:1.2rem 0;">
+      <h3 style="margin-top:0; display:flex; align-items:center; gap:8px;"><i class="fas fa-circle-question" style="color:#2a6f97;"></i> Quick Self-Check</h3>
       <p style="font-size:0.9rem; color:#475569;">Click an answer to see if you're right. This is just for you — no marks are recorded.</p>
 
-      <div class="q" data-correct="b">
-        <p>1. What is the radio group used for?</p>
-        <button data-opt="a">A. To make the micro:bit louder</button>
-        <button data-opt="b">B. To set the channel that micro:bits use to communicate</button>
-        <button data-opt="c">C. To change the display brightness</button>
-        <button data-opt="d">D. To charge the battery</button>
-        <div class="answer-feedback"></div>
+      <div class="q" data-correct="b" style="margin:1rem 0; padding:0.9rem 1.2rem; background:white; border-radius:14px; border:1px solid #e5edf5;">
+        <p style="font-weight:600; margin-bottom:0.6rem;">1. What is the radio group used for?</p>
+        <button data-opt="a" style="background:#eef6fc; border:1.5px solid #d4e3f0; color:#0b2a4a; padding:0.4rem 1rem; border-radius:30px; font-size:0.85rem; margin:0.2rem 0.3rem 0.2rem 0; cursor:pointer; font-weight:500;">A. To make the micro:bit louder</button>
+        <button data-opt="b" style="background:#eef6fc; border:1.5px solid #d4e3f0; color:#0b2a4a; padding:0.4rem 1rem; border-radius:30px; font-size:0.85rem; margin:0.2rem 0.3rem 0.2rem 0; cursor:pointer; font-weight:500;">B. To set the channel that micro:bits use to communicate</button>
+        <button data-opt="c" style="background:#eef6fc; border:1.5px solid #d4e3f0; color:#0b2a4a; padding:0.4rem 1rem; border-radius:30px; font-size:0.85rem; margin:0.2rem 0.3rem 0.2rem 0; cursor:pointer; font-weight:500;">C. To change the display brightness</button>
+        <button data-opt="d" style="background:#eef6fc; border:1.5px solid #d4e3f0; color:#0b2a4a; padding:0.4rem 1rem; border-radius:30px; font-size:0.85rem; margin:0.2rem 0.3rem 0.2rem 0; cursor:pointer; font-weight:500;">D. To charge the battery</button>
+        <div class="answer-feedback" style="font-size:0.82rem; margin-top:0.4rem; min-height:1.2rem; font-weight:500;"></div>
       </div>
 
-      <div class="q" data-correct="c">
-        <p>2. What does the message "8, 5, 12, 12, 15" decode to?</p>
-        <button data-opt="a">A. WORLD</button>
-        <button data-opt="b">B. HELLO</button>
-        <button data-opt="c">C. HELP</button>
-        <button data-opt="d">D. HAPPY</button>
-        <div class="answer-feedback"></div>
+      <div class="q" data-correct="b" style="margin:1rem 0; padding:0.9rem 1.2rem; background:white; border-radius:14px; border:1px solid #e5edf5;">
+        <p style="font-weight:600; margin-bottom:0.6rem;">2. What does the message "8, 5, 12, 12, 15" decode to?</p>
+        <button data-opt="a" style="background:#eef6fc; border:1.5px solid #d4e3f0; color:#0b2a4a; padding:0.4rem 1rem; border-radius:30px; font-size:0.85rem; margin:0.2rem 0.3rem 0.2rem 0; cursor:pointer; font-weight:500;">A. WORLD</button>
+        <button data-opt="b" style="background:#eef6fc; border:1.5px solid #d4e3f0; color:#0b2a4a; padding:0.4rem 1rem; border-radius:30px; font-size:0.85rem; margin:0.2rem 0.3rem 0.2rem 0; cursor:pointer; font-weight:500;">B. HELLO</button>
+        <button data-opt="c" style="background:#eef6fc; border:1.5px solid #d4e3f0; color:#0b2a4a; padding:0.4rem 1rem; border-radius:30px; font-size:0.85rem; margin:0.2rem 0.3rem 0.2rem 0; cursor:pointer; font-weight:500;">C. HELP</button>
+        <button data-opt="d" style="background:#eef6fc; border:1.5px solid #d4e3f0; color:#0b2a4a; padding:0.4rem 1rem; border-radius:30px; font-size:0.85rem; margin:0.2rem 0.3rem 0.2rem 0; cursor:pointer; font-weight:500;">D. HAPPY</button>
+        <div class="answer-feedback" style="font-size:0.82rem; margin-top:0.4rem; min-height:1.2rem; font-weight:500;"></div>
       </div>
 
-      <div class="q" data-correct="a">
-        <p>3. What must be the same on both micro:bits for them to communicate?</p>
-        <button data-opt="a">A. The radio group</button>
-        <button data-opt="b">B. The battery level</button>
-        <button data-opt="c">C. The screen size</button>
-        <button data-opt="d">D. The colour of the case</button>
-        <div class="answer-feedback"></div>
+      <div class="q" data-correct="a" style="margin:1rem 0; padding:0.9rem 1.2rem; background:white; border-radius:14px; border:1px solid #e5edf5;">
+        <p style="font-weight:600; margin-bottom:0.6rem;">3. What must be the same on both micro:bits for them to communicate?</p>
+        <button data-opt="a" style="background:#eef6fc; border:1.5px solid #d4e3f0; color:#0b2a4a; padding:0.4rem 1rem; border-radius:30px; font-size:0.85rem; margin:0.2rem 0.3rem 0.2rem 0; cursor:pointer; font-weight:500;">A. The radio group</button>
+        <button data-opt="b" style="background:#eef6fc; border:1.5px solid #d4e3f0; color:#0b2a4a; padding:0.4rem 1rem; border-radius:30px; font-size:0.85rem; margin:0.2rem 0.3rem 0.2rem 0; cursor:pointer; font-weight:500;">B. The battery level</button>
+        <button data-opt="c" style="background:#eef6fc; border:1.5px solid #d4e3f0; color:#0b2a4a; padding:0.4rem 1rem; border-radius:30px; font-size:0.85rem; margin:0.2rem 0.3rem 0.2rem 0; cursor:pointer; font-weight:500;">C. The screen size</button>
+        <button data-opt="d" style="background:#eef6fc; border:1.5px solid #d4e3f0; color:#0b2a4a; padding:0.4rem 1rem; border-radius:30px; font-size:0.85rem; margin:0.2rem 0.3rem 0.2rem 0; cursor:pointer; font-weight:500;">D. The colour of the case</button>
+        <div class="answer-feedback" style="font-size:0.82rem; margin-top:0.4rem; min-height:1.2rem; font-weight:500;"></div>
       </div>
 
-      <div class="q" data-correct="d">
-        <p>4. What does the A button do in the example program?</p>
-        <button data-opt="a">A. It turns off the micro:bit</button>
-        <button data-opt="b">B. It displays a heart</button>
-        <button data-opt="c">C. It changes the radio group</button>
-        <button data-opt="d">D. It sends the message</button>
-        <div class="answer-feedback"></div>
-      </div>
-
-      <div class="q" data-correct="b">
-        <p>5. Which sensor is mainly used in CreateAI for detecting movement?</p>
-        <button data-opt="a">A. Light sensor</button>
-        <button data-opt="b">B. Accelerometer</button>
-        <button data-opt="c">C. Temperature sensor</button>
-        <button data-opt="d">D. Microphone</button>
-        <div class="answer-feedback"></div>
+      <div class="q" data-correct="d" style="margin:1rem 0; padding:0.9rem 1.2rem; background:white; border-radius:14px; border:1px solid #e5edf5;">
+        <p style="font-weight:600; margin-bottom:0.6rem;">4. What does the A button do in the example program?</p>
+        <button data-opt="a" style="background:#eef6fc; border:1.5px solid #d4e3f0; color:#0b2a4a; padding:0.4rem 1rem; border-radius:30px; font-size:0.85rem; margin:0.2rem 0.3rem 0.2rem 0; cursor:pointer; font-weight:500;">A. It turns off the micro:bit</button>
+        <button data-opt="b" style="background:#eef6fc; border:1.5px solid #d4e3f0; color:#0b2a4a; padding:0.4rem 1rem; border-radius:30px; font-size:0.85rem; margin:0.2rem 0.3rem 0.2rem 0; cursor:pointer; font-weight:500;">B. It displays a heart</button>
+        <button data-opt="c" style="background:#eef6fc; border:1.5px solid #d4e3f0; color:#0b2a4a; padding:0.4rem 1rem; border-radius:30px; font-size:0.85rem; margin:0.2rem 0.3rem 0.2rem 0; cursor:pointer; font-weight:500;">C. It changes the radio group</button>
+        <button data-opt="d" style="background:#eef6fc; border:1.5px solid #d4e3f0; color:#0b2a4a; padding:0.4rem 1rem; border-radius:30px; font-size:0.85rem; margin:0.2rem 0.3rem 0.2rem 0; cursor:pointer; font-weight:500;">D. It sends the message</button>
+        <div class="answer-feedback" style="font-size:0.82rem; margin-top:0.4rem; min-height:1.2rem; font-weight:500;"></div>
       </div>
     </div>
 
@@ -1064,11 +946,6 @@ radio.on()<br><br>
       <span>alphabet position</span>
       <span>test plan</span>
       <span>conditional statement</span>
-      <span>AI model</span>
-      <span>training data</span>
-      <span>accelerometer</span>
-      <span>sensor</span>
-      <span>classification</span>
     </div>
 
   </div>
@@ -1077,13 +954,13 @@ radio.on()<br><br>
   <hr class="divider" />
   <div style="display: flex; justify-content: space-between; font-size: 0.8rem; color: #5d7f9a; padding: 0.5rem 0; flex-wrap: wrap; gap: 0.5rem;">
     <span><i class="fas fa-arrow-left" style="margin-right: 6px;"></i><a href="../unit8-2-pseudocode.html" style="color: #1f6390; text-decoration: none;">Back to 8.2 Pseudocode &amp; Algorithms</a></span>
-    <span>8.2 Lesson 3 · Radio Communication &amp; CreateAI</span>
+    <span>8.2 Lesson 3 · Radio Communication &amp; Encoding</span>
   </div>
 
 </div>
 
 <script>
-  // ===== SELF-CHECK QUIZ =====
+  // ===== QUIZ =====
   (function() {
     const questions = document.querySelectorAll('#quiz .q');
     questions.forEach(q => {
@@ -1097,53 +974,25 @@ radio.on()<br><br>
           const chosen = btn.getAttribute('data-opt');
           if (chosen === correct) {
             btn.classList.add('correct');
+            btn.style.background = '#c8e6c9';
+            btn.style.borderColor = '#2d8f2d';
+            btn.style.color = '#1b5e20';
+            btn.style.fontWeight = '700';
             fb.textContent = '✅ Correct!';
             fb.className = 'answer-feedback ok';
+            fb.style.color = '#2d8f2d';
           } else {
             btn.classList.add('incorrect');
+            btn.style.background = '#ffcdd2';
+            btn.style.borderColor = '#e53935';
+            btn.style.color = '#b71c1c';
             fb.textContent = '❌ Not quite. Try again.';
             fb.className = 'answer-feedback no';
+            fb.style.color = '#b71c1c';
           }
         });
       });
     });
-  })();
-
-  // ===== SENSOR QUIZ =====
-  (function() {
-    const questions = document.querySelectorAll('#sensorQuiz .sensor-q');
-    questions.forEach(q => {
-      const correct = q.getAttribute('data-correct');
-      const buttons = q.querySelectorAll('button');
-      const fb = q.querySelector('.sensor-feedback');
-
-      buttons.forEach(btn => {
-        btn.addEventListener('click', () => {
-          buttons.forEach(b => b.classList.remove('correct', 'incorrect'));
-          const chosen = btn.getAttribute('data-opt');
-          if (chosen === correct) {
-            btn.classList.add('correct');
-            fb.textContent = '✅ Correct!';
-            fb.className = 'sensor-feedback ok';
-          } else {
-            btn.classList.add('incorrect');
-            fb.textContent = '❌ Not quite. Try again.';
-            fb.className = 'sensor-feedback no';
-          }
-        });
-      });
-    });
-
-    const revealBtn = document.getElementById('revealAnswerBtn');
-    const answerReveal = document.getElementById('answerReveal');
-    if (revealBtn && answerReveal) {
-      revealBtn.addEventListener('click', () => {
-        answerReveal.classList.toggle('show');
-        revealBtn.innerHTML = answerReveal.classList.contains('show')
-          ? '<i class="fas fa-eye-slash"></i> Hide Key Sensors'
-          : '<i class="fas fa-eye"></i> Reveal Key Sensors';
-      });
-    }
   })();
 
   // ===== DECODE / ENCODE CHECKERS =====
@@ -1153,11 +1002,11 @@ radio.on()<br><br>
     const value = input.value.toLowerCase().trim().replace(/\s/g, '');
     if (value === answer.toLowerCase()) {
       result.textContent = '✅ Correct!';
-      result.style.color = '#2d8f2d';
+      result.className = 'result ok';
       input.style.borderColor = '#2d8f2d';
     } else {
       result.textContent = '❌ Try again.';
-      result.style.color = '#b71c1c';
+      result.className = 'result no';
       input.style.borderColor = '#e53935';
     }
   }
@@ -1165,23 +1014,149 @@ radio.on()<br><br>
   function checkEncode(id, answer) {
     const input = document.getElementById(id);
     const result = document.getElementById(id + 'Result');
-    // Remove spaces and compare
     const value = input.value.replace(/\s/g, '');
     const cleanAnswer = answer.replace(/\s/g, '');
     if (value === cleanAnswer) {
       result.textContent = '✅ Correct!';
-      result.style.color = '#2d8f2d';
+      result.className = 'result ok';
       input.style.borderColor = '#2d8f2d';
     } else {
       result.textContent = '❌ Try again.';
-      result.style.color = '#b71c1c';
+      result.className = 'result no';
       input.style.borderColor = '#e53935';
     }
   }
 
+  // ===== WORD SPLIT CHECKER =====
+  (function() {
+    const checkBtn = document.getElementById('checkWordSplit');
+    const feedback = document.getElementById('wordSplitFeedback');
+    if (!checkBtn) return;
+
+    const answers = {
+      ws1: '4',   // WORLD -> D = 4
+      ws2: '15',  // SCHOOL -> O = 15
+      ws3: '15',  // SCHOOL -> O = 15
+      ws4: '13',  // MOBILE -> M = 13
+      ws5: '15',  // MOBILE -> O = 15
+      ws6: '25'   // KEYBOARD -> Y = 25
+    };
+
+    checkBtn.addEventListener('click', () => {
+      let correct = 0;
+      let total = Object.keys(answers).length;
+      Object.keys(answers).forEach(id => {
+        const input = document.getElementById(id);
+        if (!input) return;
+        const value = input.value.trim();
+        if (value === answers[id]) {
+          input.style.borderColor = '#2d8f2d';
+          input.style.background = '#e8f5e9';
+          correct++;
+        } else {
+          input.style.borderColor = '#e53935';
+          input.style.background = '#ffebee';
+        }
+      });
+      if (correct === total) {
+        feedback.textContent = `✅ Perfect! All ${total} answers correct.`;
+        feedback.style.color = '#2d8f2d';
+      } else {
+        feedback.textContent = `You got ${correct} out of ${total} correct. Green = correct, red = try again.`;
+        feedback.style.color = '#b71c1c';
+      }
+    });
+  })();
+
+  // ===== DRAG AND DROP =====
+  (function() {
+    const dragItems = document.querySelectorAll('.drag-item');
+    const dropZone = document.getElementById('dropZone');
+    const checkBtn = document.getElementById('checkDrag');
+    const feedback = document.getElementById('dragFeedback');
+    let draggedItem = null;
+
+    // Drag start
+    dragItems.forEach(item => {
+      item.addEventListener('dragstart', (e) => {
+        draggedItem = item;
+        item.classList.add('dragging');
+        e.dataTransfer.setData('text/plain', item.getAttribute('data-order'));
+      });
+      item.addEventListener('dragend', () => {
+        item.classList.remove('dragging');
+      });
+    });
+
+    // Drop zone
+    dropZone.addEventListener('dragover', (e) => {
+      e.preventDefault();
+      dropZone.style.background = '#fff3e0';
+    });
+
+    dropZone.addEventListener('dragleave', () => {
+      dropZone.style.background = '#fff8e1';
+    });
+
+    dropZone.addEventListener('drop', (e) => {
+      e.preventDefault();
+      dropZone.style.background = '#fff8e1';
+      if (draggedItem) {
+        // Remove placeholder
+        const placeholder = dropZone.querySelector('.placeholder');
+        if (placeholder) placeholder.remove();
+
+        // Clone the item
+        const clone = draggedItem.cloneNode(true);
+        clone.classList.add('placed');
+        clone.draggable = false;
+        clone.style.cursor = 'default';
+        clone.style.marginBottom = '0.3rem';
+        dropZone.appendChild(clone);
+
+        // Remove original
+        draggedItem.remove();
+        draggedItem = null;
+      }
+    });
+
+    // Check order
+    if (checkBtn) {
+      checkBtn.addEventListener('click', () => {
+        const placed = dropZone.querySelectorAll('.drag-item');
+        if (placed.length === 0) {
+          feedback.textContent = '❌ No code blocks placed yet.';
+          feedback.style.color = '#b71c1c';
+          return;
+        }
+
+        let correct = 0;
+        placed.forEach((item, index) => {
+          const order = parseInt(item.getAttribute('data-order'));
+          if (order === index + 1) {
+            correct++;
+            item.style.background = '#e8f5e9';
+            item.style.borderColor = '#4caf50';
+          } else {
+            item.style.background = '#ffebee';
+            item.style.borderColor = '#e53935';
+          }
+        });
+
+        if (correct === placed.length && placed.length === 10) {
+          feedback.textContent = '✅ Perfect! Your program is in the correct order.';
+          feedback.style.color = '#2d8f2d';
+        } else {
+          feedback.textContent = `You have ${correct} out of ${placed.length} blocks in the correct position. Green = correct, red = wrong.`;
+          feedback.style.color = '#b71c1c';
+        }
+      });
+    }
+  })();
+
   // ===== FOCUS TIMER =====
   (function() {
-    let timeLeft = 25 * 60; // 25 minutes in seconds
+    let timeLeft = 25 * 60;
     const timerDisplay = document.getElementById('timerDisplay');
     const focusTimer = document.getElementById('focusTimer');
 
@@ -1190,7 +1165,6 @@ radio.on()<br><br>
       const seconds = timeLeft % 60;
       timerDisplay.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
 
-      // Change colour based on time remaining
       if (timeLeft <= 60) {
         focusTimer.className = 'focus-timer danger';
       } else if (timeLeft <= 5 * 60) {
@@ -1211,7 +1185,6 @@ radio.on()<br><br>
     updateTimer();
     const timerInterval = setInterval(updateTimer, 1000);
 
-    // Reset timer on click
     focusTimer.addEventListener('click', () => {
       timeLeft = 25 * 60;
       focusTimer.className = 'focus-timer';
