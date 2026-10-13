@@ -332,59 +332,6 @@
       font-weight: 500;
     }
 
-    /* ===== TRACE TABLE ===== */
-    .trace-table {
-      width: 100%;
-      border-collapse: collapse;
-      margin: 1rem 0;
-      font-size: 0.9rem;
-    }
-    .trace-table th {
-      background: #0b2a4a;
-      color: white;
-      padding: 0.6rem 0.9rem;
-      text-align: left;
-      font-weight: 600;
-    }
-    .trace-table td {
-      border: 1px solid #dceaf7;
-      padding: 0.5rem 0.9rem;
-    }
-    .trace-table tr:nth-child(even) td { background: #f8fafc; }
-    .trace-table input {
-      width: 100%;
-      border: 1.5px solid #d4e3f0;
-      border-radius: 6px;
-      padding: 0.3rem 0.5rem;
-      font-family: inherit;
-      font-size: 0.85rem;
-    }
-    .trace-table input:focus {
-      outline: none;
-      border-color: #2a6f97;
-      box-shadow: 0 0 0 2px rgba(42,111,151,0.15);
-    }
-    .trace-table .check-btn {
-      background: #0b2a4a;
-      color: white;
-      border: none;
-      padding: 0.5rem 1.2rem;
-      border-radius: 30px;
-      font-weight: 600;
-      font-size: 0.8rem;
-      cursor: pointer;
-      margin-top: 0.5rem;
-      transition: 0.2s;
-    }
-    .trace-table .check-btn:hover { background: #1f6390; }
-    .trace-table .feedback {
-      font-size: 0.85rem;
-      margin-top: 0.4rem;
-      font-weight: 500;
-    }
-    .trace-table .feedback.ok { color: #2d8f2d; }
-    .trace-table .feedback.no { color: #b71c1c; }
-
     /* ===== INTERACTIVE SENSOR QUIZ ===== */
     .sensor-quiz {
       background: #f8fafc;
@@ -529,7 +476,7 @@
 
     .divider { margin: 2.5rem 0 0.5rem; border: 0; height: 1px; background: linear-gradient(to right, #d4e0ec, transparent); }
 
-    .extension-divider {
+    .project-divider {
       margin: 3rem 0 1.5rem;
       border: 0;
       height: 3px;
@@ -546,7 +493,6 @@
       .code-block { font-size: 0.8rem; padding: 0.8rem 1rem; }
       .starter-callout, .main-task, .demo-callout, .pair-task { flex-direction: column; gap: 0.6rem; }
       .data-table td { padding: 0.4rem 0.5rem; font-size: 0.75rem; }
-      .trace-table { font-size: 0.75rem; }
     }
   </style>
 </head>
@@ -566,7 +512,7 @@
   <!-- ===== HEADER ===== -->
   <div class="page-header">
     <h1><i class="fas fa-magnifying-glass"></i> Lesson 2 · Linear Search &amp; CreateAI</h1>
-    <div class="sub"><i class="fas fa-arrow-right" style="margin-right:6px;"></i> Worksheet 5 · 8.2.3</div>
+    <div class="sub"><i class="fas fa-arrow-right" style="margin-right:6px;"></i> Worksheet 8.2 Lesson 2</div>
   </div>
 
   <!-- ===== LESSON CONTENT ===== -->
@@ -625,7 +571,7 @@
 
     <!-- ===== DATA SET ===== -->
     <h2>📊 The Data Set</h2>
-    <p>We'll use this list of animals from <strong>Worksheet 5</strong> to trace a linear search:</p>
+    <p>We'll use this list of animals from <strong>Worksheet 8.2 Lesson 2</strong> to trace a linear search:</p>
 
     <table class="data-table">
       <tr>
@@ -727,9 +673,9 @@ index = 1
     <div class="main-task">
       <span class="badge">⭐ Main Task</span>
       <div>
-        <h3>📝 Worksheet 5 — Linear Search</h3>
-        <p>Complete <strong>Worksheet 5</strong> to practise working with linear search.</p>
-        <p><strong>Worksheet 5 asks you to:</strong></p>
+        <h3>📝 Worksheet 8.2 Lesson 2 — Linear Search</h3>
+        <p>Complete <strong>Worksheet 8.2 Lesson 2</strong> to practise working with linear search.</p>
+        <p><strong>The worksheet asks you to:</strong></p>
         <ul style="margin-top:0.3rem;">
           <li>Explain what a linear search is and how it is used</li>
           <li>Describe how a linear search works on the animal data set to find "Tiger"</li>
@@ -738,119 +684,18 @@ index = 1
       </div>
     </div>
 
-    <!-- ===== PRACTICE 1: TRACE IT ===== -->
-    <h2>✏️ Practice 1: Trace the Linear Search</h2>
-    <p>Complete the trace table to show what happens when a linear search looks for <strong>"Bear"</strong> in the animal list.</p>
-
-    <table class="trace-table" id="traceTable">
-      <thead>
-        <tr>
-          <th>Step</th>
-          <th>Index</th>
-          <th>Item at index</th>
-          <th>Is item == "Bear"?</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>1</td>
-          <td><input type="text" data-answer="1" placeholder="?"></td>
-          <td><input type="text" data-answer="cat" placeholder="?"></td>
-          <td><input type="text" data-answer="no" placeholder="?"></td>
-        </tr>
-        <tr>
-          <td>2</td>
-          <td><input type="text" data-answer="2" placeholder="?"></td>
-          <td><input type="text" data-answer="hamster" placeholder="?"></td>
-          <td><input type="text" data-answer="no" placeholder="?"></td>
-        </tr>
-        <tr>
-          <td>3</td>
-          <td><input type="text" data-answer="3" placeholder="?"></td>
-          <td><input type="text" data-answer="bat" placeholder="?"></td>
-          <td><input type="text" data-answer="no" placeholder="?"></td>
-        </tr>
-        <tr>
-          <td>4</td>
-          <td><input type="text" data-answer="4" placeholder="?"></td>
-          <td><input type="text" data-answer="parrot" placeholder="?"></td>
-          <td><input type="text" data-answer="no" placeholder="?"></td>
-        </tr>
-        <tr>
-          <td>5</td>
-          <td><input type="text" data-answer="5" placeholder="?"></td>
-          <td><input type="text" data-answer="horse" placeholder="?"></td>
-          <td><input type="text" data-answer="no" placeholder="?"></td>
-        </tr>
-        <tr>
-          <td>6</td>
-          <td><input type="text" data-answer="6" placeholder="?"></td>
-          <td><input type="text" data-answer="lion" placeholder="?"></td>
-          <td><input type="text" data-answer="no" placeholder="?"></td>
-        </tr>
-        <tr>
-          <td>7</td>
-          <td><input type="text" data-answer="7" placeholder="?"></td>
-          <td><input type="text" data-answer="tiger" placeholder="?"></td>
-          <td><input type="text" data-answer="no" placeholder="?"></td>
-        </tr>
-        <tr>
-          <td>8</td>
-          <td><input type="text" data-answer="8" placeholder="?"></td>
-          <td><input type="text" data-answer="camel" placeholder="?"></td>
-          <td><input type="text" data-answer="no" placeholder="?"></td>
-        </tr>
-        <tr>
-          <td>9</td>
-          <td><input type="text" data-answer="9" placeholder="?"></td>
-          <td><input type="text" data-answer="bear" placeholder="?"></td>
-          <td><input type="text" data-answer="yes" placeholder="?"></td>
-        </tr>
-      </tbody>
-    </table>
-
-    <button class="check-btn" id="checkTrace">Check Answers</button>
-    <div class="feedback" id="traceFeedback"></div>
-
-    <div class="highlight-box amber" style="margin-top:1rem;">
-      <i class="fas fa-question-circle" style="color:#b45309; margin-right:8px;"></i>
-      <strong>Follow-up questions:</strong>
-      <ul style="margin-top:0.4rem;">
-        <li>How many items did the search check before finding "Bear"?</li>
-        <li>What would happen if we searched for "Penguin" instead?</li>
-        <li>Why is a linear search not always the most efficient way to search?</li>
-      </ul>
-    </div>
-
-    <!-- ===== PRACTICE 2: PSEUDOCODE ===== -->
-    <h2>✏️ Practice 2: Write the Pseudocode</h2>
-    <p>Use the structure below to write pseudocode for a linear search that finds the item <strong>"Swan"</strong> in the animal list. Remember to use <code>START</code>, <code>STOP</code>, <code>WHILE</code>, <code>IF</code>, <code>THEN</code>, <code>ELSE</code>, and <code>ENDIF</code>.</p>
-
-    <div class="code-block">
-<span class="comment">// Write your pseudocode here</span>
-
-
-
-
-    </div>
-
-    <div class="highlight-box green">
-      <i class="fas fa-check-circle" style="color:#2d8f2d; margin-right:8px;"></i>
-      <strong>Success criteria:</strong> Your pseudocode should loop through the list, compare each item to "Swan", and stop when it is found (or report if it isn't found).
-    </div>
-
     <!-- ============================================================ -->
-    <!-- ===== EXTENSION: CREATEAI PROJECT (SEPARATE SECTION) ====== -->
+    <!-- ===== CREATEAI PROJECT ==================================== -->
     <!-- ============================================================ -->
 
-    <hr class="extension-divider" />
+    <hr class="project-divider" />
 
     <div style="text-align:center; margin-bottom:1.5rem;">
       <h2 style="border-left:none; padding-left:0; font-size:1.8rem; color:#4a148c;">
-        <i class="fas fa-robot" style="margin-right:10px;"></i> Extension · CreateAI Project
+        <i class="fas fa-robot" style="margin-right:10px;"></i> CreateAI Project
       </h2>
       <p style="color:#64748b; font-size:0.95rem; max-width:700px; margin:0 auto;">
-        This is an extension activity that connects the conditional logic you've been learning to real-world AI.
+        This project connects the conditional logic you've been learning to real-world AI.
         It runs across several lessons, with a show-and-tell at the end.
       </p>
     </div>
@@ -1113,40 +958,6 @@ index = 1
           : '<i class="fas fa-eye"></i> Reveal Key Sensors';
       });
     }
-  })();
-
-  // ===== TRACE TABLE CHECKER =====
-  (function() {
-    const checkBtn = document.getElementById('checkTrace');
-    const feedback = document.getElementById('traceFeedback');
-    if (!checkBtn) return;
-
-    checkBtn.addEventListener('click', () => {
-      const inputs = document.querySelectorAll('#traceTable input');
-      let correctCount = 0;
-      let total = inputs.length;
-
-      inputs.forEach(input => {
-        const answer = (input.getAttribute('data-answer') || '').toLowerCase().trim();
-        const value = input.value.toLowerCase().trim();
-        if (value === answer) {
-          input.style.borderColor = '#2d8f2d';
-          input.style.background = '#e8f5e9';
-          correctCount++;
-        } else {
-          input.style.borderColor = '#e53935';
-          input.style.background = '#ffebee';
-        }
-      });
-
-      if (correctCount === total) {
-        feedback.textContent = `✅ Perfect! All ${total} answers correct.`;
-        feedback.className = 'feedback ok';
-      } else {
-        feedback.textContent = `You got ${correctCount} out of ${total} correct. Green = correct, red = try again.`;
-        feedback.className = 'feedback no';
-      }
-    });
   })();
 </script>
 
