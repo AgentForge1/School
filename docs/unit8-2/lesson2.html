@@ -298,127 +298,6 @@
     .code-block .string { color: #b5d6a8; }
     .code-block .func { color: #7bb3ff; }
 
-    .editor-wrapper {
-      background: #f8fafc;
-      border: 2px solid #2a6f97;
-      border-radius: 20px;
-      padding: 1.2rem 1.4rem;
-      margin: 1.5rem 0;
-      box-shadow: 0 6px 18px rgba(0, 20, 40, 0.06);
-    }
-    .editor-wrapper .editor-header {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: space-between;
-      gap: 0.8rem;
-      margin-bottom: 1rem;
-    }
-    .editor-wrapper .editor-header h3 {
-      margin: 0;
-      font-size: 1.1rem;
-      color: #0b2a4a;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .editor-wrapper .editor-header h3 i { color: #2a6f97; }
-    .editor-wrapper .editor-header .editor-actions {
-      display: flex;
-      gap: 0.6rem;
-      flex-wrap: wrap;
-    }
-    .editor-wrapper .editor-actions button {
-      background: #0b2a4a;
-      color: white;
-      border: none;
-      padding: 0.5rem 1.2rem;
-      border-radius: 40px;
-      font-weight: 600;
-      font-size: 0.8rem;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      transition: 0.2s;
-    }
-    .editor-wrapper .editor-actions button:hover {
-      background: #1f6390;
-      transform: translateY(-1px);
-    }
-    .editor-wrapper .editor-actions button.secondary {
-      background: #eef6fc;
-      color: #0b2a4a;
-      border: 1.5px solid #b6cfe5;
-    }
-    .editor-wrapper .editor-actions button.secondary:hover {
-      background: #dbeafe;
-      border-color: #7bb3ff;
-    }
-    .editor-wrapper .editor-container {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1rem;
-    }
-    .editor-wrapper .editor-container textarea {
-      width: 100%;
-      min-height: 280px;
-      background: #0b1e2e;
-      color: #e2edf7;
-      border: none;
-      border-radius: 14px;
-      padding: 1rem 1.2rem;
-      font-family: 'JetBrains Mono', 'Fira Code', monospace;
-      font-size: 0.85rem;
-      line-height: 1.6;
-      resize: vertical;
-      outline: none;
-      tab-size: 4;
-    }
-    .editor-wrapper .editor-container textarea:focus {
-      box-shadow: 0 0 0 3px rgba(42, 111, 151, 0.3);
-    }
-    .editor-wrapper .output-panel {
-      background: #0b1e2e;
-      border-radius: 14px;
-      padding: 1rem 1.2rem;
-      min-height: 280px;
-      font-family: 'JetBrains Mono', 'Fira Code', monospace;
-      font-size: 0.85rem;
-      color: #e2edf7;
-      overflow-y: auto;
-      white-space: pre-wrap;
-      word-break: break-word;
-      border: 1px solid #1f3a4d;
-    }
-    .editor-wrapper .output-panel .placeholder {
-      color: #6a9fb5;
-      font-style: italic;
-    }
-    .editor-wrapper .output-panel .line {
-      padding: 0.15rem 0;
-      border-bottom: 1px solid rgba(255,255,255,0.04);
-    }
-    .editor-wrapper .output-panel .line .prompt {
-      color: #7dffb0;
-      margin-right: 6px;
-    }
-    .editor-wrapper .output-panel .line .error {
-      color: #ff6b6b;
-    }
-    .editor-wrapper .output-panel .line .ok {
-      color: #b5d6a8;
-    }
-    .editor-wrapper .hint {
-      font-size: 0.8rem;
-      color: #475569;
-      margin-top: 0.6rem;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-    .editor-wrapper .hint i { color: #2a6f97; }
-
     .quiz {
       background: #f8fafc;
       border: 1px solid #dceaf7;
@@ -481,9 +360,6 @@
       .lesson-content { padding: 1.2rem 1.4rem; }
       .code-block { font-size: 0.8rem; padding: 0.8rem 1rem; }
       .starter-callout, .main-task, .demo-callout, .pair-task { flex-direction: column; gap: 0.6rem; }
-      .editor-wrapper .editor-container { grid-template-columns: 1fr; }
-      .editor-wrapper .editor-container textarea { min-height: 200px; }
-      .editor-wrapper .output-panel { min-height: 150px; }
     }
   </style>
 </head>
@@ -703,35 +579,6 @@ userScore = <span class="keyword">INPUT</span>
       <p style="margin-top:0.4rem;"><em>Think about why the answer is the same or different for each input.</em></p>
     </div>
 
-    <!-- ===== EMBEDDED MICROPYTHON EDITOR ===== -->
-    <h2>💻 Interactive MicroPython Editor</h2>
-    <p>Use this editor to write and test your MicroPython code. You can run your program to see the output.</p>
-
-    <div class="editor-wrapper">
-      <div class="editor-header">
-        <h3><i class="fas fa-code"></i> MicroPython Editor</h3>
-        <div class="editor-actions">
-          <button id="runBtn"><i class="fas fa-play"></i> Run</button>
-          <button id="clearBtn" class="secondary"><i class="fas fa-eraser"></i> Clear</button>
-          <button id="resetBtn" class="secondary"><i class="fas fa-rotate-left"></i> Reset</button>
-        </div>
-      </div>
-      <div class="editor-container">
-        <textarea id="codeEditor" spellcheck="false">from microbit import *
-
-while True:
-    if display.read_light_level() > 50:
-        display.show(Image.HEART)
-    sleep(100)</textarea>
-        <div class="output-panel" id="outputPanel">
-          <div class="placeholder">Click "Run" to see output...</div>
-        </div>
-      </div>
-      <div class="hint">
-        <i class="fas fa-info-circle"></i> This is a simulated micro:bit environment. The light sensor returns a value between 0 and 255.
-      </div>
-    </div>
-
     <!-- ===== TEACHER DEMO: CREATEAI ===== -->
     <h2>🤖 Teacher Demo — CreateAI in Action</h2>
 
@@ -768,53 +615,45 @@ while True:
     </div>
 
     <!-- ===== PAIRED PROJECT ===== -->
-    <h2>👥 Paired Project — CreateAI in Pairs</h2>
+    <h2>👥 Paired Project — Complete a CreateAI Tutorial</h2>
 
     <div class="pair-task">
       <span class="badge">👥 Pairs</span>
       <div>
-        <h3>Work in pairs to build your own CreateAI project</h3>
-        <p>Now it's your turn. In pairs, you'll train an AI model to recognise <strong>two movements</strong> and program the micro:bit to react.</p>
-        <p><strong>You only need to complete ONE of these projects:</strong></p>
+        <h3>Work in pairs to complete one CreateAI tutorial</h3>
+        <p>Now it's your turn. In pairs, choose <strong>one</strong> of the official CreateAI tutorials below and work through it together.</p>
+        <p><strong>Choose ONE of these tutorials:</strong></p>
         <ul style="margin-top:0.4rem;">
-          <li><strong>Option A:</strong> Recognise "shake" vs "still" — show a surprised face for shake, happy face for still.</li>
-          <li><strong>Option B:</strong> Recognise "tilt left" vs "tilt right" — show a left arrow or right arrow.</li>
-          <li><strong>Option C:</strong> Recognise "circle" vs "zigzag" — show a star or a lightning bolt.</li>
-          <li><strong>Option D:</strong> Your own idea — get it approved by your teacher first!</li>
+          <li><strong>AI Storytelling Friend</strong> — train a model to recognise movements that tell a story.</li>
+          <li><strong>Simple AI Exercise Timer</strong> — use AI to detect exercise movements and count reps.</li>
+          <li><strong>AI Activity Timer</strong> — build a timer that responds to different activities.</li>
+          <li><strong>AI Sports Data Logger</strong> — log sports movements and track performance.</li>
         </ul>
+        <p style="margin-top:0.4rem;"><em>All tutorials are available at <a href="https://createai.microbit.org/" target="_blank" style="color:#4a148c; font-weight:600;">createai.microbit.org</a>.</em></p>
       </div>
     </div>
 
     <h3>🛠️ Step 1: Open CreateAI</h3>
     <p>Go to <a href="https://createai.microbit.org/" target="_blank" style="color:#0d47a1; font-weight:600;">createai.microbit.org</a> and open the project tool. Make sure you and your partner are both logged in or working on the same computer.</p>
 
-    <h3>📹 Step 2: Follow the Data Samples Tutorial</h3>
-    <p>Use the <strong>Data Samples</strong> tutorial at <a href="https://createai.microbit.org/data-samples" target="_blank" style="color:#0d47a1; font-weight:600;">createai.microbit.org/data-samples</a> to:</p>
+    <h3>📹 Step 2: Choose and Complete Your Tutorial</h3>
+    <p>Pick <strong>one</strong> tutorial from the list above and follow it through. The tutorial will guide you through:</p>
     <ol>
-      <li><strong>Collect training data</strong> for each of your two movements — aim for 10–15 samples each.</li>
-      <li><strong>Train the model</strong> — click the train button and wait for the model to learn.</li>
-      <li><strong>Test the model</strong> — try each movement and see if the AI identifies it correctly.</li>
-      <li><strong>Improve the model</strong> — if it's not accurate, collect more data and retrain.</li>
+      <li><strong>Collecting training data</strong> — record examples of each movement.</li>
+      <li><strong>Training the model</strong> — let the AI learn the patterns.</li>
+      <li><strong>Testing the model</strong> — check if the AI identifies movements correctly.</li>
+      <li><strong>Programming the micro:bit</strong> — use MakeCode to make the micro:bit react.</li>
     </ol>
 
-    <h3>💻 Step 3: Program the micro:bit</h3>
-    <p>Once your model is trained, use MakeCode or the CreateAI editor to program the micro:bit. Here's a simple example of the structure:</p>
-
-    <div class="code-block">
-<span class="keyword">from</span> microbit <span class="keyword">import</span> *<br><br>
-<span class="keyword">while</span> True:<br>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment"># Check what the AI model detects</span><br>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">if</span> ai.detect(<span class="string">"shake"</span>):<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;display.show(Image.SURPRISED)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">elif</span> ai.detect(<span class="string">"still"</span>):<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;display.show(Image.HAPPY)
+    <div class="highlight-box" style="background:#fff8e1; border-left-color:#f9a825;">
+      <i class="fas fa-lightbulb" style="color:#b45309; margin-right:8px;"></i>
+      <strong>Teacher tip:</strong> If you need to edit the code for your program, use the <strong>MakeCode editor</strong>. Your teacher will show you how to open it from the CreateAI project page.
     </div>
-    <p style="font-size:0.85rem; color:#475569;"><em>Note: The exact API will be shown in the CreateAI tutorial. The structure above shows how a conditional statement (IF/ELIF) is used to react to the AI's output.</em></p>
 
-    <h3>🧪 Step 4: Test Your Model</h3>
+    <h3>🧪 Step 3: Test Your Model</h3>
     <p>Use the CreateAI simulator to test your program:</p>
     <ul>
-      <li>Does the micro:bit show the correct icon for each movement?</li>
+      <li>Does the micro:bit show the correct reaction for each movement?</li>
       <li>What happens if you do a movement the model wasn't trained on?</li>
       <li>Can you improve the model by adding more training data?</li>
     </ul>
@@ -835,14 +674,6 @@ while True:
       <i class="fas fa-lightbulb" style="color:#1b5e20; margin-right:8px;"></i>
       <strong>In the next lesson:</strong> You'll use the materials you brought in to build and test your prototype. At the end of the project, <strong>1 or 2 groups will be picked to demonstrate their program</strong> to the class in a show and tell.
     </div>
-
-    <h3>🎯 Challenge Tasks</h3>
-    <ol>
-      <li>🔁 Train your model to recognise a <strong>third movement</strong> (e.g. "tap").</li>
-      <li>🎵 Add sound so the micro:bit plays a different tone for each movement.</li>
-      <li>📝 Write the <strong>pseudocode</strong> for your AI program using IF/THEN/ELSE.</li>
-      <li>📊 Create a <strong>test plan</strong> showing what you expect for each movement and what actually happened.</li>
-    </ol>
 
     <div class="highlight-box" style="background:#e0ffee; border-left-color:#3cff8c;">
       <i class="fas fa-sitemap" style="color:#1b5e20; margin-right:8px;"></i>
@@ -959,139 +790,6 @@ while True:
           }
         });
       });
-    });
-  })();
-
-  // ===== MICROPYTHON EDITOR =====
-  (function() {
-    const codeEditor = document.getElementById('codeEditor');
-    const outputPanel = document.getElementById('outputPanel');
-    const runBtn = document.getElementById('runBtn');
-    const clearBtn = document.getElementById('clearBtn');
-    const resetBtn = document.getElementById('resetBtn');
-
-    const defaultCode = `from microbit import *
-
-while True:
-    if display.read_light_level() > 50:
-        display.show(Image.HEART)
-    sleep(100)`;
-
-    let lightLevel = 30;
-    let isRunning = false;
-
-    function simulateLightLevel() {
-      lightLevel = 20 + Math.floor(Math.random() * 100);
-      return lightLevel;
-    }
-
-    function parseAndRun(code) {
-      const lines = code.split('\n');
-      let output = [];
-      let conditionMet = false;
-      let hasCondition = false;
-
-      output.push({ type: 'info', text: '▶ Simulating micro:bit program...' });
-      output.push({ type: 'info', text: '---' });
-
-      for (let iteration = 0; iteration < 5; iteration++) {
-        const currentLight = simulateLightLevel();
-        output.push({ type: 'prompt', text: `[Iteration ${iteration + 1}] Light level: ${currentLight}` });
-
-        conditionMet = false;
-        hasCondition = false;
-
-        for (let i = 0; i < lines.length; i++) {
-          const line = lines[i].trim();
-          if (line.includes('read_light_level()') && line.includes('>')) {
-            hasCondition = true;
-            const threshold = parseInt(line.match(/>\s*(\d+)/)?.[1] || '50');
-            if (currentLight > threshold) {
-              conditionMet = true;
-              output.push({ type: 'ok', text: `  Condition met (light ${currentLight} > ${threshold})` });
-            } else {
-              output.push({ type: 'info', text: `  Condition not met (light ${currentLight} <= ${threshold})` });
-            }
-          }
-        }
-
-        for (let i = 0; i < lines.length; i++) {
-          const line = lines[i].trim();
-          if (line.includes('display.show')) {
-            if (conditionMet || !hasCondition) {
-              const imageMatch = line.match(/Image\.(\w+)/);
-              if (imageMatch) {
-                output.push({ type: 'ok', text: `  → display.show(Image.${imageMatch[1]})` });
-              } else {
-                output.push({ type: 'ok', text: `  → display.show() called` });
-              }
-            }
-          }
-        }
-      }
-
-      output.push({ type: 'info', text: '---' });
-      output.push({ type: 'info', text: '✅ Simulation complete.' });
-
-      return output;
-    }
-
-    function displayOutput(output) {
-      outputPanel.innerHTML = '';
-      output.forEach(item => {
-        const div = document.createElement('div');
-        div.className = 'line';
-        if (item.type === 'prompt') {
-          div.innerHTML = `<span class="prompt">▶</span> ${escapeHtml(item.text)}`;
-        } else if (item.type === 'ok') {
-          div.innerHTML = `<span class="ok">✓</span> ${escapeHtml(item.text)}`;
-        } else if (item.type === 'error') {
-          div.innerHTML = `<span class="error">✗</span> ${escapeHtml(item.text)}`;
-        } else {
-          div.textContent = item.text;
-        }
-        outputPanel.appendChild(div);
-      });
-    }
-
-    function escapeHtml(text) {
-      const div = document.createElement('div');
-      div.textContent = text;
-      return div.innerHTML;
-    }
-
-    runBtn.addEventListener('click', () => {
-      const code = codeEditor.value;
-      if (!code.trim()) {
-        displayOutput([{ type: 'error', text: 'No code to run. Write some MicroPython first!' }]);
-        return;
-      }
-      try {
-        const output = parseAndRun(code);
-        displayOutput(output);
-      } catch (e) {
-        displayOutput([{ type: 'error', text: `Error: ${e.message}` }]);
-      }
-    });
-
-    clearBtn.addEventListener('click', () => {
-      codeEditor.value = '';
-      outputPanel.innerHTML = '<div class="placeholder">Click "Run" to see output...</div>';
-    });
-
-    resetBtn.addEventListener('click', () => {
-      codeEditor.value = defaultCode;
-      outputPanel.innerHTML = '<div class="placeholder">Click "Run" to see output...</div>';
-    });
-
-    codeEditor.addEventListener('keydown', (e) => {
-      if (e.key === 'Tab') {
-        e.preventDefault();
-        const start = codeEditor.selectionStart;
-        const end = codeEditor.selectionEnd;
-        codeEditor.value = codeEditor.value.substring(0, start) + '    ' + codeEditor.value.substring(end);
-        codeEditor.selectionStart = codeEditor.selectionEnd = start + 4;
-      }
     });
   })();
 </script>
