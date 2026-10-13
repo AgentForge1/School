@@ -124,6 +124,17 @@
     }
     .objectives-box ul li { list-style-type: disc; font-size: 0.95rem; }
 
+    .strand-box {
+      background: #f3e5f5;
+      border-radius: 16px;
+      padding: 0.8rem 1.4rem;
+      margin: 1rem 0 1.2rem 0;
+      border-left: 4px solid #8e24aa;
+      font-size: 0.9rem;
+    }
+    .strand-box strong { color: #4a148c; }
+    .strand-box p { margin-bottom: 0.3rem; color: #3e1058; }
+
     .highlight-box {
       background: #eef6fc;
       padding: 1rem 1.6rem;
@@ -298,6 +309,96 @@
     .code-block .string { color: #b5d6a8; }
     .code-block .func { color: #7bb3ff; }
 
+    /* ===== INTERACTIVE SENSOR QUIZ ===== */
+    .sensor-quiz {
+      background: #f8fafc;
+      border: 2px solid #1e88e5;
+      border-radius: 20px;
+      padding: 1.4rem 1.8rem;
+      margin: 1.5rem 0;
+    }
+    .sensor-quiz h3 {
+      margin-top: 0;
+      color: #0d47a1;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .sensor-quiz .sensor-q {
+      margin: 1rem 0;
+      padding: 1rem 1.2rem;
+      background: white;
+      border-radius: 14px;
+      border: 1px solid #e5edf5;
+    }
+    .sensor-quiz .sensor-q p {
+      font-weight: 600;
+      margin-bottom: 0.6rem;
+    }
+    .sensor-quiz .sensor-q button {
+      background: #eef6fc;
+      border: 1.5px solid #d4e3f0;
+      color: #0b2a4a;
+      padding: 0.5rem 1.1rem;
+      border-radius: 30px;
+      font-size: 0.85rem;
+      margin: 0.2rem 0.3rem 0.2rem 0;
+      cursor: pointer;
+      transition: 0.2s;
+      font-weight: 500;
+    }
+    .sensor-quiz .sensor-q button:hover {
+      background: #dbeafe;
+      border-color: #7bb3ff;
+    }
+    .sensor-quiz .sensor-q button.correct {
+      background: #c8e6c9;
+      border-color: #2d8f2d;
+      color: #1b5e20;
+      font-weight: 700;
+    }
+    .sensor-quiz .sensor-q button.incorrect {
+      background: #ffcdd2;
+      border-color: #e53935;
+      color: #b71c1c;
+    }
+    .sensor-quiz .sensor-q .sensor-feedback {
+      font-size: 0.85rem;
+      margin-top: 0.4rem;
+      min-height: 1.2rem;
+      font-weight: 500;
+    }
+    .sensor-quiz .sensor-q .sensor-feedback.ok { color: #2d8f2d; }
+    .sensor-quiz .sensor-q .sensor-feedback.no { color: #b71c1c; }
+    .sensor-quiz .reveal-answer {
+      background: #0b2a4a;
+      color: white;
+      border: none;
+      padding: 0.6rem 1.4rem;
+      border-radius: 40px;
+      font-weight: 600;
+      font-size: 0.85rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 0.5rem;
+      transition: 0.2s;
+    }
+    .sensor-quiz .reveal-answer:hover {
+      background: #1f6390;
+    }
+    .sensor-quiz .answer-reveal {
+      display: none;
+      margin-top: 0.8rem;
+      padding: 1rem 1.4rem;
+      background: #e8f5e9;
+      border-left: 5px solid #4caf50;
+      border-radius: 12px;
+    }
+    .sensor-quiz .answer-reveal.show { display: block; }
+    .sensor-quiz .answer-reveal strong { color: #1b5e20; }
+
     .quiz {
       background: #f8fafc;
       border: 1px solid #dceaf7;
@@ -394,6 +495,12 @@
         <li><strong>8CT.03</strong> Identify the important characteristics of pseudocode, including that it should be short, clear and precise and should have the start and end clearly shown.</li>
         <li><strong>8CT.07</strong> Predict the outcome of algorithms and test that they meet those outcomes.</li>
       </ul>
+    </div>
+
+    <!-- Strand 3 / Machine Learning Link -->
+    <div class="strand-box">
+      <strong><i class="fas fa-brain" style="margin-right:6px;"></i> Strand 3 · Machine Learning Models &amp; Algorithms (The Pattern Architect)</strong>
+      <p>This lesson builds the algorithmic thinking, prediction, and rule-based logic that form the foundation of machine learning. The <code>IF / THEN / ELSE</code> conditional statements you learn here are the same logical rules AI models use to classify inputs and make decisions. When you train an AI model in CreateAI, you're teaching it to recognise patterns — and the micro:bit's response is controlled by the conditional logic you write. This connects directly to understanding the conceptual meaning of training a model and the difference between classification and grouping.</p>
     </div>
 
     <!-- ===== STARTER ===== -->
@@ -598,20 +705,46 @@ userScore = <span class="keyword">INPUT</span>
       <li>How the micro:bit <strong>reacts</strong> when the AI detects a movement</li>
     </ul>
 
-    <div class="highlight-box" style="background:#e8f4fd; border-left-color:#1e88e5;">
-      <i class="fas fa-question-circle" style="color:#0d47a1; margin-right:8px;"></i>
-      <strong>Class discussion — What sensors did the teacher use?</strong>
-      <p style="margin-top:0.4rem;">After the demo, your teacher will ask you to identify which micro:bit sensors were used. Think about:</p>
-      <ul style="margin-top:0.3rem;">
-        <li>Was the micro:bit detecting movement or orientation?</li>
-        <li>What sensor measures acceleration and tilt?</li>
-        <li>Could other sensors (light, sound, temperature) be used instead?</li>
-      </ul>
-    </div>
+    <!-- ===== INTERACTIVE SENSOR QUIZ ===== -->
+    <div class="sensor-quiz" id="sensorQuiz">
+      <h3><i class="fas fa-question-circle" style="color:#0d47a1;"></i> Class discussion — What sensors did the teacher use?</h3>
+      <p style="font-size:0.9rem; color:#475569;">After the demo, answer these questions to identify the sensors used. Click an answer to check if you're right.</p>
 
-    <div class="highlight-box green">
-      <i class="fas fa-check-circle" style="color:#2d8f2d; margin-right:8px;"></i>
-      <strong>Key sensors used in CreateAI:</strong> The <strong>accelerometer</strong> is the main sensor used for motion detection. It measures acceleration and tilt in three dimensions (X, Y, Z). Other sensors like the <strong>magnetometer</strong> (compass) or <strong>light sensor</strong> could also be used for different projects.
+      <div class="sensor-q" data-correct="b">
+        <p>1. Was the micro:bit detecting movement or orientation?</p>
+        <button data-opt="a">A. Orientation only</button>
+        <button data-opt="b">B. Both movement and orientation</button>
+        <button data-opt="c">C. Neither</button>
+        <button data-opt="d">D. Only sound</button>
+        <div class="sensor-feedback"></div>
+      </div>
+
+      <div class="sensor-q" data-correct="c">
+        <p>2. What sensor measures acceleration and tilt?</p>
+        <button data-opt="a">A. Light sensor</button>
+        <button data-opt="b">B. Temperature sensor</button>
+        <button data-opt="c">C. Accelerometer</button>
+        <button data-opt="d">D. Microphone</button>
+        <div class="sensor-feedback"></div>
+      </div>
+
+      <div class="sensor-q" data-correct="a">
+        <p>3. Could other sensors (light, sound, temperature) be used instead?</p>
+        <button data-opt="a">A. Yes, different sensors can be used for different projects</button>
+        <button data-opt="b">B. No, only the accelerometer works with AI</button>
+        <button data-opt="c">C. Only the light sensor works</button>
+        <button data-opt="d">D. Sensors cannot be used with AI</button>
+        <div class="sensor-feedback"></div>
+      </div>
+
+      <button class="reveal-answer" id="revealAnswerBtn">
+        <i class="fas fa-eye"></i> Reveal Key Sensors
+      </button>
+
+      <div class="answer-reveal" id="answerReveal">
+        <strong><i class="fas fa-check-circle" style="margin-right:6px;"></i> Key sensors used in CreateAI:</strong>
+        <p style="margin-top:0.4rem;">The <strong>accelerometer</strong> is the main sensor used for motion detection. It measures acceleration and tilt in three dimensions (X, Y, Z). Other sensors like the <strong>magnetometer</strong> (compass) or <strong>light sensor</strong> could also be used for different projects.</p>
+      </div>
     </div>
 
     <!-- ===== PAIRED PROJECT ===== -->
@@ -650,14 +783,6 @@ userScore = <span class="keyword">INPUT</span>
       <strong>Teacher tip:</strong> If you need to edit the code for your program, use the <strong>MakeCode editor</strong>. Your teacher will show you how to open it from the CreateAI project page.
     </div>
 
-    <h3>🧪 Step 3: Test Your Model</h3>
-    <p>Use the CreateAI simulator to test your program:</p>
-    <ul>
-      <li>Does the micro:bit show the correct reaction for each movement?</li>
-      <li>What happens if you do a movement the model wasn't trained on?</li>
-      <li>Can you improve the model by adding more training data?</li>
-    </ul>
-
     <h3>🎒 Homework — bring your materials for next lesson</h3>
     <div class="highlight-box green" style="background:#e0ffee; border-left-color:#3cff8c;">
       <i class="fas fa-box-open" style="color:#1b5e20; margin-right:8px;"></i>
@@ -673,11 +798,6 @@ userScore = <span class="keyword">INPUT</span>
     <div class="highlight-box" style="background:#e0ffee; border-left-color:#3cff8c;">
       <i class="fas fa-lightbulb" style="color:#1b5e20; margin-right:8px;"></i>
       <strong>In the next lesson:</strong> You'll use the materials you brought in to build and test your prototype. At the end of the project, <strong>1 or 2 groups will be picked to demonstrate their program</strong> to the class in a show and tell.
-    </div>
-
-    <div class="highlight-box" style="background:#e0ffee; border-left-color:#3cff8c;">
-      <i class="fas fa-sitemap" style="color:#1b5e20; margin-right:8px;"></i>
-      <strong>Connection to pseudocode:</strong> The <code>if ai.detect("shake")</code> line is a real-world example of the conditional statements you've been learning in pseudocode. The AI model is making a decision, and your code decides what to do based on that decision.
     </div>
 
     <!-- ===== SELF-CHECK QUIZ ===== -->
@@ -753,6 +873,7 @@ userScore = <span class="keyword">INPUT</span>
       <span>training data</span>
       <span>accelerometer</span>
       <span>sensor</span>
+      <span>classification</span>
     </div>
 
   </div>
@@ -767,7 +888,7 @@ userScore = <span class="keyword">INPUT</span>
 </div>
 
 <script>
-  // ===== QUIZ =====
+  // ===== SELF-CHECK QUIZ =====
   (function() {
     const questions = document.querySelectorAll('#quiz .q');
     questions.forEach(q => {
@@ -791,6 +912,44 @@ userScore = <span class="keyword">INPUT</span>
         });
       });
     });
+  })();
+
+  // ===== SENSOR QUIZ =====
+  (function() {
+    const questions = document.querySelectorAll('#sensorQuiz .sensor-q');
+    questions.forEach(q => {
+      const correct = q.getAttribute('data-correct');
+      const buttons = q.querySelectorAll('button');
+      const fb = q.querySelector('.sensor-feedback');
+
+      buttons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          buttons.forEach(b => b.classList.remove('correct', 'incorrect'));
+          const chosen = btn.getAttribute('data-opt');
+          if (chosen === correct) {
+            btn.classList.add('correct');
+            fb.textContent = '✅ Correct!';
+            fb.className = 'sensor-feedback ok';
+          } else {
+            btn.classList.add('incorrect');
+            fb.textContent = '❌ Not quite. Try again.';
+            fb.className = 'sensor-feedback no';
+          }
+        });
+      });
+    });
+
+    // Reveal answer button
+    const revealBtn = document.getElementById('revealAnswerBtn');
+    const answerReveal = document.getElementById('answerReveal');
+    if (revealBtn && answerReveal) {
+      revealBtn.addEventListener('click', () => {
+        answerReveal.classList.toggle('show');
+        revealBtn.innerHTML = answerReveal.classList.contains('show')
+          ? '<i class="fas fa-eye-slash"></i> Hide Key Sensors'
+          : '<i class="fas fa-eye"></i> Reveal Key Sensors';
+      });
+    }
   })();
 </script>
 
