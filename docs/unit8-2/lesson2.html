@@ -193,7 +193,62 @@
     .main-task h3 { margin-top: 0; color: #7a4b00; font-size: 1.15rem; }
     .main-task p { margin-bottom: 0.3rem; color: #5a3a00; }
 
-    /* ===== TOOLS BAR ===== */
+    .demo-callout {
+      background: linear-gradient(135deg, #e8f4fd, #d4ecfb);
+      border: 2px solid #1e88e5;
+      border-radius: 20px;
+      padding: 1.4rem 1.8rem;
+      margin: 1.5rem 0;
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+    .demo-callout .badge {
+      background: #1e88e5;
+      color: white;
+      font-weight: 700;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      padding: 0.3rem 0.9rem;
+      border-radius: 30px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .demo-callout h3 { margin-top: 0; color: #0d47a1; font-size: 1.15rem; }
+    .demo-callout p { margin-bottom: 0.3rem; color: #0d3b6e; }
+    .demo-callout a {
+      color: #1e88e5;
+      font-weight: 600;
+      text-decoration: none;
+      border-bottom: 2px solid #1e88e5;
+    }
+
+    .pair-task {
+      background: linear-gradient(135deg, #f3e5f5, #e1bee7);
+      border: 2px solid #8e24aa;
+      border-radius: 20px;
+      padding: 1.4rem 1.8rem;
+      margin: 1.5rem 0;
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+    .pair-task .badge {
+      background: #8e24aa;
+      color: white;
+      font-weight: 700;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      padding: 0.3rem 0.9rem;
+      border-radius: 30px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .pair-task h3 { margin-top: 0; color: #4a148c; font-size: 1.15rem; }
+    .pair-task p { margin-bottom: 0.3rem; color: #3e1058; }
+
     .tools-bar {
       display: flex;
       flex-wrap: wrap;
@@ -243,7 +298,6 @@
     .code-block .string { color: #b5d6a8; }
     .code-block .func { color: #7bb3ff; }
 
-    /* ===== EMBEDDED MICROPYTHON EDITOR ===== */
     .editor-wrapper {
       background: #f8fafc;
       border: 2px solid #2a6f97;
@@ -365,7 +419,6 @@
     }
     .editor-wrapper .hint i { color: #2a6f97; }
 
-    /* ===== QUIZ ===== */
     .quiz {
       background: #f8fafc;
       border: 1px solid #dceaf7;
@@ -427,7 +480,7 @@
       .page-header h1 { font-size: 1.8rem; flex-wrap: wrap; }
       .lesson-content { padding: 1.2rem 1.4rem; }
       .code-block { font-size: 0.8rem; padding: 0.8rem 1rem; }
-      .starter-callout, .main-task { flex-direction: column; gap: 0.6rem; }
+      .starter-callout, .main-task, .demo-callout, .pair-task { flex-direction: column; gap: 0.6rem; }
       .editor-wrapper .editor-container { grid-template-columns: 1fr; }
       .editor-wrapper .editor-container textarea { min-height: 200px; }
       .editor-wrapper .output-panel { min-height: 150px; }
@@ -650,31 +703,6 @@ userScore = <span class="keyword">INPUT</span>
       <p style="margin-top:0.4rem;"><em>Think about why the answer is the same or different for each input.</em></p>
     </div>
 
-    <!-- ===== PRACTICE 2 ===== -->
-    <h2>✏️ Practice 2: Light Level Challenges</h2>
-    <p>Here is a MicroPython program that uses a conditional statement with the micro:bit's light sensor:</p>
-
-    <div class="code-block">
-<span class="keyword">from</span> microbit <span class="keyword">import</span> *<br><br>
-<span class="keyword">while</span> True:<br>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">if</span> display.read_light_level() &gt; <span class="string">50</span>:<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;display.show(Image.HEART)
-    </div>
-
-    <p>This program checks if the light level is <strong>greater than 50</strong>. If it is, it displays a heart.</p>
-
-    <div class="highlight-box purple">
-      <i class="fas fa-tasks" style="color:#8e24aa; margin-right:8px;"></i>
-      <strong>Pseudocode Challenges:</strong> For each challenge below, edit the MicroPython code to match the pseudocode:
-      <ol style="margin-top:0.5rem;">
-        <li><code>IF light level == 50 THEN display a heart ENDIF</code></li>
-        <li><code>IF light level != 120 THEN display a heart ENDIF</code></li>
-        <li><code>IF light level &lt; 100 THEN display a heart ENDIF</code></li>
-        <li><code>IF light level &gt; 60 THEN display a heart ENDIF</code></li>
-        <li><code>IF light level == 200 THEN display a heart ENDIF</code></li>
-      </ol>
-    </div>
-
     <!-- ===== EMBEDDED MICROPYTHON EDITOR ===== -->
     <h2>💻 Interactive MicroPython Editor</h2>
     <p>Use this editor to write and test your MicroPython code. You can run your program to see the output.</p>
@@ -704,39 +732,70 @@ while True:
       </div>
     </div>
 
-    <!-- ===== MAIN TASK: CREATEAI PROJECT ===== -->
-    <h2>🤖 CreateAI Project — Train Your Own AI Model</h2>
+    <!-- ===== TEACHER DEMO: CREATEAI ===== -->
+    <h2>🤖 Teacher Demo — CreateAI in Action</h2>
 
-    <div class="highlight-box purple" style="background:#e0ffee; border-left-color:#3cff8c;">
-      <i class="fas fa-calendar-check" style="color:#1b5e20; margin-right:8px;"></i>
-      <strong>This is a project-based task that runs across several lessons.</strong> You will train an AI model to recognise movements, then build a real-world prototype and present it in a show-and-tell.
+    <div class="demo-callout">
+      <span class="badge">👨‍🏫 Demo</span>
+      <div>
+        <h3>Watch the teacher demonstrate CreateAI</h3>
+        <p>Your teacher will show you how to train an AI model using the micro:bit's sensors. Watch carefully — you'll need to answer some questions afterwards.</p>
+        <p><strong>Demo link:</strong> <a href="https://createai.microbit.org/data-samples" target="_blank">createai.microbit.org/data-samples</a></p>
+      </div>
     </div>
 
-    <h3>🎯 Your Goal</h3>
+    <h3>🔍 What to look out for in the demo</h3>
     <ul>
-      <li>Train an AI model to recognise <strong>two movements</strong> (e.g. "shake" and "still").</li>
-      <li>Program the micro:bit to <strong>show a different icon</strong> depending on what the AI detects.</li>
-      <li>Test your model using the <strong>CreateAI simulator</strong>.</li>
-      <li>Build a <strong>physical prototype</strong> using materials you bring in.</li>
-      <li>Present your finished project in a <strong>show and tell</strong>.</li>
+      <li>How the teacher collects <strong>training data</strong> for each movement</li>
+      <li>How the <strong>AI model</strong> learns to recognise patterns</li>
+      <li>How the micro:bit <strong>reacts</strong> when the AI detects a movement</li>
     </ul>
 
-    <h3>🛠️ Step 1: Open CreateAI</h3>
-    <p>Go to <a href="https://createai.microbit.org/" target="_blank" style="color:#0d47a1; font-weight:600;">createai.microbit.org</a> and open the project tool.</p>
-
-    <h3>📹 Step 2: Watch the Tutorial — Data Samples</h3>
-    <p>Your teacher will walk you through the <strong>Data Samples</strong> tutorial at <a href="https://createai.microbit.org/data-samples" target="_blank" style="color:#0d47a1; font-weight:600;">createai.microbit.org/data-samples</a>. Follow along to learn how to:</p>
-    <ol>
-      <li><strong>Collect training data</strong> for each movement — you'll record examples of "shake" and "still".</li>
-      <li><strong>Train the model</strong> to recognise the patterns in your data.</li>
-      <li><strong>Test the model</strong> to see if it correctly identifies each movement.</li>
-      <li><strong>Improve the model</strong> by adding more data samples if needed.</li>
-    </ol>
-
-    <div class="highlight-box" style="background:#fff8e1; border-left-color:#f9a825;">
-      <i class="fas fa-lightbulb" style="color:#b45309; margin-right:8px;"></i>
-      <strong>Teacher tip:</strong> The Data Samples tutorial shows you how to record examples using the micro:bit's accelerometer. You'll need at least 10–15 samples per movement for good accuracy.
+    <div class="highlight-box" style="background:#e8f4fd; border-left-color:#1e88e5;">
+      <i class="fas fa-question-circle" style="color:#0d47a1; margin-right:8px;"></i>
+      <strong>Class discussion — What sensors did the teacher use?</strong>
+      <p style="margin-top:0.4rem;">After the demo, your teacher will ask you to identify which micro:bit sensors were used. Think about:</p>
+      <ul style="margin-top:0.3rem;">
+        <li>Was the micro:bit detecting movement or orientation?</li>
+        <li>What sensor measures acceleration and tilt?</li>
+        <li>Could other sensors (light, sound, temperature) be used instead?</li>
+      </ul>
     </div>
+
+    <div class="highlight-box green">
+      <i class="fas fa-check-circle" style="color:#2d8f2d; margin-right:8px;"></i>
+      <strong>Key sensors used in CreateAI:</strong> The <strong>accelerometer</strong> is the main sensor used for motion detection. It measures acceleration and tilt in three dimensions (X, Y, Z). Other sensors like the <strong>magnetometer</strong> (compass) or <strong>light sensor</strong> could also be used for different projects.
+    </div>
+
+    <!-- ===== PAIRED PROJECT ===== -->
+    <h2>👥 Paired Project — CreateAI in Pairs</h2>
+
+    <div class="pair-task">
+      <span class="badge">👥 Pairs</span>
+      <div>
+        <h3>Work in pairs to build your own CreateAI project</h3>
+        <p>Now it's your turn. In pairs, you'll train an AI model to recognise <strong>two movements</strong> and program the micro:bit to react.</p>
+        <p><strong>You only need to complete ONE of these projects:</strong></p>
+        <ul style="margin-top:0.4rem;">
+          <li><strong>Option A:</strong> Recognise "shake" vs "still" — show a surprised face for shake, happy face for still.</li>
+          <li><strong>Option B:</strong> Recognise "tilt left" vs "tilt right" — show a left arrow or right arrow.</li>
+          <li><strong>Option C:</strong> Recognise "circle" vs "zigzag" — show a star or a lightning bolt.</li>
+          <li><strong>Option D:</strong> Your own idea — get it approved by your teacher first!</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3>🛠️ Step 1: Open CreateAI</h3>
+    <p>Go to <a href="https://createai.microbit.org/" target="_blank" style="color:#0d47a1; font-weight:600;">createai.microbit.org</a> and open the project tool. Make sure you and your partner are both logged in or working on the same computer.</p>
+
+    <h3>📹 Step 2: Follow the Data Samples Tutorial</h3>
+    <p>Use the <strong>Data Samples</strong> tutorial at <a href="https://createai.microbit.org/data-samples" target="_blank" style="color:#0d47a1; font-weight:600;">createai.microbit.org/data-samples</a> to:</p>
+    <ol>
+      <li><strong>Collect training data</strong> for each of your two movements — aim for 10–15 samples each.</li>
+      <li><strong>Train the model</strong> — click the train button and wait for the model to learn.</li>
+      <li><strong>Test the model</strong> — try each movement and see if the AI identifies it correctly.</li>
+      <li><strong>Improve the model</strong> — if it's not accurate, collect more data and retrain.</li>
+    </ol>
 
     <h3>💻 Step 3: Program the micro:bit</h3>
     <p>Once your model is trained, use MakeCode or the CreateAI editor to program the micro:bit. Here's a simple example of the structure:</p>
@@ -763,7 +822,7 @@ while True:
     <h3>🎒 Homework — bring your materials for next lesson</h3>
     <div class="highlight-box green" style="background:#e0ffee; border-left-color:#3cff8c;">
       <i class="fas fa-box-open" style="color:#1b5e20; margin-right:8px;"></i>
-      Bring in physical materials to build a real-world version of your AI project. Examples:
+      <strong>Next lesson:</strong> You'll build a physical prototype of your AI project. Bring in materials to make your model move or react. Examples:
       <ul style="margin-top:0.4rem;">
         <li><strong>Elastic bands</strong> — to create a moving part or lever</li>
         <li><strong>Small toys</strong> or figures — to be moved by your device</li>
@@ -774,7 +833,7 @@ while True:
 
     <div class="highlight-box" style="background:#e0ffee; border-left-color:#3cff8c;">
       <i class="fas fa-lightbulb" style="color:#1b5e20; margin-right:8px;"></i>
-      <strong>In a future lesson:</strong> You'll use the materials you brought in to build and test your prototype. At the end of the project, you'll have the chance to present your finished work in a <strong>show and tell</strong>.
+      <strong>In the next lesson:</strong> You'll use the materials you brought in to build and test your prototype. At the end of the project, <strong>1 or 2 groups will be picked to demonstrate their program</strong> to the class in a show and tell.
     </div>
 
     <h3>🎯 Challenge Tasks</h3>
@@ -832,11 +891,11 @@ while True:
       </div>
 
       <div class="q" data-correct="b">
-        <p>5. What does the micro:bit radio use to send messages between devices?</p>
-        <button data-opt="a">A. Wi-Fi</button>
-        <button data-opt="b">B. Radio waves</button>
-        <button data-opt="c">C. Bluetooth</button>
-        <button data-opt="d">D. USB cable</button>
+        <p>5. Which sensor is mainly used in CreateAI for detecting movement?</p>
+        <button data-opt="a">A. Light sensor</button>
+        <button data-opt="b">B. Accelerometer</button>
+        <button data-opt="c">C. Temperature sensor</button>
+        <button data-opt="d">D. Microphone</button>
         <div class="answer-feedback"></div>
       </div>
     </div>
@@ -861,6 +920,8 @@ while True:
       <span>algorithm</span>
       <span>AI model</span>
       <span>training data</span>
+      <span>accelerometer</span>
+      <span>sensor</span>
     </div>
 
   </div>
@@ -916,13 +977,10 @@ while True:
         display.show(Image.HEART)
     sleep(100)`;
 
-    // Simulated micro:bit environment
-    let lightLevel = 30; // default light level
+    let lightLevel = 30;
     let isRunning = false;
-    let animationFrame = null;
 
     function simulateLightLevel() {
-      // Simulate changing light levels
       lightLevel = 20 + Math.floor(Math.random() * 100);
       return lightLevel;
     }
@@ -930,28 +988,23 @@ while True:
     function parseAndRun(code) {
       const lines = code.split('\n');
       let output = [];
-      let indentStack = [0];
-      let variables = {};
-      let running = true;
-      let loopCount = 0;
-      const maxLoops = 50;
-
-      // Simple simulation of the micro:bit program
-      // We'll simulate the first few iterations of the while loop
+      let conditionMet = false;
+      let hasCondition = false;
 
       output.push({ type: 'info', text: '▶ Simulating micro:bit program...' });
       output.push({ type: 'info', text: '---' });
 
-      // Simulate 5 iterations of the loop
       for (let iteration = 0; iteration < 5; iteration++) {
         const currentLight = simulateLightLevel();
         output.push({ type: 'prompt', text: `[Iteration ${iteration + 1}] Light level: ${currentLight}` });
 
-        // Check if there's a condition
-        let conditionMet = false;
+        conditionMet = false;
+        hasCondition = false;
+
         for (let i = 0; i < lines.length; i++) {
           const line = lines[i].trim();
           if (line.includes('read_light_level()') && line.includes('>')) {
+            hasCondition = true;
             const threshold = parseInt(line.match(/>\s*(\d+)/)?.[1] || '50');
             if (currentLight > threshold) {
               conditionMet = true;
@@ -962,11 +1015,10 @@ while True:
           }
         }
 
-        // Check for display.show
         for (let i = 0; i < lines.length; i++) {
           const line = lines[i].trim();
           if (line.includes('display.show')) {
-            if (conditionMet || !lines.some(l => l.includes('if'))) {
+            if (conditionMet || !hasCondition) {
               const imageMatch = line.match(/Image\.(\w+)/);
               if (imageMatch) {
                 output.push({ type: 'ok', text: `  → display.show(Image.${imageMatch[1]})` });
@@ -1032,7 +1084,6 @@ while True:
       outputPanel.innerHTML = '<div class="placeholder">Click "Run" to see output...</div>';
     });
 
-    // Allow tab in textarea
     codeEditor.addEventListener('keydown', (e) => {
       if (e.key === 'Tab') {
         e.preventDefault();
