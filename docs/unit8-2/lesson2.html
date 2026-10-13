@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>8.2 Lesson 2 · Conditional Statements &amp; CreateAI</title>
+  <title>8.2 Lesson 2 · Linear Search &amp; CreateAI</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -309,6 +309,82 @@
     .code-block .string { color: #b5d6a8; }
     .code-block .func { color: #7bb3ff; }
 
+    /* ===== WORKSHEET DATA TABLE ===== */
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1rem 0;
+      font-family: 'JetBrains Mono', 'Fira Code', monospace;
+      font-size: 0.95rem;
+    }
+    .data-table td {
+      border: 2px solid #2a6f97;
+      padding: 0.7rem 0.9rem;
+      text-align: center;
+      background: #f8fafc;
+      font-weight: 600;
+      color: #0b2a4a;
+    }
+    .data-table td.index {
+      background: #e9eff8;
+      color: #475569;
+      font-size: 0.75rem;
+      font-weight: 500;
+    }
+
+    /* ===== TRACE TABLE ===== */
+    .trace-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1rem 0;
+      font-size: 0.9rem;
+    }
+    .trace-table th {
+      background: #0b2a4a;
+      color: white;
+      padding: 0.6rem 0.9rem;
+      text-align: left;
+      font-weight: 600;
+    }
+    .trace-table td {
+      border: 1px solid #dceaf7;
+      padding: 0.5rem 0.9rem;
+    }
+    .trace-table tr:nth-child(even) td { background: #f8fafc; }
+    .trace-table input {
+      width: 100%;
+      border: 1.5px solid #d4e3f0;
+      border-radius: 6px;
+      padding: 0.3rem 0.5rem;
+      font-family: inherit;
+      font-size: 0.85rem;
+    }
+    .trace-table input:focus {
+      outline: none;
+      border-color: #2a6f97;
+      box-shadow: 0 0 0 2px rgba(42,111,151,0.15);
+    }
+    .trace-table .check-btn {
+      background: #0b2a4a;
+      color: white;
+      border: none;
+      padding: 0.5rem 1.2rem;
+      border-radius: 30px;
+      font-weight: 600;
+      font-size: 0.8rem;
+      cursor: pointer;
+      margin-top: 0.5rem;
+      transition: 0.2s;
+    }
+    .trace-table .check-btn:hover { background: #1f6390; }
+    .trace-table .feedback {
+      font-size: 0.85rem;
+      margin-top: 0.4rem;
+      font-weight: 500;
+    }
+    .trace-table .feedback.ok { color: #2d8f2d; }
+    .trace-table .feedback.no { color: #b71c1c; }
+
     /* ===== INTERACTIVE SENSOR QUIZ ===== */
     .sensor-quiz {
       background: #f8fafc;
@@ -453,6 +529,14 @@
 
     .divider { margin: 2.5rem 0 0.5rem; border: 0; height: 1px; background: linear-gradient(to right, #d4e0ec, transparent); }
 
+    .extension-divider {
+      margin: 3rem 0 1.5rem;
+      border: 0;
+      height: 3px;
+      background: linear-gradient(to right, #8e24aa, #1e88e5, transparent);
+      border-radius: 3px;
+    }
+
     @media (max-width: 680px) {
       body { padding: 1rem; }
       .nav { flex-direction: column; align-items: flex-start; border-radius: 30px; gap: 0.6rem; }
@@ -461,6 +545,8 @@
       .lesson-content { padding: 1.2rem 1.4rem; }
       .code-block { font-size: 0.8rem; padding: 0.8rem 1rem; }
       .starter-callout, .main-task, .demo-callout, .pair-task { flex-direction: column; gap: 0.6rem; }
+      .data-table td { padding: 0.4rem 0.5rem; font-size: 0.75rem; }
+      .trace-table { font-size: 0.75rem; }
     }
   </style>
 </head>
@@ -479,8 +565,8 @@
 
   <!-- ===== HEADER ===== -->
   <div class="page-header">
-    <h1><i class="fas fa-code-branch"></i> Lesson 2 · Conditional Statements &amp; CreateAI</h1>
-    <div class="sub"><i class="fas fa-arrow-right" style="margin-right:6px;"></i> Student's Book pages 37–40</div>
+    <h1><i class="fas fa-magnifying-glass"></i> Lesson 2 · Linear Search &amp; CreateAI</h1>
+    <div class="sub"><i class="fas fa-arrow-right" style="margin-right:6px;"></i> Worksheet 5 · 8.2.3</div>
   </div>
 
   <!-- ===== LESSON CONTENT ===== -->
@@ -491,8 +577,8 @@
       <strong><i class="fas fa-bullseye" style="color:#1f6390; margin-right:6px;"></i> Learning Objectives:</strong>
       <ul>
         <li><strong>8CT.01</strong> Follow and understand algorithms that are presented as pseudocode.</li>
-        <li><strong>8CT.02</strong> Follow flowcharts and pseudocode algorithms that use conditional statements.</li>
-        <li><strong>8CT.03</strong> Identify the important characteristics of pseudocode, including that it should be short, clear and precise and should have the start and end clearly shown.</li>
+        <li><strong>8CT.04</strong> Understand what a searching algorithm is and why searching algorithms are needed.</li>
+        <li><strong>8CT.05</strong> Describe how a linear search works and trace it through a data set.</li>
         <li><strong>8CT.07</strong> Predict the outcome of algorithms and test that they meet those outcomes.</li>
       </ul>
     </div>
@@ -500,7 +586,7 @@
     <!-- Strand 3 / Machine Learning Link -->
     <div class="strand-box">
       <strong><i class="fas fa-brain" style="margin-right:6px;"></i> Strand 3 · Machine Learning Models &amp; Algorithms (The Pattern Architect)</strong>
-      <p>This lesson builds the algorithmic thinking, prediction, and rule-based logic that form the foundation of machine learning. The <code>IF / THEN / ELSE</code> conditional statements you learn here are the same logical rules AI models use to classify inputs and make decisions. When you train an AI model in CreateAI, you're teaching it to recognise patterns — and the micro:bit's response is controlled by the conditional logic you write. This connects directly to understanding the conceptual meaning of training a model and the difference between classification and grouping.</p>
+      <p>This lesson builds the algorithmic thinking, prediction, and rule-based logic that form the foundation of machine learning. Searching algorithms and the conditional statements inside them (checking each item, deciding whether it matches) are the same logical rules AI models use to evaluate inputs and classify data. When you train an AI model in CreateAI, you're teaching it to recognise patterns — and the micro:bit's response is controlled by the conditional logic you write. This connects to understanding the conceptual meaning of training a model and the difference between classification and grouping.</p>
     </div>
 
     <!-- ===== STARTER ===== -->
@@ -508,7 +594,7 @@
       <span class="badge">🔥 Starter</span>
       <div>
         <h3>Blooket Warm-Up</h3>
-        <p>Quick Blooket to recap pseudocode basics before we add conditional statements.</p>
+        <p>Quick Blooket to recap pseudocode basics before we look at searching algorithms.</p>
         <p><a href="https://play.blooket.com/host?id=68e248e2d5404af5a2c66704" target="_blank">▶ Open Blooket Starter</a></p>
       </div>
     </div>
@@ -524,166 +610,249 @@
       <li><strong>Started with START and ended with STOP</strong> — always uppercase</li>
     </ul>
 
-    <!-- ===== CONDITIONAL STATEMENTS ===== -->
-    <h2>🔀 What are Conditional Statements?</h2>
-    <p>A <strong>conditional statement</strong> lets a program make a decision. It checks a condition and then chooses one path or another based on whether the condition is true or false.</p>
-    <p>In pseudocode, conditional statements use the keywords <code>IF</code>, <code>THEN</code>, <code>ELSE</code> and <code>ENDIF</code>.</p>
+    <!-- ===== WHAT IS A LINEAR SEARCH? ===== -->
+    <h2>🔍 What is a Linear Search?</h2>
+    <p>A <strong>linear search</strong> (also called a sequential search) is the simplest searching algorithm. It works by checking each item in a list <strong>one at a time, in order</strong>, from the start, until either:</p>
+    <ul>
+      <li>the item you're looking for is found, or</li>
+      <li>you reach the end of the list and the item isn't there.</li>
+    </ul>
 
     <div class="highlight-box">
       <i class="fas fa-lightbulb" style="color:#1f6390; margin-right:8px;"></i>
-      <strong>The structure of a conditional statement:</strong>
-      <div class="code-block" style="margin-top:0.6rem;">
-<span class="keyword">IF</span> condition <span class="keyword">THEN</span>
-    instructions to run if the condition is true
-<span class="keyword">ELSE</span>
-    instructions to run if the condition is false
-<span class="keyword">ENDIF</span>
-      </div>
+      <strong>Key idea:</strong> A linear search doesn't skip ahead. It checks every item in turn. This makes it easy to write but slow for large lists.
     </div>
 
-    <!-- ===== COMPARISON OPERATORS ===== -->
-    <h2>⚖️ Comparison Operators</h2>
-    <p>Conditions use <strong>comparison operators</strong> to compare values. These are the same operators you'll see in Python:</p>
+    <!-- ===== DATA SET ===== -->
+    <h2>📊 The Data Set</h2>
+    <p>We'll use this list of animals from <strong>Worksheet 5</strong> to trace a linear search:</p>
 
-    <div style="display:grid; grid-template-columns:repeat(auto-fill,minmax(180px,1fr)); gap:0.8rem; margin:1rem 0;">
-      <div style="background:#f8fafc; border:1px solid #dceaf7; border-radius:12px; padding:0.8rem; text-align:center;">
-        <div style="font-family:monospace; font-size:1.4rem; font-weight:700; color:#1f6390;">==</div>
-        <div style="font-size:0.8rem; color:#475569;">equal to</div>
-      </div>
-      <div style="background:#f8fafc; border:1px solid #dceaf7; border-radius:12px; padding:0.8rem; text-align:center;">
-        <div style="font-family:monospace; font-size:1.4rem; font-weight:700; color:#1f6390;">!=</div>
-        <div style="font-size:0.8rem; color:#475569;">not equal to</div>
-      </div>
-      <div style="background:#f8fafc; border:1px solid #dceaf7; border-radius:12px; padding:0.8rem; text-align:center;">
-        <div style="font-family:monospace; font-size:1.4rem; font-weight:700; color:#1f6390;">&lt;</div>
-        <div style="font-size:0.8rem; color:#475569;">less than</div>
-      </div>
-      <div style="background:#f8fafc; border:1px solid #dceaf7; border-radius:12px; padding:0.8rem; text-align:center;">
-        <div style="font-family:monospace; font-size:1.4rem; font-weight:700; color:#1f6390;">&gt;</div>
-        <div style="font-size:0.8rem; color:#475569;">greater than</div>
-      </div>
-      <div style="background:#f8fafc; border:1px solid #dceaf7; border-radius:12px; padding:0.8rem; text-align:center;">
-        <div style="font-family:monospace; font-size:1.4rem; font-weight:700; color:#1f6390;">&lt;=</div>
-        <div style="font-size:0.8rem; color:#475569;">less than or equal to</div>
-      </div>
-      <div style="background:#f8fafc; border:1px solid #dceaf7; border-radius:12px; padding:0.8rem; text-align:center;">
-        <div style="font-family:monospace; font-size:1.4rem; font-weight:700; color:#1f6390;">&gt;=</div>
-        <div style="font-size:0.8rem; color:#475569;">greater than or equal to</div>
-      </div>
-    </div>
+    <table class="data-table">
+      <tr>
+        <td class="index">Index</td>
+        <td class="index">1</td>
+        <td class="index">2</td>
+        <td class="index">3</td>
+        <td class="index">4</td>
+        <td class="index">5</td>
+        <td class="index">6</td>
+        <td class="index">7</td>
+        <td class="index">8</td>
+        <td class="index">9</td>
+        <td class="index">10</td>
+      </tr>
+      <tr>
+        <td class="index">Item</td>
+        <td>Cat</td>
+        <td>Hamster</td>
+        <td>Bat</td>
+        <td>Parrot</td>
+        <td>Horse</td>
+        <td>Lion</td>
+        <td>Tiger</td>
+        <td>Camel</td>
+        <td>Bear</td>
+        <td>Swan</td>
+      </tr>
+    </table>
 
     <!-- ===== WORKED EXAMPLE ===== -->
-    <h2>📝 Worked Example: Capital of England Quiz</h2>
-    <p>Let's look at the pseudocode from <strong>Worksheet 1</strong> and work through it together:</p>
-
-    <div class="code-block">
-<span class="keyword">START</span>
-answer = <span class="string">"London"</span>
-<span class="keyword">OUTPUT</span> <span class="string">"What is the capital of England?"</span>
-userInput = <span class="keyword">INPUT</span>
-<span class="keyword">IF</span> answer == userInput <span class="keyword">THEN</span>
-    <span class="keyword">OUTPUT</span> <span class="string">"Correct"</span>
-<span class="keyword">ELSE</span>
-    <span class="keyword">OUTPUT</span> <span class="string">"Incorrect"</span>
-<span class="keyword">ENDIF</span>
-<span class="keyword">STOP</span>
-    </div>
+    <h2>📝 Worked Example: Searching for "Tiger"</h2>
+    <p>Let's trace a linear search to find the data item <strong>'Tiger'</strong> in this list.</p>
 
     <h3>Step-by-step trace</h3>
     <ol>
-      <li><strong>START</strong> — the program begins.</li>
-      <li><code>answer = "London"</code> — the variable <code>answer</code> is set to the string "London".</li>
-      <li><code>OUTPUT "What is the capital of England?"</code> — the question is displayed to the user.</li>
-      <li><code>userInput = INPUT</code> — the program waits for the user to type something. Whatever they type is stored in <code>userInput</code>.</li>
-      <li><code>IF answer == userInput THEN</code> — the program checks: is the value of <code>answer</code> equal to the value of <code>userInput</code>?</li>
-      <li>If <strong>true</strong> (they typed "London") → <code>OUTPUT "Correct"</code></li>
-      <li>If <strong>false</strong> (they typed anything else) → <code>OUTPUT "Incorrect"</code></li>
-      <li><strong>ENDIF</strong> — the conditional block ends.</li>
-      <li><strong>STOP</strong> — the program ends.</li>
+      <li>Start at <strong>index 1</strong>: is "Cat" == "Tiger"? <strong>No</strong> → move to the next item.</li>
+      <li>Index 2: is "Hamster" == "Tiger"? <strong>No</strong> → move on.</li>
+      <li>Index 3: is "Bat" == "Tiger"? <strong>No</strong> → move on.</li>
+      <li>Index 4: is "Parrot" == "Tiger"? <strong>No</strong> → move on.</li>
+      <li>Index 5: is "Horse" == "Tiger"? <strong>No</strong> → move on.</li>
+      <li>Index 6: is "Lion" == "Tiger"? <strong>No</strong> → move on.</li>
+      <li>Index 7: is "Tiger" == "Tiger"? <strong>Yes!</strong> → the item is found at index 7. Stop searching.</li>
     </ol>
 
     <div class="highlight-box green">
       <i class="fas fa-check-circle" style="color:#2d8f2d; margin-right:8px;"></i>
-      <strong>Predict the output:</strong> If the user types "London", the output is "Correct". If the user types "Paris", the output is "Incorrect".
+      <strong>Result:</strong> "Tiger" is found at <strong>index 7</strong>. The linear search checked <strong>7 items</strong> before finding it.
     </div>
 
-    <!-- ===== FLOWCHART ===== -->
-    <h2>🧭 Flowchart for the Quiz Question</h2>
-    <p>Here is the same algorithm shown as a flowchart:</p>
+    <h3>Pseudocode for a linear search</h3>
+    <div class="code-block">
+<span class="keyword">START</span>
+items = [<span class="string">"Cat"</span>, <span class="string">"Hamster"</span>, <span class="string">"Bat"</span>, <span class="string">"Parrot"</span>, <span class="string">"Horse"</span>,
+         <span class="string">"Lion"</span>, <span class="string">"Tiger"</span>, <span class="string">"Camel"</span>, <span class="string">"Bear"</span>, <span class="string">"Swan"</span>]
+target = <span class="string">"Tiger"</span>
+found = <span class="keyword">FALSE</span>
+index = 1
 
-    <div style="background:#f8fafc; border:1px solid #dceaf7; border-radius:16px; padding:1.2rem; text-align:center; margin:1rem 0;">
-      <div style="display:flex; flex-direction:column; align-items:center; gap:0.6rem; padding:0.5rem;">
-        <div style="background:#fce4ec; border:2.5px solid #e91e63; border-radius:50px; padding:0.5rem 1.5rem; font-weight:600; font-size:0.85rem;">Start</div>
-        <div style="font-size:1.2rem; color:#64748b;">↓</div>
-        <div style="background:#e3f2fd; border:2.5px solid #1e88e5; border-radius:6px; padding:0.5rem 1.5rem; font-weight:600; font-size:0.85rem;">answer = "London"</div>
-        <div style="font-size:1.2rem; color:#64748b;">↓</div>
-        <div style="background:#e8f5e9; border:2.5px solid #4caf50; padding:0.5rem 1.5rem; font-weight:600; font-size:0.85rem; transform:skewX(-15deg);">OUTPUT "What is the capital of England?"</div>
-        <div style="font-size:1.2rem; color:#64748b;">↓</div>
-        <div style="background:#e8f5e9; border:2.5px solid #4caf50; padding:0.5rem 1.5rem; font-weight:600; font-size:0.85rem; transform:skewX(-15deg);">userInput = INPUT</div>
-        <div style="font-size:1.2rem; color:#64748b;">↓</div>
-        <div style="background:#fff8e1; border:2.5px solid #f9a825; width:100px; height:100px; transform:rotate(45deg); display:flex; align-items:center; justify-content:center; margin:0.5rem 0;">
-          <span style="transform:rotate(-45deg); font-size:0.65rem; font-weight:600; text-align:center; line-height:1.2;">IF answer ==<br>userInput</span>
-        </div>
-        <div style="display:flex; gap:2rem; align-items:flex-start;">
-          <div style="display:flex; flex-direction:column; align-items:center;">
-            <div style="font-size:0.8rem; color:#2d8f2d; font-weight:600;">Yes</div>
-            <div style="font-size:1.2rem; color:#64748b;">↓</div>
-            <div style="background:#e8f5e9; border:2.5px solid #4caf50; padding:0.5rem 1.2rem; font-weight:600; font-size:0.8rem; transform:skewX(-15deg);">OUTPUT "Correct"</div>
-          </div>
-          <div style="display:flex; flex-direction:column; align-items:center;">
-            <div style="font-size:0.8rem; color:#b71c1c; font-weight:600;">No</div>
-            <div style="font-size:1.2rem; color:#64748b;">→</div>
-            <div style="background:#e8f5e9; border:2.5px solid #4caf50; padding:0.5rem 1.2rem; font-weight:600; font-size:0.8rem; transform:skewX(-15deg);">OUTPUT "Incorrect"</div>
-          </div>
-        </div>
-        <div style="font-size:1.2rem; color:#64748b;">↓</div>
-        <div style="background:#fce4ec; border:2.5px solid #e91e63; border-radius:50px; padding:0.5rem 1.5rem; font-weight:600; font-size:0.85rem;">Stop</div>
-      </div>
-      <div style="font-size:0.85rem; color:#475569; margin-top:0.5rem;">Flowchart for the Capital of England quiz</div>
+<span class="keyword">WHILE</span> index &lt;= 10 <span class="keyword">AND</span> found == <span class="keyword">FALSE</span>
+    <span class="keyword">IF</span> items[index] == target <span class="keyword">THEN</span>
+        found = <span class="keyword">TRUE</span>
+    <span class="keyword">ELSE</span>
+        index = index + 1
+    <span class="keyword">ENDIF</span>
+<span class="keyword">ENDWHILE</span>
+
+<span class="keyword">IF</span> found == <span class="keyword">TRUE</span> <span class="keyword">THEN</span>
+    <span class="keyword">OUTPUT</span> <span class="string">"Item found at index "</span> + index
+<span class="keyword">ELSE</span>
+    <span class="keyword">OUTPUT</span> <span class="string">"Item not found"</span>
+<span class="keyword">ENDIF</span>
+<span class="keyword">STOP</span>
+    </div>
+
+    <div class="highlight-box">
+      <i class="fas fa-info-circle" style="color:#1f6390; margin-right:8px;"></i>
+      <strong>Notice:</strong> The linear search uses a <strong>WHILE loop</strong> to move through the list and an <strong>IF statement</strong> to check each item. The loop stops as soon as the item is found — it doesn't keep searching unnecessarily.
+    </div>
+
+    <!-- ===== WHY ARE SEARCHING ALGORITHMS NEEDED? ===== -->
+    <h2>❓ Why Are Searching Algorithms Needed?</h2>
+    <p>Searching algorithms are needed because computers store huge amounts of data — far more than a person could check by hand. A searching algorithm gives the computer a <strong>reliable, repeatable set of steps</strong> to find a specific item quickly and accurately.</p>
+
+    <h3>Key reasons:</h3>
+    <ul>
+      <li><strong>Speed</strong> — a computer can check thousands of items per second.</li>
+      <li><strong>Accuracy</strong> — the algorithm won't miss an item or get distracted.</li>
+      <li><strong>Consistency</strong> — the same steps work every time, for any data set.</li>
+      <li><strong>Automation</strong> — searches can run without a human watching.</li>
+    </ul>
+
+    <div class="highlight-box amber">
+      <i class="fas fa-question-circle" style="color:#b45309; margin-right:8px;"></i>
+      <strong>Think about it:</strong> If a website has 10 million users and you log in, the computer must find <em>your</em> account among all of them. Without a searching algorithm, that would be impossible.
     </div>
 
     <!-- ===== MAIN TASK ===== -->
     <div class="main-task">
       <span class="badge">⭐ Main Task</span>
       <div>
-        <h3>📝 Worksheet 2 — Conditional Statements Practice</h3>
-        <p>Complete <strong>Worksheet 2</strong> to practise working with conditional statements in pseudocode.</p>
-        <p><strong>Worksheet 2 asks you to:</strong></p>
+        <h3>📝 Worksheet 5 — Linear Search</h3>
+        <p>Complete <strong>Worksheet 5</strong> to practise working with linear search.</p>
+        <p><strong>Worksheet 5 asks you to:</strong></p>
         <ul style="margin-top:0.3rem;">
-          <li>Follow pseudocode that uses <code>IF</code>, <code>THEN</code>, <code>ELSE</code> and <code>ENDIF</code></li>
-          <li>Predict the outcome of algorithms</li>
-          <li>Create flowcharts to represent pseudocode</li>
-          <li>Identify the important characteristics of pseudocode</li>
+          <li>Explain what a linear search is and how it is used</li>
+          <li>Describe how a linear search works on the animal data set to find "Tiger"</li>
+          <li>Explain why searching algorithms are needed</li>
         </ul>
       </div>
     </div>
 
-    <!-- ===== PRACTICE 1 ===== -->
-    <h2>✏️ Practice 1: Predict the Outcome</h2>
-    <p>Look at the following pseudocode and predict what it will output for each input:</p>
+    <!-- ===== PRACTICE 1: TRACE IT ===== -->
+    <h2>✏️ Practice 1: Trace the Linear Search</h2>
+    <p>Complete the trace table to show what happens when a linear search looks for <strong>"Bear"</strong> in the animal list.</p>
 
-    <div class="code-block">
-<span class="keyword">START</span>
-score = <span class="string">"75"</span>
-<span class="keyword">OUTPUT</span> <span class="string">"What score did you get?"</span>
-userScore = <span class="keyword">INPUT</span>
-<span class="keyword">IF</span> score == userScore <span class="keyword">THEN</span>
-    <span class="keyword">OUTPUT</span> <span class="string">"Well done!"</span>
-<span class="keyword">ELSE</span>
-    <span class="keyword">OUTPUT</span> <span class="string">"Try again"</span>
-<span class="keyword">ENDIF</span>
-<span class="keyword">STOP</span>
+    <table class="trace-table" id="traceTable">
+      <thead>
+        <tr>
+          <th>Step</th>
+          <th>Index</th>
+          <th>Item at index</th>
+          <th>Is item == "Bear"?</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td><input type="text" data-answer="1" placeholder="?"></td>
+          <td><input type="text" data-answer="cat" placeholder="?"></td>
+          <td><input type="text" data-answer="no" placeholder="?"></td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td><input type="text" data-answer="2" placeholder="?"></td>
+          <td><input type="text" data-answer="hamster" placeholder="?"></td>
+          <td><input type="text" data-answer="no" placeholder="?"></td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td><input type="text" data-answer="3" placeholder="?"></td>
+          <td><input type="text" data-answer="bat" placeholder="?"></td>
+          <td><input type="text" data-answer="no" placeholder="?"></td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td><input type="text" data-answer="4" placeholder="?"></td>
+          <td><input type="text" data-answer="parrot" placeholder="?"></td>
+          <td><input type="text" data-answer="no" placeholder="?"></td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td><input type="text" data-answer="5" placeholder="?"></td>
+          <td><input type="text" data-answer="horse" placeholder="?"></td>
+          <td><input type="text" data-answer="no" placeholder="?"></td>
+        </tr>
+        <tr>
+          <td>6</td>
+          <td><input type="text" data-answer="6" placeholder="?"></td>
+          <td><input type="text" data-answer="lion" placeholder="?"></td>
+          <td><input type="text" data-answer="no" placeholder="?"></td>
+        </tr>
+        <tr>
+          <td>7</td>
+          <td><input type="text" data-answer="7" placeholder="?"></td>
+          <td><input type="text" data-answer="tiger" placeholder="?"></td>
+          <td><input type="text" data-answer="no" placeholder="?"></td>
+        </tr>
+        <tr>
+          <td>8</td>
+          <td><input type="text" data-answer="8" placeholder="?"></td>
+          <td><input type="text" data-answer="camel" placeholder="?"></td>
+          <td><input type="text" data-answer="no" placeholder="?"></td>
+        </tr>
+        <tr>
+          <td>9</td>
+          <td><input type="text" data-answer="9" placeholder="?"></td>
+          <td><input type="text" data-answer="bear" placeholder="?"></td>
+          <td><input type="text" data-answer="yes" placeholder="?"></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <button class="check-btn" id="checkTrace">Check Answers</button>
+    <div class="feedback" id="traceFeedback"></div>
+
+    <div class="highlight-box amber" style="margin-top:1rem;">
+      <i class="fas fa-question-circle" style="color:#b45309; margin-right:8px;"></i>
+      <strong>Follow-up questions:</strong>
+      <ul style="margin-top:0.4rem;">
+        <li>How many items did the search check before finding "Bear"?</li>
+        <li>What would happen if we searched for "Penguin" instead?</li>
+        <li>Why is a linear search not always the most efficient way to search?</li>
+      </ul>
     </div>
 
-    <div class="highlight-box amber">
-      <i class="fas fa-question-circle" style="color:#b45309; margin-right:8px;"></i>
-      <strong>Predict:</strong>
-      <ul style="margin-top:0.4rem;">
-        <li>What is the output if the user types <strong>"75"</strong>?</li>
-        <li>What is the output if the user types <strong>"80"</strong>?</li>
-        <li>What is the output if the user types <strong>"seventy-five"</strong>?</li>
-      </ul>
-      <p style="margin-top:0.4rem;"><em>Think about why the answer is the same or different for each input.</em></p>
+    <!-- ===== PRACTICE 2: PSEUDOCODE ===== -->
+    <h2>✏️ Practice 2: Write the Pseudocode</h2>
+    <p>Use the structure below to write pseudocode for a linear search that finds the item <strong>"Swan"</strong> in the animal list. Remember to use <code>START</code>, <code>STOP</code>, <code>WHILE</code>, <code>IF</code>, <code>THEN</code>, <code>ELSE</code>, and <code>ENDIF</code>.</p>
+
+    <div class="code-block">
+<span class="comment">// Write your pseudocode here</span>
+
+
+
+
+    </div>
+
+    <div class="highlight-box green">
+      <i class="fas fa-check-circle" style="color:#2d8f2d; margin-right:8px;"></i>
+      <strong>Success criteria:</strong> Your pseudocode should loop through the list, compare each item to "Swan", and stop when it is found (or report if it isn't found).
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- ===== EXTENSION: CREATEAI PROJECT (SEPARATE SECTION) ====== -->
+    <!-- ============================================================ -->
+
+    <hr class="extension-divider" />
+
+    <div style="text-align:center; margin-bottom:1.5rem;">
+      <h2 style="border-left:none; padding-left:0; font-size:1.8rem; color:#4a148c;">
+        <i class="fas fa-robot" style="margin-right:10px;"></i> Extension · CreateAI Project
+      </h2>
+      <p style="color:#64748b; font-size:0.95rem; max-width:700px; margin:0 auto;">
+        This is an extension activity that connects the conditional logic you've been learning to real-world AI.
+        It runs across several lessons, with a show-and-tell at the end.
+      </p>
     </div>
 
     <!-- ===== TEACHER DEMO: CREATEAI ===== -->
@@ -806,38 +975,38 @@ userScore = <span class="keyword">INPUT</span>
       <p style="font-size:0.9rem; color:#475569;">Click an answer to see if you're right. This is just for you — no marks are recorded.</p>
 
       <div class="q" data-correct="b">
-        <p>1. What does <code>IF</code> do in pseudocode?</p>
-        <button data-opt="a">A. Repeats a set of instructions</button>
-        <button data-opt="b">B. Makes a decision based on a condition</button>
-        <button data-opt="c">C. Displays a message</button>
-        <button data-opt="d">D. Reads a sensor value</button>
+        <p>1. What is a linear search?</p>
+        <button data-opt="a">A. A search that jumps to the middle of a list</button>
+        <button data-opt="b">B. A search that checks each item one at a time, in order</button>
+        <button data-opt="c">C. A search that only works on numbers</button>
+        <button data-opt="d">D. A search that sorts the list first</button>
         <div class="answer-feedback"></div>
       </div>
 
       <div class="q" data-correct="c">
-        <p>2. Which keyword ends a conditional block in pseudocode?</p>
-        <button data-opt="a">A. STOP</button>
-        <button data-opt="b">B. END</button>
-        <button data-opt="c">C. ENDIF</button>
-        <button data-opt="d">D. FINISH</button>
+        <p>2. In the animal list, at which index is "Tiger" found?</p>
+        <button data-opt="a">A. 5</button>
+        <button data-opt="b">B. 6</button>
+        <button data-opt="c">C. 7</button>
+        <button data-opt="d">D. 8</button>
         <div class="answer-feedback"></div>
       </div>
 
       <div class="q" data-correct="a">
-        <p>3. What does the <code>==</code> operator check?</p>
-        <button data-opt="a">A. If two values are equal</button>
-        <button data-opt="b">B. If two values are not equal</button>
-        <button data-opt="c">C. If one value is greater than another</button>
-        <button data-opt="d">D. If one value is less than another</button>
+        <p>3. Why are searching algorithms needed?</p>
+        <button data-opt="a">A. Computers store huge amounts of data that need to be searched quickly and accurately</button>
+        <button data-opt="b">B. They make programs run slower</button>
+        <button data-opt="c">C. They are only used for games</button>
+        <button data-opt="d">D. They replace the need for data</button>
         <div class="answer-feedback"></div>
       </div>
 
       <div class="q" data-correct="d">
-        <p>4. In the Capital of England quiz, what is the output if the user types "London"?</p>
-        <button data-opt="a">A. "Try again"</button>
-        <button data-opt="b">B. Nothing happens</button>
-        <button data-opt="c">C. "Incorrect"</button>
-        <button data-opt="d">D. "Correct"</button>
+        <p>4. What happens if a linear search reaches the end of the list without finding the item?</p>
+        <button data-opt="a">A. The program crashes</button>
+        <button data-opt="b">B. It starts again from the beginning</button>
+        <button data-opt="c">C. It finds the closest match</button>
+        <button data-opt="d">D. It reports that the item was not found</button>
         <div class="answer-feedback"></div>
       </div>
 
@@ -854,20 +1023,15 @@ userScore = <span class="keyword">INPUT</span>
     <!-- ===== KEYWORDS ===== -->
     <h2>🔑 Keywords</h2>
     <div class="keyword-row">
+      <span>linear search</span>
+      <span>sequential search</span>
+      <span>searching algorithm</span>
+      <span>data set</span>
+      <span>index</span>
+      <span>target</span>
       <span>pseudocode</span>
-      <span>conditional statement</span>
-      <span>IF</span>
-      <span>THEN</span>
-      <span>ELSE</span>
-      <span>ENDIF</span>
-      <span>comparison operator</span>
-      <span>==</span>
-      <span>!=</span>
-      <span>&lt;</span>
-      <span>&gt;</span>
-      <span>&lt;=</span>
-      <span>&gt;=</span>
-      <span>flowchart</span>
+      <span>WHILE loop</span>
+      <span>IF statement</span>
       <span>algorithm</span>
       <span>AI model</span>
       <span>training data</span>
@@ -882,7 +1046,7 @@ userScore = <span class="keyword">INPUT</span>
   <hr class="divider" />
   <div style="display: flex; justify-content: space-between; font-size: 0.8rem; color: #5d7f9a; padding: 0.5rem 0; flex-wrap: wrap; gap: 0.5rem;">
     <span><i class="fas fa-arrow-left" style="margin-right: 6px;"></i><a href="../unit8-2-pseudocode.html" style="color: #1f6390; text-decoration: none;">Back to 8.2 Pseudocode &amp; Algorithms</a></span>
-    <span>8.2 Lesson 2 · Conditional Statements &amp; CreateAI</span>
+    <span>8.2 Lesson 2 · Linear Search &amp; CreateAI</span>
   </div>
 
 </div>
@@ -939,7 +1103,6 @@ userScore = <span class="keyword">INPUT</span>
       });
     });
 
-    // Reveal answer button
     const revealBtn = document.getElementById('revealAnswerBtn');
     const answerReveal = document.getElementById('answerReveal');
     if (revealBtn && answerReveal) {
@@ -950,6 +1113,40 @@ userScore = <span class="keyword">INPUT</span>
           : '<i class="fas fa-eye"></i> Reveal Key Sensors';
       });
     }
+  })();
+
+  // ===== TRACE TABLE CHECKER =====
+  (function() {
+    const checkBtn = document.getElementById('checkTrace');
+    const feedback = document.getElementById('traceFeedback');
+    if (!checkBtn) return;
+
+    checkBtn.addEventListener('click', () => {
+      const inputs = document.querySelectorAll('#traceTable input');
+      let correctCount = 0;
+      let total = inputs.length;
+
+      inputs.forEach(input => {
+        const answer = (input.getAttribute('data-answer') || '').toLowerCase().trim();
+        const value = input.value.toLowerCase().trim();
+        if (value === answer) {
+          input.style.borderColor = '#2d8f2d';
+          input.style.background = '#e8f5e9';
+          correctCount++;
+        } else {
+          input.style.borderColor = '#e53935';
+          input.style.background = '#ffebee';
+        }
+      });
+
+      if (correctCount === total) {
+        feedback.textContent = `✅ Perfect! All ${total} answers correct.`;
+        feedback.className = 'feedback ok';
+      } else {
+        feedback.textContent = `You got ${correctCount} out of ${total} correct. Green = correct, red = try again.`;
+        feedback.className = 'feedback no';
+      }
+    });
   })();
 </script>
 
