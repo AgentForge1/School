@@ -1,0 +1,1002 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>7.1 · Automated Systems</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: #f0f4fb;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      color: #1e293b;
+      padding: 2rem 1.5rem;
+      line-height: 1.7;
+      min-height: 100vh;
+    }
+    .container { max-width: 1100px; margin: 0 auto; }
+
+    .nav {
+      background: #0b2a4a; padding: 0.9rem 2rem; border-radius: 60px;
+      display: flex; flex-wrap: wrap; align-items: center; gap: 1.8rem;
+      margin-bottom: 2.5rem; box-shadow: 0 8px 20px rgba(0,20,40,0.08);
+    }
+    .nav a {
+      color: #e6edf5; text-decoration: none; font-weight: 500;
+      font-size: 0.95rem; letter-spacing: 0.3px; transition: 0.2s;
+      display: inline-flex; align-items: center; gap: 6px;
+    }
+    .nav a i { font-size: 0.9rem; opacity: 0.7; }
+    .nav a:hover { color: #ffffff; text-decoration: underline; text-underline-offset: 4px; }
+    .nav .brand { margin-right: auto; font-weight: 600; color: white; font-size: 1.1rem; }
+    .nav .brand i { margin-right: 8px; color: #7bb3ff; }
+
+    .back-link {
+      display: inline-flex; align-items: center; gap: 6px;
+      color: #1f6390; text-decoration: none; font-weight: 500; margin-bottom: 1.5rem;
+    }
+    .back-link:hover { text-decoration: underline; }
+
+    .page-header { margin-bottom: 2rem; }
+    .page-header h1 {
+      font-size: 2.4rem; font-weight: 700; color: #0b2a4a;
+      display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+    }
+    .page-header h1 i { color: #2a6f97; font-size: 2rem; }
+    .page-header .sub {
+      color: #475569; font-size: 1rem; background: #e9eff8;
+      display: inline-block; padding: 0.3rem 1.4rem; border-radius: 40px; margin-top: 0.3rem;
+    }
+
+    .lesson-content {
+      background: white; border-radius: 24px; padding: 2rem 2.5rem;
+      border: 1px solid #e5edf5; box-shadow: 0 4px 14px rgba(0, 20, 40, 0.04);
+    }
+    .lesson-content h2 {
+      font-size: 1.5rem; font-weight: 600; color: #0b2a4a;
+      margin: 1.8rem 0 0.8rem 0; border-left: 5px solid #2a6f97; padding-left: 15px;
+    }
+    .lesson-content h2:first-of-type { margin-top: 0; }
+    .lesson-content h3 { font-size: 1.1rem; font-weight: 600; color: #0b2a4a; margin: 1.2rem 0 0.4rem 0; }
+    .lesson-content p { margin-bottom: 0.6rem; }
+    .lesson-content ul, .lesson-content ol { padding-left: 1.6rem; margin: 0.5rem 0 1rem 0; }
+    .lesson-content li { margin-bottom: 0.25rem; }
+
+    .objectives-box {
+      background: #eef6fc; border-radius: 16px; padding: 0.8rem 1.4rem;
+      margin: 0.5rem 0 1.2rem 0; border-left: 4px solid #2a6f97;
+    }
+    .objectives-box strong { color: #0b2a4a; }
+    .objectives-box ul { margin: 0.2rem 0 0 1.2rem; padding-left: 0.5rem; }
+    .objectives-box ul li { list-style-type: disc; font-size: 0.95rem; }
+
+    .highlight-box {
+      background: #eef6fc; padding: 1rem 1.6rem; border-radius: 16px;
+      border-left: 5px solid #2a6f97; margin: 1rem 0;
+    }
+    .highlight-box strong { color: #0b2a4a; }
+    .highlight-box.green { border-left-color: #4caf50; background: #edf7ed; }
+    .highlight-box.amber { border-left-color: #f9a825; background: #fff8e1; }
+
+    .starter-callout {
+      background: linear-gradient(135deg, #fff3e0, #ffe0b2);
+      border: 2px solid #e65100; border-radius: 20px;
+      padding: 1.4rem 1.8rem; margin: 1.5rem 0;
+      display: flex; align-items: flex-start; gap: 1rem;
+    }
+    .starter-callout .badge {
+      background: #e65100; color: white; font-weight: 700;
+      font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.8px;
+      padding: 0.3rem 0.9rem; border-radius: 30px; white-space: nowrap; flex-shrink: 0;
+    }
+    .starter-callout h3 { margin-top: 0; color: #7a3300; font-size: 1.15rem; }
+    .starter-callout p { margin-bottom: 0.3rem; color: #5a2900; }
+    .starter-callout a { color: #e65100; font-weight: 600; text-decoration: none; border-bottom: 2px solid #e65100; }
+
+    .main-task {
+      background: linear-gradient(135deg, #fff8e1, #ffecb3);
+      border: 2px solid #f9a825; border-radius: 20px;
+      padding: 1.4rem 1.8rem; margin: 1.5rem 0;
+      display: flex; align-items: flex-start; gap: 1rem; flex-wrap: wrap;
+    }
+    .main-task .badge {
+      background: #f9a825; color: #4a2c00; font-weight: 700;
+      font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.8px;
+      padding: 0.3rem 0.9rem; border-radius: 30px; white-space: nowrap; flex-shrink: 0;
+    }
+    .main-task h3 { margin-top: 0; color: #7a4b00; font-size: 1.15rem; }
+    .main-task p { margin-bottom: 0.3rem; color: #5a3a00; }
+    .main-task a { color: #e65100; font-weight: 600; text-decoration: none; border-bottom: 2px solid #e65100; }
+
+    .video-callout {
+      background: linear-gradient(135deg, #f3e5f5, #e1bee7);
+      border: 2px solid #8e24aa; border-radius: 20px;
+      padding: 1.4rem 1.8rem; margin: 1.5rem 0;
+    }
+    .video-callout .badge {
+      background: #8e24aa; color: white; font-weight: 700;
+      font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.8px;
+      padding: 0.3rem 0.9rem; border-radius: 30px; white-space: nowrap;
+      display: inline-block; margin-bottom: 0.6rem;
+    }
+    .video-callout h3 { margin-top: 0; color: #4a148c; font-size: 1.15rem; }
+    .video-callout p { margin-bottom: 0.3rem; color: #3e1058; }
+    .video-callout a { color: #8e24aa; font-weight: 600; text-decoration: none; border-bottom: 2px solid #8e24aa; }
+
+    .stop-check {
+      background: linear-gradient(135deg, #fff3e0, #ffe0b2);
+      border: 2px dashed #e65100; border-radius: 16px;
+      padding: 1rem 1.4rem; margin: 1.2rem 0;
+      display: flex; align-items: flex-start; gap: 0.8rem; flex-wrap: wrap;
+    }
+    .stop-check .badge {
+      background: #e65100; color: white; font-weight: 700;
+      font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.8px;
+      padding: 0.25rem 0.8rem; border-radius: 30px; white-space: nowrap; flex-shrink: 0;
+    }
+    .stop-check p { margin: 0; color: #7a3300; font-size: 0.9rem; }
+    .stop-check strong { color: #7a3300; }
+    .stop-check .wheel-btn {
+      background: #e65100; color: white; border: none;
+      padding: 0.5rem 1.2rem; border-radius: 30px;
+      font-weight: 700; font-size: 0.8rem; cursor: pointer;
+      transition: 0.2s; display: inline-flex; align-items: center; gap: 6px;
+    }
+    .stop-check .wheel-btn:hover { background: #b33f00; }
+    .stop-check .unlock-row {
+      margin-top: 0.5rem; display: flex; gap: 0.5rem;
+      align-items: center; flex-wrap: wrap; width: 100%;
+    }
+    .stop-check .unlock-row input {
+      padding: 0.35rem 0.7rem; border: 2px solid #e65100;
+      border-radius: 8px; font-size: 0.8rem; width: 130px;
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .stop-check .unlock-row input:focus { outline: none; border-color: #b33f00; }
+    .stop-check .unlock-row button {
+      background: #0b2a4a; color: white; border: none;
+      padding: 0.35rem 0.9rem; border-radius: 30px;
+      font-weight: 600; font-size: 0.75rem; cursor: pointer;
+    }
+    .stop-check .unlock-row button:hover { background: #1f6390; }
+    .stop-check .unlock-row .unlock-msg { font-size: 0.75rem; font-weight: 600; }
+    .stop-check .unlock-row .unlock-msg.ok { color: #2d8f2d; }
+    .stop-check .unlock-row .unlock-msg.no { color: #b71c1c; }
+    .stop-check .teacher-answer {
+      display: none; margin-top: 0.6rem; padding: 0.7rem 1rem;
+      background: #fff8e1; border-left: 4px solid #f9a825;
+      border-radius: 10px; font-size: 0.85rem; color: #5a3a00; width: 100%;
+    }
+    .stop-check .teacher-answer.show { display: block; }
+
+    .task-panel {
+      position: relative; margin: 1.8rem 0; padding: 1.6rem 1.8rem;
+      border-radius: 20px; border: 2px solid #e5edf5;
+      background: #ffffff; transition: 0.3s;
+    }
+    .task-panel.locked {
+      background: #f8fafc; border-color: #dceaf7; opacity: 0.7;
+    }
+    .task-panel.locked .task-content {
+      pointer-events: none; user-select: none; filter: blur(3px);
+    }
+    .task-panel.locked::after {
+      content: "🔒 Complete the previous task to unlock";
+      position: absolute; top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      background: #0b2a4a; color: white;
+      padding: 0.8rem 1.6rem; border-radius: 40px;
+      font-weight: 600; font-size: 0.85rem; z-index: 10;
+      box-shadow: 0 4px 20px rgba(0,20,40,0.2); white-space: nowrap;
+    }
+    .task-panel .task-header {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 1rem; flex-wrap: wrap; gap: 0.5rem;
+    }
+    .task-panel .task-header h3 {
+      margin: 0; font-size: 1.15rem;
+      display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+    }
+    .task-panel .task-status {
+      font-size: 0.8rem; font-weight: 600;
+      padding: 0.3rem 0.9rem; border-radius: 30px;
+    }
+    .task-panel .task-status.done { background: #e8f5e9; color: #2d8f2d; }
+    .task-panel .task-status.pending { background: #fff8e1; color: #b45309; }
+    .task-panel .task-status.locked-status { background: #f1f5f9; color: #64748b; }
+
+    .task-timer {
+      background: #0b2a4a; color: white;
+      padding: 0.4rem 1rem; border-radius: 30px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.9rem; font-weight: 700;
+      display: inline-flex; align-items: center; gap: 8px;
+      transition: 0.3s; cursor: pointer;
+    }
+    .task-timer:hover { background: #1f6390; }
+    .task-timer.warning { background: #e65100; }
+    .task-timer.danger { background: #b71c1c; animation: pulse 0.5s infinite; }
+    .task-timer i { font-size: 0.8rem; opacity: 0.7; }
+    @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.05); } 100% { transform: scale(1); } }
+
+    .stars {
+      display: inline-flex; gap: 2px; font-size: 0.75rem; margin-left: 4px;
+    }
+    .stars .star-filled { color: #f9a825; }
+    .stars .star-empty { color: #d4e3f0; }
+
+    .wheel-modal {
+      display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.7); z-index: 2000;
+      align-items: center; justify-content: center;
+    }
+    .wheel-modal.show { display: flex; }
+    .wheel-modal .wheel-content {
+      background: white; border-radius: 24px;
+      padding: 2rem 2.5rem; text-align: center;
+      max-width: 500px; width: 90%;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    }
+    .wheel-modal h3 { margin-top: 0; color: #0b2a4a; }
+    .wheel-modal .wheel-display {
+      font-size: 1.8rem; font-weight: 700;
+      color: #2a6f97; margin: 1.5rem 0;
+      min-height: 3.5rem;
+      font-family: 'JetBrains Mono', monospace; line-height: 1.3;
+    }
+    .wheel-modal .wheel-display.spinning {
+      color: #f9a825; animation: blink 0.2s infinite;
+    }
+    @keyframes blink { 0% { opacity: 1; } 50% { opacity: 0.4; } 100% { opacity: 1; } }
+    .wheel-modal .wheel-close {
+      background: #0b2a4a; color: white; border: none;
+      padding: 0.6rem 1.6rem; border-radius: 30px;
+      font-weight: 600; font-size: 0.9rem; cursor: pointer;
+      margin-top: 0.5rem; margin-right: 0.5rem;
+    }
+    .wheel-modal .wheel-close:hover { background: #1f6390; }
+
+    .sort-table {
+      width: 100%; border-collapse: collapse; margin: 1rem 0;
+      font-size: 0.9rem;
+    }
+    .sort-table th {
+      background: #0b2a4a; color: white; padding: 0.6rem;
+      text-align: left; font-weight: 600;
+    }
+    .sort-table td {
+      border: 2px solid #2a6f97; padding: 0.6rem;
+      background: #f8fafc; vertical-align: top;
+    }
+    .sort-table select {
+      width: 100%; padding: 0.4rem 0.6rem;
+      border: 1.5px solid #d4e3f0; border-radius: 8px;
+      font-family: inherit; font-size: 0.85rem;
+      background: white; cursor: pointer;
+    }
+    .sort-table select.correct { border-color: #2d8f2d; background: #e8f5e9; }
+    .sort-table select.incorrect { border-color: #e53935; background: #ffebee; }
+
+    .flowchart-container {
+      background: #f8fafc; border: 1px solid #dceaf7;
+      border-radius: 16px; padding: 1.2rem;
+      display: flex; flex-direction: column; align-items: center;
+      gap: 0.5rem; margin: 1rem 0;
+    }
+    .flowchart-container .fc-shape {
+      padding: 0.6rem 1.4rem; font-size: 0.85rem; font-weight: 600;
+      text-align: center; line-height: 1.3;
+    }
+    .flowchart-container .fc-oval {
+      background: #fce4ec; border: 2.5px solid #e91e63;
+      border-radius: 50px; padding: 0.5rem 1.5rem;
+    }
+    .flowchart-container .fc-rect {
+      background: #e3f2fd; border: 2.5px solid #1e88e5; border-radius: 6px;
+    }
+    .flowchart-container .fc-diamond {
+      background: #fff8e1; border: 2.5px solid #f9a825;
+      width: 140px; height: 140px;
+      display: flex; align-items: center; justify-content: center;
+      transform: rotate(45deg); margin: 0.8rem 0;
+    }
+    .flowchart-container .fc-diamond span {
+      transform: rotate(-45deg); font-size: 0.72rem;
+      font-weight: 600; text-align: center;
+    }
+    .flowchart-container .fc-arrow { font-size: 1.2rem; color: #64748b; }
+    .flowchart-container .fc-row {
+      display: flex; gap: 2rem; align-items: flex-start;
+    }
+    .flowchart-container .fc-col {
+      display: flex; flex-direction: column; align-items: center;
+    }
+    .flowchart-container .fc-label {
+      font-size: 0.75rem; font-weight: 600;
+    }
+    .flowchart-container .fc-label.yes { color: #2d8f2d; }
+    .flowchart-container .fc-label.no { color: #b71c1c; }
+
+    .keyword-row {
+      display: flex; flex-wrap: wrap; gap: 0.8rem 1.2rem;
+      background: #f1f6fc; padding: 0.8rem 1.2rem;
+      border-radius: 12px; margin: 0.5rem 0 1rem 0;
+    }
+    .keyword-row span {
+      background: white; padding: 0.2rem 0.8rem;
+      border-radius: 20px; border: 1px solid #dce4ed; font-size: 0.85rem;
+    }
+
+    .divider { margin: 2.5rem 0 0.5rem; border: 0; height: 1px; background: linear-gradient(to right, #d4e0ec, transparent); }
+
+    .check-btn {
+      background: #0b2a4a; color: white; border: none;
+      padding: 0.6rem 1.4rem; border-radius: 30px;
+      font-weight: 600; font-size: 0.85rem; cursor: pointer; margin-top: 0.5rem;
+      transition: 0.2s;
+    }
+    .check-btn:hover { background: #1f6390; }
+    .feedback { font-weight: 600; margin-top: 0.5rem; }
+    .feedback.ok { color: #2d8f2d; }
+    .feedback.no { color: #b71c1c; }
+
+    @media (max-width: 680px) {
+      body { padding: 1rem; }
+      .nav { flex-direction: column; align-items: flex-start; border-radius: 30px; gap: 0.6rem; }
+      .nav .brand { margin-right: 0; }
+      .page-header h1 { font-size: 1.8rem; flex-wrap: wrap; }
+      .lesson-content { padding: 1.2rem 1.4rem; }
+      .starter-callout, .main-task, .stop-check, .video-callout { flex-direction: column; gap: 0.6rem; }
+      .task-panel.locked::after { font-size: 0.7rem; padding: 0.5rem 1rem; white-space: normal; text-align: center; }
+      .sort-table { font-size: 0.75rem; }
+      .wheel-modal .wheel-display { font-size: 1.3rem; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+
+  <nav class="nav">
+    <span class="brand"><i class="fas fa-robot"></i> IGCSE CompSci</span>
+    <a href="../year8-units.html"><i class="fas fa-arrow-left"></i> Year 8 Units</a>
+    <a href="../unit8-2-pseudocode.html"><i class="fas fa-diagram-project"></i> 8.2 Pseudocode</a>
+  </nav>
+
+  <a href="../unit8-2-pseudocode.html" class="back-link"><i class="fas fa-arrow-left"></i> Back to Units</a>
+
+  <div class="page-header">
+    <h1><i class="fas fa-industry"></i> 7.1 · Automated Systems</h1>
+    <div class="sub"><i class="fas fa-arrow-right" style="margin-right:6px;"></i> Student's Book · Topic 7 Technologies</div>
+  </div>
+
+  <div class="lesson-content">
+
+    <div class="objectives-box">
+      <strong><i class="fas fa-bullseye" style="color:#1f6390; margin-right:6px;"></i> Learning Objectives:</strong>
+      <ul>
+        <li>Understand what an <strong>automated system</strong> is and how it works.</li>
+        <li>Identify the <strong>sensors</strong>, <strong>microprocessor</strong> and <strong>actuators</strong> in a range of automated systems.</li>
+        <li>Describe the advantages and disadvantages of automated systems.</li>
+        <li>Develop an <strong>algorithm</strong> for an automated lighting system using pseudocode or English.</li>
+      </ul>
+    </div>
+
+    <!-- ===== STARTER ===== -->
+    <div class="starter-callout">
+      <span class="badge">🔥 Starter</span>
+      <div>
+        <h3>Blooket Warm-Up (5 mins)</h3>
+        <p>Quick Blooket quiz on sensors and automated systems to see what you already know.</p>
+        <p><a href="https://play.blooket.com/host/defense2?id=63d2ada3948bd9bb30273ff9" target="_blank">▶ Open Blooket Starter</a></p>
+      </div>
+    </div>
+
+    <!-- ===== RECAP ===== -->
+    <h2>🔁 What is an Automated System?</h2>
+    <p>An <strong>automated system</strong> is a system that carries out a task or a series of tasks without the need for a human to be directly involved.</p>
+    <p>Automated systems are made up of three main parts:</p>
+    <ul>
+      <li><strong>Sensors</strong> — detect changes in the environment (input).</li>
+      <li><strong>Microprocessor</strong> — processes the data from the sensors and decides what to do.</li>
+      <li><strong>Actuators</strong> — carry out an action (output), such as moving a robot arm, opening a door or turning on a light.</li>
+    </ul>
+
+    <div class="highlight-box">
+      <i class="fas fa-lightbulb" style="color:#1f6390; margin-right:8px;"></i>
+      <strong>Key idea:</strong> An automated system uses a <strong>feedback loop</strong> — it senses something, processes it, acts, and then checks again. This lets it keep working correctly without a person watching it.
+    </div>
+
+    <h3>Example: Automatic doors</h3>
+    <p>You walk up to an automatic door at a supermarket. A <strong>microwave sensor</strong> detects you are near. The <strong>microprocessor</strong> decides the door needs to open. An <strong>actuator</strong> (motor) opens the door. The door waits, then closes when no one is nearby.</p>
+
+    <!-- ===== VIDEO 1 ===== -->
+    <div class="video-callout">
+      <span class="badge">🎬 Video 1</span>
+      <h3>What Do Pilots Do When A Plane Is On Autopilot?</h3>
+      <p>Watch how autopilot uses sensors, feedback loops and a computer to fly a plane.</p>
+      <p><a href="https://www.youtube.com/watch?v=NkAqXTxkmd4" target="_blank">▶ Watch on YouTube</a></p>
+    </div>
+
+    <!-- STOP AND CHECK 1 -->
+    <div class="stop-check">
+      <span class="badge">🛑 Stop &amp; Check</span>
+      <p><strong>Class check:</strong> In the autopilot video, what sensors did the plane use? Your teacher will spin the wheel and ask you to name one.</p>
+      <button class="wheel-btn" onclick="openWheel()"><i class="fas fa-dice"></i> Spin the Wheel</button>
+      <div class="unlock-row">
+        <input type="password" id="unlock_sc1" placeholder="Teacher password">
+        <button onclick="unlockAnswer('unlock_sc1', 'answer_sc1', 'msg_sc1')">Unlock Answer</button>
+        <span class="unlock-msg" id="msg_sc1"></span>
+      </div>
+      <div class="teacher-answer" id="answer_sc1">
+        <strong>Sensors on a plane include:</strong> altimeter (height), airspeed sensor, GPS, gyroscope, accelerometer, pitot tubes for air pressure.
+      </div>
+    </div>
+
+    <!-- ===== TASK 1: SENSOR IDENTIFICATION ===== -->
+    <div class="task-panel" id="task1">
+      <div class="task-header">
+        <h3>
+          <i class="fas fa-lock" style="color:#2a6f97;"></i> Task 1: Name That Sensor
+          <span class="stars"><span class="star-filled">★</span><span class="star-empty">★</span><span class="star-empty">★</span></span> Mild
+        </h3>
+        <div style="display:flex; gap:0.5rem; align-items:center; flex-wrap:wrap;">
+          <span class="task-timer" id="timer1" onclick="startTimer(1, 420)"><i class="fas fa-play"></i> Start Timer (7 min)</span>
+          <span class="task-status pending" id="task1Status">In Progress</span>
+        </div>
+      </div>
+      <div class="task-content">
+        <p>Match each sensor to the correct name. Use the drag-down menus to choose.</p>
+
+        <table class="sort-table" id="sensorTable">
+          <thead>
+            <tr>
+              <th style="width:60%;">Description</th>
+              <th style="width:40%;">Sensor Name</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Uses sound waves to measure distance to an object.</td>
+              <td>
+                <select data-answer="ultrasonic">
+                  <option value="">Choose...</option>
+                  <option value="ultrasonic">Ultrasonic sensor</option>
+                  <option value="thermometer">Cooking thermometer</option>
+                  <option value="push">Push button</option>
+                  <option value="oxygen">Oxygen sensor</option>
+                </select>
+              </td>
+            </tr>
+            <tr>
+              <td>Measures temperature of food whilst it cooks.</td>
+              <td>
+                <select data-answer="thermometer">
+                  <option value="">Choose...</option>
+                  <option value="ultrasonic">Ultrasonic sensor</option>
+                  <option value="thermometer">Cooking thermometer</option>
+                  <option value="push">Push button</option>
+                  <option value="oxygen">Oxygen sensor</option>
+                </select>
+              </td>
+            </tr>
+            <tr>
+              <td>Used to manually start, stop or change a process.</td>
+              <td>
+                <select data-answer="push">
+                  <option value="">Choose...</option>
+                  <option value="ultrasonic">Ultrasonic sensor</option>
+                  <option value="thermometer">Cooking thermometer</option>
+                  <option value="push">Push button</option>
+                  <option value="oxygen">Oxygen sensor</option>
+                </select>
+              </td>
+            </tr>
+            <tr>
+              <td>Measures the amount of oxygen in the air or a gas.</td>
+              <td>
+                <select data-answer="oxygen">
+                  <option value="">Choose...</option>
+                  <option value="ultrasonic">Ultrasonic sensor</option>
+                  <option value="thermometer">Cooking thermometer</option>
+                  <option value="push">Push button</option>
+                  <option value="oxygen">Oxygen sensor</option>
+                </select>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <button class="check-btn" id="checkSensors">Check Answers</button>
+        <div class="feedback" id="sensorFeedback"></div>
+
+        <button class="check-btn" id="completeTask1" style="margin-top:1rem;">Complete Task 1 →</button>
+      </div>
+    </div>
+
+    <!-- STOP AND CHECK 2 -->
+    <div class="stop-check">
+      <span class="badge">🛑 Stop &amp; Check</span>
+      <p><strong>Class check:</strong> Hands up if you matched all 4 sensors correctly. Your teacher will spin the wheel and ask you to name one sensor and where it is used.</p>
+      <button class="wheel-btn" onclick="openWheel()"><i class="fas fa-dice"></i> Spin the Wheel</button>
+      <div class="unlock-row">
+        <input type="password" id="unlock_sc2" placeholder="Teacher password">
+        <button onclick="unlockAnswer('unlock_sc2', 'answer_sc2', 'msg_sc2')">Unlock Answer</button>
+        <span class="unlock-msg" id="msg_sc2"></span>
+      </div>
+      <div class="teacher-answer" id="answer_sc2">
+        <strong>Answers:</strong> Ultrasonic sensor, Cooking thermometer, Push button, Oxygen sensor.
+      </div>
+    </div>
+
+    <!-- ===== VIDEO 2 ===== -->
+    <div class="video-callout">
+      <span class="badge">🎬 Video 2</span>
+      <h3>How Do Driverless Trains Work? | Bang Goes The Theory</h3>
+      <p>Watch how a driverless train uses sensors, computers and actuators to carry passengers safely.</p>
+      <p><a href="https://www.youtube.com/watch?v=a52ZSCIAoRk" target="_blank">▶ Watch on YouTube</a></p>
+    </div>
+
+    <!-- ===== TASK 2: AUTOMATED ICE CREAM FACTORY ===== -->
+    <div class="task-panel locked" id="task2">
+      <div class="task-header">
+        <h3>
+          <i class="fas fa-lock" style="color:#2a6f97;"></i> Task 2: Automated Ice Cream Factory
+          <span class="stars"><span class="star-filled">★</span><span class="star-filled">★</span><span class="star-empty">★</span></span> Medium
+        </h3>
+        <div style="display:flex; gap:0.5rem; align-items:center; flex-wrap:wrap;">
+          <span class="task-timer" id="timer2" onclick="startTimer(2, 600)"><i class="fas fa-play"></i> Start Timer (10 min)</span>
+          <span class="task-status locked-status" id="task2Status">Locked</span>
+        </div>
+      </div>
+      <div class="task-content">
+        <p>Read the scenario and answer the questions below.</p>
+
+        <div class="highlight-box" style="background:#e8f4fd; border-left-color:#1e88e5;">
+          <strong>The Scenario:</strong> An ice cream factory uses an automated system to fill ice cream tubs. Tubs move along a conveyor belt, and the system fills each tub with exactly the same amount of ice cream.
+        </div>
+
+        <h3>(a) Describe how this automated system works.</h3>
+        <p>Write at least 4 sentences. Include the <strong>sensor</strong>, <strong>microprocessor</strong>, and <strong>actuator</strong> in your answer.</p>
+        <textarea id="iceCreamA" rows="5" style="width:100%; padding:0.8rem 1rem; border:2px solid #d4e3f0; border-radius:10px; font-family:inherit; font-size:0.9rem; resize:vertical;" placeholder="Write your answer here..."></textarea>
+
+        <h3>(b) Suggest two advantages of using an automated system in the ice cream factory.</h3>
+        <input type="text" id="adv1" placeholder="Advantage 1..." style="width:100%; padding:0.6rem 1rem; border:2px solid #d4e3f0; border-radius:10px; font-family:inherit; font-size:0.9rem; margin-bottom:0.5rem;">
+        <input type="text" id="adv2" placeholder="Advantage 2..." style="width:100%; padding:0.6rem 1rem; border:2px solid #d4e3f0; border-radius:10px; font-family:inherit; font-size:0.9rem;">
+
+        <h3>(c) Suggest two disadvantages of using an automated system in the ice cream factory.</h3>
+        <input type="text" id="dis1" placeholder="Disadvantage 1..." style="width:100%; padding:0.6rem 1rem; border:2px solid #d4e3f0; border-radius:10px; font-family:inherit; font-size:0.9rem; margin-bottom:0.5rem;">
+        <input type="text" id="dis2" placeholder="Disadvantage 2..." style="width:100%; padding:0.6rem 1rem; border:2px solid #d4e3f0; border-radius:10px; font-family:inherit; font-size:0.9rem;">
+
+        <button class="check-btn" id="completeTask2">Complete Task 2 →</button>
+      </div>
+    </div>
+
+    <!-- STOP AND CHECK 3 -->
+    <div class="stop-check">
+      <span class="badge">🛑 Stop &amp; Check</span>
+      <p><strong>Class check:</strong> Turn to your partner and share one advantage and one disadvantage you wrote down. Your teacher will spin the wheel to ask the class.</p>
+      <button class="wheel-btn" onclick="openWheel()"><i class="fas fa-dice"></i> Spin the Wheel</button>
+      <div class="unlock-row">
+        <input type="password" id="unlock_sc3" placeholder="Teacher password">
+        <button onclick="unlockAnswer('unlock_sc3', 'answer_sc3', 'msg_sc3')">Unlock Answer</button>
+        <span class="unlock-msg" id="msg_sc3"></span>
+      </div>
+      <div class="teacher-answer" id="answer_sc3">
+        <strong>Advantages:</strong> More efficient than a person · More accurate · Works 24 hours a day · Can work in dangerous areas · Reduces running costs · Consistent results. <br><strong>Disadvantages:</strong> Large initial cost · People may lose their jobs · Reduced number of jobs · Dangerous if incorrectly programmed.
+      </div>
+    </div>
+
+    <!-- ===== MAIN TASK ===== -->
+    <div class="main-task">
+      <span class="badge">⭐ Main Task</span>
+      <div style="flex:1;">
+        <h3>📝 Schoolbox Worksheet — Show Your Understanding</h3>
+        <p><strong>This is the task your teacher will mark to see if you understand today's work.</strong></p>
+        <p>Log in to Schoolbox: <a href="https://lms.isr-school.com/" target="_blank">https://lms.isr-school.com/</a></p>
+        <p>Complete <strong>T1 Worksheet 1</strong>. It asks you to:</p>
+        <ul style="margin-top:0.3rem;">
+          <li>Name four sensors</li>
+          <li>Research three other sensors and give examples of where they are used</li>
+          <li>Explain three sensors that could control a lighting system</li>
+          <li>Develop an algorithm for an automated greenhouse lighting system</li>
+          <li>Research an automated system in Agriculture, Weather or Science</li>
+        </ul>
+        <p style="margin-top:0.5rem;"><em>You have 20 minutes.</em></p>
+        <div style="display:flex; gap:0.5rem; align-items:center; flex-wrap:wrap; margin-top:0.8rem;">
+          <span class="task-timer" id="timerMain" onclick="startTimer('Main', 1200)"><i class="fas fa-play"></i> Start Timer (20 min)</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== TASK 3: GREENHOUSE LIGHTING ALGORITHM ===== -->
+    <div class="task-panel locked" id="task3">
+      <div class="task-header">
+        <h3>
+          <i class="fas fa-lock" style="color:#2a6f97;"></i> Task 3: Greenhouse Lighting Algorithm
+          <span class="stars"><span class="star-filled">★</span><span class="star-filled">★</span><span class="star-filled">★</span></span> Spicy
+        </h3>
+        <div style="display:flex; gap:0.5rem; align-items:center; flex-wrap:wrap;">
+          <span class="task-timer" id="timer3" onclick="startTimer(3, 600)"><i class="fas fa-play"></i> Start Timer (10 min)</span>
+          <span class="task-status locked-status" id="task3Status">Locked</span>
+        </div>
+      </div>
+      <div class="task-content">
+        <p>Read the scenario and write your algorithm in the box below.</p>
+
+        <div class="highlight-box" style="background:#fff8e1; border-left-color:#f9a825;">
+          <strong>The Scenario:</strong> A farmer has automated lighting for a greenhouse used to grow lettuces. The lights need to turn on:
+          <ul style="margin:0.5rem 0 0 1rem;">
+            <li>Between the hours of <strong>4pm and 11pm</strong> in the <strong>winter</strong></li>
+            <li>Between the hours of <strong>9pm and 11pm</strong> in the <strong>summer</strong></li>
+            <li>Whenever it is cloudy (light sensor reading <strong>less than 5</strong>)</li>
+          </ul>
+        </div>
+
+        <p>Write an algorithm using pseudocode or English sentences.</p>
+
+        <textarea id="greenhouseAlgo" rows="10" style="width:100%; padding:0.8rem 1rem; border:2px solid #d4e3f0; border-radius:10px; font-family:'JetBrains Mono', monospace; font-size:0.85rem; resize:vertical;" placeholder="Write your algorithm here..."></textarea>
+
+        <div class="highlight-box" style="background:#e8f5e9; border-left-color:#4caf50; margin-top:1rem;">
+          <strong>💡 Hint:</strong> Remember to check the light level first, then use IF/ELSE IF to check the season and the time. Use AND to combine conditions.
+        </div>
+
+        <button class="check-btn" id="showAnswerBtn">Show Example Answer</button>
+        <div class="teacher-answer" id="greenhouseAnswer" style="display:none; margin-top:1rem; padding:1rem 1.4rem; background:#e8f5e9; border-left:5px solid #4caf50; border-radius:10px;">
+          <strong>Example pseudocode:</strong>
+          <pre style="font-family:'JetBrains Mono', monospace; font-size:0.8rem; margin-top:0.5rem; white-space:pre-wrap;">currentLight ← CALL GetLightValue()
+hour ← CALL GetHour()
+season ← GetSeason()
+lightState ← FALSE
+
+IF currentLight &lt; 5 THEN
+    lightState ← TRUE
+ENDIF
+
+IF season = "Winter" AND hour &gt;= 16 AND hour &lt;= 23 THEN
+    lightState ← TRUE
+ELSE IF season = "Summer" AND hour &gt;= 21 AND hour &lt;= 23 THEN
+    lightState ← TRUE
+ENDIF</pre>
+        </div>
+
+        <button class="check-btn" id="completeTask3" style="margin-top:1rem;">Complete Task 3 →</button>
+      </div>
+    </div>
+
+    <!-- ===== TASK 4: RESEARCH TASK ===== -->
+    <div class="task-panel locked" id="task4">
+      <div class="task-header">
+        <h3>
+          <i class="fas fa-lock" style="color:#2a6f97;"></i> Task 4: Research Automation
+          <span class="stars"><span class="star-filled">★</span><span class="star-filled">★</span><span class="star-filled">★</span></span> Spicy
+        </h3>
+        <div style="display:flex; gap:0.5rem; align-items:center; flex-wrap:wrap;">
+          <span class="task-timer" id="timer4" onclick="startTimer(4, 900)"><i class="fas fa-play"></i> Start Timer (15 min)</span>
+          <span class="task-status locked-status" id="task4Status">Locked</span>
+        </div>
+      </div>
+      <div class="task-content">
+        <p>Work in a pair or small group. Choose <strong>one</strong> of these topics: <strong>Agriculture · Weather · Science</strong></p>
+
+        <h3>(a) Choose one specific area where automation is used in your topic.</h3>
+        <input type="text" id="researchArea" placeholder="e.g. Weather stations, GPS tractors, lab automation..." style="width:100%; padding:0.6rem 1rem; border:2px solid #d4e3f0; border-radius:10px; font-family:inherit; font-size:0.9rem;">
+
+        <h3>(b) Describe how automation is carried out. Include any sensors used.</h3>
+        <textarea id="researchDesc" rows="5" style="width:100%; padding:0.8rem 1rem; border:2px solid #d4e3f0; border-radius:10px; font-family:inherit; font-size:0.9rem; resize:vertical; margin-top:0.5rem;" placeholder="Write your description here..."></textarea>
+
+        <h3>(c) Give at least three advantages of the automation you chose.</h3>
+        <textarea id="researchAdv" rows="4" style="width:100%; padding:0.8rem 1rem; border:2px solid #d4e3f0; border-radius:10px; font-family:inherit; font-size:0.9rem; resize:vertical; margin-top:0.5rem;" placeholder="Advantage 1...&#10;Advantage 2...&#10;Advantage 3..."></textarea>
+
+        <h3>(d) Give at least two disadvantages of the automation you chose.</h3>
+        <textarea id="researchDis" rows="3" style="width:100%; padding:0.8rem 1rem; border:2px solid #d4e3f0; border-radius:10px; font-family:inherit; font-size:0.9rem; resize:vertical; margin-top:0.5rem;" placeholder="Disadvantage 1...&#10;Disadvantage 2..."></textarea>
+
+        <h3>Useful links for research:</h3>
+        <ul>
+          <li><a href="https://www.thecomputersciencelab.com/chapter-6-automated-and-emerging-tech" target="_blank" style="color:#1f6390;">The Computer Science Lab — Automated & Emerging Tech</a></li>
+          <li><a href="https://chatgpt.com/g/g-hyr9cmYPE-igcse-a-level-computer-science-guide" target="_blank" style="color:#1f6390;">IGCSE Computer Science Guide (ChatGPT)</a></li>
+        </ul>
+
+        <button class="check-btn" id="completeTask4" style="margin-top:1rem;">Complete Task 4 →</button>
+      </div>
+    </div>
+
+    <!-- ===== PLENARY ===== -->
+    <div class="stop-check" style="background: linear-gradient(135deg, #e8f5e9, #c8e6c9); border-color: #4caf50;">
+      <span class="badge" style="background: #4caf50;">🏁 Plenary</span>
+      <div style="flex:1;">
+        <p><strong>Exit Ticket (5 mins):</strong> On a sticky note, write:</p>
+        <ol style="color:#1b5e20; margin-top:0.4rem;">
+          <li>One sensor you learned about today and where it is used</li>
+          <li>One advantage and one disadvantage of automated systems</li>
+          <li>One question you still have about automated systems</li>
+        </ol>
+        <p style="color:#1b5e20; font-weight:600; margin-top:0.5rem;">📌 Stick your note on the board as you leave the room.</p>
+      </div>
+    </div>
+
+    <!-- ===== KEYWORDS ===== -->
+    <h2>🔑 Keywords</h2>
+    <div class="keyword-row">
+      <span>automated system</span>
+      <span>sensor</span>
+      <span>microprocessor</span>
+      <span>actuator</span>
+      <span>input</span>
+      <span>process</span>
+      <span>output</span>
+      <span>feedback loop</span>
+      <span>algorithm</span>
+      <span>pseudocode</span>
+      <span>light sensor</span>
+      <span>temperature sensor</span>
+      <span>motion sensor</span>
+    </div>
+
+  </div>
+
+  <hr class="divider" />
+  <div style="display: flex; justify-content: space-between; font-size: 0.8rem; color: #5d7f9a; padding: 0.5rem 0; flex-wrap: wrap; gap: 0.5rem;">
+    <span><i class="fas fa-arrow-left" style="margin-right: 6px;"></i><a href="../unit8-2-pseudocode.html" style="color: #1f6390; text-decoration: none;">Back to Units</a></span>
+    <span>7.1 · Automated Systems</span>
+  </div>
+
+</div>
+
+<!-- ===== RANDOM WHEEL MODAL ===== -->
+<div class="wheel-modal" id="wheelModal">
+  <div class="wheel-content">
+    <h3><i class="fas fa-dice" style="color:#e65100;"></i> Random Student Picker</h3>
+    <div class="wheel-display" id="wheelDisplay">?</div>
+    <p style="color:#64748b; font-size:0.9rem;">Click the button to spin again.</p>
+    <button class="wheel-close" onclick="spinWheel()">Spin Again</button>
+    <button class="wheel-close" onclick="closeWheel()" style="background:#64748b;">Close</button>
+  </div>
+</div>
+
+<script>
+  // ===== STUDENT NAMES =====
+  const studentNames = [
+    'Atila, Anisa', 'Böttge, Lukas', 'Dombrovsky, Damian', 'Dückers, Max',
+    'Habel, Christopher', 'Habel, Joshua', 'Hocke, Anna', 'Hünig, Ada',
+    'Ilgün, Sare', 'Janßen, Joshua-David', 'Jobst, Phil', 'Mausberg, Lea',
+    'Middendorf, Anna', 'Penka, Angelina', 'Schneider, Romy', 'Schutter, Tim',
+    'Tian, Hulinjia', 'Uyar, Defne', 'Viehmann, Vijeya', 'Wei, Peter',
+    'Yadav, Ashvika', 'Yin, Xixi', 'Zhang, Tian He', 'Zhou, Shulin'
+  ];
+
+  // ===== SENSOR TABLE CHECKER =====
+  (function() {
+    const checkBtn = document.getElementById('checkSensors');
+    const feedback = document.getElementById('sensorFeedback');
+    if (!checkBtn) return;
+
+    checkBtn.addEventListener('click', () => {
+      const selects = document.querySelectorAll('#sensorTable select');
+      let correct = 0;
+      let total = selects.length;
+
+      selects.forEach(select => {
+        const answer = (select.getAttribute('data-answer') || '').toLowerCase();
+        const value = select.value.toLowerCase();
+        if (value === answer) {
+          select.classList.add('correct');
+          select.classList.remove('incorrect');
+          correct++;
+        } else {
+          select.classList.add('incorrect');
+          select.classList.remove('correct');
+        }
+      });
+
+      if (correct === total) {
+        feedback.textContent = `✅ Perfect! All ${total} sensors matched correctly.`;
+        feedback.className = 'feedback ok';
+      } else {
+        feedback.textContent = `You got ${correct} out of ${total} correct. Green = correct, red = try again.`;
+        feedback.className = 'feedback no';
+      }
+    });
+  })();
+
+  // ===== TEACHER ANSWER UNLOCK =====
+  function unlockAnswer(inputId, answerId, msgId) {
+    const input = document.getElementById(inputId);
+    const answer = document.getElementById(answerId);
+    const msg = document.getElementById(msgId);
+    const password = input.value.trim();
+
+    if (password === 'teacher') {
+      answer.classList.add('show');
+      msg.textContent = '✅ Unlocked';
+      msg.className = 'unlock-msg ok';
+      input.value = '';
+    } else {
+      answer.classList.remove('show');
+      msg.textContent = '❌ Wrong password';
+      msg.className = 'unlock-msg no';
+    }
+  }
+
+  // ===== GREENHOUSE ANSWER REVEAL =====
+  document.getElementById('showAnswerBtn').addEventListener('click', () => {
+    const ans = document.getElementById('greenhouseAnswer');
+    ans.style.display = ans.style.display === 'none' ? 'block' : 'none';
+  });
+
+  // ===== TASK LOCKING SYSTEM =====
+  (function() {
+    const task2 = document.getElementById('task2');
+    const task3 = document.getElementById('task3');
+    const task4 = document.getElementById('task4');
+
+    const task2Status = document.getElementById('task2Status');
+    const task3Status = document.getElementById('task3Status');
+    const task4Status = document.getElementById('task4Status');
+
+    document.getElementById('completeTask1').addEventListener('click', () => {
+      document.getElementById('task1Status').textContent = 'Complete';
+      document.getElementById('task1Status').className = 'task-status done';
+      task2.classList.remove('locked');
+      task2Status.textContent = 'In Progress';
+      task2Status.className = 'task-status pending';
+      task2.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+
+    document.getElementById('completeTask2').addEventListener('click', () => {
+      task2Status.textContent = 'Complete';
+      task2Status.className = 'task-status done';
+      document.querySelector('.main-task').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+
+    // Unlock Task 3 after main task
+    const mainTaskDiv = document.querySelector('.main-task');
+    const unlockBtn = document.createElement('button');
+    unlockBtn.textContent = 'Complete Main Task →';
+    unlockBtn.className = 'check-btn';
+    unlockBtn.style.marginTop = '0.8rem';
+    unlockBtn.addEventListener('click', () => {
+      task3.classList.remove('locked');
+      task3Status.textContent = 'In Progress';
+      task3Status.className = 'task-status pending';
+      task3.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+    mainTaskDiv.querySelector('div').appendChild(unlockBtn);
+
+    document.getElementById('completeTask3').addEventListener('click', () => {
+      task3Status.textContent = 'Complete';
+      task3Status.className = 'task-status done';
+      task4.classList.remove('locked');
+      task4Status.textContent = 'In Progress';
+      task4Status.className = 'task-status pending';
+      task4.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+
+    document.getElementById('completeTask4').addEventListener('click', () => {
+      task4Status.textContent = 'Complete';
+      task4Status.className = 'task-status done';
+    });
+  })();
+
+  // ===== COUNTDOWN TIMERS WITH MIDI =====
+  const timerIntervals = {};
+
+  function playMidiTune() {
+    try {
+      const AudioContext = window.AudioContext || window.webkitAudioContext;
+      const ctx = new AudioContext();
+      const notes = [523.25, 659.25, 783.99, 1046.50];
+      let time = ctx.currentTime;
+
+      notes.forEach((freq) => {
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = 'square';
+        osc.frequency.value = freq;
+        gain.gain.setValueAtTime(0.15, time);
+        gain.gain.exponentialRampToValueAtTime(0.001, time + 0.3);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start(time);
+        osc.stop(time + 0.3);
+        time += 0.2;
+      });
+
+      setTimeout(() => {
+        const osc1 = ctx.createOscillator();
+        const osc2 = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc1.type = 'triangle';
+        osc2.type = 'triangle';
+        osc1.frequency.value = 1046.50;
+        osc2.frequency.value = 1318.51;
+        gain.gain.setValueAtTime(0.2, ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.8);
+        osc1.connect(gain);
+        osc2.connect(gain);
+        gain.connect(ctx.destination);
+        osc1.start();
+        osc2.start();
+        osc1.stop(ctx.currentTime + 0.8);
+        osc2.stop(ctx.currentTime + 0.8);
+      }, 800);
+    } catch (e) {
+      console.log('Audio not supported:', e);
+    }
+  }
+
+  function startTimer(taskNum, maxSeconds) {
+    const timerEl = document.getElementById('timer' + taskNum);
+    if (!timerEl) return;
+
+    if (timerIntervals[taskNum]) {
+      clearInterval(timerIntervals[taskNum]);
+      delete timerIntervals[taskNum];
+      timerEl.innerHTML = '<i class="fas fa-play"></i> Start Timer';
+      timerEl.className = 'task-timer';
+      return;
+    }
+
+    let remaining = maxSeconds;
+    timerEl.innerHTML = '<i class="fas fa-stop"></i> ' + formatTime(remaining);
+
+    timerIntervals[taskNum] = setInterval(() => {
+      remaining--;
+      timerEl.innerHTML = '<i class="fas fa-stop"></i> ' + formatTime(remaining);
+
+      if (remaining <= 60) {
+        timerEl.className = 'task-timer danger';
+      } else if (remaining <= maxSeconds * 0.25) {
+        timerEl.className = 'task-timer warning';
+      }
+
+      if (remaining <= 0) {
+        clearInterval(timerIntervals[taskNum]);
+        delete timerIntervals[taskNum];
+        timerEl.className = 'task-timer danger';
+        timerEl.innerHTML = '<i class="fas fa-check"></i> Time\'s up!';
+        playMidiTune();
+      }
+    }, 1000);
+  }
+
+  function formatTime(seconds) {
+    if (seconds < 0) seconds = 0;
+    const mins = Math.floor(seconds / 60);
+    const secs = seconds % 60;
+    return mins.toString().padStart(2, '0') + ':' + secs.toString().padStart(2, '0');
+  }
+
+  // ===== RANDOM WHEEL =====
+  function openWheel() {
+    document.getElementById('wheelModal').classList.add('show');
+    spinWheel();
+  }
+
+  function closeWheel() {
+    document.getElementById('wheelModal').classList.remove('show');
+    document.getElementById('wheelDisplay').classList.remove('spinning');
+  }
+
+  function spinWheel() {
+    const display = document.getElementById('wheelDisplay');
+    display.classList.add('spinning');
+    let count = 0;
+    const maxSpins = 25;
+
+    const spinInterval = setInterval(() => {
+      const randomIndex = Math.floor(Math.random() * studentNames.length);
+      display.textContent = studentNames[randomIndex];
+      count++;
+
+      if (count >= maxSpins) {
+        clearInterval(spinInterval);
+        display.classList.remove('spinning');
+      }
+    }, 80);
+  }
+</script>
+
+</body>
+</html>
