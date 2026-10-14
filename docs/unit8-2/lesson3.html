@@ -133,22 +133,6 @@
     }
     .main-task a:hover { color: #7a3300; }
 
-    .timing-guide {
-      background: linear-gradient(135deg, #e8f4fd, #d4ecfb);
-      border: 2px solid #1e88e5; border-radius: 20px;
-      padding: 1.4rem 1.8rem; margin: 1.5rem 0;
-      display: flex; align-items: flex-start; gap: 1rem;
-    }
-    .timing-guide .badge {
-      background: #1e88e5; color: white; font-weight: 700;
-      font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.8px;
-      padding: 0.3rem 0.9rem; border-radius: 30px; white-space: nowrap; flex-shrink: 0;
-    }
-    .timing-guide h3 { margin-top: 0; color: #0d47a1; font-size: 1.15rem; }
-    .timing-guide p { margin-bottom: 0.3rem; color: #0d3b6e; }
-    .timing-guide ul { margin: 0.5rem 0 0 0; padding-left: 1.2rem; }
-    .timing-guide ul li { color: #0d3b6e; font-size: 0.9rem; margin-bottom: 0.2rem; }
-
     .stop-check {
       background: linear-gradient(135deg, #fff3e0, #ffe0b2);
       border: 2px dashed #e65100; border-radius: 16px;
@@ -170,6 +154,55 @@
       transition: 0.2s; display: inline-flex; align-items: center; gap: 6px;
     }
     .stop-check .wheel-btn:hover { background: #b33f00; }
+    .stop-check .unlock-row {
+      margin-top: 0.5rem;
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+      flex-wrap: wrap;
+      width: 100%;
+    }
+    .stop-check .unlock-row input {
+      padding: 0.35rem 0.7rem;
+      border: 2px solid #e65100;
+      border-radius: 8px;
+      font-size: 0.8rem;
+      width: 130px;
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .stop-check .unlock-row input:focus {
+      outline: none;
+      border-color: #b33f00;
+    }
+    .stop-check .unlock-row button {
+      background: #0b2a4a;
+      color: white;
+      border: none;
+      padding: 0.35rem 0.9rem;
+      border-radius: 30px;
+      font-weight: 600;
+      font-size: 0.75rem;
+      cursor: pointer;
+    }
+    .stop-check .unlock-row button:hover { background: #1f6390; }
+    .stop-check .unlock-row .unlock-msg {
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+    .stop-check .unlock-row .unlock-msg.ok { color: #2d8f2d; }
+    .stop-check .unlock-row .unlock-msg.no { color: #b71c1c; }
+    .stop-check .teacher-answer {
+      display: none;
+      margin-top: 0.6rem;
+      padding: 0.7rem 1rem;
+      background: #fff8e1;
+      border-left: 4px solid #f9a825;
+      border-radius: 10px;
+      font-size: 0.85rem;
+      color: #5a3a00;
+      width: 100%;
+    }
+    .stop-check .teacher-answer.show { display: block; }
 
     .difficulty-legend {
       display: flex;
@@ -317,7 +350,6 @@
       border-color: #e53935; background: #ffebee;
     }
 
-    /* ===== PARSONS PROBLEM ===== */
     .parsons-wrapper {
       background: #f8fafc;
       border: 2px solid #2a6f97;
@@ -510,7 +542,7 @@
       .nav .brand { margin-right: 0; }
       .page-header h1 { font-size: 1.8rem; flex-wrap: wrap; }
       .lesson-content { padding: 1.2rem 1.4rem; }
-      .starter-callout, .main-task, .timing-guide, .stop-check, .group-work { flex-direction: column; gap: 0.6rem; }
+      .starter-callout, .main-task, .stop-check, .group-work { flex-direction: column; gap: 0.6rem; }
       .alphabet-table { font-size: 0.7rem; }
       .task-panel.locked::after { font-size: 0.7rem; padding: 0.5rem 1rem; white-space: normal; text-align: center; }
       .truth-table { font-size: 0.75rem; }
@@ -557,25 +589,6 @@
     <div class="strand-box">
       <strong><i class="fas fa-brain" style="margin-right:6px;"></i> Strand 3 · Machine Learning Models &amp; Algorithms (The Pattern Architect)</strong>
       <p>This lesson builds the algorithmic thinking, prediction, and rule-based logic that form the foundation of machine learning. Encoding messages as numbers and decoding them back uses the same pattern-matching and rule-based evaluation that AI models use to classify data. Boolean logic (AND, OR, NOT) is the same kind of rule-based decision-making that ML models use to classify inputs.</p>
-    </div>
-
-    <!-- ===== TIMING GUIDE ===== -->
-    <div class="timing-guide">
-      <span class="badge">⏱ Structure</span>
-      <div>
-        <h3>Today's Structure</h3>
-        <p>Each task has its own countdown timer. When the timer reaches zero, a fun tune will play. Your teacher will stop the class at each checkpoint.</p>
-        <ul>
-          <li><strong>0–5 min</strong> — Starter (Blooket) + Recap</li>
-          <li><strong>5–12 min</strong> — Learn: Radio Communication &amp; Alphabet Encoding</li>
-          <li><strong>12–19 min</strong> — <strong>Task 1:</strong> Decode the Message <span class="stars"><span class="star-filled">★</span><span class="star-empty">★</span><span class="star-empty">★</span></span></li>
-          <li><strong>19–26 min</strong> — <strong>Task 2:</strong> Encode the Message <span class="stars"><span class="star-filled">★</span><span class="star-filled">★</span><span class="star-empty">★</span></span></li>
-          <li><strong>26–36 min</strong> — <strong>Main Task:</strong> Schoolbox Worksheet</li>
-          <li><strong>36–42 min</strong> — <strong>Task 3:</strong> Truth Table Challenge <span class="stars"><span class="star-filled">★</span><span class="star-filled">★</span><span class="star-empty">★</span></span></li>
-          <li><strong>42–50 min</strong> — <strong>Task 4:</strong> Build the Program (Parsons) <span class="stars"><span class="star-filled">★</span><span class="star-filled">★</span><span class="star-filled">★</span></span></li>
-          <li><strong>50–57 min</strong> — Plenary: Exit Ticket</li>
-        </ul>
-      </div>
     </div>
 
     <!-- ===== STARTER ===== -->
@@ -656,9 +669,17 @@
       <span class="badge">🛑 Stop &amp; Check</span>
       <p><strong>Class check:</strong> Your teacher will spin the wheel and ask you to decode <strong>3, 1, 20</strong> using the alphabet table. Be ready to explain how you worked it out.</p>
       <button class="wheel-btn" onclick="openWheel()"><i class="fas fa-dice"></i> Spin the Wheel</button>
+      <div class="unlock-row">
+        <input type="password" id="unlock_sc1" placeholder="Teacher password">
+        <button onclick="unlockAnswer('unlock_sc1', 'answer_sc1', 'msg_sc1')">Unlock Answer</button>
+        <span class="unlock-msg" id="msg_sc1"></span>
+      </div>
+      <div class="teacher-answer" id="answer_sc1">
+        <strong>Answer:</strong> 3, 1, 20 = CAT
+      </div>
     </div>
 
-    <!-- ===== TASK 1: DECODE ===== -->
+    <!-- ===== TASK 1: DECODE (1 STAR) ===== -->
     <div class="task-panel" id="task1">
       <div class="task-header">
         <h3>
@@ -738,14 +759,22 @@
       <span class="badge">🛑 Stop &amp; Check</span>
       <p><strong>Class check:</strong> Thumbs up if you finished Task 1. Your teacher will spin the wheel to pick students to share one word they decoded and explain why we encode messages.</p>
       <button class="wheel-btn" onclick="openWheel()"><i class="fas fa-dice"></i> Spin the Wheel</button>
+      <div class="unlock-row">
+        <input type="password" id="unlock_sc2" placeholder="Teacher password">
+        <button onclick="unlockAnswer('unlock_sc2', 'answer_sc2', 'msg_sc2')">Unlock Answer</button>
+        <span class="unlock-msg" id="msg_sc2"></span>
+      </div>
+      <div class="teacher-answer" id="answer_sc2">
+        <strong>Answers:</strong> COMPUTER, PROGRAMMING, ALGORITHM, MICROBIT, ENCRYPTION. <br><strong>Why encode?</strong> To keep messages private and secure — if someone intercepts the radio signal, they see numbers, not words. Only someone who knows the alphabet-position code can decode the message.
+      </div>
     </div>
 
-    <!-- ===== TASK 2: ENCODE ===== -->
+    <!-- ===== TASK 2: ENCODE (1 STAR) ===== -->
     <div class="task-panel locked" id="task2">
       <div class="task-header">
         <h3>
           <i class="fas fa-lock" style="color:#2a6f97;"></i> Task 2: Encode the Message
-          <span class="stars"><span class="star-filled">★</span><span class="star-filled">★</span><span class="star-empty">★</span></span> Medium
+          <span class="stars"><span class="star-filled">★</span><span class="star-empty">★</span><span class="star-empty">★</span></span> Mild
         </h3>
         <div style="display:flex; gap:0.5rem; align-items:center; flex-wrap:wrap;">
           <span class="task-timer" id="timer2" onclick="startTimer(2, 420)"><i class="fas fa-play"></i> Start Timer (7 min)</span>
@@ -819,6 +848,14 @@
       <span class="badge">🛑 Stop &amp; Check</span>
       <p><strong>Class check:</strong> Turn to your partner and share one thing you discussed. Your teacher will spin the wheel to pick students to share with the class.</p>
       <button class="wheel-btn" onclick="openWheel()"><i class="fas fa-dice"></i> Spin the Wheel</button>
+      <div class="unlock-row">
+        <input type="password" id="unlock_sc3" placeholder="Teacher password">
+        <button onclick="unlockAnswer('unlock_sc3', 'answer_sc3', 'msg_sc3')">Unlock Answer</button>
+        <span class="unlock-msg" id="msg_sc3"></span>
+      </div>
+      <div class="teacher-answer" id="answer_sc3">
+        <strong>Why encode?</strong> To keep messages private and secure. If someone intercepts the radio signal, they see numbers, not words. <br><strong>What could go wrong with a mistake?</strong> The receiver decodes the wrong letter, so the message is garbled or completely different. That's why we use a test plan.
+      </div>
     </div>
 
     <!-- ===== MAIN TASK (SCHOOLBOX WORKSHEET) ===== -->
@@ -842,13 +879,6 @@
           <span class="task-timer" id="timerMain" onclick="startTimer('Main', 600)"><i class="fas fa-play"></i> Start Timer (10 min)</span>
         </div>
       </div>
-    </div>
-
-    <!-- STOP AND CHECK 4 -->
-    <div class="stop-check">
-      <span class="badge">🛑 Stop &amp; Check</span>
-      <p><strong>Class check:</strong> Hands up if you finished the worksheet. Your teacher will pick students to share one answer. Then we move on to the harder Boolean logic tasks.</p>
-      <button class="wheel-btn" onclick="openWheel()"><i class="fas fa-dice"></i> Spin the Wheel</button>
     </div>
 
     <!-- ===== TASK 3: TRUTH TABLE (2 STARS) ===== -->
@@ -986,6 +1016,14 @@
       <span class="badge">🛑 Stop &amp; Check</span>
       <p><strong>Class check:</strong> What does AND mean? What does OR mean? Your teacher will spin the wheel and ask you to explain your real-life example.</p>
       <button class="wheel-btn" onclick="openWheel()"><i class="fas fa-dice"></i> Spin the Wheel</button>
+      <div class="unlock-row">
+        <input type="password" id="unlock_sc5" placeholder="Teacher password">
+        <button onclick="unlockAnswer('unlock_sc5', 'answer_sc5', 'msg_sc5')">Unlock Answer</button>
+        <span class="unlock-msg" id="msg_sc5"></span>
+      </div>
+      <div class="teacher-answer" id="answer_sc5">
+        <strong>AND:</strong> both conditions must be true. <br><strong>OR:</strong> at least one condition must be true. <br><strong>Real-life examples:</strong> AND — "You can have dessert AND you've finished your dinner" (both must be true). OR — "You can walk OR take the bus" (either is fine).
+      </div>
     </div>
 
     <!-- ===== TASK 4: PARSONS PROBLEM (3 STARS) ===== -->
@@ -1168,6 +1206,25 @@
   function revealAnswer(id) {
     const el = document.getElementById(id);
     el.classList.toggle('show');
+  }
+
+  // ===== TEACHER ANSWER UNLOCK =====
+  function unlockAnswer(inputId, answerId, msgId) {
+    const input = document.getElementById(inputId);
+    const answer = document.getElementById(answerId);
+    const msg = document.getElementById(msgId);
+    const password = input.value.trim();
+
+    if (password === 'teacher') {
+      answer.classList.add('show');
+      msg.textContent = '✅ Unlocked';
+      msg.className = 'unlock-msg ok';
+      input.value = '';
+    } else {
+      answer.classList.remove('show');
+      msg.textContent = '❌ Wrong password';
+      msg.className = 'unlock-msg no';
+    }
   }
 
   // ===== TRUTH TABLE CHECKER =====
