@@ -127,7 +127,6 @@
     .main-task h3 { margin-top: 0; color: #7a4b00; font-size: 1.15rem; }
     .main-task p { margin-bottom: 0.3rem; color: #5a3a00; }
 
-    /* ===== TIMING GUIDE ===== */
     .timing-guide {
       background: linear-gradient(135deg, #e8f4fd, #d4ecfb);
       border: 2px solid #1e88e5; border-radius: 20px;
@@ -144,7 +143,6 @@
     .timing-guide ul { margin: 0.5rem 0 0 0; padding-left: 1.2rem; }
     .timing-guide ul li { color: #0d3b6e; font-size: 0.9rem; margin-bottom: 0.2rem; }
 
-    /* ===== STOP & CHECK (STUDENT-FACING) ===== */
     .stop-check {
       background: linear-gradient(135deg, #fff3e0, #ffe0b2);
       border: 2px dashed #e65100; border-radius: 16px;
@@ -172,13 +170,14 @@
       gap: 0.5rem;
       align-items: center;
       flex-wrap: wrap;
+      width: 100%;
     }
     .stop-check .unlock-row input {
       padding: 0.35rem 0.7rem;
       border: 2px solid #e65100;
       border-radius: 8px;
       font-size: 0.8rem;
-      width: 110px;
+      width: 130px;
       font-family: 'JetBrains Mono', monospace;
     }
     .stop-check .unlock-row input:focus {
@@ -215,7 +214,6 @@
     }
     .stop-check .teacher-answer.show { display: block; }
 
-    /* ===== DIFFICULTY LEGEND ===== */
     .difficulty-legend {
       display: flex;
       flex-wrap: wrap;
@@ -242,7 +240,6 @@
     .difficulty-legend .legend-item .stars .star-filled { color: #f9a825; }
     .difficulty-legend .legend-item .stars .star-empty { color: #d4e3f0; }
 
-    /* ===== LOCKED TASK PANELS ===== */
     .task-panel {
       position: relative; margin: 1.8rem 0; padding: 1.6rem 1.8rem;
       border-radius: 20px; border: 2px solid #e5edf5;
@@ -279,7 +276,6 @@
     .task-panel .task-status.pending { background: #fff8e1; color: #b45309; }
     .task-panel .task-status.locked-status { background: #f1f5f9; color: #64748b; }
 
-    /* ===== DIFFICULTY STARS ===== */
     .stars {
       display: inline-flex;
       gap: 2px;
@@ -289,7 +285,6 @@
     .stars .star-filled { color: #f9a825; }
     .stars .star-empty { color: #d4e3f0; }
 
-    /* ===== PER-TASK TIMER ===== */
     .task-timer {
       background: #0b2a4a; color: white;
       padding: 0.4rem 1rem; border-radius: 30px;
@@ -303,7 +298,6 @@
     .task-timer.danger { background: #b71c1c; animation: pulse 0.5s infinite; }
     .task-timer i { font-size: 0.8rem; opacity: 0.7; }
 
-    /* ===== RANDOM WHEEL MODAL ===== */
     .wheel-modal {
       display: none;
       position: fixed; top: 0; left: 0; right: 0; bottom: 0;
@@ -338,7 +332,6 @@
     }
     .wheel-modal .wheel-close:hover { background: #1f6390; }
 
-    /* ===== TRUTH TABLE ===== */
     .truth-table {
       width: 100%; border-collapse: collapse; margin: 1rem 0;
       font-family: 'JetBrains Mono', 'Fira Code', monospace; font-size: 0.9rem;
@@ -367,7 +360,6 @@
       border-color: #e53935; background: #ffebee;
     }
 
-    /* ===== EMBEDDED PSEUDOCODE EDITOR ===== */
     .editor-wrapper {
       background: #f8fafc;
       border: 2px solid #2a6f97;
@@ -489,7 +481,6 @@
     }
     .editor-wrapper .hint i { color: #2a6f97; }
 
-    /* ===== GROUP WORK BOX ===== */
     .group-work {
       background: linear-gradient(135deg, #e3f2fd, #bbdefb);
       border: 2px solid #1e88e5; border-radius: 20px;
@@ -506,7 +497,6 @@
     .group-work ul { margin: 0.5rem 0 0 0; padding-left: 1.2rem; }
     .group-work ul li { color: #0d3b6e; font-size: 0.9rem; }
 
-    /* ===== PLENARY ===== */
     .plenary-box {
       background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
       border: 2px solid #4caf50; border-radius: 20px;
@@ -628,12 +618,12 @@
         <ul>
           <li><strong>0–5 min</strong> — Starter (Blooket) + Recap</li>
           <li><strong>5–12 min</strong> — Learn: Radio Communication &amp; Alphabet Encoding</li>
-          <li><strong>12–22 min</strong> — <strong>Task 1:</strong> Decode the Message <span class="stars"><span class="star-filled">★</span><span class="star-empty">★</span><span class="star-empty">★</span></span></li>
-          <li><strong>22–30 min</strong> — <strong>Task 2:</strong> Encode the Message <span class="stars"><span class="star-filled">★</span><span class="star-filled">★</span><span class="star-empty">★</span></span></li>
-          <li><strong>30–40 min</strong> — <strong>Main Task:</strong> Schoolbox Worksheet</li>
-          <li><strong>40–46 min</strong> — <strong>Task 3:</strong> Truth Table Challenge <span class="stars"><span class="star-filled">★</span><span class="star-filled">★</span><span class="star-empty">★</span></span></li>
-          <li><strong>46–52 min</strong> — <strong>Task 4:</strong> Write Pseudocode <span class="stars"><span class="star-filled">★</span><span class="star-filled">★</span><span class="star-filled">★</span></span></li>
-          <li><strong>52–57 min</strong> — Plenary: Stop and Check</li>
+          <li><strong>12–19 min</strong> — <strong>Task 1:</strong> Decode the Message <span class="stars"><span class="star-filled">★</span><span class="star-empty">★</span><span class="star-empty">★</span></span></li>
+          <li><strong>19–26 min</strong> — <strong>Task 2:</strong> Encode the Message <span class="stars"><span class="star-filled">★</span><span class="star-filled">★</span><span class="star-empty">★</span></span></li>
+          <li><strong>26–36 min</strong> — <strong>Main Task:</strong> Schoolbox Worksheet</li>
+          <li><strong>36–42 min</strong> — <strong>Task 3:</strong> Truth Table Challenge <span class="stars"><span class="star-filled">★</span><span class="star-filled">★</span><span class="star-empty">★</span></span></li>
+          <li><strong>42–50 min</strong> — <strong>Task 4:</strong> Write Pseudocode <span class="stars"><span class="star-filled">★</span><span class="star-filled">★</span><span class="star-filled">★</span></span></li>
+          <li><strong>50–57 min</strong> — Plenary: Stop and Check</li>
         </ul>
       </div>
     </div>
@@ -711,10 +701,10 @@
       <span class="legend-item"><span class="stars"><span class="star-filled">★</span><span class="star-filled">★</span><span class="star-filled">★</span></span> Spicy</span>
     </div>
 
-    <!-- STOP AND CHECK 1 (STUDENT-FACING) -->
+    <!-- STOP AND CHECK 1 -->
     <div class="stop-check">
       <span class="badge">🛑 Stop &amp; Check</span>
-      <p><strong>Class check:</strong> Can you decode <strong>3, 1, 20</strong>? Write your answer down. Your teacher will spin the wheel to pick someone to share. Make sure you can read the alphabet table before you start Task 1.</p>
+      <p><strong>Class check:</strong> Your teacher will spin the wheel and ask you to decode a message using the alphabet table. Be ready to explain how you worked it out.</p>
       <button class="wheel-btn" onclick="openWheel()"><i class="fas fa-dice"></i> Spin the Wheel</button>
       <div class="unlock-row">
         <input type="password" id="unlock_sc1" placeholder="Teacher password">
@@ -734,7 +724,7 @@
           <span class="stars"><span class="star-filled">★</span><span class="star-empty">★</span><span class="star-empty">★</span></span> Mild
         </h3>
         <div style="display:flex; gap:0.5rem; align-items:center; flex-wrap:wrap;">
-          <span class="task-timer" id="timer1" onclick="startTimer(1, 600)"><i class="fas fa-play"></i> Start Timer (10 min)</span>
+          <span class="task-timer" id="timer1" onclick="startTimer(1, 420)"><i class="fas fa-play"></i> Start Timer (7 min)</span>
           <span class="task-status pending" id="task1Status">In Progress</span>
         </div>
       </div>
@@ -801,10 +791,10 @@
       </div>
     </div>
 
-    <!-- STOP AND CHECK 2 (STUDENT-FACING) -->
+    <!-- STOP AND CHECK 2 -->
     <div class="stop-check">
       <span class="badge">🛑 Stop &amp; Check</span>
-      <p><strong>Class check:</strong> Thumbs up if you finished Task 1. Your teacher will spin the wheel to pick 2–3 of you to share one word you decoded. Then discuss: why do we encode messages?</p>
+      <p><strong>Class check:</strong> Thumbs up if you finished Task 1. Your teacher will spin the wheel to pick students to share one word they decoded and explain why we encode messages.</p>
       <button class="wheel-btn" onclick="openWheel()"><i class="fas fa-dice"></i> Spin the Wheel</button>
       <div class="unlock-row">
         <input type="password" id="unlock_sc2" placeholder="Teacher password">
@@ -824,7 +814,7 @@
           <span class="stars"><span class="star-filled">★</span><span class="star-filled">★</span><span class="star-empty">★</span></span> Medium
         </h3>
         <div style="display:flex; gap:0.5rem; align-items:center; flex-wrap:wrap;">
-          <span class="task-timer" id="timer2" onclick="startTimer(2, 480)"><i class="fas fa-play"></i> Start Timer (8 min)</span>
+          <span class="task-timer" id="timer2" onclick="startTimer(2, 420)"><i class="fas fa-play"></i> Start Timer (7 min)</span>
           <span class="task-status locked-status" id="task2Status">Locked</span>
         </div>
       </div>
@@ -890,10 +880,10 @@
       </div>
     </div>
 
-    <!-- STOP AND CHECK 3 (STUDENT-FACING) -->
+    <!-- STOP AND CHECK 3 -->
     <div class="stop-check">
       <span class="badge">🛑 Stop &amp; Check</span>
-      <p><strong>Class check:</strong> Swap screens with your partner and check one encoded word. Discuss: why do we encode messages? Be ready to share with the class.</p>
+      <p><strong>Class check:</strong> Swap screens with your partner and check one encoded word. Discuss: what could go wrong if you made a mistake?</p>
       <button class="wheel-btn" onclick="openWheel()"><i class="fas fa-dice"></i> Spin the Wheel</button>
       <div class="unlock-row">
         <input type="password" id="unlock_sc3" placeholder="Teacher password">
@@ -924,10 +914,10 @@
       </div>
     </div>
 
-    <!-- STOP AND CHECK 4 (STUDENT-FACING) -->
+    <!-- STOP AND CHECK 4 -->
     <div class="stop-check">
       <span class="badge">🛑 Stop &amp; Check</span>
-      <p><strong>Class check:</strong> Hands up if you finished the worksheet. Your teacher will pick 2 students to share one answer. Then we'll move on to the harder Boolean logic tasks.</p>
+      <p><strong>Class check:</strong> Hands up if you finished the worksheet. Your teacher will pick students to share one answer. Then we move on to the harder Boolean logic tasks.</p>
       <button class="wheel-btn" onclick="openWheel()"><i class="fas fa-dice"></i> Spin the Wheel</button>
       <div class="unlock-row">
         <input type="password" id="unlock_sc4" placeholder="Teacher password">
@@ -939,7 +929,7 @@
       </div>
     </div>
 
-    <!-- ===== TASK 3: TRUTH TABLE (LOCKED) — NOW 2 STARS ===== -->
+    <!-- ===== TASK 3: TRUTH TABLE (LOCKED) — 2 STARS ===== -->
     <div class="task-panel locked" id="task3">
       <div class="task-header">
         <h3>
@@ -1078,7 +1068,7 @@
       </div>
     </div>
 
-    <!-- STOP AND CHECK 5 (STUDENT-FACING) -->
+    <!-- STOP AND CHECK 5 -->
     <div class="stop-check">
       <span class="badge">🛑 Stop &amp; Check</span>
       <p><strong>Class check:</strong> What does AND mean? What does OR mean? Your teacher will spin the wheel and ask you to explain your real-life example.</p>
@@ -1093,7 +1083,7 @@
       </div>
     </div>
 
-    <!-- ===== TASK 4: WRITE PSEUDOCODE (LOCKED) — NOW 3 STARS ===== -->
+    <!-- ===== TASK 4: WRITE PSEUDOCODE (LOCKED) — 3 STARS ===== -->
     <div class="task-panel locked" id="task4">
       <div class="task-header">
         <h3>
@@ -1101,7 +1091,7 @@
           <span class="stars"><span class="star-filled">★</span><span class="star-filled">★</span><span class="star-filled">★</span></span> Spicy
         </h3>
         <div style="display:flex; gap:0.5rem; align-items:center; flex-wrap:wrap;">
-          <span class="task-timer" id="timer4" onclick="startTimer(4, 360)"><i class="fas fa-play"></i> Start Timer (6 min)</span>
+          <span class="task-timer" id="timer4" onclick="startTimer(4, 480)"><i class="fas fa-play"></i> Start Timer (8 min)</span>
           <span class="task-status locked-status" id="task4Status">Locked</span>
         </div>
       </div>
@@ -1128,7 +1118,6 @@ number = number + 4
           <p style="margin-top:0.4rem; font-size:0.9rem;">Notice: START and STOP are uppercase, each instruction is on its own line, and the instructions are short and precise.</p>
         </div>
 
-        <!-- EMBEDDED PSEUDOCODE EDITOR -->
         <div class="editor-wrapper">
           <div class="editor-header">
             <h3><i class="fas fa-code"></i> Pseudocode Editor</h3>
@@ -1168,10 +1157,10 @@ STOP</textarea>
       </div>
     </div>
 
-    <!-- STOP AND CHECK 6 (STUDENT-FACING) -->
+    <!-- STOP AND CHECK 6 -->
     <div class="stop-check">
       <span class="badge">🛑 Stop &amp; Check</span>
-      <p><strong>Class check:</strong> Your teacher will pick 2 students to read out their pseudocode. Check that you used START/STOP, IF/THEN/ELSE/ENDIF, and included the AND condition.</p>
+      <p><strong>Class check:</strong> Your teacher will pick students to read out their pseudocode. Check that you used START/STOP, IF/THEN/ELSE/ENDIF, and included the AND condition.</p>
       <button class="wheel-btn" onclick="openWheel()"><i class="fas fa-dice"></i> Spin the Wheel</button>
       <div class="unlock-row">
         <input type="password" id="unlock_sc6" placeholder="Teacher password">
@@ -1419,7 +1408,7 @@ STOP</textarea>
     const msg = document.getElementById(msgId);
     const password = input.value.trim();
 
-    if (password === '262026') {
+    if (password === 'teacher') {
       answer.classList.add('show');
       msg.textContent = '✅ Unlocked';
       msg.className = 'unlock-msg ok';
@@ -1505,7 +1494,7 @@ STOP</textarea>
       document.querySelector('.plenary-box').scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
 
-    // Unlock Task 3 after main task — we add a button inside the main task
+    // Unlock Task 3 after main task
     const mainTaskDiv = document.querySelector('.main-task');
     const unlockBtn = document.createElement('button');
     unlockBtn.textContent = 'Complete Main Task →';
