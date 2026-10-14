@@ -278,46 +278,6 @@
     .sort-table select.correct { border-color: #2d8f2d; background: #e8f5e9; }
     .sort-table select.incorrect { border-color: #e53935; background: #ffebee; }
 
-    .flowchart-container {
-      background: #f8fafc; border: 1px solid #dceaf7;
-      border-radius: 16px; padding: 1.2rem;
-      display: flex; flex-direction: column; align-items: center;
-      gap: 0.5rem; margin: 1rem 0;
-    }
-    .flowchart-container .fc-shape {
-      padding: 0.6rem 1.4rem; font-size: 0.85rem; font-weight: 600;
-      text-align: center; line-height: 1.3;
-    }
-    .flowchart-container .fc-oval {
-      background: #fce4ec; border: 2.5px solid #e91e63;
-      border-radius: 50px; padding: 0.5rem 1.5rem;
-    }
-    .flowchart-container .fc-rect {
-      background: #e3f2fd; border: 2.5px solid #1e88e5; border-radius: 6px;
-    }
-    .flowchart-container .fc-diamond {
-      background: #fff8e1; border: 2.5px solid #f9a825;
-      width: 140px; height: 140px;
-      display: flex; align-items: center; justify-content: center;
-      transform: rotate(45deg); margin: 0.8rem 0;
-    }
-    .flowchart-container .fc-diamond span {
-      transform: rotate(-45deg); font-size: 0.72rem;
-      font-weight: 600; text-align: center;
-    }
-    .flowchart-container .fc-arrow { font-size: 1.2rem; color: #64748b; }
-    .flowchart-container .fc-row {
-      display: flex; gap: 2rem; align-items: flex-start;
-    }
-    .flowchart-container .fc-col {
-      display: flex; flex-direction: column; align-items: center;
-    }
-    .flowchart-container .fc-label {
-      font-size: 0.75rem; font-weight: 600;
-    }
-    .flowchart-container .fc-label.yes { color: #2d8f2d; }
-    .flowchart-container .fc-label.no { color: #b71c1c; }
-
     .keyword-row {
       display: flex; flex-wrap: wrap; gap: 0.8rem 1.2rem;
       background: #f1f6fc; padding: 0.8rem 1.2rem;
@@ -360,15 +320,15 @@
 
   <nav class="nav">
     <span class="brand"><i class="fas fa-robot"></i> IGCSE CompSci</span>
-    <a href="../year8-units.html"><i class="fas fa-arrow-left"></i> Year 8 Units</a>
+    <a href="../year8-units.html"><i class="fas fa-arrow-left"></i> Back to Units</a>
     <a href="../unit8-2-pseudocode.html"><i class="fas fa-diagram-project"></i> 8.2 Pseudocode</a>
   </nav>
 
-  <a href="../unit8-2-pseudocode.html" class="back-link"><i class="fas fa-arrow-left"></i> Back to Units</a>
+  <a href="../year8-units.html" class="back-link"><i class="fas fa-arrow-left"></i> Back to Units</a>
 
   <div class="page-header">
     <h1><i class="fas fa-industry"></i> 7.1 · Automated Systems</h1>
-    <div class="sub"><i class="fas fa-arrow-right" style="margin-right:6px;"></i> Student's Book · Topic 7 Technologies</div>
+    <div class="sub"><i class="fas fa-arrow-right" style="margin-right:6px;"></i> IGCSE Computer Science · Topic 7 Technologies</div>
   </div>
 
   <div class="lesson-content">
@@ -434,7 +394,7 @@
       </div>
     </div>
 
-    <!-- ===== TASK 1: SENSOR IDENTIFICATION ===== -->
+    <!-- ===== TASK 1: SENSOR MATCHING ===== -->
     <div class="task-panel" id="task1">
       <div class="task-header">
         <h3>
@@ -447,7 +407,7 @@
         </div>
       </div>
       <div class="task-content">
-        <p>Match each sensor to the correct name. Use the drag-down menus to choose.</p>
+        <p>Match each sensor to the correct name. Use the drop-down menus to choose.</p>
 
         <table class="sort-table" id="sensorTable">
           <thead>
@@ -538,11 +498,11 @@
       <p><a href="https://www.youtube.com/watch?v=a52ZSCIAoRk" target="_blank">▶ Watch on YouTube</a></p>
     </div>
 
-    <!-- ===== TASK 2: AUTOMATED ICE CREAM FACTORY ===== -->
+    <!-- ===== TASK 2: RESEARCH THREE SENSORS ===== -->
     <div class="task-panel locked" id="task2">
       <div class="task-header">
         <h3>
-          <i class="fas fa-lock" style="color:#2a6f97;"></i> Task 2: Automated Ice Cream Factory
+          <i class="fas fa-lock" style="color:#2a6f97;"></i> Task 2: Research Three Sensors
           <span class="stars"><span class="star-filled">★</span><span class="star-filled">★</span><span class="star-empty">★</span></span> Medium
         </h3>
         <div style="display:flex; gap:0.5rem; align-items:center; flex-wrap:wrap;">
@@ -551,23 +511,39 @@
         </div>
       </div>
       <div class="task-content">
-        <p>Read the scenario and answer the questions below.</p>
+        <p>Research <strong>three</strong> sensors and for each one give an example of an automated system that may use it.</p>
 
-        <div class="highlight-box" style="background:#e8f4fd; border-left-color:#1e88e5;">
-          <strong>The Scenario:</strong> An ice cream factory uses an automated system to fill ice cream tubs. Tubs move along a conveyor belt, and the system fills each tub with exactly the same amount of ice cream.
+        <table class="sort-table">
+          <thead>
+            <tr>
+              <th style="width:30%;">Sensor Name</th>
+              <th style="width:35%;">Where it may be used</th>
+              <th style="width:35%;">How it works (extension)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><input type="text" placeholder="Sensor 1 name..." style="width:100%; padding:0.5rem; border:1.5px solid #d4e3f0; border-radius:8px; font-family:inherit; font-size:0.85rem;"></td>
+              <td><input type="text" placeholder="Example system..." style="width:100%; padding:0.5rem; border:1.5px solid #d4e3f0; border-radius:8px; font-family:inherit; font-size:0.85rem;"></td>
+              <td><input type="text" placeholder="Optional extension..." style="width:100%; padding:0.5rem; border:1.5px solid #d4e3f0; border-radius:8px; font-family:inherit; font-size:0.85rem;"></td>
+            </tr>
+            <tr>
+              <td><input type="text" placeholder="Sensor 2 name..." style="width:100%; padding:0.5rem; border:1.5px solid #d4e3f0; border-radius:8px; font-family:inherit; font-size:0.85rem;"></td>
+              <td><input type="text" placeholder="Example system..." style="width:100%; padding:0.5rem; border:1.5px solid #d4e3f0; border-radius:8px; font-family:inherit; font-size:0.85rem;"></td>
+              <td><input type="text" placeholder="Optional extension..." style="width:100%; padding:0.5rem; border:1.5px solid #d4e3f0; border-radius:8px; font-family:inherit; font-size:0.85rem;"></td>
+            </tr>
+            <tr>
+              <td><input type="text" placeholder="Sensor 3 name..." style="width:100%; padding:0.5rem; border:1.5px solid #d4e3f0; border-radius:8px; font-family:inherit; font-size:0.85rem;"></td>
+              <td><input type="text" placeholder="Example system..." style="width:100%; padding:0.5rem; border:1.5px solid #d4e3f0; border-radius:8px; font-family:inherit; font-size:0.85rem;"></td>
+              <td><input type="text" placeholder="Optional extension..." style="width:100%; padding:0.5rem; border:1.5px solid #d4e3f0; border-radius:8px; font-family:inherit; font-size:0.85rem;"></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="highlight-box amber">
+          <i class="fas fa-lightbulb" style="color:#b45309; margin-right:8px;"></i>
+          <strong>Hints:</strong> Think about sensors you might find in a home, a car, a phone or a factory. Examples include smoke detector sensors, touch sensors, and passive infra-red (PIR) sensors.
         </div>
-
-        <h3>(a) Describe how this automated system works.</h3>
-        <p>Write at least 4 sentences. Include the <strong>sensor</strong>, <strong>microprocessor</strong>, and <strong>actuator</strong> in your answer.</p>
-        <textarea id="iceCreamA" rows="5" style="width:100%; padding:0.8rem 1rem; border:2px solid #d4e3f0; border-radius:10px; font-family:inherit; font-size:0.9rem; resize:vertical;" placeholder="Write your answer here..."></textarea>
-
-        <h3>(b) Suggest two advantages of using an automated system in the ice cream factory.</h3>
-        <input type="text" id="adv1" placeholder="Advantage 1..." style="width:100%; padding:0.6rem 1rem; border:2px solid #d4e3f0; border-radius:10px; font-family:inherit; font-size:0.9rem; margin-bottom:0.5rem;">
-        <input type="text" id="adv2" placeholder="Advantage 2..." style="width:100%; padding:0.6rem 1rem; border:2px solid #d4e3f0; border-radius:10px; font-family:inherit; font-size:0.9rem;">
-
-        <h3>(c) Suggest two disadvantages of using an automated system in the ice cream factory.</h3>
-        <input type="text" id="dis1" placeholder="Disadvantage 1..." style="width:100%; padding:0.6rem 1rem; border:2px solid #d4e3f0; border-radius:10px; font-family:inherit; font-size:0.9rem; margin-bottom:0.5rem;">
-        <input type="text" id="dis2" placeholder="Disadvantage 2..." style="width:100%; padding:0.6rem 1rem; border:2px solid #d4e3f0; border-radius:10px; font-family:inherit; font-size:0.9rem;">
 
         <button class="check-btn" id="completeTask2">Complete Task 2 →</button>
       </div>
@@ -576,7 +552,7 @@
     <!-- STOP AND CHECK 3 -->
     <div class="stop-check">
       <span class="badge">🛑 Stop &amp; Check</span>
-      <p><strong>Class check:</strong> Turn to your partner and share one advantage and one disadvantage you wrote down. Your teacher will spin the wheel to ask the class.</p>
+      <p><strong>Class check:</strong> Turn to your partner and share one sensor you researched and where it is used. Your teacher will spin the wheel to ask the class.</p>
       <button class="wheel-btn" onclick="openWheel()"><i class="fas fa-dice"></i> Spin the Wheel</button>
       <div class="unlock-row">
         <input type="password" id="unlock_sc3" placeholder="Teacher password">
@@ -584,7 +560,7 @@
         <span class="unlock-msg" id="msg_sc3"></span>
       </div>
       <div class="teacher-answer" id="answer_sc3">
-        <strong>Advantages:</strong> More efficient than a person · More accurate · Works 24 hours a day · Can work in dangerous areas · Reduces running costs · Consistent results. <br><strong>Disadvantages:</strong> Large initial cost · People may lose their jobs · Reduced number of jobs · Dangerous if incorrectly programmed.
+        <strong>Possible answers:</strong> Smoke detector sensor (smoke alarm system), touch sensor (light switch), passive infra-red / PIR sensor (alarm system), temperature sensor (thermostat), light sensor (automatic street lights), ultrasonic sensor (parking sensors in cars).
       </div>
     </div>
 
@@ -599,8 +575,7 @@
         <ul style="margin-top:0.3rem;">
           <li>Name four sensors</li>
           <li>Research three other sensors and give examples of where they are used</li>
-          <li>Explain three sensors that could control a lighting system</li>
-          <li>Develop an algorithm for an automated greenhouse lighting system</li>
+          <li>Explain three sensors that could control a lighting system, and develop an algorithm for an automated greenhouse lighting system</li>
           <li>Research an automated system in Agriculture, Weather or Science</li>
         </ul>
         <p style="margin-top:0.5rem;"><em>You have 20 minutes.</em></p>
@@ -634,8 +609,10 @@
           </ul>
         </div>
 
-        <p>Write an algorithm using pseudocode or English sentences.</p>
+        <h3>(a) Explain three sensors and how they could be used to control a lighting system.</h3>
+        <textarea id="lightingSensors" rows="4" style="width:100%; padding:0.8rem 1rem; border:2px solid #d4e3f0; border-radius:10px; font-family:inherit; font-size:0.9rem; resize:vertical;" placeholder="Sensor 1: ...&#10;Sensor 2: ...&#10;Sensor 3: ..."></textarea>
 
+        <h3>(b) Develop an algorithm using pseudocode or English sentences for the automated lighting system.</h3>
         <textarea id="greenhouseAlgo" rows="10" style="width:100%; padding:0.8rem 1rem; border:2px solid #d4e3f0; border-radius:10px; font-family:'JetBrains Mono', monospace; font-size:0.85rem; resize:vertical;" placeholder="Write your algorithm here..."></textarea>
 
         <div class="highlight-box" style="background:#e8f5e9; border-left-color:#4caf50; margin-top:1rem;">
@@ -644,6 +621,8 @@
 
         <button class="check-btn" id="showAnswerBtn">Show Example Answer</button>
         <div class="teacher-answer" id="greenhouseAnswer" style="display:none; margin-top:1rem; padding:1rem 1.4rem; background:#e8f5e9; border-left:5px solid #4caf50; border-radius:10px;">
+          <strong>Example sensors for lighting:</strong> Light sensor (turn on headlights when dark), touch sensor (light switch), microphone (voice-activated lighting), internal clock (timed lighting).
+          <br><br>
           <strong>Example pseudocode:</strong>
           <pre style="font-family:'JetBrains Mono', monospace; font-size:0.8rem; margin-top:0.5rem; white-space:pre-wrap;">currentLight ← CALL GetLightValue()
 hour ← CALL GetHour()
@@ -738,8 +717,8 @@ ENDIF</pre>
 
   <hr class="divider" />
   <div style="display: flex; justify-content: space-between; font-size: 0.8rem; color: #5d7f9a; padding: 0.5rem 0; flex-wrap: wrap; gap: 0.5rem;">
-    <span><i class="fas fa-arrow-left" style="margin-right: 6px;"></i><a href="../unit8-2-pseudocode.html" style="color: #1f6390; text-decoration: none;">Back to Units</a></span>
-    <span>7.1 · Automated Systems</span>
+    <span><i class="fas fa-arrow-left" style="margin-right: 6px;"></i><a href="../year8-units.html" style="color: #1f6390; text-decoration: none;">Back to Units</a></span>
+    <span>7.1 · Automated Systems · IGCSE Computer Science</span>
   </div>
 
 </div>
@@ -756,7 +735,6 @@ ENDIF</pre>
 </div>
 
 <script>
-  // ===== STUDENT NAMES =====
   const studentNames = [
     'Atila, Anisa', 'Böttge, Lukas', 'Dombrovsky, Damian', 'Dückers, Max',
     'Habel, Christopher', 'Habel, Joshua', 'Hocke, Anna', 'Hünig, Ada',
@@ -766,7 +744,6 @@ ENDIF</pre>
     'Yadav, Ashvika', 'Yin, Xixi', 'Zhang, Tian He', 'Zhou, Shulin'
   ];
 
-  // ===== SENSOR TABLE CHECKER =====
   (function() {
     const checkBtn = document.getElementById('checkSensors');
     const feedback = document.getElementById('sensorFeedback');
@@ -800,7 +777,6 @@ ENDIF</pre>
     });
   })();
 
-  // ===== TEACHER ANSWER UNLOCK =====
   function unlockAnswer(inputId, answerId, msgId) {
     const input = document.getElementById(inputId);
     const answer = document.getElementById(answerId);
@@ -819,13 +795,11 @@ ENDIF</pre>
     }
   }
 
-  // ===== GREENHOUSE ANSWER REVEAL =====
   document.getElementById('showAnswerBtn').addEventListener('click', () => {
     const ans = document.getElementById('greenhouseAnswer');
     ans.style.display = ans.style.display === 'none' ? 'block' : 'none';
   });
 
-  // ===== TASK LOCKING SYSTEM =====
   (function() {
     const task2 = document.getElementById('task2');
     const task3 = document.getElementById('task3');
@@ -850,7 +824,6 @@ ENDIF</pre>
       document.querySelector('.main-task').scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
 
-    // Unlock Task 3 after main task
     const mainTaskDiv = document.querySelector('.main-task');
     const unlockBtn = document.createElement('button');
     unlockBtn.textContent = 'Complete Main Task →';
@@ -879,7 +852,6 @@ ENDIF</pre>
     });
   })();
 
-  // ===== COUNTDOWN TIMERS WITH MIDI =====
   const timerIntervals = {};
 
   function playMidiTune() {
@@ -968,7 +940,6 @@ ENDIF</pre>
     return mins.toString().padStart(2, '0') + ':' + secs.toString().padStart(2, '0');
   }
 
-  // ===== RANDOM WHEEL =====
   function openWheel() {
     document.getElementById('wheelModal').classList.add('show');
     spinWheel();
