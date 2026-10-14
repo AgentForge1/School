@@ -144,6 +144,7 @@
     .timing-guide ul { margin: 0.5rem 0 0 0; padding-left: 1.2rem; }
     .timing-guide ul li { color: #0d3b6e; font-size: 0.9rem; margin-bottom: 0.2rem; }
 
+    /* ===== STOP & CHECK (STUDENT-FACING) ===== */
     .stop-check {
       background: linear-gradient(135deg, #fff3e0, #ffe0b2);
       border: 2px dashed #e65100; border-radius: 16px;
@@ -165,6 +166,54 @@
       transition: 0.2s; display: inline-flex; align-items: center; gap: 6px;
     }
     .stop-check .wheel-btn:hover { background: #b33f00; }
+    .stop-check .unlock-row {
+      margin-top: 0.5rem;
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .stop-check .unlock-row input {
+      padding: 0.35rem 0.7rem;
+      border: 2px solid #e65100;
+      border-radius: 8px;
+      font-size: 0.8rem;
+      width: 110px;
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .stop-check .unlock-row input:focus {
+      outline: none;
+      border-color: #b33f00;
+    }
+    .stop-check .unlock-row button {
+      background: #0b2a4a;
+      color: white;
+      border: none;
+      padding: 0.35rem 0.9rem;
+      border-radius: 30px;
+      font-weight: 600;
+      font-size: 0.75rem;
+      cursor: pointer;
+    }
+    .stop-check .unlock-row button:hover { background: #1f6390; }
+    .stop-check .unlock-row .unlock-msg {
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+    .stop-check .unlock-row .unlock-msg.ok { color: #2d8f2d; }
+    .stop-check .unlock-row .unlock-msg.no { color: #b71c1c; }
+    .stop-check .teacher-answer {
+      display: none;
+      margin-top: 0.6rem;
+      padding: 0.7rem 1rem;
+      background: #fff8e1;
+      border-left: 4px solid #f9a825;
+      border-radius: 10px;
+      font-size: 0.85rem;
+      color: #5a3a00;
+      width: 100%;
+    }
+    .stop-check .teacher-answer.show { display: block; }
 
     /* ===== DIFFICULTY LEGEND ===== */
     .difficulty-legend {
@@ -318,7 +367,7 @@
       border-color: #e53935; background: #ffebee;
     }
 
-    /* ===== EMBEDDED PYTHON EDITOR ===== */
+    /* ===== EMBEDDED PSEUDOCODE EDITOR ===== */
     .editor-wrapper {
       background: #f8fafc;
       border: 2px solid #2a6f97;
@@ -456,53 +505,6 @@
     .group-work p { margin-bottom: 0.3rem; color: #0d3b6e; }
     .group-work ul { margin: 0.5rem 0 0 0; padding-left: 1.2rem; }
     .group-work ul li { color: #0d3b6e; font-size: 0.9rem; }
-    .group-work .teacher-answer {
-      display: none;
-      margin-top: 0.8rem;
-      padding: 0.8rem 1.2rem;
-      background: #fff8e1;
-      border-left: 4px solid #f9a825;
-      border-radius: 10px;
-      font-size: 0.9rem;
-      color: #5a3a00;
-    }
-    .group-work .teacher-answer.show { display: block; }
-    .group-work .unlock-row {
-      margin-top: 0.6rem;
-      display: flex;
-      gap: 0.5rem;
-      align-items: center;
-      flex-wrap: wrap;
-    }
-    .group-work .unlock-row input {
-      padding: 0.4rem 0.8rem;
-      border: 2px solid #b6cfe5;
-      border-radius: 8px;
-      font-size: 0.85rem;
-      width: 120px;
-      font-family: 'JetBrains Mono', monospace;
-    }
-    .group-work .unlock-row input:focus {
-      outline: none;
-      border-color: #1e88e5;
-    }
-    .group-work .unlock-row button {
-      background: #0b2a4a;
-      color: white;
-      border: none;
-      padding: 0.4rem 1rem;
-      border-radius: 30px;
-      font-weight: 600;
-      font-size: 0.8rem;
-      cursor: pointer;
-    }
-    .group-work .unlock-row button:hover { background: #1f6390; }
-    .group-work .unlock-row .unlock-msg {
-      font-size: 0.8rem;
-      font-weight: 600;
-    }
-    .group-work .unlock-row .unlock-msg.ok { color: #2d8f2d; }
-    .group-work .unlock-row .unlock-msg.no { color: #b71c1c; }
 
     /* ===== PLENARY ===== */
     .plenary-box {
@@ -629,8 +631,8 @@
           <li><strong>12–22 min</strong> — <strong>Task 1:</strong> Decode the Message <span class="stars"><span class="star-filled">★</span><span class="star-empty">★</span><span class="star-empty">★</span></span></li>
           <li><strong>22–30 min</strong> — <strong>Task 2:</strong> Encode the Message <span class="stars"><span class="star-filled">★</span><span class="star-filled">★</span><span class="star-empty">★</span></span></li>
           <li><strong>30–40 min</strong> — <strong>Main Task:</strong> Schoolbox Worksheet</li>
-          <li><strong>40–46 min</strong> — <strong>Task 3:</strong> Truth Table Challenge <span class="stars"><span class="star-filled">★</span><span class="star-filled">★</span><span class="star-filled">★</span></span></li>
-          <li><strong>46–52 min</strong> — <strong>Task 4:</strong> Write Pseudocode <span class="stars"><span class="star-filled">★</span><span class="star-filled">★</span><span class="star-empty">★</span></span></li>
+          <li><strong>40–46 min</strong> — <strong>Task 3:</strong> Truth Table Challenge <span class="stars"><span class="star-filled">★</span><span class="star-filled">★</span><span class="star-empty">★</span></span></li>
+          <li><strong>46–52 min</strong> — <strong>Task 4:</strong> Write Pseudocode <span class="stars"><span class="star-filled">★</span><span class="star-filled">★</span><span class="star-filled">★</span></span></li>
           <li><strong>52–57 min</strong> — Plenary: Stop and Check</li>
         </ul>
       </div>
@@ -709,11 +711,19 @@
       <span class="legend-item"><span class="stars"><span class="star-filled">★</span><span class="star-filled">★</span><span class="star-filled">★</span></span> Spicy</span>
     </div>
 
-    <!-- STOP AND CHECK 1 -->
+    <!-- STOP AND CHECK 1 (STUDENT-FACING) -->
     <div class="stop-check">
       <span class="badge">🛑 Stop &amp; Check</span>
-      <p><strong>Teacher checkpoint (12 mins):</strong> Pause the class. Ask: "What does 3, 1, 20 decode to?" (CAT). Check that all students can read the alphabet table. Use the random wheel to pick a student to answer.</p>
+      <p><strong>Class check:</strong> Can you decode <strong>3, 1, 20</strong>? Write your answer down. Your teacher will spin the wheel to pick someone to share. Make sure you can read the alphabet table before you start Task 1.</p>
       <button class="wheel-btn" onclick="openWheel()"><i class="fas fa-dice"></i> Spin the Wheel</button>
+      <div class="unlock-row">
+        <input type="password" id="unlock_sc1" placeholder="Teacher password">
+        <button onclick="unlockAnswer('unlock_sc1', 'answer_sc1', 'msg_sc1')">Unlock Answer</button>
+        <span class="unlock-msg" id="msg_sc1"></span>
+      </div>
+      <div class="teacher-answer" id="answer_sc1">
+        <strong>Answer:</strong> 3, 1, 20 = CAT
+      </div>
     </div>
 
     <!-- ===== TASK 1: DECODE (LOCKED) ===== -->
@@ -780,7 +790,7 @@
       </div>
     </div>
 
-    <!-- ===== GROUP WORK 1 (TEACHER ANSWER LOCKED) ===== -->
+    <!-- ===== GROUP WORK 1 ===== -->
     <div class="group-work">
       <span class="badge">👥 Group Work</span>
       <div>
@@ -788,23 +798,22 @@
         <p>Turn to your partner and discuss: <strong>Why do we encode messages using numbers?</strong></p>
         <p>Think about: What would happen if someone intercepted the radio signal? How does encoding make the message more secure?</p>
         <p><em>Be ready to share one idea with the class.</em></p>
-
-        <div class="unlock-row">
-          <input type="password" id="unlock1" placeholder="Password">
-          <button onclick="unlockAnswer('unlock1', 'answer1', 'msg1')">Unlock</button>
-          <span class="unlock-msg" id="msg1"></span>
-        </div>
-        <div class="teacher-answer" id="answer1">
-          <strong>Teacher answer:</strong> Encoding keeps messages private and secure. If someone intercepts the radio signal, they see numbers, not words. Only someone who knows the alphabet-position code can decode the message. This is a simple form of encryption.
-        </div>
       </div>
     </div>
 
-    <!-- STOP AND CHECK 2 -->
+    <!-- STOP AND CHECK 2 (STUDENT-FACING) -->
     <div class="stop-check">
       <span class="badge">🛑 Stop &amp; Check</span>
-      <p><strong>Teacher checkpoint (22 mins):</strong> Pause the class. Ask for thumbs up/down on Task 1. Cold-call 2–3 students to say one word they decoded. Confirm the answers are COMPUTER, PROGRAMMING, ALGORITHM, MICROBIT, ENCRYPTION.</p>
+      <p><strong>Class check:</strong> Thumbs up if you finished Task 1. Your teacher will spin the wheel to pick 2–3 of you to share one word you decoded. Then discuss: why do we encode messages?</p>
       <button class="wheel-btn" onclick="openWheel()"><i class="fas fa-dice"></i> Spin the Wheel</button>
+      <div class="unlock-row">
+        <input type="password" id="unlock_sc2" placeholder="Teacher password">
+        <button onclick="unlockAnswer('unlock_sc2', 'answer_sc2', 'msg_sc2')">Unlock Answer</button>
+        <span class="unlock-msg" id="msg_sc2"></span>
+      </div>
+      <div class="teacher-answer" id="answer_sc2">
+        <strong>Answers:</strong> COMPUTER, PROGRAMMING, ALGORITHM, MICROBIT, ENCRYPTION. <br><strong>Why encode?</strong> To keep messages private and secure — if someone intercepts the radio signal, they see numbers, not words. Only someone who knows the alphabet-position code can decode the message.
+      </div>
     </div>
 
     <!-- ===== TASK 2: ENCODE (LOCKED) ===== -->
@@ -871,33 +880,32 @@
       </div>
     </div>
 
-    <!-- ===== GROUP WORK 2 (TEACHER ANSWER LOCKED) ===== -->
+    <!-- ===== GROUP WORK 2 ===== -->
     <div class="group-work">
       <span class="badge">👥 Group Work</span>
       <div>
         <h3>Pair Discussion (2 mins)</h3>
         <p>Swap screens with your partner. Check one encoded word. Then discuss: <strong>What could go wrong if you made a mistake in the encoding?</strong></p>
         <p>Think about: How would the receiver know something was wrong? What would they see?</p>
-
-        <div class="unlock-row">
-          <input type="password" id="unlock2" placeholder="Password">
-          <button onclick="unlockAnswer('unlock2', 'answer2', 'msg2')">Unlock</button>
-          <span class="unlock-msg" id="msg2"></span>
-        </div>
-        <div class="teacher-answer" id="answer2">
-          <strong>Teacher answer:</strong> If a number is wrong, the receiver will decode the wrong letter. The message will be garbled or unreadable. This is why test plans are important — you check each letter is correct before sending. Errors in encoding could also mean the receiver gets a completely different word (e.g. 3, 1, 20 = CAT but 3, 1, 21 = CAU).
-        </div>
       </div>
     </div>
 
-    <!-- STOP AND CHECK 3 -->
+    <!-- STOP AND CHECK 3 (STUDENT-FACING) -->
     <div class="stop-check">
       <span class="badge">🛑 Stop &amp; Check</span>
-      <p><strong>Teacher checkpoint (30 mins):</strong> Pause the class. Ask: "Why do we encode messages?" (security, prevents interception). Then release them to the Main Task.</p>
+      <p><strong>Class check:</strong> Swap screens with your partner and check one encoded word. Discuss: why do we encode messages? Be ready to share with the class.</p>
       <button class="wheel-btn" onclick="openWheel()"><i class="fas fa-dice"></i> Spin the Wheel</button>
+      <div class="unlock-row">
+        <input type="password" id="unlock_sc3" placeholder="Teacher password">
+        <button onclick="unlockAnswer('unlock_sc3', 'answer_sc3', 'msg_sc3')">Unlock Answer</button>
+        <span class="unlock-msg" id="msg_sc3"></span>
+      </div>
+      <div class="teacher-answer" id="answer_sc3">
+        <strong>Why encode?</strong> To keep messages private and secure. If someone intercepts the radio signal, they see numbers, not words. <br><strong>What could go wrong with a mistake?</strong> The receiver decodes the wrong letter, so the message is garbled or completely different. That's why we use a test plan.
+      </div>
     </div>
 
-    <!-- ===== MAIN TASK (SCHOOLBOX WORKSHEET) — MOVED HERE ===== -->
+    <!-- ===== MAIN TASK (SCHOOLBOX WORKSHEET) ===== -->
     <div class="main-task">
       <span class="badge">⭐ Main Task</span>
       <div>
@@ -916,19 +924,27 @@
       </div>
     </div>
 
-    <!-- STOP AND CHECK 4 -->
+    <!-- STOP AND CHECK 4 (STUDENT-FACING) -->
     <div class="stop-check">
       <span class="badge">🛑 Stop &amp; Check</span>
-      <p><strong>Teacher checkpoint (40 mins):</strong> Pause the class. Ask students to put their hands up if they finished. Ask 2 students to share one answer from the worksheet. Check for misconceptions about radio groups and encoding.</p>
+      <p><strong>Class check:</strong> Hands up if you finished the worksheet. Your teacher will pick 2 students to share one answer. Then we'll move on to the harder Boolean logic tasks.</p>
       <button class="wheel-btn" onclick="openWheel()"><i class="fas fa-dice"></i> Spin the Wheel</button>
+      <div class="unlock-row">
+        <input type="password" id="unlock_sc4" placeholder="Teacher password">
+        <button onclick="unlockAnswer('unlock_sc4', 'answer_sc4', 'msg_sc4')">Unlock Answer</button>
+        <span class="unlock-msg" id="msg_sc4"></span>
+      </div>
+      <div class="teacher-answer" id="answer_sc4">
+        <strong>Look for:</strong> Radio group (e.g. 42), correct decoding of numbers to letters, explanation that radio sends a signal to the other micro:bit, the radio group must be unique to each pair, and a test plan that checks both sending and receiving.
+      </div>
     </div>
 
-    <!-- ===== TASK 3: TRUTH TABLE (LOCKED) ===== -->
+    <!-- ===== TASK 3: TRUTH TABLE (LOCKED) — NOW 2 STARS ===== -->
     <div class="task-panel locked" id="task3">
       <div class="task-header">
         <h3>
           <i class="fas fa-lock" style="color:#2a6f97;"></i> Task 3: Truth Table Challenge
-          <span class="stars"><span class="star-filled">★</span><span class="star-filled">★</span><span class="star-filled">★</span></span> Spicy
+          <span class="stars"><span class="star-filled">★</span><span class="star-filled">★</span><span class="star-empty">★</span></span> Medium
         </h3>
         <div style="display:flex; gap:0.5rem; align-items:center; flex-wrap:wrap;">
           <span class="task-timer" id="timer3" onclick="startTimer(3, 360)"><i class="fas fa-play"></i> Start Timer (6 min)</span>
@@ -1047,7 +1063,7 @@
       </div>
     </div>
 
-    <!-- ===== GROUP WORK 3 (TEACHER ANSWER LOCKED) ===== -->
+    <!-- ===== GROUP WORK 3 ===== -->
     <div class="group-work">
       <span class="badge">👥 Group Work</span>
       <div>
@@ -1059,31 +1075,30 @@
           <li><strong>OR</strong> — "You can go outside OR you can stay inside"</li>
         </ul>
         <p><em>Be ready to share your examples.</em></p>
-
-        <div class="unlock-row">
-          <input type="password" id="unlock3" placeholder="Password">
-          <button onclick="unlockAnswer('unlock3', 'answer3', 'msg3')">Unlock</button>
-          <span class="unlock-msg" id="msg3"></span>
-        </div>
-        <div class="teacher-answer" id="answer3">
-          <strong>Teacher answer:</strong> AND requires <em>both</em> conditions to be true. OR requires <em>at least one</em> condition to be true. Real-life examples: AND — "You can have dessert AND you've finished your dinner" (both must be true). OR — "You can walk OR take the bus" (either is fine). In programming, AND is stricter — it only triggers when everything is true. OR is more permissive — it triggers if anything is true.
-        </div>
       </div>
     </div>
 
-    <!-- STOP AND CHECK 5 -->
+    <!-- STOP AND CHECK 5 (STUDENT-FACING) -->
     <div class="stop-check">
       <span class="badge">🛑 Stop &amp; Check</span>
-      <p><strong>Teacher checkpoint (46 mins):</strong> Pause the class. Ask: "What does AND mean?" (both must be true). "What does OR mean?" (at least one must be true). Use the wheel to pick a student to explain their real-life example.</p>
+      <p><strong>Class check:</strong> What does AND mean? What does OR mean? Your teacher will spin the wheel and ask you to explain your real-life example.</p>
       <button class="wheel-btn" onclick="openWheel()"><i class="fas fa-dice"></i> Spin the Wheel</button>
+      <div class="unlock-row">
+        <input type="password" id="unlock_sc5" placeholder="Teacher password">
+        <button onclick="unlockAnswer('unlock_sc5', 'answer_sc5', 'msg_sc5')">Unlock Answer</button>
+        <span class="unlock-msg" id="msg_sc5"></span>
+      </div>
+      <div class="teacher-answer" id="answer_sc5">
+        <strong>AND:</strong> both conditions must be true. <br><strong>OR:</strong> at least one condition must be true. <br><strong>Real-life examples:</strong> AND — "You can have dessert AND you've finished your dinner" (both must be true). OR — "You can walk OR take the bus" (either is fine).
+      </div>
     </div>
 
-    <!-- ===== TASK 4: WRITE PSEUDOCODE (LOCKED) ===== -->
+    <!-- ===== TASK 4: WRITE PSEUDOCODE (LOCKED) — NOW 3 STARS ===== -->
     <div class="task-panel locked" id="task4">
       <div class="task-header">
         <h3>
           <i class="fas fa-lock" style="color:#2a6f97;"></i> Task 4: Write Pseudocode
-          <span class="stars"><span class="star-filled">★</span><span class="star-filled">★</span><span class="star-empty">★</span></span> Medium
+          <span class="stars"><span class="star-filled">★</span><span class="star-filled">★</span><span class="star-filled">★</span></span> Spicy
         </h3>
         <div style="display:flex; gap:0.5rem; align-items:center; flex-wrap:wrap;">
           <span class="task-timer" id="timer4" onclick="startTimer(4, 360)"><i class="fas fa-play"></i> Start Timer (6 min)</span>
@@ -1113,7 +1128,7 @@ number = number + 4
           <p style="margin-top:0.4rem; font-size:0.9rem;">Notice: START and STOP are uppercase, each instruction is on its own line, and the instructions are short and precise.</p>
         </div>
 
-        <!-- EMBEDDED PYTHON EDITOR -->
+        <!-- EMBEDDED PSEUDOCODE EDITOR -->
         <div class="editor-wrapper">
           <div class="editor-header">
             <h3><i class="fas fa-code"></i> Pseudocode Editor</h3>
@@ -1153,11 +1168,19 @@ STOP</textarea>
       </div>
     </div>
 
-    <!-- STOP AND CHECK 6 -->
+    <!-- STOP AND CHECK 6 (STUDENT-FACING) -->
     <div class="stop-check">
       <span class="badge">🛑 Stop &amp; Check</span>
-      <p><strong>Teacher checkpoint (52 mins):</strong> Pause the class. Ask 2 students to read out their pseudocode. Check that they used START/STOP, IF/THEN/ELSE/ENDIF, and included the AND condition.</p>
+      <p><strong>Class check:</strong> Your teacher will pick 2 students to read out their pseudocode. Check that you used START/STOP, IF/THEN/ELSE/ENDIF, and included the AND condition.</p>
       <button class="wheel-btn" onclick="openWheel()"><i class="fas fa-dice"></i> Spin the Wheel</button>
+      <div class="unlock-row">
+        <input type="password" id="unlock_sc6" placeholder="Teacher password">
+        <button onclick="unlockAnswer('unlock_sc6', 'answer_sc6', 'msg_sc6')">Unlock Answer</button>
+        <span class="unlock-msg" id="msg_sc6"></span>
+      </div>
+      <div class="teacher-answer" id="answer_sc6">
+        <strong>Look for:</strong> START and STOP in uppercase, radio group set to 42, LOOP/WHILE structure, radio.receive() and radio.send(), IF/THEN/ENDIF blocks, and the AND condition checking both button_a AND button_b.
+      </div>
     </div>
 
     <!-- ===== PLENARY ===== -->
@@ -1464,7 +1487,6 @@ STOP</textarea>
     document.getElementById('completeTask2').addEventListener('click', () => {
       task2Status.textContent = 'Complete';
       task2Status.className = 'task-status done';
-      // Scroll to main task (which comes next)
       document.querySelector('.main-task').scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
 
@@ -1482,6 +1504,20 @@ STOP</textarea>
       task4Status.className = 'task-status done';
       document.querySelector('.plenary-box').scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
+
+    // Unlock Task 3 after main task — we add a button inside the main task
+    const mainTaskDiv = document.querySelector('.main-task');
+    const unlockBtn = document.createElement('button');
+    unlockBtn.textContent = 'Complete Main Task →';
+    unlockBtn.className = 'check-btn';
+    unlockBtn.style.marginTop = '0.8rem';
+    unlockBtn.addEventListener('click', () => {
+      task3.classList.remove('locked');
+      task3Status.textContent = 'In Progress';
+      task3Status.className = 'task-status pending';
+      task3.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+    mainTaskDiv.querySelector('div').appendChild(unlockBtn);
   })();
 
   // ===== PER-TASK TIMERS (COUNT UP) =====
@@ -1552,49 +1588,42 @@ STOP`;
       output.push({ type: 'info', text: '▶ Checking pseudocode structure...' });
       output.push({ type: 'info', text: '---' });
 
-      // Check START
       if (lines.some(l => l.toUpperCase() === 'START')) {
         output.push({ type: 'ok', text: '✓ START found' });
       } else {
         output.push({ type: 'error', text: '✗ Missing START' });
       }
 
-      // Check STOP
       if (lines.some(l => l.toUpperCase() === 'STOP')) {
         output.push({ type: 'ok', text: '✓ STOP found' });
       } else {
         output.push({ type: 'error', text: '✗ Missing STOP' });
       }
 
-      // Check radio group
       if (code.includes('radio.config') || code.includes('group')) {
         output.push({ type: 'ok', text: '✓ Radio group set' });
       } else {
         output.push({ type: 'error', text: '✗ Missing radio group setting' });
       }
 
-      // Check IF/THEN
       if (code.toUpperCase().includes('IF') && code.toUpperCase().includes('THEN')) {
         output.push({ type: 'ok', text: '✓ IF/THEN found' });
       } else {
         output.push({ type: 'error', text: '✗ Missing IF/THEN' });
       }
 
-      // Check ENDIF
       if (code.toUpperCase().includes('ENDIF')) {
         output.push({ type: 'ok', text: '✓ ENDIF found' });
       } else {
         output.push({ type: 'error', text: '✗ Missing ENDIF' });
       }
 
-      // Check AND
       if (code.toUpperCase().includes(' AND ')) {
         output.push({ type: 'ok', text: '✓ AND condition found' });
       } else {
         output.push({ type: 'error', text: '✗ Missing AND condition (for the A AND B buttons)' });
       }
 
-      // Check button_a
       if (code.includes('button_a')) {
         output.push({ type: 'ok', text: '✓ button_a found' });
       } else {
@@ -1697,4 +1726,4 @@ STOP`;
 </script>
 
 </body>
-</html>>
+</html>
