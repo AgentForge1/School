@@ -465,6 +465,31 @@
     .parsons-feedback.ok { color: #2d8f2d; }
     .parsons-feedback.no { color: #b71c1c; }
 
+    .parsons-answer-reveal {
+      display: none;
+      margin-top: 1.2rem;
+      padding: 1.2rem 1.4rem;
+      background: #e8f5e9;
+      border-left: 5px solid #4caf50;
+      border-radius: 12px;
+    }
+    .parsons-answer-reveal.show { display: block; }
+    .parsons-answer-reveal h4 {
+      color: #1b5e20;
+      margin-top: 0;
+      margin-bottom: 0.6rem;
+    }
+    .parsons-answer-reveal ol {
+      margin: 0;
+      padding-left: 1.6rem;
+    }
+    .parsons-answer-reveal ol li {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.85rem;
+      color: #1b5e20;
+      margin-bottom: 0.2rem;
+    }
+
     .group-work {
       background: linear-gradient(135deg, #e3f2fd, #bbdefb);
       border: 2px solid #1e88e5; border-radius: 20px;
@@ -1006,7 +1031,7 @@
       <div>
         <h3>Pair Discussion (2 mins)</h3>
         <p>Discuss with your partner: <strong>Why is AND different from OR?</strong></p>
-        <p>Think of a real-life example of each — for example, "You can have dessert AND you've finished your dinner" (both must be true) versus "You can walk OR take the bus" (either works).</p>
+        <p>Think of a real-life example of each. When would you need BOTH things to be true? When is ONE thing enough?</p>
         <p><em>Be ready to share your examples.</em></p>
       </div>
     </div>
@@ -1022,7 +1047,7 @@
         <span class="unlock-msg" id="msg_sc5"></span>
       </div>
       <div class="teacher-answer" id="answer_sc5">
-        <strong>AND:</strong> both conditions must be true. <br><strong>OR:</strong> at least one condition must be true. <br><strong>Real-life examples:</strong> AND — "You can have dessert AND you've finished your dinner" (both must be true). OR — "You can walk OR take the bus" (either is fine).
+        <strong>AND:</strong> both conditions must be true. <br><strong>OR:</strong> at least one condition must be true.
       </div>
     </div>
 
@@ -1070,6 +1095,28 @@
             </div>
           </div>
           <div class="parsons-feedback" id="parsonsFeedback"></div>
+        </div>
+
+        <!-- Answer reveal shown when timer ends -->
+        <div class="parsons-answer-reveal" id="parsonsAnswerReveal">
+          <h4><i class="fas fa-check-circle" style="margin-right:6px;"></i> Correct Order:</h4>
+          <ol>
+            <li>START</li>
+            <li>radio.config(group=42)</li>
+            <li>radio.on()</li>
+            <li>LOOP forever:</li>
+            <li>&nbsp;&nbsp;&nbsp;&nbsp;message = radio.receive()</li>
+            <li>&nbsp;&nbsp;&nbsp;&nbsp;IF message THEN</li>
+            <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;display.scroll("8, 5, 12, 12, 15")</li>
+            <li>&nbsp;&nbsp;&nbsp;&nbsp;ENDIF</li>
+            <li>&nbsp;&nbsp;&nbsp;&nbsp;IF button_a.is_pressed() THEN</li>
+            <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;radio.send('message')</li>
+            <li>&nbsp;&nbsp;&nbsp;&nbsp;ENDIF</li>
+            <li>&nbsp;&nbsp;&nbsp;&nbsp;IF button_a.is_pressed() AND button_b.is_pressed() THEN</li>
+            <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;display.show(Image.HAPPY)</li>
+            <li>&nbsp;&nbsp;&nbsp;&nbsp;ENDIF</li>
+            <li>ENDLOOP</li>
+          </ol>
         </div>
 
         <button class="check-btn" id="completeTask4">Complete Task 4 →</button>
@@ -1320,16 +1367,13 @@
   const timerIntervals = {};
 
   function playMidiTune() {
-    // Web Audio API — plays a fun ascending arpeggio
     try {
       const AudioContext = window.AudioContext || window.webkitAudioContext;
       const ctx = new AudioContext();
-
-      // Fun notes: C5, E5, G5, C6 (major arpeggio)
       const notes = [523.25, 659.25, 783.99, 1046.50];
       let time = ctx.currentTime;
 
-      notes.forEach((freq, i) => {
+      notes.forEach((freq) => {
         const osc = ctx.createOscillator();
         const gain = ctx.createGain();
         osc.type = 'square';
@@ -1343,7 +1387,6 @@
         time += 0.2;
       });
 
-      // Final long chord
       setTimeout(() => {
         const osc1 = ctx.createOscillator();
         const osc2 = ctx.createOscillator();
@@ -1371,12 +1414,14 @@
     const timerEl = document.getElementById('timer' + taskNum);
     if (!timerEl) return;
 
-    // Toggle: if already running, stop and reset
     if (timerIntervals[taskNum]) {
       clearInterval(timerIntervals[taskNum]);
       delete timerIntervals[taskNum];
       timerEl.innerHTML = '<i class="fas fa-play"></i> Start Timer';
       timerEl.className = 'task-timer';
+      // Hide answer reveal if this was task 4
+      const reveal = document.getElementById('parsonsAnswerReveal');
+      if (reveal) reveal.classList.remove('show');
       return;
     }
 
@@ -1399,6 +1444,12 @@
         timerEl.className = 'task-timer danger';
         timerEl.innerHTML = '<i class="fas fa-check"></i> Time\'s up!';
         playMidiTune();
+
+        // Show Parsons answer when Task 4 timer ends
+        if (taskNum === 4) {
+          const reveal = document.getElementById('parsonsAnswerReveal');
+          if (reveal) reveal.classList.add('show');
+        }
       }
     }, 1000);
   }
@@ -1536,7 +1587,6 @@
 
     resetBtn.addEventListener('click', renderItems);
 
-    // Initial render
     renderItems();
   })();
 
