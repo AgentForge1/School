@@ -118,6 +118,7 @@
       border: 2px solid #f9a825; border-radius: 20px;
       padding: 1.4rem 1.8rem; margin: 1.5rem 0;
       display: flex; align-items: flex-start; gap: 1rem;
+      flex-wrap: wrap;
     }
     .main-task .badge {
       background: #f9a825; color: #4a2c00; font-weight: 700;
@@ -126,6 +127,11 @@
     }
     .main-task h3 { margin-top: 0; color: #7a4b00; font-size: 1.15rem; }
     .main-task p { margin-bottom: 0.3rem; color: #5a3a00; }
+    .main-task a {
+      color: #e65100; font-weight: 600; text-decoration: none;
+      border-bottom: 2px solid #e65100;
+    }
+    .main-task a:hover { color: #7a3300; }
 
     .timing-guide {
       background: linear-gradient(135deg, #e8f4fd, #d4ecfb);
@@ -164,55 +170,6 @@
       transition: 0.2s; display: inline-flex; align-items: center; gap: 6px;
     }
     .stop-check .wheel-btn:hover { background: #b33f00; }
-    .stop-check .unlock-row {
-      margin-top: 0.5rem;
-      display: flex;
-      gap: 0.5rem;
-      align-items: center;
-      flex-wrap: wrap;
-      width: 100%;
-    }
-    .stop-check .unlock-row input {
-      padding: 0.35rem 0.7rem;
-      border: 2px solid #e65100;
-      border-radius: 8px;
-      font-size: 0.8rem;
-      width: 130px;
-      font-family: 'JetBrains Mono', monospace;
-    }
-    .stop-check .unlock-row input:focus {
-      outline: none;
-      border-color: #b33f00;
-    }
-    .stop-check .unlock-row button {
-      background: #0b2a4a;
-      color: white;
-      border: none;
-      padding: 0.35rem 0.9rem;
-      border-radius: 30px;
-      font-weight: 600;
-      font-size: 0.75rem;
-      cursor: pointer;
-    }
-    .stop-check .unlock-row button:hover { background: #1f6390; }
-    .stop-check .unlock-row .unlock-msg {
-      font-size: 0.75rem;
-      font-weight: 600;
-    }
-    .stop-check .unlock-row .unlock-msg.ok { color: #2d8f2d; }
-    .stop-check .unlock-row .unlock-msg.no { color: #b71c1c; }
-    .stop-check .teacher-answer {
-      display: none;
-      margin-top: 0.6rem;
-      padding: 0.7rem 1rem;
-      background: #fff8e1;
-      border-left: 4px solid #f9a825;
-      border-radius: 10px;
-      font-size: 0.85rem;
-      color: #5a3a00;
-      width: 100%;
-    }
-    .stop-check .teacher-answer.show { display: block; }
 
     .difficulty-legend {
       display: flex;
@@ -360,15 +317,15 @@
       border-color: #e53935; background: #ffebee;
     }
 
-    .editor-wrapper {
+    /* ===== PARSONS PROBLEM ===== */
+    .parsons-wrapper {
       background: #f8fafc;
       border: 2px solid #2a6f97;
       border-radius: 20px;
       padding: 1.2rem 1.4rem;
       margin: 1.5rem 0;
-      box-shadow: 0 6px 18px rgba(0, 20, 40, 0.06);
     }
-    .editor-wrapper .editor-header {
+    .parsons-wrapper .parsons-header {
       display: flex;
       flex-wrap: wrap;
       align-items: center;
@@ -376,7 +333,7 @@
       gap: 0.8rem;
       margin-bottom: 1rem;
     }
-    .editor-wrapper .editor-header h3 {
+    .parsons-wrapper .parsons-header h3 {
       margin: 0;
       font-size: 1.1rem;
       color: #0b2a4a;
@@ -384,13 +341,13 @@
       align-items: center;
       gap: 8px;
     }
-    .editor-wrapper .editor-header h3 i { color: #2a6f97; }
-    .editor-wrapper .editor-actions {
+    .parsons-wrapper .parsons-header h3 i { color: #2a6f97; }
+    .parsons-wrapper .parsons-actions {
       display: flex;
       gap: 0.6rem;
       flex-wrap: wrap;
     }
-    .editor-wrapper .editor-actions button {
+    .parsons-wrapper .parsons-actions button {
       background: #0b2a4a;
       color: white;
       border: none;
@@ -404,82 +361,77 @@
       gap: 6px;
       transition: 0.2s;
     }
-    .editor-wrapper .editor-actions button:hover {
+    .parsons-wrapper .parsons-actions button:hover {
       background: #1f6390;
       transform: translateY(-1px);
     }
-    .editor-wrapper .editor-actions button.secondary {
+    .parsons-wrapper .parsons-actions button.secondary {
       background: #eef6fc;
       color: #0b2a4a;
       border: 1.5px solid #b6cfe5;
     }
-    .editor-wrapper .editor-actions button.secondary:hover {
+    .parsons-wrapper .parsons-actions button.secondary:hover {
       background: #dbeafe;
       border-color: #7bb3ff;
     }
-    .editor-wrapper .editor-container {
+    .parsons-container {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 1rem;
     }
-    .editor-wrapper .editor-container textarea {
-      width: 100%;
-      min-height: 280px;
-      background: #0b1e2e;
-      color: #e2edf7;
-      border: none;
-      border-radius: 14px;
-      padding: 1rem 1.2rem;
-      font-family: 'JetBrains Mono', 'Fira Code', monospace;
-      font-size: 0.85rem;
-      line-height: 1.6;
-      resize: vertical;
-      outline: none;
-      tab-size: 4;
+    .parsons-container .parsons-column h4 {
+      color: #0b2a4a;
+      font-size: 0.95rem;
+      margin-bottom: 0.5rem;
     }
-    .editor-wrapper .editor-container textarea:focus {
-      box-shadow: 0 0 0 3px rgba(42, 111, 151, 0.3);
+    .parsons-container .parsons-items {
+      background: #ffffff;
+      border: 2px dashed #b6cfe5;
+      border-radius: 12px;
+      padding: 0.8rem;
+      min-height: 250px;
     }
-    .editor-wrapper .output-panel {
-      background: #0b1e2e;
-      border-radius: 14px;
-      padding: 1rem 1.2rem;
-      min-height: 280px;
-      font-family: 'JetBrains Mono', 'Fira Code', monospace;
-      font-size: 0.85rem;
-      color: #e2edf7;
-      overflow-y: auto;
-      white-space: pre-wrap;
-      word-break: break-word;
-      border: 1px solid #1f3a4d;
-    }
-    .editor-wrapper .output-panel .placeholder {
-      color: #6a9fb5;
-      font-style: italic;
-    }
-    .editor-wrapper .output-panel .line {
-      padding: 0.15rem 0;
-      border-bottom: 1px solid rgba(255,255,255,0.04);
-    }
-    .editor-wrapper .output-panel .line .prompt {
-      color: #7dffb0;
-      margin-right: 6px;
-    }
-    .editor-wrapper .output-panel .line .error {
-      color: #ff6b6b;
-    }
-    .editor-wrapper .output-panel .line .ok {
-      color: #b5d6a8;
-    }
-    .editor-wrapper .hint {
+    .parsons-container .parsons-item {
+      background: #eef6fc;
+      border: 2px solid #b6cfe5;
+      border-radius: 10px;
+      padding: 0.5rem 0.9rem;
+      margin-bottom: 0.4rem;
+      cursor: grab;
+      font-family: 'JetBrains Mono', monospace;
       font-size: 0.8rem;
-      color: #475569;
-      margin-top: 0.6rem;
-      display: flex;
-      align-items: center;
-      gap: 6px;
+      font-weight: 600;
+      color: #0b2a4a;
+      transition: 0.2s;
+      user-select: none;
     }
-    .editor-wrapper .hint i { color: #2a6f97; }
+    .parsons-container .parsons-item:hover {
+      border-color: #2a6f97;
+      background: #dbeafe;
+      transform: translateX(4px);
+    }
+    .parsons-container .parsons-item.dragging {
+      opacity: 0.5;
+      transform: scale(0.98);
+    }
+    .parsons-container .parsons-drop {
+      background: #fff8e1;
+      border: 2px dashed #f9a825;
+      border-radius: 12px;
+      padding: 0.8rem;
+      min-height: 250px;
+    }
+    .parsons-container .parsons-drop .placeholder {
+      color: #b45309;
+      font-style: italic;
+      font-size: 0.85rem;
+    }
+    .parsons-feedback {
+      font-weight: 600;
+      margin-top: 0.8rem;
+    }
+    .parsons-feedback.ok { color: #2d8f2d; }
+    .parsons-feedback.no { color: #b71c1c; }
 
     .group-work {
       background: linear-gradient(135deg, #e3f2fd, #bbdefb);
@@ -563,9 +515,7 @@
       .task-panel.locked::after { font-size: 0.7rem; padding: 0.5rem 1rem; white-space: normal; text-align: center; }
       .truth-table { font-size: 0.75rem; }
       .truth-table td { padding: 0.4rem; }
-      .editor-wrapper .editor-container { grid-template-columns: 1fr; }
-      .editor-wrapper .editor-container textarea { min-height: 200px; }
-      .editor-wrapper .output-panel { min-height: 150px; }
+      .parsons-container { grid-template-columns: 1fr; }
       .wheel-modal .wheel-display { font-size: 1.3rem; }
     }
   </style>
@@ -614,7 +564,7 @@
       <span class="badge">⏱ Structure</span>
       <div>
         <h3>Today's Structure</h3>
-        <p>Each task has its own timer. Click the timer to start it. Your teacher will stop the class at each checkpoint.</p>
+        <p>Each task has its own countdown timer. When the timer reaches zero, a fun tune will play. Your teacher will stop the class at each checkpoint.</p>
         <ul>
           <li><strong>0–5 min</strong> — Starter (Blooket) + Recap</li>
           <li><strong>5–12 min</strong> — Learn: Radio Communication &amp; Alphabet Encoding</li>
@@ -622,8 +572,8 @@
           <li><strong>19–26 min</strong> — <strong>Task 2:</strong> Encode the Message <span class="stars"><span class="star-filled">★</span><span class="star-filled">★</span><span class="star-empty">★</span></span></li>
           <li><strong>26–36 min</strong> — <strong>Main Task:</strong> Schoolbox Worksheet</li>
           <li><strong>36–42 min</strong> — <strong>Task 3:</strong> Truth Table Challenge <span class="stars"><span class="star-filled">★</span><span class="star-filled">★</span><span class="star-empty">★</span></span></li>
-          <li><strong>42–50 min</strong> — <strong>Task 4:</strong> Write Pseudocode <span class="stars"><span class="star-filled">★</span><span class="star-filled">★</span><span class="star-filled">★</span></span></li>
-          <li><strong>50–57 min</strong> — Plenary: Stop and Check</li>
+          <li><strong>42–50 min</strong> — <strong>Task 4:</strong> Build the Program (Parsons) <span class="stars"><span class="star-filled">★</span><span class="star-filled">★</span><span class="star-filled">★</span></span></li>
+          <li><strong>50–57 min</strong> — Plenary: Exit Ticket</li>
         </ul>
       </div>
     </div>
@@ -704,19 +654,11 @@
     <!-- STOP AND CHECK 1 -->
     <div class="stop-check">
       <span class="badge">🛑 Stop &amp; Check</span>
-      <p><strong>Class check:</strong> Your teacher will spin the wheel and ask you to decode a message using the alphabet table. Be ready to explain how you worked it out.</p>
+      <p><strong>Class check:</strong> Your teacher will spin the wheel and ask you to decode <strong>3, 1, 20</strong> using the alphabet table. Be ready to explain how you worked it out.</p>
       <button class="wheel-btn" onclick="openWheel()"><i class="fas fa-dice"></i> Spin the Wheel</button>
-      <div class="unlock-row">
-        <input type="password" id="unlock_sc1" placeholder="Teacher password">
-        <button onclick="unlockAnswer('unlock_sc1', 'answer_sc1', 'msg_sc1')">Unlock Answer</button>
-        <span class="unlock-msg" id="msg_sc1"></span>
-      </div>
-      <div class="teacher-answer" id="answer_sc1">
-        <strong>Answer:</strong> 3, 1, 20 = CAT
-      </div>
     </div>
 
-    <!-- ===== TASK 1: DECODE (LOCKED) ===== -->
+    <!-- ===== TASK 1: DECODE ===== -->
     <div class="task-panel" id="task1">
       <div class="task-header">
         <h3>
@@ -796,17 +738,9 @@
       <span class="badge">🛑 Stop &amp; Check</span>
       <p><strong>Class check:</strong> Thumbs up if you finished Task 1. Your teacher will spin the wheel to pick students to share one word they decoded and explain why we encode messages.</p>
       <button class="wheel-btn" onclick="openWheel()"><i class="fas fa-dice"></i> Spin the Wheel</button>
-      <div class="unlock-row">
-        <input type="password" id="unlock_sc2" placeholder="Teacher password">
-        <button onclick="unlockAnswer('unlock_sc2', 'answer_sc2', 'msg_sc2')">Unlock Answer</button>
-        <span class="unlock-msg" id="msg_sc2"></span>
-      </div>
-      <div class="teacher-answer" id="answer_sc2">
-        <strong>Answers:</strong> COMPUTER, PROGRAMMING, ALGORITHM, MICROBIT, ENCRYPTION. <br><strong>Why encode?</strong> To keep messages private and secure — if someone intercepts the radio signal, they see numbers, not words. Only someone who knows the alphabet-position code can decode the message.
-      </div>
     </div>
 
-    <!-- ===== TASK 2: ENCODE (LOCKED) ===== -->
+    <!-- ===== TASK 2: ENCODE ===== -->
     <div class="task-panel locked" id="task2">
       <div class="task-header">
         <h3>
@@ -875,7 +809,7 @@
       <span class="badge">👥 Group Work</span>
       <div>
         <h3>Pair Discussion (2 mins)</h3>
-        <p>Swap screens with your partner. Check one encoded word. Then discuss: <strong>What could go wrong if you made a mistake in the encoding?</strong></p>
+        <p>Turn to your partner and discuss: <strong>What could go wrong if you made a mistake in the encoding?</strong></p>
         <p>Think about: How would the receiver know something was wrong? What would they see?</p>
       </div>
     </div>
@@ -883,25 +817,18 @@
     <!-- STOP AND CHECK 3 -->
     <div class="stop-check">
       <span class="badge">🛑 Stop &amp; Check</span>
-      <p><strong>Class check:</strong> Swap screens with your partner and check one encoded word. Discuss: what could go wrong if you made a mistake?</p>
+      <p><strong>Class check:</strong> Turn to your partner and share one thing you discussed. Your teacher will spin the wheel to pick students to share with the class.</p>
       <button class="wheel-btn" onclick="openWheel()"><i class="fas fa-dice"></i> Spin the Wheel</button>
-      <div class="unlock-row">
-        <input type="password" id="unlock_sc3" placeholder="Teacher password">
-        <button onclick="unlockAnswer('unlock_sc3', 'answer_sc3', 'msg_sc3')">Unlock Answer</button>
-        <span class="unlock-msg" id="msg_sc3"></span>
-      </div>
-      <div class="teacher-answer" id="answer_sc3">
-        <strong>Why encode?</strong> To keep messages private and secure. If someone intercepts the radio signal, they see numbers, not words. <br><strong>What could go wrong with a mistake?</strong> The receiver decodes the wrong letter, so the message is garbled or completely different. That's why we use a test plan.
-      </div>
     </div>
 
     <!-- ===== MAIN TASK (SCHOOLBOX WORKSHEET) ===== -->
     <div class="main-task">
       <span class="badge">⭐ Main Task</span>
-      <div>
+      <div style="flex:1;">
         <h3>📝 Schoolbox Worksheet — Show Your Understanding</h3>
         <p><strong>This is the task your teacher will mark to see if you understand today's work.</strong></p>
-        <p>Complete the worksheet on Schoolbox. It asks you to:</p>
+        <p>Log in to Schoolbox: <a href="https://lms.isr-school.com/" target="_blank">https://lms.isr-school.com/</a></p>
+        <p>Complete the worksheet. It asks you to:</p>
         <ul style="margin-top:0.3rem;">
           <li>Identify the radio group used in a program</li>
           <li>Decode a message by replacing numbers with letters</li>
@@ -911,6 +838,9 @@
           <li>Explain how to check the numbers are correct</li>
         </ul>
         <p style="margin-top:0.5rem;"><em>You have 10 minutes. Use the alphabet table and your notes from Tasks 1–2 to help you.</em></p>
+        <div style="display:flex; gap:0.5rem; align-items:center; flex-wrap:wrap; margin-top:0.8rem;">
+          <span class="task-timer" id="timerMain" onclick="startTimer('Main', 600)"><i class="fas fa-play"></i> Start Timer (10 min)</span>
+        </div>
       </div>
     </div>
 
@@ -919,17 +849,9 @@
       <span class="badge">🛑 Stop &amp; Check</span>
       <p><strong>Class check:</strong> Hands up if you finished the worksheet. Your teacher will pick students to share one answer. Then we move on to the harder Boolean logic tasks.</p>
       <button class="wheel-btn" onclick="openWheel()"><i class="fas fa-dice"></i> Spin the Wheel</button>
-      <div class="unlock-row">
-        <input type="password" id="unlock_sc4" placeholder="Teacher password">
-        <button onclick="unlockAnswer('unlock_sc4', 'answer_sc4', 'msg_sc4')">Unlock Answer</button>
-        <span class="unlock-msg" id="msg_sc4"></span>
-      </div>
-      <div class="teacher-answer" id="answer_sc4">
-        <strong>Look for:</strong> Radio group (e.g. 42), correct decoding of numbers to letters, explanation that radio sends a signal to the other micro:bit, the radio group must be unique to each pair, and a test plan that checks both sending and receiving.
-      </div>
     </div>
 
-    <!-- ===== TASK 3: TRUTH TABLE (LOCKED) — 2 STARS ===== -->
+    <!-- ===== TASK 3: TRUTH TABLE (2 STARS) ===== -->
     <div class="task-panel locked" id="task3">
       <div class="task-header">
         <h3>
@@ -1044,11 +966,6 @@
         <button class="check-btn" id="checkTruth">Check Answers</button>
         <div class="feedback" id="truthFeedback"></div>
 
-        <div class="highlight-box amber" style="margin-top:1rem;">
-          <i class="fas fa-question-circle" style="color:#b45309; margin-right:8px;"></i>
-          <strong>Challenge:</strong> What would change if the operator was OR instead of AND? How would the truth table be different?
-        </div>
-
         <button class="check-btn" id="completeTask3">Complete Task 3 →</button>
       </div>
     </div>
@@ -1059,11 +976,7 @@
       <div>
         <h3>Pair Discussion (2 mins)</h3>
         <p>Discuss with your partner: <strong>Why is AND different from OR?</strong></p>
-        <p>Give a real-life example of each:</p>
-        <ul>
-          <li><strong>AND</strong> — "You can have pudding AND you've eaten your vegetables"</li>
-          <li><strong>OR</strong> — "You can go outside OR you can stay inside"</li>
-        </ul>
+        <p>Think of a real-life example of each — for example, "You can have dessert AND you've finished your dinner" (both must be true) versus "You can walk OR take the bus" (either works).</p>
         <p><em>Be ready to share your examples.</em></p>
       </div>
     </div>
@@ -1073,21 +986,13 @@
       <span class="badge">🛑 Stop &amp; Check</span>
       <p><strong>Class check:</strong> What does AND mean? What does OR mean? Your teacher will spin the wheel and ask you to explain your real-life example.</p>
       <button class="wheel-btn" onclick="openWheel()"><i class="fas fa-dice"></i> Spin the Wheel</button>
-      <div class="unlock-row">
-        <input type="password" id="unlock_sc5" placeholder="Teacher password">
-        <button onclick="unlockAnswer('unlock_sc5', 'answer_sc5', 'msg_sc5')">Unlock Answer</button>
-        <span class="unlock-msg" id="msg_sc5"></span>
-      </div>
-      <div class="teacher-answer" id="answer_sc5">
-        <strong>AND:</strong> both conditions must be true. <br><strong>OR:</strong> at least one condition must be true. <br><strong>Real-life examples:</strong> AND — "You can have dessert AND you've finished your dinner" (both must be true). OR — "You can walk OR take the bus" (either is fine).
-      </div>
     </div>
 
-    <!-- ===== TASK 4: WRITE PSEUDOCODE (LOCKED) — 3 STARS ===== -->
+    <!-- ===== TASK 4: PARSONS PROBLEM (3 STARS) ===== -->
     <div class="task-panel locked" id="task4">
       <div class="task-header">
         <h3>
-          <i class="fas fa-lock" style="color:#2a6f97;"></i> Task 4: Write Pseudocode
+          <i class="fas fa-lock" style="color:#2a6f97;"></i> Task 4: Build the Program (Parsons Problem)
           <span class="stars"><span class="star-filled">★</span><span class="star-filled">★</span><span class="star-filled">★</span></span> Spicy
         </h3>
         <div style="display:flex; gap:0.5rem; align-items:center; flex-wrap:wrap;">
@@ -1096,87 +1001,48 @@
         </div>
       </div>
       <div class="task-content">
-        <p>Write pseudocode for a program that:</p>
+        <p>Drag the code blocks from the left into the correct order on the right to build a working radio program. The program should:</p>
         <ul>
-          <li>Sets the radio group to 42</li>
-          <li>Loops forever</li>
-          <li>Receives a message and displays the numbers 8, 5, 12, 12, 15</li>
-          <li>Sends a message when button A is pressed</li>
-          <li>Displays a HAPPY face if both A and B buttons are pressed</li>
+          <li>Set the radio group to 42</li>
+          <li>Loop forever, receiving messages and displaying the numbers 8, 5, 12, 12, 15</li>
+          <li>Send a message when button A is pressed</li>
+          <li>Display a HAPPY face if both A and B buttons are pressed</li>
         </ul>
 
-        <div class="highlight-box" style="background:#fff8e1; border-left-color:#f9a825;">
-          <i class="fas fa-lightbulb" style="color:#b45309; margin-right:8px;"></i>
-          <strong>Example of good pseudocode structure:</strong>
-          <div class="code-block" style="margin-top:0.6rem;">
-<span class="keyword">START</span>
-number = 6
-number = number + 4
-<span class="keyword">OUTPUT</span> number
-<span class="keyword">STOP</span>
-          </div>
-          <p style="margin-top:0.4rem; font-size:0.9rem;">Notice: START and STOP are uppercase, each instruction is on its own line, and the instructions are short and precise.</p>
-        </div>
-
-        <div class="editor-wrapper">
-          <div class="editor-header">
-            <h3><i class="fas fa-code"></i> Pseudocode Editor</h3>
-            <div class="editor-actions">
-              <button id="runBtn"><i class="fas fa-play"></i> Run</button>
-              <button id="clearBtn" class="secondary"><i class="fas fa-eraser"></i> Clear</button>
-              <button id="resetBtn" class="secondary"><i class="fas fa-rotate-left"></i> Reset</button>
+        <div class="parsons-wrapper">
+          <div class="parsons-header">
+            <h3><i class="fas fa-puzzle-piece"></i> Parsons Problem</h3>
+            <div class="parsons-actions">
+              <button id="checkParsons"><i class="fas fa-check"></i> Check Order</button>
+              <button id="resetParsons" class="secondary"><i class="fas fa-rotate-left"></i> Reset</button>
             </div>
           </div>
-          <div class="editor-container">
-            <textarea id="codeEditor" spellcheck="false">START
-radio.config(group=42)
-radio.on()
-LOOP forever:
-    message = radio.receive()
-    IF message THEN
-        display.scroll("8, 5, 12, 12, 15")
-    ENDIF
-    IF button_a.is_pressed() THEN
-        radio.send('message')
-    ENDIF
-    IF button_a.is_pressed() AND button_b.is_pressed() THEN
-        display.show(Image.HAPPY)
-    ENDIF
-ENDLOOP
-STOP</textarea>
-            <div class="output-panel" id="outputPanel">
-              <div class="placeholder">Click "Run" to check your pseudocode structure...</div>
+          <div class="parsons-container">
+            <div class="parsons-column">
+              <h4><i class="fas fa-hand-pointer" style="color:#2a6f97;"></i> Available Blocks (drag these)</h4>
+              <div class="parsons-items" id="parsonsItems">
+                <!-- Blocks will be shuffled by JS -->
+              </div>
+            </div>
+            <div class="parsons-column">
+              <h4><i class="fas fa-check-circle" style="color:#4caf50;"></i> Your Program (drop here)</h4>
+              <div class="parsons-drop" id="parsonsDrop">
+                <div class="placeholder">Drag the code blocks here in the correct order...</div>
+              </div>
             </div>
           </div>
-          <div class="hint">
-            <i class="fas fa-info-circle"></i> This editor checks your pseudocode for the key structural elements: START, STOP, IF/THEN/ENDIF, and the radio group.
-          </div>
+          <div class="parsons-feedback" id="parsonsFeedback"></div>
         </div>
 
         <button class="check-btn" id="completeTask4">Complete Task 4 →</button>
       </div>
     </div>
 
-    <!-- STOP AND CHECK 6 -->
-    <div class="stop-check">
-      <span class="badge">🛑 Stop &amp; Check</span>
-      <p><strong>Class check:</strong> Your teacher will pick students to read out their pseudocode. Check that you used START/STOP, IF/THEN/ELSE/ENDIF, and included the AND condition.</p>
-      <button class="wheel-btn" onclick="openWheel()"><i class="fas fa-dice"></i> Spin the Wheel</button>
-      <div class="unlock-row">
-        <input type="password" id="unlock_sc6" placeholder="Teacher password">
-        <button onclick="unlockAnswer('unlock_sc6', 'answer_sc6', 'msg_sc6')">Unlock Answer</button>
-        <span class="unlock-msg" id="msg_sc6"></span>
-      </div>
-      <div class="teacher-answer" id="answer_sc6">
-        <strong>Look for:</strong> START and STOP in uppercase, radio group set to 42, LOOP/WHILE structure, radio.receive() and radio.send(), IF/THEN/ENDIF blocks, and the AND condition checking both button_a AND button_b.
-      </div>
-    </div>
-
     <!-- ===== PLENARY ===== -->
     <div class="plenary-box">
-      <h2><i class="fas fa-flag-checkered" style="margin-right:10px;"></i> Plenary — Stop and Check (5 mins)</h2>
+      <h2><i class="fas fa-flag-checkered" style="margin-right:10px;"></i> Plenary — Exit Ticket (5 mins)</h2>
 
-      <p style="color:#1b5e20; margin-bottom:1rem;">Let's review what we learned today. Answer these questions in your head first, then click to reveal.</p>
+      <p style="color:#1b5e20; margin-bottom:1rem;">Let's review what we learned today.</p>
 
       <div class="plenary-question">
         <p>1. What is the radio group used for?</p>
@@ -1185,76 +1051,32 @@ STOP</textarea>
       </div>
 
       <div class="plenary-question">
-        <p>2. What does the message "8, 5, 12, 12, 15" decode to?</p>
+        <p>2. Why do we encode messages using numbers?</p>
         <button class="reveal-btn" onclick="revealAnswer('plenary2')">Reveal Answer</button>
-        <div class="answer" id="plenary2">HELLO — H=8, E=5, L=12, L=12, O=15.</div>
+        <div class="answer" id="plenary2">To keep messages private and secure. If someone intercepts the radio signal, they see numbers, not words.</div>
       </div>
 
       <div class="plenary-question">
-        <p>3. Why do we encode messages using numbers?</p>
+        <p>3. What must be the same on both micro:bits for them to communicate?</p>
         <button class="reveal-btn" onclick="revealAnswer('plenary3')">Reveal Answer</button>
-        <div class="answer" id="plenary3">To keep messages private and secure. If someone intercepts the radio signal, they see numbers, not words.</div>
+        <div class="answer" id="plenary3">The radio group (channel). If they have different groups, they cannot send or receive messages.</div>
       </div>
 
       <div class="plenary-question">
-        <p>4. What must be the same on both micro:bits for them to communicate?</p>
+        <p>4. What is the difference between AND and OR?</p>
         <button class="reveal-btn" onclick="revealAnswer('plenary4')">Reveal Answer</button>
-        <div class="answer" id="plenary4">The radio group (channel). If they have different groups, they cannot send or receive messages.</div>
-      </div>
-
-      <div class="plenary-question">
-        <p>5. What is the difference between AND and OR?</p>
-        <button class="reveal-btn" onclick="revealAnswer('plenary5')">Reveal Answer</button>
-        <div class="answer" id="plenary5">AND means <strong>both</strong> conditions must be true. OR means <strong>at least one</strong> condition must be true.</div>
-      </div>
-
-      <div class="plenary-question">
-        <p>6. What conditional statement is used to check if a button is pressed?</p>
-        <button class="reveal-btn" onclick="revealAnswer('plenary6')">Reveal Answer</button>
-        <div class="answer" id="plenary6"><code>IF button_a.is_pressed() THEN</code> — this checks whether the A button has been pressed.</div>
+        <div class="answer" id="plenary4">AND means <strong>both</strong> conditions must be true. OR means <strong>at least one</strong> condition must be true.</div>
       </div>
 
       <div style="margin-top:1.5rem; padding-top:1rem; border-top:2px solid #4caf50;">
         <p style="color:#1b5e20; font-weight:600;">🎯 Exit Ticket:</p>
-        <p style="color:#1b5e20;">On a sticky note or in your book, write:</p>
+        <p style="color:#1b5e20;">On a sticky note, write:</p>
         <ol style="color:#1b5e20;">
           <li>One thing you learned today</li>
           <li>One thing you found difficult</li>
           <li>One question you still have</li>
         </ol>
-      </div>
-    </div>
-
-    <!-- ===== SELF-CHECK QUIZ ===== -->
-    <div class="quiz" id="quiz" style="background:#f8fafc; border:1px solid #dceaf7; border-radius:20px; padding:1.4rem 1.6rem; margin:1.2rem 0;">
-      <h3 style="margin-top:0; display:flex; align-items:center; gap:8px;"><i class="fas fa-circle-question" style="color:#2a6f97;"></i> Quick Self-Check</h3>
-      <p style="font-size:0.9rem; color:#475569;">Click an answer to see if you're right. This is just for you — no marks are recorded.</p>
-
-      <div class="q" data-correct="b" style="margin:1rem 0; padding:0.9rem 1.2rem; background:white; border-radius:14px; border:1px solid #e5edf5;">
-        <p style="font-weight:600; margin-bottom:0.6rem;">1. What is the radio group used for?</p>
-        <button data-opt="a" style="background:#eef6fc; border:1.5px solid #d4e3f0; color:#0b2a4a; padding:0.4rem 1rem; border-radius:30px; font-size:0.85rem; margin:0.2rem 0.3rem 0.2rem 0; cursor:pointer; font-weight:500;">A. To make the micro:bit louder</button>
-        <button data-opt="b" style="background:#eef6fc; border:1.5px solid #d4e3f0; color:#0b2a4a; padding:0.4rem 1rem; border-radius:30px; font-size:0.85rem; margin:0.2rem 0.3rem 0.2rem 0; cursor:pointer; font-weight:500;">B. To set the channel that micro:bits use to communicate</button>
-        <button data-opt="c" style="background:#eef6fc; border:1.5px solid #d4e3f0; color:#0b2a4a; padding:0.4rem 1rem; border-radius:30px; font-size:0.85rem; margin:0.2rem 0.3rem 0.2rem 0; cursor:pointer; font-weight:500;">C. To change the display brightness</button>
-        <button data-opt="d" style="background:#eef6fc; border:1.5px solid #d4e3f0; color:#0b2a4a; padding:0.4rem 1rem; border-radius:30px; font-size:0.85rem; margin:0.2rem 0.3rem 0.2rem 0; cursor:pointer; font-weight:500;">D. To charge the battery</button>
-        <div class="answer-feedback" style="font-size:0.82rem; margin-top:0.4rem; min-height:1.2rem; font-weight:500;"></div>
-      </div>
-
-      <div class="q" data-correct="b" style="margin:1rem 0; padding:0.9rem 1.2rem; background:white; border-radius:14px; border:1px solid #e5edf5;">
-        <p style="font-weight:600; margin-bottom:0.6rem;">2. What does the message "8, 5, 12, 12, 15" decode to?</p>
-        <button data-opt="a" style="background:#eef6fc; border:1.5px solid #d4e3f0; color:#0b2a4a; padding:0.4rem 1rem; border-radius:30px; font-size:0.85rem; margin:0.2rem 0.3rem 0.2rem 0; cursor:pointer; font-weight:500;">A. WORLD</button>
-        <button data-opt="b" style="background:#eef6fc; border:1.5px solid #d4e3f0; color:#0b2a4a; padding:0.4rem 1rem; border-radius:30px; font-size:0.85rem; margin:0.2rem 0.3rem 0.2rem 0; cursor:pointer; font-weight:500;">B. HELLO</button>
-        <button data-opt="c" style="background:#eef6fc; border:1.5px solid #d4e3f0; color:#0b2a4a; padding:0.4rem 1rem; border-radius:30px; font-size:0.85rem; margin:0.2rem 0.3rem 0.2rem 0; cursor:pointer; font-weight:500;">C. HELP</button>
-        <button data-opt="d" style="background:#eef6fc; border:1.5px solid #d4e3f0; color:#0b2a4a; padding:0.4rem 1rem; border-radius:30px; font-size:0.85rem; margin:0.2rem 0.3rem 0.2rem 0; cursor:pointer; font-weight:500;">D. HAPPY</button>
-        <div class="answer-feedback" style="font-size:0.82rem; margin-top:0.4rem; min-height:1.2rem; font-weight:500;"></div>
-      </div>
-
-      <div class="q" data-correct="a" style="margin:1rem 0; padding:0.9rem 1.2rem; background:white; border-radius:14px; border:1px solid #e5edf5;">
-        <p style="font-weight:600; margin-bottom:0.6rem;">3. What must be the same on both micro:bits for them to communicate?</p>
-        <button data-opt="a" style="background:#eef6fc; border:1.5px solid #d4e3f0; color:#0b2a4a; padding:0.4rem 1rem; border-radius:30px; font-size:0.85rem; margin:0.2rem 0.3rem 0.2rem 0; cursor:pointer; font-weight:500;">A. The radio group</button>
-        <button data-opt="b" style="background:#eef6fc; border:1.5px solid #d4e3f0; color:#0b2a4a; padding:0.4rem 1rem; border-radius:30px; font-size:0.85rem; margin:0.2rem 0.3rem 0.2rem 0; cursor:pointer; font-weight:500;">B. The battery level</button>
-        <button data-opt="c" style="background:#eef6fc; border:1.5px solid #d4e3f0; color:#0b2a4a; padding:0.4rem 1rem; border-radius:30px; font-size:0.85rem; margin:0.2rem 0.3rem 0.2rem 0; cursor:pointer; font-weight:500;">C. The screen size</button>
-        <button data-opt="d" style="background:#eef6fc; border:1.5px solid #d4e3f0; color:#0b2a4a; padding:0.4rem 1rem; border-radius:30px; font-size:0.85rem; margin:0.2rem 0.3rem 0.2rem 0; cursor:pointer; font-weight:500;">D. The colour of the case</button>
-        <div class="answer-feedback" style="font-size:0.82rem; margin-top:0.4rem; min-height:1.2rem; font-weight:500;"></div>
+        <p style="color:#1b5e20; font-weight:600; margin-top:0.5rem;">📌 Stick your note on the board as you leave the room.</p>
       </div>
     </div>
 
@@ -1302,66 +1124,13 @@ STOP</textarea>
 <script>
   // ===== STUDENT NAMES =====
   const studentNames = [
-    'Atila, Anisa',
-    'Böttge, Lukas',
-    'Dombrovsky, Damian',
-    'Dückers, Max',
-    'Habel, Christopher',
-    'Habel, Joshua',
-    'Hocke, Anna',
-    'Hünig, Ada',
-    'Ilgün, Sare',
-    'Janßen, Joshua-David',
-    'Jobst, Phil',
-    'Mausberg, Lea',
-    'Middendorf, Anna',
-    'Penka, Angelina',
-    'Schneider, Romy',
-    'Schutter, Tim',
-    'Tian, Hulinjia',
-    'Uyar, Defne',
-    'Viehmann, Vijeya',
-    'Wei, Peter',
-    'Yadav, Ashvika',
-    'Yin, Xixi',
-    'Zhang, Tian He',
-    'Zhou, Shulin'
+    'Atila, Anisa', 'Böttge, Lukas', 'Dombrovsky, Damian', 'Dückers, Max',
+    'Habel, Christopher', 'Habel, Joshua', 'Hocke, Anna', 'Hünig, Ada',
+    'Ilgün, Sare', 'Janßen, Joshua-David', 'Jobst, Phil', 'Mausberg, Lea',
+    'Middendorf, Anna', 'Penka, Angelina', 'Schneider, Romy', 'Schutter, Tim',
+    'Tian, Hulinjia', 'Uyar, Defne', 'Viehmann, Vijeya', 'Wei, Peter',
+    'Yadav, Ashvika', 'Yin, Xixi', 'Zhang, Tian He', 'Zhou, Shulin'
   ];
-
-  // ===== QUIZ =====
-  (function() {
-    const questions = document.querySelectorAll('#quiz .q');
-    questions.forEach(q => {
-      const correct = q.getAttribute('data-correct');
-      const buttons = q.querySelectorAll('button');
-      const fb = q.querySelector('.answer-feedback');
-
-      buttons.forEach(btn => {
-        btn.addEventListener('click', () => {
-          buttons.forEach(b => b.classList.remove('correct', 'incorrect'));
-          const chosen = btn.getAttribute('data-opt');
-          if (chosen === correct) {
-            btn.classList.add('correct');
-            btn.style.background = '#c8e6c9';
-            btn.style.borderColor = '#2d8f2d';
-            btn.style.color = '#1b5e20';
-            btn.style.fontWeight = '700';
-            fb.textContent = '✅ Correct!';
-            fb.className = 'answer-feedback ok';
-            fb.style.color = '#2d8f2d';
-          } else {
-            btn.classList.add('incorrect');
-            btn.style.background = '#ffcdd2';
-            btn.style.borderColor = '#e53935';
-            btn.style.color = '#b71c1c';
-            fb.textContent = '❌ Not quite. Try again.';
-            fb.className = 'answer-feedback no';
-            fb.style.color = '#b71c1c';
-          }
-        });
-      });
-    });
-  })();
 
   // ===== DECODE / ENCODE CHECKERS =====
   function checkDecode(id, answer) {
@@ -1399,25 +1168,6 @@ STOP</textarea>
   function revealAnswer(id) {
     const el = document.getElementById(id);
     el.classList.toggle('show');
-  }
-
-  // ===== TEACHER ANSWER UNLOCK =====
-  function unlockAnswer(inputId, answerId, msgId) {
-    const input = document.getElementById(inputId);
-    const answer = document.getElementById(answerId);
-    const msg = document.getElementById(msgId);
-    const password = input.value.trim();
-
-    if (password === 'teacher') {
-      answer.classList.add('show');
-      msg.textContent = '✅ Unlocked';
-      msg.className = 'unlock-msg ok';
-      input.value = '';
-    } else {
-      answer.classList.remove('show');
-      msg.textContent = '❌ Wrong password';
-      msg.className = 'unlock-msg no';
-    }
   }
 
   // ===== TRUTH TABLE CHECKER =====
@@ -1479,6 +1229,20 @@ STOP</textarea>
       document.querySelector('.main-task').scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
 
+    // Unlock Task 3 after main task
+    const mainTaskDiv = document.querySelector('.main-task');
+    const unlockBtn = document.createElement('button');
+    unlockBtn.textContent = 'Complete Main Task →';
+    unlockBtn.className = 'check-btn';
+    unlockBtn.style.marginTop = '0.8rem';
+    unlockBtn.addEventListener('click', () => {
+      task3.classList.remove('locked');
+      task3Status.textContent = 'In Progress';
+      task3Status.className = 'task-status pending';
+      task3.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+    mainTaskDiv.querySelector('div').appendChild(unlockBtn);
+
     document.getElementById('completeTask3').addEventListener('click', () => {
       task3Status.textContent = 'Complete';
       task3Status.className = 'task-status done';
@@ -1493,29 +1257,64 @@ STOP</textarea>
       task4Status.className = 'task-status done';
       document.querySelector('.plenary-box').scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
-
-    // Unlock Task 3 after main task
-    const mainTaskDiv = document.querySelector('.main-task');
-    const unlockBtn = document.createElement('button');
-    unlockBtn.textContent = 'Complete Main Task →';
-    unlockBtn.className = 'check-btn';
-    unlockBtn.style.marginTop = '0.8rem';
-    unlockBtn.addEventListener('click', () => {
-      task3.classList.remove('locked');
-      task3Status.textContent = 'In Progress';
-      task3Status.className = 'task-status pending';
-      task3.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    });
-    mainTaskDiv.querySelector('div').appendChild(unlockBtn);
   })();
 
-  // ===== PER-TASK TIMERS (COUNT UP) =====
+  // ===== COUNTDOWN TIMERS WITH MIDI =====
   const timerIntervals = {};
+
+  function playMidiTune() {
+    // Web Audio API — plays a fun ascending arpeggio
+    try {
+      const AudioContext = window.AudioContext || window.webkitAudioContext;
+      const ctx = new AudioContext();
+
+      // Fun notes: C5, E5, G5, C6 (major arpeggio)
+      const notes = [523.25, 659.25, 783.99, 1046.50];
+      let time = ctx.currentTime;
+
+      notes.forEach((freq, i) => {
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = 'square';
+        osc.frequency.value = freq;
+        gain.gain.setValueAtTime(0.15, time);
+        gain.gain.exponentialRampToValueAtTime(0.001, time + 0.3);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start(time);
+        osc.stop(time + 0.3);
+        time += 0.2;
+      });
+
+      // Final long chord
+      setTimeout(() => {
+        const osc1 = ctx.createOscillator();
+        const osc2 = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc1.type = 'triangle';
+        osc2.type = 'triangle';
+        osc1.frequency.value = 1046.50;
+        osc2.frequency.value = 1318.51;
+        gain.gain.setValueAtTime(0.2, ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.8);
+        osc1.connect(gain);
+        osc2.connect(gain);
+        gain.connect(ctx.destination);
+        osc1.start();
+        osc2.start();
+        osc1.stop(ctx.currentTime + 0.8);
+        osc2.stop(ctx.currentTime + 0.8);
+      }, 800);
+    } catch (e) {
+      console.log('Audio not supported:', e);
+    }
+  }
 
   function startTimer(taskNum, maxSeconds) {
     const timerEl = document.getElementById('timer' + taskNum);
     if (!timerEl) return;
 
+    // Toggle: if already running, stop and reset
     if (timerIntervals[taskNum]) {
       clearInterval(timerIntervals[taskNum]);
       delete timerIntervals[taskNum];
@@ -1524,164 +1323,164 @@ STOP</textarea>
       return;
     }
 
-    let seconds = 0;
-    timerEl.innerHTML = '<i class="fas fa-stop"></i> 00:00';
+    let remaining = maxSeconds;
+    timerEl.innerHTML = '<i class="fas fa-stop"></i> ' + formatTime(remaining);
 
     timerIntervals[taskNum] = setInterval(() => {
-      seconds++;
-      const mins = Math.floor(seconds / 60);
-      const secs = seconds % 60;
-      timerEl.innerHTML = `<i class="fas fa-stop"></i> ${mins.toString().padStart(2,'0')}:${secs.toString().padStart(2,'0')}`;
+      remaining--;
+      timerEl.innerHTML = '<i class="fas fa-stop"></i> ' + formatTime(remaining);
 
-      if (seconds >= maxSeconds - 60) {
+      if (remaining <= 60) {
+        timerEl.className = 'task-timer danger';
+      } else if (remaining <= maxSeconds * 0.25) {
         timerEl.className = 'task-timer warning';
       }
-      if (seconds >= maxSeconds) {
-        timerEl.className = 'task-timer danger';
+
+      if (remaining <= 0) {
         clearInterval(timerIntervals[taskNum]);
         delete timerIntervals[taskNum];
+        timerEl.className = 'task-timer danger';
         timerEl.innerHTML = '<i class="fas fa-check"></i> Time\'s up!';
+        playMidiTune();
       }
     }, 1000);
   }
 
-  // ===== PSEUDOCODE EDITOR =====
+  function formatTime(seconds) {
+    if (seconds < 0) seconds = 0;
+    const mins = Math.floor(seconds / 60);
+    const secs = seconds % 60;
+    return mins.toString().padStart(2, '0') + ':' + secs.toString().padStart(2, '0');
+  }
+
+  // ===== PARSONS PROBLEM =====
   (function() {
-    const codeEditor = document.getElementById('codeEditor');
-    const outputPanel = document.getElementById('outputPanel');
-    const runBtn = document.getElementById('runBtn');
-    const clearBtn = document.getElementById('clearBtn');
-    const resetBtn = document.getElementById('resetBtn');
+    const correctOrder = [
+      'START',
+      'radio.config(group=42)',
+      'radio.on()',
+      'LOOP forever:',
+      '    message = radio.receive()',
+      '    IF message THEN',
+      '        display.scroll("8, 5, 12, 12, 15")',
+      '    ENDIF',
+      '    IF button_a.is_pressed() THEN',
+      '        radio.send(\'message\')',
+      '    ENDIF',
+      '    IF button_a.is_pressed() AND button_b.is_pressed() THEN',
+      '        display.show(Image.HAPPY)',
+      '    ENDIF',
+      'ENDLOOP'
+    ];
 
-    const defaultCode = `START
-radio.config(group=42)
-radio.on()
-LOOP forever:
-    message = radio.receive()
-    IF message THEN
-        display.scroll("8, 5, 12, 12, 15")
-    ENDIF
-    IF button_a.is_pressed() THEN
-        radio.send('message')
-    ENDIF
-    IF button_a.is_pressed() AND button_b.is_pressed() THEN
-        display.show(Image.HAPPY)
-    ENDIF
-ENDLOOP
-STOP`;
+    const itemsContainer = document.getElementById('parsonsItems');
+    const dropZone = document.getElementById('parsonsDrop');
+    const checkBtn = document.getElementById('checkParsons');
+    const resetBtn = document.getElementById('resetParsons');
+    const feedback = document.getElementById('parsonsFeedback');
 
-    function checkPseudocode(code) {
-      const lines = code.split('\n').map(l => l.trim());
-      const output = [];
+    let draggedItem = null;
 
-      output.push({ type: 'info', text: '▶ Checking pseudocode structure...' });
-      output.push({ type: 'info', text: '---' });
-
-      if (lines.some(l => l.toUpperCase() === 'START')) {
-        output.push({ type: 'ok', text: '✓ START found' });
-      } else {
-        output.push({ type: 'error', text: '✗ Missing START' });
+    function shuffleArray(arr) {
+      const a = arr.slice();
+      for (let i = a.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [a[i], a[j]] = [a[j], a[i]];
       }
-
-      if (lines.some(l => l.toUpperCase() === 'STOP')) {
-        output.push({ type: 'ok', text: '✓ STOP found' });
-      } else {
-        output.push({ type: 'error', text: '✗ Missing STOP' });
-      }
-
-      if (code.includes('radio.config') || code.includes('group')) {
-        output.push({ type: 'ok', text: '✓ Radio group set' });
-      } else {
-        output.push({ type: 'error', text: '✗ Missing radio group setting' });
-      }
-
-      if (code.toUpperCase().includes('IF') && code.toUpperCase().includes('THEN')) {
-        output.push({ type: 'ok', text: '✓ IF/THEN found' });
-      } else {
-        output.push({ type: 'error', text: '✗ Missing IF/THEN' });
-      }
-
-      if (code.toUpperCase().includes('ENDIF')) {
-        output.push({ type: 'ok', text: '✓ ENDIF found' });
-      } else {
-        output.push({ type: 'error', text: '✗ Missing ENDIF' });
-      }
-
-      if (code.toUpperCase().includes(' AND ')) {
-        output.push({ type: 'ok', text: '✓ AND condition found' });
-      } else {
-        output.push({ type: 'error', text: '✗ Missing AND condition (for the A AND B buttons)' });
-      }
-
-      if (code.includes('button_a')) {
-        output.push({ type: 'ok', text: '✓ button_a found' });
-      } else {
-        output.push({ type: 'error', text: '✗ Missing button_a' });
-      }
-
-      output.push({ type: 'info', text: '---' });
-
-      const errors = output.filter(o => o.type === 'error').length;
-      if (errors === 0) {
-        output.push({ type: 'ok', text: '✅ All checks passed! Your pseudocode has the correct structure.' });
-      } else {
-        output.push({ type: 'info', text: `⚠ ${errors} check(s) failed. Review the errors above.` });
-      }
-
-      return output;
+      return a;
     }
 
-    function displayOutput(output) {
-      outputPanel.innerHTML = '';
-      output.forEach(item => {
+    function renderItems() {
+      itemsContainer.innerHTML = '';
+      const shuffled = shuffleArray(correctOrder);
+      shuffled.forEach(line => {
         const div = document.createElement('div');
-        div.className = 'line';
-        if (item.type === 'ok') {
-          div.innerHTML = `<span class="ok">✓</span> ${escapeHtml(item.text)}`;
-        } else if (item.type === 'error') {
-          div.innerHTML = `<span class="error">✗</span> ${escapeHtml(item.text)}`;
-        } else {
-          div.textContent = item.text;
-        }
-        outputPanel.appendChild(div);
+        div.className = 'parsons-item';
+        div.draggable = true;
+        div.textContent = line;
+        div.setAttribute('data-line', line);
+        div.addEventListener('dragstart', (e) => {
+          draggedItem = div;
+          div.classList.add('dragging');
+          e.dataTransfer.setData('text/plain', line);
+        });
+        div.addEventListener('dragend', () => {
+          div.classList.remove('dragging');
+        });
+        itemsContainer.appendChild(div);
       });
+      dropZone.innerHTML = '<div class="placeholder">Drag the code blocks here in the correct order...</div>';
+      feedback.textContent = '';
     }
 
-    function escapeHtml(text) {
-      const div = document.createElement('div');
-      div.textContent = text;
-      return div.innerHTML;
-    }
+    dropZone.addEventListener('dragover', (e) => {
+      e.preventDefault();
+      dropZone.style.background = '#fff3e0';
+    });
 
-    runBtn.addEventListener('click', () => {
-      const code = codeEditor.value;
-      if (!code.trim()) {
-        displayOutput([{ type: 'error', text: 'No pseudocode to check. Write some first!' }]);
+    dropZone.addEventListener('dragleave', () => {
+      dropZone.style.background = '#fff8e1';
+    });
+
+    dropZone.addEventListener('drop', (e) => {
+      e.preventDefault();
+      dropZone.style.background = '#fff8e1';
+      if (draggedItem) {
+        const placeholder = dropZone.querySelector('.placeholder');
+        if (placeholder) placeholder.remove();
+
+        const clone = draggedItem.cloneNode(true);
+        clone.draggable = false;
+        clone.style.cursor = 'default';
+        clone.style.marginBottom = '0.3rem';
+        clone.classList.add('placed');
+        dropZone.appendChild(clone);
+
+        draggedItem.remove();
+        draggedItem = null;
+      }
+    });
+
+    checkBtn.addEventListener('click', () => {
+      const placed = dropZone.querySelectorAll('.parsons-item');
+      if (placed.length === 0) {
+        feedback.textContent = '❌ No code blocks placed yet.';
+        feedback.className = 'parsons-feedback no';
         return;
       }
-      const output = checkPseudocode(code);
-      displayOutput(output);
-    });
+      if (placed.length !== correctOrder.length) {
+        feedback.textContent = `⚠ You have placed ${placed.length} out of ${correctOrder.length} blocks. Keep going!`;
+        feedback.className = 'parsons-feedback no';
+        return;
+      }
 
-    clearBtn.addEventListener('click', () => {
-      codeEditor.value = '';
-      outputPanel.innerHTML = '<div class="placeholder">Click "Run" to check your pseudocode structure...</div>';
-    });
+      let correct = 0;
+      placed.forEach((item, index) => {
+        const line = item.getAttribute('data-line');
+        if (line === correctOrder[index]) {
+          correct++;
+          item.style.background = '#e8f5e9';
+          item.style.borderColor = '#4caf50';
+        } else {
+          item.style.background = '#ffebee';
+          item.style.borderColor = '#e53935';
+        }
+      });
 
-    resetBtn.addEventListener('click', () => {
-      codeEditor.value = defaultCode;
-      outputPanel.innerHTML = '<div class="placeholder">Click "Run" to check your pseudocode structure...</div>';
-    });
-
-    codeEditor.addEventListener('keydown', (e) => {
-      if (e.key === 'Tab') {
-        e.preventDefault();
-        const start = codeEditor.selectionStart;
-        const end = codeEditor.selectionEnd;
-        codeEditor.value = codeEditor.value.substring(0, start) + '    ' + codeEditor.value.substring(end);
-        codeEditor.selectionStart = codeEditor.selectionEnd = start + 4;
+      if (correct === correctOrder.length) {
+        feedback.textContent = '✅ Perfect! Your program is in the correct order.';
+        feedback.className = 'parsons-feedback ok';
+        playMidiTune();
+      } else {
+        feedback.textContent = `${correct} out of ${correctOrder.length} blocks in the correct position. Green = correct, red = wrong.`;
+        feedback.className = 'parsons-feedback no';
       }
     });
+
+    resetBtn.addEventListener('click', renderItems);
+
+    // Initial render
+    renderItems();
   })();
 
   // ===== RANDOM WHEEL =====
