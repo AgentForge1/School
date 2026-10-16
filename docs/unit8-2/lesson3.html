@@ -338,12 +338,46 @@
       100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(11, 42, 74, 0); }
     }
 
-    .timer-hint {
-      font-size: 0.8rem;
+    /* NEW: Pulse animation for complete buttons */
+    .check-btn-pulse {
+      background: #f9a825; color: #4a2c00; border: 2px solid #e65100;
+      padding: 0.7rem 1.6rem; border-radius: 40px;
+      font-weight: 700; font-size: 0.9rem; cursor: pointer; margin-top: 0.8rem;
+      transition: 0.2s;
+      animation: pulse-complete 1.5s infinite;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .check-btn-pulse:hover {
+      background: #e65100;
+      color: white;
+      animation: none;
+    }
+
+    @keyframes pulse-complete {
+      0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(249, 168, 37, 0.7); }
+      50% { transform: scale(1.03); box-shadow: 0 0 0 10px rgba(249, 168, 37, 0); }
+      100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(249, 168, 37, 0); }
+    }
+
+    /* NEW: Prominent timer hint box */
+    .timer-hint-box {
+      background: #fff3e0;
+      border: 2px solid #e65100;
+      border-radius: 12px;
+      padding: 0.8rem 1.2rem;
+      margin: 0.8rem 0 1rem 0;
+      font-size: 0.95rem;
+      font-weight: 700;
       color: #7a3300;
-      font-style: italic;
-      margin-top: 0.3rem;
-      display: block;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .timer-hint-box i {
+      font-size: 1.2rem;
+      color: #e65100;
     }
 
     .wheel-modal {
@@ -685,6 +719,8 @@
       .truth-table td { padding: 0.4rem; }
       .parsons-container { grid-template-columns: 1fr; }
       .wheel-modal .wheel-display { font-size: 1.3rem; }
+      .timer-hint-box { font-size: 0.85rem; }
+      .check-btn-pulse { font-size: 0.8rem; padding: 0.6rem 1.2rem; }
     }
   </style>
 </head>
@@ -825,7 +861,7 @@
       </div>
     </div>
 
-    <!-- ===== TASK 1: DECODE (10 MESSAGES) ===== -->
+    <!-- ===== TASK 1: DECODE (8 MESSAGES) ===== -->
     <div class="task-panel" id="task1">
       <div class="task-header">
         <h3>
@@ -838,8 +874,12 @@
         </div>
       </div>
       <div class="task-content">
-        <p>Use the alphabet table above to decode the following messages. Type your answer and click Check. You must complete <strong>all 10</strong> before moving on.</p>
-        <span class="timer-hint">⏱️ Click the timer to start. The next task unlocks automatically when time is up.</span>
+        <p>Use the alphabet table above to decode the following messages. Type your answer and click Check. You must complete <strong>all 8</strong> before moving on.</p>
+
+        <div class="timer-hint-box">
+          <i class="fas fa-clock"></i>
+          <span>⏱️ Click the timer above to start. The next task unlocks automatically when time is up. Or click the yellow "Complete Task" button if you finish early.</span>
+        </div>
 
         <div class="encode-box">
           <h4>🔍 Message 1: 3, 15, 13, 16, 21, 20, 5, 18</h4>
@@ -913,25 +953,7 @@
           <div class="result" id="decode8Result"></div>
         </div>
 
-        <div class="encode-box">
-          <h4>🔍 Message 9: 16, 18, 15, 7, 18, 1, 13, 13, 5, 18</h4>
-          <div class="input-row">
-            <input type="text" id="decode9" placeholder="Type the word...">
-            <button onclick="checkDecode('decode9','programmer')">Check</button>
-          </div>
-          <div class="result" id="decode9Result"></div>
-        </div>
-
-        <div class="encode-box">
-          <h4>🔍 Message 10: 9, 14, 20, 5, 18, 14, 5, 20</h4>
-          <div class="input-row">
-            <input type="text" id="decode10" placeholder="Type the word...">
-            <button onclick="checkDecode('decode10','internet')">Check</button>
-          </div>
-          <div class="result" id="decode10Result"></div>
-        </div>
-
-        <button class="check-btn" id="completeTask1">Complete Task 1 →</button>
+        <button class="check-btn-pulse" id="completeTask1">✅ Finished? Click here to unlock Task 2 →</button>
       </div>
     </div>
 
@@ -957,11 +979,11 @@
         <span class="unlock-msg" id="msg_sc2"></span>
       </div>
       <div class="teacher-answer" id="answer_sc2">
-        <strong>Answers:</strong> COMPUTER, PROGRAMMING, ALGORITHM, MICROBIT, ENCRYPTION, COMMUNICATION, TRANSMISSION, BOOLEAN, PROGRAMMER, INTERNET. <br><strong>Why encode?</strong> To keep messages private and secure — if someone intercepts the radio signal, they see numbers, not words. Only someone who knows the alphabet-position code can decode the message.
+        <strong>Answers:</strong> COMPUTER, PROGRAMMING, ALGORITHM, MICROBIT, ENCRYPTION, COMMUNICATION, TRANSMISSION, BOOLEAN. <br><strong>Why encode?</strong> To keep messages private and secure — if someone intercepts the radio signal, they see numbers, not words. Only someone who knows the alphabet-position code can decode the message.
       </div>
     </div>
 
-    <!-- ===== TASK 2: ENCODE (10 MESSAGES) ===== -->
+    <!-- ===== TASK 2: ENCODE (8 MESSAGES) ===== -->
     <div class="task-panel locked" id="task2">
       <div class="task-header">
         <h3>
@@ -974,8 +996,12 @@
         </div>
       </div>
       <div class="task-content">
-        <p>Now it's your turn. Encode the following words using the alphabet positions. Write the numbers separated by commas (e.g. <code>3, 1, 20</code>). You must complete <strong>all 10</strong> before moving on.</p>
-        <span class="timer-hint">⏱️ Click the timer to start. The next task unlocks automatically when time is up.</span>
+        <p>Now it's your turn. Encode the following words using the alphabet positions. Write the numbers separated by commas (e.g. <code>3, 1, 20</code>). You must complete <strong>all 8</strong> before moving on.</p>
+
+        <div class="timer-hint-box">
+          <i class="fas fa-clock"></i>
+          <span>⏱️ Click the timer above to start. The next task unlocks automatically when time is up. Or click the yellow "Complete Task" button if you finish early.</span>
+        </div>
 
         <div class="encode-box">
           <h4>🔐 Message 1: "SECRET"</h4>
@@ -1049,25 +1075,7 @@
           <div class="result" id="encode8Result"></div>
         </div>
 
-        <div class="encode-box">
-          <h4>🔐 Message 9: "PROTOCOL"</h4>
-          <div class="input-row">
-            <input type="text" id="encode9" placeholder="Write the numbers...">
-            <button onclick="checkEncode('encode9','16,18,15,20,15,3,15,12')">Check</button>
-          </div>
-          <div class="result" id="encode9Result"></div>
-        </div>
-
-        <div class="encode-box">
-          <h4>🔐 Message 10: "FREQUENCY"</h4>
-          <div class="input-row">
-            <input type="text" id="encode10" placeholder="Write the numbers...">
-            <button onclick="checkEncode('encode10','6,18,5,17,21,5,14,3,25')">Check</button>
-          </div>
-          <div class="result" id="encode10Result"></div>
-        </div>
-
-        <button class="check-btn" id="completeTask2">Complete Task 2 →</button>
+        <button class="check-btn-pulse" id="completeTask2">✅ Finished? Click here to unlock the Main Task →</button>
       </div>
     </div>
 
@@ -1106,7 +1114,11 @@
         <div style="display:flex; gap:0.5rem; align-items:center; flex-wrap:wrap; margin-top:0.8rem;">
           <span class="task-timer" id="timerMain" onclick="startTimer('Main', 480)"><i class="fas fa-play"></i> Start Timer (8 min)</span>
         </div>
-        <span class="timer-hint">⏱️ Click the timer to start. Task 3 unlocks automatically when time is up.</span>
+
+        <div class="timer-hint-box">
+          <i class="fas fa-clock"></i>
+          <span>⏱️ Click the timer above to start. Task 3 unlocks automatically when time is up.</span>
+        </div>
       </div>
     </div>
 
@@ -1124,7 +1136,11 @@
       </div>
       <div class="task-content">
         <p>Complete the truth table below. For each row, decide whether the condition is TRUE or FALSE, then work out what the program will do.</p>
-        <span class="timer-hint">⏱️ Click the timer to start. Task 4 unlocks automatically when time is up.</span>
+
+        <div class="timer-hint-box">
+          <i class="fas fa-clock"></i>
+          <span>⏱️ Click the timer above to start. Task 4 unlocks automatically when time is up. Or click the yellow "Complete Task" button if you finish early.</span>
+        </div>
 
         <div class="highlight-box" style="background:#fff8e1; border-left-color:#f9a825;">
           <i class="fas fa-lightbulb" style="color:#b45309; margin-right:8px;"></i>
@@ -1226,7 +1242,7 @@
         <button class="check-btn" id="checkTruth">Check Answers</button>
         <div class="feedback" id="truthFeedback"></div>
 
-        <button class="check-btn" id="completeTask3">Complete Task 3 →</button>
+        <button class="check-btn-pulse" id="completeTask3">✅ Finished? Click here to unlock Task 4 →</button>
       </div>
     </div>
 
@@ -1255,7 +1271,11 @@
       </div>
       <div class="task-content">
         <p><strong>Refer to the example in the worksheet.</strong> Drag the code blocks from the left into the correct order on the right to build a working radio program.</p>
-        <span class="timer-hint">⏱️ Click the timer to start. The Plenary will be highlighted when time is up.</span>
+
+        <div class="timer-hint-box">
+          <i class="fas fa-clock"></i>
+          <span>⏱️ Click the timer above to start. The Plenary will be highlighted when time is up. Or click the yellow "Complete Task" button if you finish early.</span>
+        </div>
 
         <div class="parsons-wrapper">
           <div class="parsons-header">
@@ -1298,7 +1318,7 @@
           </ol>
         </div>
 
-        <button class="check-btn" id="completeTask4">Complete Task 4 →</button>
+        <button class="check-btn-pulse" id="completeTask4">✅ Finished? Click here to go to the Plenary →</button>
       </div>
     </div>
 
