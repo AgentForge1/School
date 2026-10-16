@@ -98,6 +98,36 @@
     .highlight-box.green { border-left-color: #4caf50; background: #edf7ed; }
     .highlight-box.amber { border-left-color: #f9a825; background: #fff8e1; }
 
+    .why-matters-box {
+      background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
+      border: 2px solid #4caf50; border-radius: 20px;
+      padding: 1.4rem 1.8rem; margin: 1.5rem 0;
+      display: flex; align-items: flex-start; gap: 1rem;
+    }
+    .why-matters-box .badge {
+      background: #4caf50; color: white; font-weight: 700;
+      font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.8px;
+      padding: 0.3rem 0.9rem; border-radius: 30px; white-space: nowrap; flex-shrink: 0;
+    }
+    .why-matters-box h3 { margin-top: 0; color: #1b5e20; font-size: 1.15rem; }
+    .why-matters-box p { margin-bottom: 0.3rem; color: #1b5e20; }
+
+    .stand-agree-box {
+      background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+      border: 2px solid #1e88e5; border-radius: 20px;
+      padding: 1.4rem 1.8rem; margin: 1.5rem 0;
+      display: flex; align-items: flex-start; gap: 1rem;
+    }
+    .stand-agree-box .badge {
+      background: #1e88e5; color: white; font-weight: 700;
+      font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.8px;
+      padding: 0.3rem 0.9rem; border-radius: 30px; white-space: nowrap; flex-shrink: 0;
+    }
+    .stand-agree-box h3 { margin-top: 0; color: #0d47a1; font-size: 1.15rem; }
+    .stand-agree-box p { margin-bottom: 0.3rem; color: #0d3b6e; }
+    .stand-agree-box ul { margin: 0.5rem 0 0 0; padding-left: 1.2rem; }
+    .stand-agree-box ul li { color: #0d3b6e; font-size: 0.9rem; margin-bottom: 0.4rem; }
+
     .starter-callout {
       background: linear-gradient(135deg, #fff3e0, #ffe0b2);
       border: 2px solid #e65100; border-radius: 20px;
@@ -132,6 +162,57 @@
       border-bottom: 2px solid #e65100;
     }
     .main-task a:hover { color: #7a3300; }
+
+    .teacher-check-box {
+      background: #e8f5e9; border: 2px solid #4caf50; border-radius: 16px;
+      padding: 1rem 1.4rem; margin: 1rem 0;
+      display: flex; align-items: flex-start; gap: 0.8rem;
+      flex-wrap: wrap;
+    }
+    .teacher-check-box .badge {
+      background: #2d8f2d; color: white; font-weight: 700;
+      font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.8px;
+      padding: 0.25rem 0.8rem; border-radius: 30px; white-space: nowrap; flex-shrink: 0;
+    }
+    .teacher-check-box p { margin: 0; color: #1b5e20; font-size: 0.9rem; }
+    .teacher-check-box strong { color: #1b5e20; }
+    .teacher-check-box .check-input-row {
+      margin-top: 0.5rem;
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+      flex-wrap: wrap;
+      width: 100%;
+    }
+    .teacher-check-box .check-input-row input {
+      padding: 0.35rem 0.7rem;
+      border: 2px solid #4caf50;
+      border-radius: 8px;
+      font-size: 0.8rem;
+      width: 160px;
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .teacher-check-box .check-input-row input:focus {
+      outline: none;
+      border-color: #2d8f2d;
+    }
+    .teacher-check-box .check-input-row button {
+      background: #2d8f2d;
+      color: white;
+      border: none;
+      padding: 0.35rem 0.9rem;
+      border-radius: 30px;
+      font-weight: 600;
+      font-size: 0.75rem;
+      cursor: pointer;
+    }
+    .teacher-check-box .check-input-row button:hover { background: #1b5e20; }
+    .teacher-check-box .check-input-row .check-msg {
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+    .teacher-check-box .check-input-row .check-msg.ok { color: #2d8f2d; }
+    .teacher-check-box .check-input-row .check-msg.no { color: #b71c1c; }
 
     .stop-check {
       background: linear-gradient(135deg, #fff3e0, #ffe0b2);
@@ -567,7 +648,7 @@
       .nav .brand { margin-right: 0; }
       .page-header h1 { font-size: 1.8rem; flex-wrap: wrap; }
       .lesson-content { padding: 1.2rem 1.4rem; }
-      .starter-callout, .main-task, .stop-check, .group-work { flex-direction: column; gap: 0.6rem; }
+      .starter-callout, .main-task, .stop-check, .group-work, .why-matters-box, .stand-agree-box, .teacher-check-box { flex-direction: column; gap: 0.6rem; }
       .alphabet-table { font-size: 0.7rem; }
       .task-panel.locked::after { font-size: 0.7rem; padding: 0.5rem 1rem; white-space: normal; text-align: center; }
       .truth-table { font-size: 0.75rem; }
@@ -628,7 +709,7 @@
 
     <!-- ===== RECAP ===== -->
     <h2>🔁 Quick Recap: What is Pseudocode?</h2>
-    <p>In Lesson 1, we learned that <strong>pseudocode</strong> is a text version of an algorithm that looks similar to code but isn't tied to any one programming language.</p>
+    <p><strong>Pseudocode</strong> is a text version of an algorithm that looks similar to code but isn't tied to any one programming language.</p>
     <p>Good pseudocode should be:</p>
     <ul>
       <li><strong>Short</strong> — only the essential steps</li>
@@ -651,6 +732,16 @@
     <div class="highlight-box">
       <i class="fas fa-lightbulb" style="color:#1f6390; margin-right:8px;"></i>
       <strong>Important:</strong> The radio group must be <strong>unique</strong> to your pair. If another pair uses the same group, your messages could be intercepted!
+    </div>
+
+    <!-- ===== WHY THIS MATTERS ===== -->
+    <div class="why-matters-box">
+      <span class="badge">💡 Why This Matters</span>
+      <div>
+        <h3>Real-World Encryption</h3>
+        <p>Encoding is not just a classroom exercise — it is how real-world encryption works. When you send a WhatsApp message, make a bank transaction, or visit a secure website (https), your data is encoded and encrypted so that anyone intercepting it sees meaningless numbers or characters, not your private information.</p>
+        <p>The alphabet-position encoding you are learning today is a simplified version of the same principle. In fact, the micro:bit radio messages you will send are encoded as numbers — and if someone else's micro:bit picks up your signal, they will see numbers, not words, unless they know your encoding system.</p>
+      </div>
     </div>
 
     <!-- ===== ALPHABET ENCODING ===== -->
@@ -712,7 +803,7 @@
           <span class="stars"><span class="star-filled">★</span><span class="star-empty">★</span><span class="star-empty">★</span></span> Mild
         </h3>
         <div style="display:flex; gap:0.5rem; align-items:center; flex-wrap:wrap;">
-          <span class="task-timer" id="timer1" onclick="startTimer(1, 420)"><i class="fas fa-play"></i> Start Timer (7 min)</span>
+          <span class="task-timer" id="timer1" onclick="startTimer(1, 300)"><i class="fas fa-play"></i> Start Timer (5 min)</span>
           <span class="task-status pending" id="task1Status">In Progress</span>
         </div>
       </div>
@@ -802,7 +893,7 @@
           <span class="stars"><span class="star-filled">★</span><span class="star-empty">★</span><span class="star-empty">★</span></span> Mild
         </h3>
         <div style="display:flex; gap:0.5rem; align-items:center; flex-wrap:wrap;">
-          <span class="task-timer" id="timer2" onclick="startTimer(2, 420)"><i class="fas fa-play"></i> Start Timer (7 min)</span>
+          <span class="task-timer" id="timer2" onclick="startTimer(2, 300)"><i class="fas fa-play"></i> Start Timer (5 min)</span>
           <span class="task-status locked-status" id="task2Status">Locked</span>
         </div>
       </div>
@@ -858,6 +949,21 @@
       </div>
     </div>
 
+    <!-- ===== STAND IF YOU AGREE ===== -->
+    <div class="stand-agree-box">
+      <span class="badge">🧍 Stand If You Agree</span>
+      <div>
+        <h3>Quick Movement Break (1 min)</h3>
+        <p>Your teacher will read out statements. <strong>Stand up if you agree</strong>. Stay seated if you disagree.</p>
+        <ul>
+          <li>"Encoding makes a message more secure." <em>(Stand)</em></li>
+          <li>"If you make a mistake encoding, the receiver will always know." <em>(Sit — they might not know)</em></li>
+          <li>"The radio group must be different on each micro:bit." <em>(Sit — it must be the same)</em></li>
+          <li>"Numbers are easier to intercept than words." <em>(Sit — they are harder to understand without the code)</em></li>
+        </ul>
+      </div>
+    </div>
+
     <!-- ===== GROUP WORK 2 ===== -->
     <div class="group-work">
       <span class="badge">👥 Group Work</span>
@@ -906,6 +1012,17 @@
       </div>
     </div>
 
+    <!-- ===== TEACHER CHECK FOR MAIN TASK ===== -->
+    <div class="teacher-check-box">
+      <span class="badge">✅ Teacher Check</span>
+      <p><strong>Finished the worksheet?</strong> Raise your hand. Your teacher will check that you have submitted it on Schoolbox and initial your screen before you move on.</p>
+      <div class="check-input-row">
+        <input type="password" id="check_main" placeholder="Teacher password">
+        <button onclick="teacherCheck('check_main', 'main_check_msg', 'task3')">Verify Submission</button>
+        <span class="check-msg" id="main_check_msg"></span>
+      </div>
+    </div>
+
     <!-- ===== TASK 3: TRUTH TABLE (2 STARS) ===== -->
     <div class="task-panel locked" id="task3">
       <div class="task-header">
@@ -914,7 +1031,7 @@
           <span class="stars"><span class="star-filled">★</span><span class="star-filled">★</span><span class="star-empty">★</span></span> Medium
         </h3>
         <div style="display:flex; gap:0.5rem; align-items:center; flex-wrap:wrap;">
-          <span class="task-timer" id="timer3" onclick="startTimer(3, 360)"><i class="fas fa-play"></i> Start Timer (6 min)</span>
+          <span class="task-timer" id="timer3" onclick="startTimer(3, 240)"><i class="fas fa-play"></i> Start Timer (4 min)</span>
           <span class="task-status locked-status" id="task3Status">Locked</span>
         </div>
       </div>
@@ -1051,7 +1168,7 @@
       </div>
     </div>
 
-    <!-- ===== TASK 4: PARSONS PROBLEM (3 STARS) ===== -->
+    <!-- ===== TASK 4: SIMPLIFIED PARSONS PROBLEM (3 STARS) ===== -->
     <div class="task-panel locked" id="task4">
       <div class="task-header">
         <h3>
@@ -1059,7 +1176,7 @@
           <span class="stars"><span class="star-filled">★</span><span class="star-filled">★</span><span class="star-filled">★</span></span> Spicy
         </h3>
         <div style="display:flex; gap:0.5rem; align-items:center; flex-wrap:wrap;">
-          <span class="task-timer" id="timer4" onclick="startTimer(4, 480)"><i class="fas fa-play"></i> Start Timer (8 min)</span>
+          <span class="task-timer" id="timer4" onclick="startTimer(4, 300)"><i class="fas fa-play"></i> Start Timer (5 min)</span>
           <span class="task-status locked-status" id="task4Status">Locked</span>
         </div>
       </div>
@@ -1068,8 +1185,6 @@
         <ul>
           <li>Set the radio group to 42</li>
           <li>Loop forever, receiving messages and displaying the numbers 8, 5, 12, 12, 15</li>
-          <li>Send a message when button A is pressed</li>
-          <li>Display a HAPPY face if both A and B buttons are pressed</li>
         </ul>
 
         <div class="parsons-wrapper">
@@ -1109,12 +1224,6 @@
             <li>&nbsp;&nbsp;&nbsp;&nbsp;IF message THEN</li>
             <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;display.scroll("8, 5, 12, 12, 15")</li>
             <li>&nbsp;&nbsp;&nbsp;&nbsp;ENDIF</li>
-            <li>&nbsp;&nbsp;&nbsp;&nbsp;IF button_a.is_pressed() THEN</li>
-            <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;radio.send('message')</li>
-            <li>&nbsp;&nbsp;&nbsp;&nbsp;ENDIF</li>
-            <li>&nbsp;&nbsp;&nbsp;&nbsp;IF button_a.is_pressed() AND button_b.is_pressed() THEN</li>
-            <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;display.show(Image.HAPPY)</li>
-            <li>&nbsp;&nbsp;&nbsp;&nbsp;ENDIF</li>
             <li>ENDLOOP</li>
           </ol>
         </div>
@@ -1125,7 +1234,7 @@
 
     <!-- ===== PLENARY ===== -->
     <div class="plenary-box">
-      <h2><i class="fas fa-flag-checkered" style="margin-right:10px;"></i> Plenary — Exit Ticket (5 mins)</h2>
+      <h2><i class="fas fa-flag-checkered" style="margin-right:10px;"></i> Plenary — Exit Ticket (3 mins)</h2>
 
       <p style="color:#1b5e20; margin-bottom:1rem;">Let's review what we learned today.</p>
 
@@ -1274,6 +1383,28 @@
     }
   }
 
+  // ===== TEACHER CHECK FOR MAIN TASK =====
+  function teacherCheck(inputId, msgId, taskId) {
+    const input = document.getElementById(inputId);
+    const msg = document.getElementById(msgId);
+    const task = document.getElementById(taskId);
+    const password = input.value.trim();
+
+    if (password === 'teacher') {
+      msg.textContent = '✅ Verified — Task 3 unlocked';
+      msg.className = 'check-msg ok';
+      input.value = '';
+      // Unlock Task 3
+      task.classList.remove('locked');
+      document.getElementById('task3Status').textContent = 'In Progress';
+      document.getElementById('task3Status').className = 'task-status pending';
+      task.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+      msg.textContent = '❌ Wrong password — check not verified';
+      msg.className = 'check-msg no';
+    }
+  }
+
   // ===== TRUTH TABLE CHECKER =====
   (function() {
     const checkBtn = document.getElementById('checkTruth');
@@ -1330,22 +1461,10 @@
     document.getElementById('completeTask2').addEventListener('click', () => {
       task2Status.textContent = 'Complete';
       task2Status.className = 'task-status done';
-      document.querySelector('.main-task').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      document.querySelector('.stand-agree-box').scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
 
-    // Unlock Task 3 after main task
-    const mainTaskDiv = document.querySelector('.main-task');
-    const unlockBtn = document.createElement('button');
-    unlockBtn.textContent = 'Complete Main Task →';
-    unlockBtn.className = 'check-btn';
-    unlockBtn.style.marginTop = '0.8rem';
-    unlockBtn.addEventListener('click', () => {
-      task3.classList.remove('locked');
-      task3Status.textContent = 'In Progress';
-      task3Status.className = 'task-status pending';
-      task3.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    });
-    mainTaskDiv.querySelector('div').appendChild(unlockBtn);
+    // Note: Task 3 is unlocked by the Teacher Check function above, not by a generic button.
 
     document.getElementById('completeTask3').addEventListener('click', () => {
       task3Status.textContent = 'Complete';
@@ -1461,7 +1580,7 @@
     return mins.toString().padStart(2, '0') + ':' + secs.toString().padStart(2, '0');
   }
 
-  // ===== PARSONS PROBLEM =====
+  // ===== SIMPLIFIED PARSONS PROBLEM =====
   (function() {
     const correctOrder = [
       'START',
@@ -1471,12 +1590,6 @@
       '    message = radio.receive()',
       '    IF message THEN',
       '        display.scroll("8, 5, 12, 12, 15")',
-      '    ENDIF',
-      '    IF button_a.is_pressed() THEN',
-      '        radio.send(\'message\')',
-      '    ENDIF',
-      '    IF button_a.is_pressed() AND button_b.is_pressed() THEN',
-      '        display.show(Image.HAPPY)',
       '    ENDIF',
       'ENDLOOP'
     ];
