@@ -325,11 +325,26 @@
       font-size: 0.9rem; font-weight: 700;
       display: inline-flex; align-items: center; gap: 8px;
       transition: 0.3s; cursor: pointer;
+      animation: pulse-timer 1.5s infinite;
     }
-    .task-timer:hover { background: #1f6390; }
-    .task-timer.warning { background: #e65100; }
-    .task-timer.danger { background: #b71c1c; animation: pulse 0.5s infinite; }
+    .task-timer:hover { background: #1f6390; animation: none; }
+    .task-timer.warning { background: #e65100; animation: none; }
+    .task-timer.danger { background: #b71c1c; animation: none; }
     .task-timer i { font-size: 0.8rem; opacity: 0.7; }
+
+    @keyframes pulse-timer {
+      0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(11, 42, 74, 0.4); }
+      50% { transform: scale(1.05); box-shadow: 0 0 0 8px rgba(11, 42, 74, 0); }
+      100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(11, 42, 74, 0); }
+    }
+
+    .timer-hint {
+      font-size: 0.8rem;
+      color: #7a3300;
+      font-style: italic;
+      margin-top: 0.3rem;
+      display: block;
+    }
 
     .wheel-modal {
       display: none;
@@ -810,7 +825,7 @@
       </div>
     </div>
 
-    <!-- ===== TASK 1: DECODE (4 QUESTIONS) ===== -->
+    <!-- ===== TASK 1: DECODE (10 MESSAGES) ===== -->
     <div class="task-panel" id="task1">
       <div class="task-header">
         <h3>
@@ -823,7 +838,8 @@
         </div>
       </div>
       <div class="task-content">
-        <p>Use the alphabet table above to decode the following messages. Type your answer and click Check. You must complete <strong>all 4</strong> before moving on.</p>
+        <p>Use the alphabet table above to decode the following messages. Type your answer and click Check. You must complete <strong>all 10</strong> before moving on.</p>
+        <span class="timer-hint">⏱️ Click the timer to start. The next task unlocks automatically when time is up.</span>
 
         <div class="encode-box">
           <h4>🔍 Message 1: 3, 15, 13, 16, 21, 20, 5, 18</h4>
@@ -861,6 +877,60 @@
           <div class="result" id="decode4Result"></div>
         </div>
 
+        <div class="encode-box">
+          <h4>🔍 Message 5: 5, 14, 3, 18, 25, 16, 20, 9, 15, 14</h4>
+          <div class="input-row">
+            <input type="text" id="decode5" placeholder="Type the word...">
+            <button onclick="checkDecode('decode5','encryption')">Check</button>
+          </div>
+          <div class="result" id="decode5Result"></div>
+        </div>
+
+        <div class="encode-box">
+          <h4>🔍 Message 6: 3, 15, 13, 13, 21, 14, 9, 3, 1, 20, 9, 15, 14</h4>
+          <div class="input-row">
+            <input type="text" id="decode6" placeholder="Type the word...">
+            <button onclick="checkDecode('decode6','communication')">Check</button>
+          </div>
+          <div class="result" id="decode6Result"></div>
+        </div>
+
+        <div class="encode-box">
+          <h4>🔍 Message 7: 20, 18, 1, 14, 19, 13, 9, 19, 19, 9, 15, 14</h4>
+          <div class="input-row">
+            <input type="text" id="decode7" placeholder="Type the word...">
+            <button onclick="checkDecode('decode7','transmission')">Check</button>
+          </div>
+          <div class="result" id="decode7Result"></div>
+        </div>
+
+        <div class="encode-box">
+          <h4>🔍 Message 8: 2, 15, 15, 12, 5, 1, 14</h4>
+          <div class="input-row">
+            <input type="text" id="decode8" placeholder="Type the word...">
+            <button onclick="checkDecode('decode8','boolean')">Check</button>
+          </div>
+          <div class="result" id="decode8Result"></div>
+        </div>
+
+        <div class="encode-box">
+          <h4>🔍 Message 9: 16, 18, 15, 7, 18, 1, 13, 13, 5, 18</h4>
+          <div class="input-row">
+            <input type="text" id="decode9" placeholder="Type the word...">
+            <button onclick="checkDecode('decode9','programmer')">Check</button>
+          </div>
+          <div class="result" id="decode9Result"></div>
+        </div>
+
+        <div class="encode-box">
+          <h4>🔍 Message 10: 9, 14, 20, 5, 18, 14, 5, 20</h4>
+          <div class="input-row">
+            <input type="text" id="decode10" placeholder="Type the word...">
+            <button onclick="checkDecode('decode10','internet')">Check</button>
+          </div>
+          <div class="result" id="decode10Result"></div>
+        </div>
+
         <button class="check-btn" id="completeTask1">Complete Task 1 →</button>
       </div>
     </div>
@@ -887,11 +957,11 @@
         <span class="unlock-msg" id="msg_sc2"></span>
       </div>
       <div class="teacher-answer" id="answer_sc2">
-        <strong>Answers:</strong> COMPUTER, PROGRAMMING, ALGORITHM, MICROBIT. <br><strong>Why encode?</strong> To keep messages private and secure — if someone intercepts the radio signal, they see numbers, not words. Only someone who knows the alphabet-position code can decode the message.
+        <strong>Answers:</strong> COMPUTER, PROGRAMMING, ALGORITHM, MICROBIT, ENCRYPTION, COMMUNICATION, TRANSMISSION, BOOLEAN, PROGRAMMER, INTERNET. <br><strong>Why encode?</strong> To keep messages private and secure — if someone intercepts the radio signal, they see numbers, not words. Only someone who knows the alphabet-position code can decode the message.
       </div>
     </div>
 
-    <!-- ===== TASK 2: ENCODE (4 QUESTIONS) ===== -->
+    <!-- ===== TASK 2: ENCODE (10 MESSAGES) ===== -->
     <div class="task-panel locked" id="task2">
       <div class="task-header">
         <h3>
@@ -904,7 +974,8 @@
         </div>
       </div>
       <div class="task-content">
-        <p>Now it's your turn. Encode the following words using the alphabet positions. Write the numbers separated by commas (e.g. <code>3, 1, 20</code>). You must complete <strong>all 4</strong> before moving on.</p>
+        <p>Now it's your turn. Encode the following words using the alphabet positions. Write the numbers separated by commas (e.g. <code>3, 1, 20</code>). You must complete <strong>all 10</strong> before moving on.</p>
+        <span class="timer-hint">⏱️ Click the timer to start. The next task unlocks automatically when time is up.</span>
 
         <div class="encode-box">
           <h4>🔐 Message 1: "SECRET"</h4>
@@ -940,6 +1011,60 @@
             <button onclick="checkEncode('encode4','16,1,19,19,23,15,18,4')">Check</button>
           </div>
           <div class="result" id="encode4Result"></div>
+        </div>
+
+        <div class="encode-box">
+          <h4>🔐 Message 5: "BINARY"</h4>
+          <div class="input-row">
+            <input type="text" id="encode5" placeholder="Write the numbers...">
+            <button onclick="checkEncode('encode5','2,9,14,1,18,25')">Check</button>
+          </div>
+          <div class="result" id="encode5Result"></div>
+        </div>
+
+        <div class="encode-box">
+          <h4>🔐 Message 6: "ENCRYPT"</h4>
+          <div class="input-row">
+            <input type="text" id="encode6" placeholder="Write the numbers...">
+            <button onclick="checkEncode('encode6','5,14,3,18,25,16,20')">Check</button>
+          </div>
+          <div class="result" id="encode6Result"></div>
+        </div>
+
+        <div class="encode-box">
+          <h4>🔐 Message 7: "TRANSMIT"</h4>
+          <div class="input-row">
+            <input type="text" id="encode7" placeholder="Write the numbers...">
+            <button onclick="checkEncode('encode7','20,18,1,14,19,13,9,20')">Check</button>
+          </div>
+          <div class="result" id="encode7Result"></div>
+        </div>
+
+        <div class="encode-box">
+          <h4>🔐 Message 8: "RECEIVER"</h4>
+          <div class="input-row">
+            <input type="text" id="encode8" placeholder="Write the numbers...">
+            <button onclick="checkEncode('encode8','18,5,3,5,9,22,5,18')">Check</button>
+          </div>
+          <div class="result" id="encode8Result"></div>
+        </div>
+
+        <div class="encode-box">
+          <h4>🔐 Message 9: "PROTOCOL"</h4>
+          <div class="input-row">
+            <input type="text" id="encode9" placeholder="Write the numbers...">
+            <button onclick="checkEncode('encode9','16,18,15,20,15,3,15,12')">Check</button>
+          </div>
+          <div class="result" id="encode9Result"></div>
+        </div>
+
+        <div class="encode-box">
+          <h4>🔐 Message 10: "FREQUENCY"</h4>
+          <div class="input-row">
+            <input type="text" id="encode10" placeholder="Write the numbers...">
+            <button onclick="checkEncode('encode10','6,18,5,17,21,5,14,3,25')">Check</button>
+          </div>
+          <div class="result" id="encode10Result"></div>
         </div>
 
         <button class="check-btn" id="completeTask2">Complete Task 2 →</button>
@@ -981,6 +1106,7 @@
         <div style="display:flex; gap:0.5rem; align-items:center; flex-wrap:wrap; margin-top:0.8rem;">
           <span class="task-timer" id="timerMain" onclick="startTimer('Main', 480)"><i class="fas fa-play"></i> Start Timer (8 min)</span>
         </div>
+        <span class="timer-hint">⏱️ Click the timer to start. Task 3 unlocks automatically when time is up.</span>
       </div>
     </div>
 
@@ -998,6 +1124,7 @@
       </div>
       <div class="task-content">
         <p>Complete the truth table below. For each row, decide whether the condition is TRUE or FALSE, then work out what the program will do.</p>
+        <span class="timer-hint">⏱️ Click the timer to start. Task 4 unlocks automatically when time is up.</span>
 
         <div class="highlight-box" style="background:#fff8e1; border-left-color:#f9a825;">
           <i class="fas fa-lightbulb" style="color:#b45309; margin-right:8px;"></i>
@@ -1128,6 +1255,7 @@
       </div>
       <div class="task-content">
         <p><strong>Refer to the example in the worksheet.</strong> Drag the code blocks from the left into the correct order on the right to build a working radio program.</p>
+        <span class="timer-hint">⏱️ Click the timer to start. The Plenary will be highlighted when time is up.</span>
 
         <div class="parsons-wrapper">
           <div class="parsons-header">
@@ -1274,12 +1402,10 @@
 <script>
   // ===== STUDENT NAMES =====
   const studentNames = [
-    'Atila, Anisa', 'Böttge, Lukas', 'Dombrovsky, Damian', 'Dückers, Max',
-    'Habel, Christopher', 'Habel, Joshua', 'Hocke, Anna', 'Hünig, Ada',
-    'Ilgün, Sare', 'Janßen, Joshua-David', 'Jobst, Phil', 'Mausberg, Lea',
-    'Middendorf, Anna', 'Penka, Angelina', 'Schneider, Romy', 'Schutter, Tim',
-    'Tian, Hulinjia', 'Uyar, Defne', 'Viehmann, Vijeya', 'Wei, Peter',
-    'Yadav, Ashvika', 'Yin, Xixi', 'Zhang, Tian He', 'Zhou, Shulin'
+    'Ela', 'Rialda', 'Leo', 'Amna', 'Yitong', 'Emir', 'Milo', 'Dona',
+    'Fiona', 'Greta', 'Julius', 'Luca', 'Mia', 'Cameron', 'Nicolas',
+    'Eliza', 'Yannik', 'Shengrui', 'Stella', 'Schäfer, Leopold',
+    'Schmidt, Leonard', 'Samuel', 'Selina', 'Emma', 'Ella', 'Wenxuan', 'Yuxin'
   ];
 
   // ===== DECODE / ENCODE CHECKERS =====
