@@ -128,43 +128,6 @@
     .stand-agree-box p { margin-bottom: 0.3rem; color: #0d3b6e; }
     .stand-agree-box ul { margin: 0.5rem 0 0 0; padding-left: 1.2rem; }
     .stand-agree-box ul li { color: #0d3b6e; font-size: 0.9rem; margin-bottom: 0.4rem; }
-    .stand-agree-box .unlock-row {
-      margin-top: 0.6rem;
-      display: flex;
-      gap: 0.5rem;
-      align-items: center;
-      flex-wrap: wrap;
-      width: 100%;
-    }
-    .stand-agree-box .unlock-row input {
-      padding: 0.35rem 0.7rem;
-      border: 2px solid #1e88e5;
-      border-radius: 8px;
-      font-size: 0.8rem;
-      width: 130px;
-      font-family: 'JetBrains Mono', monospace;
-    }
-    .stand-agree-box .unlock-row input:focus {
-      outline: none;
-      border-color: #0d47a1;
-    }
-    .stand-agree-box .unlock-row button {
-      background: #0b2a4a;
-      color: white;
-      border: none;
-      padding: 0.35rem 0.9rem;
-      border-radius: 30px;
-      font-weight: 600;
-      font-size: 0.75rem;
-      cursor: pointer;
-    }
-    .stand-agree-box .unlock-row button:hover { background: #1f6390; }
-    .stand-agree-box .unlock-row .unlock-msg {
-      font-size: 0.75rem;
-      font-weight: 600;
-    }
-    .stand-agree-box .unlock-row .unlock-msg.ok { color: #2d8f2d; }
-    .stand-agree-box .unlock-row .unlock-msg.no { color: #b71c1c; }
     .stand-agree-box .hidden-statements {
       display: none;
       width: 100%;
@@ -212,57 +175,6 @@
       border-bottom: 2px solid #e65100;
     }
     .main-task a:hover { color: #7a3300; }
-
-    .teacher-check-box {
-      background: #e8f5e9; border: 2px solid #4caf50; border-radius: 16px;
-      padding: 1rem 1.4rem; margin: 1rem 0;
-      display: flex; align-items: flex-start; gap: 0.8rem;
-      flex-wrap: wrap;
-    }
-    .teacher-check-box .badge {
-      background: #2d8f2d; color: white; font-weight: 700;
-      font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.8px;
-      padding: 0.25rem 0.8rem; border-radius: 30px; white-space: nowrap; flex-shrink: 0;
-    }
-    .teacher-check-box p { margin: 0; color: #1b5e20; font-size: 0.9rem; }
-    .teacher-check-box strong { color: #1b5e20; }
-    .teacher-check-box .check-input-row {
-      margin-top: 0.5rem;
-      display: flex;
-      gap: 0.5rem;
-      align-items: center;
-      flex-wrap: wrap;
-      width: 100%;
-    }
-    .teacher-check-box .check-input-row input {
-      padding: 0.35rem 0.7rem;
-      border: 2px solid #4caf50;
-      border-radius: 8px;
-      font-size: 0.8rem;
-      width: 160px;
-      font-family: 'JetBrains Mono', monospace;
-    }
-    .teacher-check-box .check-input-row input:focus {
-      outline: none;
-      border-color: #2d8f2d;
-    }
-    .teacher-check-box .check-input-row button {
-      background: #2d8f2d;
-      color: white;
-      border: none;
-      padding: 0.35rem 0.9rem;
-      border-radius: 30px;
-      font-weight: 600;
-      font-size: 0.75rem;
-      cursor: pointer;
-    }
-    .teacher-check-box .check-input-row button:hover { background: #1b5e20; }
-    .teacher-check-box .check-input-row .check-msg {
-      font-size: 0.75rem;
-      font-weight: 600;
-    }
-    .teacher-check-box .check-input-row .check-msg.ok { color: #2d8f2d; }
-    .teacher-check-box .check-input-row .check-msg.no { color: #b71c1c; }
 
     .stop-check {
       background: linear-gradient(135deg, #fff3e0, #ffe0b2);
@@ -751,7 +663,7 @@
       .nav .brand { margin-right: 0; }
       .page-header h1 { font-size: 1.8rem; flex-wrap: wrap; }
       .lesson-content { padding: 1.2rem 1.4rem; }
-      .starter-callout, .main-task, .stop-check, .group-work, .why-matters-box, .stand-agree-box, .teacher-check-box { flex-direction: column; gap: 0.6rem; }
+      .starter-callout, .main-task, .stop-check, .group-work, .why-matters-box, .stand-agree-box { flex-direction: column; gap: 0.6rem; }
       .alphabet-table { font-size: 0.7rem; }
       .task-panel.locked::after { font-size: 0.7rem; padding: 0.5rem 1rem; white-space: normal; text-align: center; }
       .truth-table { font-size: 0.75rem; }
@@ -783,7 +695,7 @@
   <!-- ===== LESSON CONTENT ===== -->
   <div class="lesson-content">
 
-    <!-- ===== STARTER (MOVED TO TOP, 5 MINS) ===== -->
+    <!-- ===== STARTER (5 MINS) ===== -->
     <div class="starter-callout">
       <span class="badge">🔥 Starter</span>
       <div>
@@ -1034,17 +946,12 @@
       </div>
     </div>
 
-    <!-- ===== STAND IF YOU AGREE (2 MINS, 2 QUESTIONS, TEACHER LOCKED) ===== -->
+    <!-- ===== STAND IF YOU AGREE (2 MINS, 2 QUESTIONS, AUTO-UNLOCK) ===== -->
     <div class="stand-agree-box">
       <span class="badge">🧍 Stand If You Agree</span>
       <div>
         <h3>Quick Movement Break (2 mins)</h3>
         <p>Your teacher will read out statements. <strong>Stand up if you agree</strong>. Stay seated if you disagree.</p>
-        <div class="unlock-row">
-          <input type="password" id="unlock_stand" placeholder="Teacher password">
-          <button onclick="unlockStandAgree()">Unlock Activity</button>
-          <span class="unlock-msg" id="stand_msg"></span>
-        </div>
         <div class="hidden-statements" id="standStatements">
           <ul>
             <li>"Encoding makes a message more secure."</li>
@@ -1074,17 +981,6 @@
         <div style="display:flex; gap:0.5rem; align-items:center; flex-wrap:wrap; margin-top:0.8rem;">
           <span class="task-timer" id="timerMain" onclick="startTimer('Main', 480)"><i class="fas fa-play"></i> Start Timer (8 min)</span>
         </div>
-      </div>
-    </div>
-
-    <!-- ===== TEACHER CHECK FOR MAIN TASK ===== -->
-    <div class="teacher-check-box">
-      <span class="badge">✅ Teacher Check</span>
-      <p><strong>Time check (2 mins):</strong> Your teacher will check that you have submitted your worksheet on Schoolbox by the time limit. If it is incomplete, you must finish it for homework and submit it before the deadline.</p>
-      <div class="check-input-row">
-        <input type="password" id="check_main" placeholder="Teacher password">
-        <button onclick="teacherCheck('check_main', 'main_check_msg', 'task3')">Verify Submission</button>
-        <span class="check-msg" id="main_check_msg"></span>
       </div>
     </div>
 
@@ -1278,7 +1174,7 @@
       </div>
     </div>
 
-    <!-- ===== PLENARY (5 MINS, TEACHER LOCKED) ===== -->
+    <!-- ===== PLENARY (5 MINS, TEACHER LOCKED ANSWERS) ===== -->
     <div class="plenary-box">
       <h2><i class="fas fa-flag-checkered" style="margin-right:10px;"></i> Plenary — Exit Ticket (5 mins)</h2>
 
@@ -1437,25 +1333,6 @@
     }
   }
 
-  // ===== UNLOCK STAND IF YOU AGREE =====
-  function unlockStandAgree() {
-    const input = document.getElementById('unlock_stand');
-    const statements = document.getElementById('standStatements');
-    const msg = document.getElementById('stand_msg');
-    const password = input.value.trim();
-
-    if (password === 'teacher') {
-      statements.classList.add('show');
-      msg.textContent = '✅ Unlocked';
-      msg.className = 'unlock-msg ok';
-      input.value = '';
-    } else {
-      statements.classList.remove('show');
-      msg.textContent = '❌ Wrong password';
-      msg.className = 'unlock-msg no';
-    }
-  }
-
   // ===== UNLOCK PLENARY ANSWER =====
   function unlockPlenary(inputId, answerId, msgId) {
     const input = document.getElementById(inputId);
@@ -1472,28 +1349,6 @@
       answer.classList.remove('show');
       msg.textContent = '❌ Wrong password';
       msg.className = 'unlock-msg no';
-    }
-  }
-
-  // ===== TEACHER CHECK FOR MAIN TASK =====
-  function teacherCheck(inputId, msgId, taskId) {
-    const input = document.getElementById(inputId);
-    const msg = document.getElementById(msgId);
-    const task = document.getElementById(taskId);
-    const password = input.value.trim();
-
-    if (password === 'teacher') {
-      msg.textContent = '✅ Verified — Task 3 unlocked';
-      msg.className = 'check-msg ok';
-      input.value = '';
-      // Unlock Task 3
-      task.classList.remove('locked');
-      document.getElementById('task3Status').textContent = 'In Progress';
-      document.getElementById('task3Status').className = 'task-status pending';
-      task.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    } else {
-      msg.textContent = '❌ Wrong password — check not verified';
-      msg.className = 'check-msg no';
     }
   }
 
@@ -1531,7 +1386,7 @@
     });
   })();
 
-  // ===== TASK LOCKING SYSTEM =====
+  // ===== TASK LOCKING / AUTO-UNLOCK SYSTEM =====
   (function() {
     const task2 = document.getElementById('task2');
     const task3 = document.getElementById('task3');
@@ -1541,6 +1396,49 @@
     const task3Status = document.getElementById('task3Status');
     const task4Status = document.getElementById('task4Status');
 
+    // ===== AUTO-UNLOCK FUNCTIONS (called when timers end) =====
+    window.unlockTask2 = function() {
+      if (!task2.classList.contains('locked')) return;
+      document.getElementById('task1Status').textContent = 'Complete';
+      document.getElementById('task1Status').className = 'task-status done';
+      task2.classList.remove('locked');
+      task2Status.textContent = 'In Progress';
+      task2Status.className = 'task-status pending';
+    };
+
+    window.unlockMainTask = function() {
+      // Show Stand If You Agree statements
+      document.getElementById('standStatements').classList.add('show');
+      // Highlight Main Task
+      document.querySelector('.main-task').style.borderColor = '#e65100';
+      document.querySelector('.main-task').style.borderWidth = '3px';
+    };
+
+    window.unlockTask3 = function() {
+      if (!task3.classList.contains('locked')) return;
+      task3.classList.remove('locked');
+      task3Status.textContent = 'In Progress';
+      task3Status.className = 'task-status pending';
+    };
+
+    window.unlockTask4 = function() {
+      if (!task4.classList.contains('locked')) return;
+      task3Status.textContent = 'Complete';
+      task3Status.className = 'task-status done';
+      task4.classList.remove('locked');
+      task4Status.textContent = 'In Progress';
+      task4Status.className = 'task-status pending';
+    };
+
+    window.unlockPlenary = function() {
+      if (!task4.classList.contains('locked')) return;
+      task4Status.textContent = 'Complete';
+      task4Status.className = 'task-status done';
+      document.querySelector('.plenary-box').style.borderColor = '#e65100';
+      document.querySelector('.plenary-box').style.borderWidth = '3px';
+    };
+
+    // ===== MANUAL COMPLETE BUTTONS (for early finishers) =====
     document.getElementById('completeTask1').addEventListener('click', () => {
       document.getElementById('task1Status').textContent = 'Complete';
       document.getElementById('task1Status').className = 'task-status done';
@@ -1553,10 +1451,10 @@
     document.getElementById('completeTask2').addEventListener('click', () => {
       task2Status.textContent = 'Complete';
       task2Status.className = 'task-status done';
+      // Show Stand If You Agree statements
+      document.getElementById('standStatements').classList.add('show');
       document.querySelector('.stand-agree-box').scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
-
-    // Note: Task 3 is unlocked by the Teacher Check function above, not by a generic button.
 
     document.getElementById('completeTask3').addEventListener('click', () => {
       task3Status.textContent = 'Complete';
@@ -1574,7 +1472,7 @@
     });
   })();
 
-  // ===== COUNTDOWN TIMERS WITH MIDI =====
+  // ===== COUNTDOWN TIMERS WITH MIDI AND AUTO-UNLOCK =====
   const timerIntervals = {};
 
   function playMidiTune() {
@@ -1656,8 +1554,18 @@
         timerEl.innerHTML = '<i class="fas fa-check"></i> Time\'s up!';
         playMidiTune();
 
-        // Show Parsons answer when Task 4 timer ends
-        if (taskNum === 4) {
+        // ===== AUTO-UNLOCK LOGIC =====
+        if (taskNum === 1) {
+          unlockTask2();
+        } else if (taskNum === 2) {
+          unlockMainTask();
+        } else if (taskNum === 'Main') {
+          unlockTask3();
+        } else if (taskNum === 3) {
+          unlockTask4();
+        } else if (taskNum === 4) {
+          unlockPlenary();
+          // Show Parsons answer when Task 4 timer ends
           const reveal = document.getElementById('parsonsAnswerReveal');
           if (reveal) reveal.classList.add('show');
         }
