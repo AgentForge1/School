@@ -117,6 +117,7 @@
       border: 2px solid #1e88e5; border-radius: 20px;
       padding: 1.4rem 1.8rem; margin: 1.5rem 0;
       display: flex; align-items: flex-start; gap: 1rem;
+      flex-wrap: wrap;
     }
     .stand-agree-box .badge {
       background: #1e88e5; color: white; font-weight: 700;
@@ -127,6 +128,55 @@
     .stand-agree-box p { margin-bottom: 0.3rem; color: #0d3b6e; }
     .stand-agree-box ul { margin: 0.5rem 0 0 0; padding-left: 1.2rem; }
     .stand-agree-box ul li { color: #0d3b6e; font-size: 0.9rem; margin-bottom: 0.4rem; }
+    .stand-agree-box .unlock-row {
+      margin-top: 0.6rem;
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+      flex-wrap: wrap;
+      width: 100%;
+    }
+    .stand-agree-box .unlock-row input {
+      padding: 0.35rem 0.7rem;
+      border: 2px solid #1e88e5;
+      border-radius: 8px;
+      font-size: 0.8rem;
+      width: 130px;
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .stand-agree-box .unlock-row input:focus {
+      outline: none;
+      border-color: #0d47a1;
+    }
+    .stand-agree-box .unlock-row button {
+      background: #0b2a4a;
+      color: white;
+      border: none;
+      padding: 0.35rem 0.9rem;
+      border-radius: 30px;
+      font-weight: 600;
+      font-size: 0.75rem;
+      cursor: pointer;
+    }
+    .stand-agree-box .unlock-row button:hover { background: #1f6390; }
+    .stand-agree-box .unlock-row .unlock-msg {
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+    .stand-agree-box .unlock-row .unlock-msg.ok { color: #2d8f2d; }
+    .stand-agree-box .unlock-row .unlock-msg.no { color: #b71c1c; }
+    .stand-agree-box .hidden-statements {
+      display: none;
+      width: 100%;
+      margin-top: 0.5rem;
+      padding: 0.8rem 1rem;
+      background: #e8f5e9;
+      border-left: 4px solid #4caf50;
+      border-radius: 10px;
+    }
+    .stand-agree-box .hidden-statements.show { display: block; }
+    .stand-agree-box .hidden-statements ul { margin: 0.3rem 0 0 0; padding-left: 1.2rem; }
+    .stand-agree-box .hidden-statements ul li { color: #1b5e20; font-size: 0.9rem; margin-bottom: 0.4rem; }
 
     .starter-callout {
       background: linear-gradient(135deg, #fff3e0, #ffe0b2);
@@ -611,13 +661,66 @@
       font-size: 0.9rem; color: #1b5e20;
     }
     .plenary-box .plenary-question .answer.show { display: block; }
-    .plenary-box .reveal-btn {
-      background: #2d8f2d; color: white; border: none;
-      padding: 0.4rem 1rem; border-radius: 30px;
-      font-weight: 600; font-size: 0.8rem; cursor: pointer;
-      transition: 0.2s;
+    .plenary-box .unlock-row {
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+      flex-wrap: wrap;
+      margin-top: 0.5rem;
     }
-    .plenary-box .reveal-btn:hover { background: #1b5e20; }
+    .plenary-box .unlock-row input {
+      padding: 0.3rem 0.6rem;
+      border: 2px solid #4caf50;
+      border-radius: 8px;
+      font-size: 0.75rem;
+      width: 120px;
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .plenary-box .unlock-row input:focus {
+      outline: none;
+      border-color: #2d8f2d;
+    }
+    .plenary-box .unlock-row button {
+      background: #2d8f2d;
+      color: white;
+      border: none;
+      padding: 0.3rem 0.8rem;
+      border-radius: 30px;
+      font-weight: 600;
+      font-size: 0.7rem;
+      cursor: pointer;
+    }
+    .plenary-box .unlock-row button:hover { background: #1b5e20; }
+    .plenary-box .unlock-row .unlock-msg {
+      font-size: 0.7rem;
+      font-weight: 600;
+    }
+    .plenary-box .unlock-row .unlock-msg.ok { color: #2d8f2d; }
+    .plenary-box .unlock-row .unlock-msg.no { color: #b71c1c; }
+
+    .exit-ticket-example {
+      background: white;
+      border-radius: 12px;
+      padding: 1rem 1.4rem;
+      margin: 0.8rem 0;
+      border-left: 4px solid #4caf50;
+    }
+    .exit-ticket-example p {
+      font-weight: 600;
+      color: #1b5e20;
+      margin-bottom: 0.4rem;
+    }
+    .exit-ticket-example .example-item {
+      background: #e8f5e9;
+      border-radius: 8px;
+      padding: 0.5rem 0.8rem;
+      margin-bottom: 0.4rem;
+      font-size: 0.85rem;
+      color: #1b5e20;
+    }
+    .exit-ticket-example .example-item strong {
+      color: #1b5e20;
+    }
 
     .keyword-row {
       display: flex; flex-wrap: wrap; gap: 0.8rem 1.2rem;
@@ -811,7 +914,7 @@
         <p>Use the alphabet table above to decode the following messages. Type your answer and click Check. You must complete <strong>all 4</strong> before moving on.</p>
 
         <div class="encode-box">
-          <h4>🔍 Decode 1: 3, 15, 13, 16, 21, 20, 5, 18</h4>
+          <h4>🔍 Message 1: 3, 15, 13, 16, 21, 20, 5, 18</h4>
           <div class="input-row">
             <input type="text" id="decode1" placeholder="Type the word...">
             <button onclick="checkDecode('decode1','computer')">Check</button>
@@ -820,7 +923,7 @@
         </div>
 
         <div class="encode-box">
-          <h4>🔍 Decode 2: 16, 18, 15, 7, 18, 1, 13, 13, 9, 14, 7</h4>
+          <h4>🔍 Message 2: 16, 18, 15, 7, 18, 1, 13, 13, 9, 14, 7</h4>
           <div class="input-row">
             <input type="text" id="decode2" placeholder="Type the word...">
             <button onclick="checkDecode('decode2','programming')">Check</button>
@@ -829,7 +932,7 @@
         </div>
 
         <div class="encode-box">
-          <h4>🔍 Decode 3: 1, 12, 7, 15, 18, 9, 20, 8, 13</h4>
+          <h4>🔍 Message 3: 1, 12, 7, 15, 18, 9, 20, 8, 13</h4>
           <div class="input-row">
             <input type="text" id="decode3" placeholder="Type the word...">
             <button onclick="checkDecode('decode3','algorithm')">Check</button>
@@ -838,7 +941,7 @@
         </div>
 
         <div class="encode-box">
-          <h4>🔍 Decode 4: 13, 9, 3, 18, 15, 2, 9, 20</h4>
+          <h4>🔍 Message 4: 13, 9, 3, 18, 15, 2, 9, 20</h4>
           <div class="input-row">
             <input type="text" id="decode4" placeholder="Type the word...">
             <button onclick="checkDecode('decode4','microbit')">Check</button>
@@ -864,7 +967,7 @@
     <!-- STOP AND CHECK 2 -->
     <div class="stop-check">
       <span class="badge">🛑 Stop &amp; Check</span>
-      <p><strong>Class check:</strong> Your teacher will spin the wheel to pick students to share one word they decoded and explain why we encode messages.</p>
+      <p><strong>Class check:</strong> Your teacher will spin the wheel to pick students to share <strong>one word they decoded</strong> and explain why we encode messages.</p>
       <button class="wheel-btn" onclick="openWheel()"><i class="fas fa-dice"></i> Spin the Wheel</button>
       <div class="unlock-row">
         <input type="password" id="unlock_sc2" placeholder="Teacher password">
@@ -892,7 +995,7 @@
         <p>Now it's your turn. Encode the following words using the alphabet positions. Write the numbers separated by commas (e.g. <code>3, 1, 20</code>). You must complete <strong>all 4</strong> before moving on.</p>
 
         <div class="encode-box">
-          <h4>🔐 Encode 1: "SECRET"</h4>
+          <h4>🔐 Message 1: "SECRET"</h4>
           <div class="input-row">
             <input type="text" id="encode1" placeholder="Write the numbers...">
             <button onclick="checkEncode('encode1','19,5,3,18,5,20')">Check</button>
@@ -901,7 +1004,7 @@
         </div>
 
         <div class="encode-box">
-          <h4>🔐 Encode 2: "MESSAGE"</h4>
+          <h4>🔐 Message 2: "MESSAGE"</h4>
           <div class="input-row">
             <input type="text" id="encode2" placeholder="Write the numbers...">
             <button onclick="checkEncode('encode2','13,5,19,19,1,7,5')">Check</button>
@@ -910,7 +1013,7 @@
         </div>
 
         <div class="encode-box">
-          <h4>🔐 Encode 3: "NETWORK"</h4>
+          <h4>🔐 Message 3: "NETWORK"</h4>
           <div class="input-row">
             <input type="text" id="encode3" placeholder="Write the numbers...">
             <button onclick="checkEncode('encode3','14,5,20,23,15,18,11')">Check</button>
@@ -919,7 +1022,7 @@
         </div>
 
         <div class="encode-box">
-          <h4>🔐 Encode 4: "PASSWORD"</h4>
+          <h4>🔐 Message 4: "PASSWORD"</h4>
           <div class="input-row">
             <input type="text" id="encode4" placeholder="Write the numbers...">
             <button onclick="checkEncode('encode4','16,1,19,19,23,15,18,4')">Check</button>
@@ -931,15 +1034,23 @@
       </div>
     </div>
 
-    <!-- ===== STAND IF YOU AGREE (2 MINS, 1 STATEMENT) ===== -->
+    <!-- ===== STAND IF YOU AGREE (2 MINS, 2 QUESTIONS, TEACHER LOCKED) ===== -->
     <div class="stand-agree-box">
       <span class="badge">🧍 Stand If You Agree</span>
       <div>
         <h3>Quick Movement Break (2 mins)</h3>
-        <p>Your teacher will read out a statement. <strong>Stand up if you agree</strong>. Stay seated if you disagree.</p>
-        <ul>
-          <li>"Encoding makes a message more secure."</li>
-        </ul>
+        <p>Your teacher will read out statements. <strong>Stand up if you agree</strong>. Stay seated if you disagree.</p>
+        <div class="unlock-row">
+          <input type="password" id="unlock_stand" placeholder="Teacher password">
+          <button onclick="unlockStandAgree()">Unlock Activity</button>
+          <span class="unlock-msg" id="stand_msg"></span>
+        </div>
+        <div class="hidden-statements" id="standStatements">
+          <ul>
+            <li>"Encoding makes a message more secure."</li>
+            <li>"The radio group must be different on each micro:bit."</li>
+          </ul>
+        </div>
       </div>
     </div>
 
@@ -990,7 +1101,7 @@
         </div>
       </div>
       <div class="task-content">
-        <p><strong>Refer to the example in the worksheet.</strong> Complete the truth table below. For each row, decide whether the condition is TRUE or FALSE, then work out what the program will do.</p>
+        <p>Complete the truth table below. For each row, decide whether the condition is TRUE or FALSE, then work out what the program will do.</p>
 
         <div class="highlight-box" style="background:#fff8e1; border-left-color:#f9a825;">
           <i class="fas fa-lightbulb" style="color:#b45309; margin-right:8px;"></i>
@@ -1135,7 +1246,7 @@
         </div>
       </div>
       <div class="task-content">
-        <p>Drag the code blocks from the left into the correct order on the right to build a working radio program.</p>
+        <p><strong>Refer to the example in the worksheet.</strong> Drag the code blocks from the left into the correct order on the right to build a working radio program.</p>
 
         <div class="parsons-wrapper">
           <div class="parsons-header">
@@ -1182,7 +1293,7 @@
       </div>
     </div>
 
-    <!-- ===== PLENARY (5 MINS) ===== -->
+    <!-- ===== PLENARY (5 MINS, TEACHER LOCKED) ===== -->
     <div class="plenary-box">
       <h2><i class="fas fa-flag-checkered" style="margin-right:10px;"></i> Plenary — Exit Ticket (5 mins)</h2>
 
@@ -1190,19 +1301,31 @@
 
       <div class="plenary-question">
         <p>1. What is the radio group used for?</p>
-        <button class="reveal-btn" onclick="revealAnswer('plenary1')">Reveal Answer</button>
+        <div class="unlock-row">
+          <input type="password" id="unlock_plenary1" placeholder="Teacher password">
+          <button onclick="unlockPlenary('unlock_plenary1', 'plenary1', 'msg_plenary1')">Reveal Answer</button>
+          <span class="unlock-msg" id="msg_plenary1"></span>
+        </div>
         <div class="answer" id="plenary1">The radio group sets the channel that micro:bits use to communicate. Both micro:bits must have the same group number.</div>
       </div>
 
       <div class="plenary-question">
         <p>2. Why do we encode messages using numbers?</p>
-        <button class="reveal-btn" onclick="revealAnswer('plenary2')">Reveal Answer</button>
+        <div class="unlock-row">
+          <input type="password" id="unlock_plenary2" placeholder="Teacher password">
+          <button onclick="unlockPlenary('unlock_plenary2', 'plenary2', 'msg_plenary2')">Reveal Answer</button>
+          <span class="unlock-msg" id="msg_plenary2"></span>
+        </div>
         <div class="answer" id="plenary2">To keep messages private and secure. If someone intercepts the radio signal, they see numbers, not words.</div>
       </div>
 
       <div class="plenary-question">
         <p>3. What is the difference between AND and OR?</p>
-        <button class="reveal-btn" onclick="revealAnswer('plenary3')">Reveal Answer</button>
+        <div class="unlock-row">
+          <input type="password" id="unlock_plenary3" placeholder="Teacher password">
+          <button onclick="unlockPlenary('unlock_plenary3', 'plenary3', 'msg_plenary3')">Reveal Answer</button>
+          <span class="unlock-msg" id="msg_plenary3"></span>
+        </div>
         <div class="answer" id="plenary3">AND means <strong>both</strong> conditions must be true. OR means <strong>at least one</strong> condition must be true.</div>
       </div>
 
@@ -1214,6 +1337,14 @@
           <li>One thing you found difficult</li>
           <li>One question you still have</li>
         </ol>
+
+        <div class="exit-ticket-example">
+          <p>📝 Example:</p>
+          <div class="example-item"><strong>One thing I learned:</strong> How to encode a message using alphabet positions.</div>
+          <div class="example-item"><strong>One thing I found difficult:</strong> Remembering the number for each letter.</div>
+          <div class="example-item"><strong>One question I still have:</strong> How does the micro:bit know which group to use?</div>
+        </div>
+
         <p style="color:#1b5e20; font-weight:600; margin-top:0.5rem;">📌 Stick your note on the board as you leave the room.</p>
       </div>
     </div>
@@ -1302,14 +1433,46 @@
     }
   }
 
-  // ===== PLENARY REVEAL =====
-  function revealAnswer(id) {
-    const el = document.getElementById(id);
-    el.classList.toggle('show');
-  }
-
   // ===== TEACHER ANSWER UNLOCK =====
   function unlockAnswer(inputId, answerId, msgId) {
+    const input = document.getElementById(inputId);
+    const answer = document.getElementById(answerId);
+    const msg = document.getElementById(msgId);
+    const password = input.value.trim();
+
+    if (password === 'teacher') {
+      answer.classList.add('show');
+      msg.textContent = '✅ Unlocked';
+      msg.className = 'unlock-msg ok';
+      input.value = '';
+    } else {
+      answer.classList.remove('show');
+      msg.textContent = '❌ Wrong password';
+      msg.className = 'unlock-msg no';
+    }
+  }
+
+  // ===== UNLOCK STAND IF YOU AGREE =====
+  function unlockStandAgree() {
+    const input = document.getElementById('unlock_stand');
+    const statements = document.getElementById('standStatements');
+    const msg = document.getElementById('stand_msg');
+    const password = input.value.trim();
+
+    if (password === 'teacher') {
+      statements.classList.add('show');
+      msg.textContent = '✅ Unlocked';
+      msg.className = 'unlock-msg ok';
+      input.value = '';
+    } else {
+      statements.classList.remove('show');
+      msg.textContent = '❌ Wrong password';
+      msg.className = 'unlock-msg no';
+    }
+  }
+
+  // ===== UNLOCK PLENARY ANSWER =====
+  function unlockPlenary(inputId, answerId, msgId) {
     const input = document.getElementById(inputId);
     const answer = document.getElementById(answerId);
     const msg = document.getElementById(msgId);
