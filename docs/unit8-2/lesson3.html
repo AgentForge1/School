@@ -701,7 +701,7 @@
     <div class="starter-callout">
       <span class="badge">🔥 Starter</span>
       <div>
-        <h3>Blooket Warm-Up (5 mins)</h3>
+        <h3>Blooket Warm-Up (3 mins)</h3>
         <p>Quick Blooket to recap pseudocode basics before we look at radio communication and encoding.</p>
         <p><a href="https://play.blooket.com/host?id=68e248e2d5404af5a2c66704" target="_blank">▶ Open Blooket Starter</a></p>
       </div>
@@ -795,7 +795,7 @@
       </div>
     </div>
 
-    <!-- ===== TASK 1: DECODE (1 STAR) ===== -->
+    <!-- ===== TASK 1: DECODE (4 QUESTIONS) ===== -->
     <div class="task-panel" id="task1">
       <div class="task-header">
         <h3>
@@ -808,7 +808,7 @@
         </div>
       </div>
       <div class="task-content">
-        <p>Use the alphabet table above to decode the following messages. Type your answer and click Check. You must complete <strong>all 5</strong> before moving on.</p>
+        <p>Use the alphabet table above to decode the following messages. Type your answer and click Check. You must complete <strong>all 4</strong> before moving on.</p>
 
         <div class="encode-box">
           <h4>🔍 Decode 1: 3, 15, 13, 16, 21, 20, 5, 18</h4>
@@ -846,15 +846,6 @@
           <div class="result" id="decode4Result"></div>
         </div>
 
-        <div class="encode-box">
-          <h4>🔍 Decode 5: 5, 14, 3, 18, 25, 16, 20, 9, 15, 14</h4>
-          <div class="input-row">
-            <input type="text" id="decode5" placeholder="Type the word...">
-            <button onclick="checkDecode('decode5','encryption')">Check</button>
-          </div>
-          <div class="result" id="decode5Result"></div>
-        </div>
-
         <button class="check-btn" id="completeTask1">Complete Task 1 →</button>
       </div>
     </div>
@@ -873,7 +864,7 @@
     <!-- STOP AND CHECK 2 -->
     <div class="stop-check">
       <span class="badge">🛑 Stop &amp; Check</span>
-      <p><strong>Class check:</strong> Thumbs up if you finished Task 1. Your teacher will spin the wheel to pick students to share one word they decoded and explain why we encode messages.</p>
+      <p><strong>Class check:</strong> Your teacher will spin the wheel to pick students to share one word they decoded and explain why we encode messages.</p>
       <button class="wheel-btn" onclick="openWheel()"><i class="fas fa-dice"></i> Spin the Wheel</button>
       <div class="unlock-row">
         <input type="password" id="unlock_sc2" placeholder="Teacher password">
@@ -881,11 +872,11 @@
         <span class="unlock-msg" id="msg_sc2"></span>
       </div>
       <div class="teacher-answer" id="answer_sc2">
-        <strong>Answers:</strong> COMPUTER, PROGRAMMING, ALGORITHM, MICROBIT, ENCRYPTION. <br><strong>Why encode?</strong> To keep messages private and secure — if someone intercepts the radio signal, they see numbers, not words. Only someone who knows the alphabet-position code can decode the message.
+        <strong>Answers:</strong> COMPUTER, PROGRAMMING, ALGORITHM, MICROBIT. <br><strong>Why encode?</strong> To keep messages private and secure — if someone intercepts the radio signal, they see numbers, not words. Only someone who knows the alphabet-position code can decode the message.
       </div>
     </div>
 
-    <!-- ===== TASK 2: ENCODE (1 STAR) ===== -->
+    <!-- ===== TASK 2: ENCODE (4 QUESTIONS) ===== -->
     <div class="task-panel locked" id="task2">
       <div class="task-header">
         <h3>
@@ -898,7 +889,7 @@
         </div>
       </div>
       <div class="task-content">
-        <p>Now it's your turn. Encode the following words using the alphabet positions. Write the numbers separated by commas (e.g. <code>3, 1, 20</code>). You must complete <strong>all 5</strong> before moving on.</p>
+        <p>Now it's your turn. Encode the following words using the alphabet positions. Write the numbers separated by commas (e.g. <code>3, 1, 20</code>). You must complete <strong>all 4</strong> before moving on.</p>
 
         <div class="encode-box">
           <h4>🔐 Encode 1: "SECRET"</h4>
@@ -936,56 +927,19 @@
           <div class="result" id="encode4Result"></div>
         </div>
 
-        <div class="encode-box">
-          <h4>🔐 Encode 5: "BINARY"</h4>
-          <div class="input-row">
-            <input type="text" id="encode5" placeholder="Write the numbers...">
-            <button onclick="checkEncode('encode5','2,9,14,1,18,25')">Check</button>
-          </div>
-          <div class="result" id="encode5Result"></div>
-        </div>
-
         <button class="check-btn" id="completeTask2">Complete Task 2 →</button>
       </div>
     </div>
 
-    <!-- ===== STAND IF YOU AGREE ===== -->
+    <!-- ===== STAND IF YOU AGREE (2 MINS, 1 STATEMENT) ===== -->
     <div class="stand-agree-box">
       <span class="badge">🧍 Stand If You Agree</span>
       <div>
-        <h3>Quick Movement Break (1 min)</h3>
-        <p>Your teacher will read out statements. <strong>Stand up if you agree</strong>. Stay seated if you disagree.</p>
+        <h3>Quick Movement Break (2 mins)</h3>
+        <p>Your teacher will read out a statement. <strong>Stand up if you agree</strong>. Stay seated if you disagree.</p>
         <ul>
-          <li>"Encoding makes a message more secure." <em>(Stand)</em></li>
-          <li>"If you make a mistake encoding, the receiver will always know." <em>(Sit — they might not know)</em></li>
-          <li>"The radio group must be different on each micro:bit." <em>(Sit — it must be the same)</em></li>
-          <li>"Numbers are easier to intercept than words." <em>(Sit — they are harder to understand without the code)</em></li>
+          <li>"Encoding makes a message more secure."</li>
         </ul>
-      </div>
-    </div>
-
-    <!-- ===== GROUP WORK 2 ===== -->
-    <div class="group-work">
-      <span class="badge">👥 Group Work</span>
-      <div>
-        <h3>Pair Discussion (2 mins)</h3>
-        <p>Turn to your partner and discuss: <strong>What could go wrong if you made a mistake in the encoding?</strong></p>
-        <p>Think about: How would the receiver know something was wrong? What would they see?</p>
-      </div>
-    </div>
-
-    <!-- STOP AND CHECK 3 -->
-    <div class="stop-check">
-      <span class="badge">🛑 Stop &amp; Check</span>
-      <p><strong>Class check:</strong> Turn to your partner and share one thing you discussed. Your teacher will spin the wheel to pick students to share with the class.</p>
-      <button class="wheel-btn" onclick="openWheel()"><i class="fas fa-dice"></i> Spin the Wheel</button>
-      <div class="unlock-row">
-        <input type="password" id="unlock_sc3" placeholder="Teacher password">
-        <button onclick="unlockAnswer('unlock_sc3', 'answer_sc3', 'msg_sc3')">Unlock Answer</button>
-        <span class="unlock-msg" id="msg_sc3"></span>
-      </div>
-      <div class="teacher-answer" id="answer_sc3">
-        <strong>Why encode?</strong> To keep messages private and secure. If someone intercepts the radio signal, they see numbers, not words. <br><strong>What could go wrong with a mistake?</strong> The receiver decodes the wrong letter, so the message is garbled or completely different. That's why we use a test plan.
       </div>
     </div>
 
@@ -1005,9 +959,9 @@
           <li>Create a test plan to check the program works</li>
           <li>Explain how to check the numbers are correct</li>
         </ul>
-        <p style="margin-top:0.5rem;"><em>You have 10 minutes. Use the alphabet table and your notes from Tasks 1–2 to help you.</em></p>
+        <p style="margin-top:0.5rem;"><em>You have 8 minutes. Use the alphabet table and your notes from Tasks 1–2 to help you.</em></p>
         <div style="display:flex; gap:0.5rem; align-items:center; flex-wrap:wrap; margin-top:0.8rem;">
-          <span class="task-timer" id="timerMain" onclick="startTimer('Main', 600)"><i class="fas fa-play"></i> Start Timer (10 min)</span>
+          <span class="task-timer" id="timerMain" onclick="startTimer('Main', 480)"><i class="fas fa-play"></i> Start Timer (8 min)</span>
         </div>
       </div>
     </div>
@@ -1015,7 +969,7 @@
     <!-- ===== TEACHER CHECK FOR MAIN TASK ===== -->
     <div class="teacher-check-box">
       <span class="badge">✅ Teacher Check</span>
-      <p><strong>Finished the worksheet?</strong> Raise your hand. Your teacher will check that you have submitted it on Schoolbox and initial your screen before you move on.</p>
+      <p><strong>Time check (2 mins):</strong> Your teacher will check that you have submitted your worksheet on Schoolbox by the time limit. If it is incomplete, you must finish it for homework and submit it before the deadline.</p>
       <div class="check-input-row">
         <input type="password" id="check_main" placeholder="Teacher password">
         <button onclick="teacherCheck('check_main', 'main_check_msg', 'task3')">Verify Submission</button>
@@ -1036,7 +990,7 @@
         </div>
       </div>
       <div class="task-content">
-        <p>Complete the truth table below. For each row, decide whether the condition is TRUE or FALSE, then work out what the program will do.</p>
+        <p><strong>Refer to the example in the worksheet.</strong> Complete the truth table below. For each row, decide whether the condition is TRUE or FALSE, then work out what the program will do.</p>
 
         <div class="highlight-box" style="background:#fff8e1; border-left-color:#f9a825;">
           <i class="fas fa-lightbulb" style="color:#b45309; margin-right:8px;"></i>
@@ -1181,11 +1135,7 @@
         </div>
       </div>
       <div class="task-content">
-        <p>Drag the code blocks from the left into the correct order on the right to build a working radio program. The program should:</p>
-        <ul>
-          <li>Set the radio group to 42</li>
-          <li>Loop forever, receiving messages and displaying the numbers 8, 5, 12, 12, 15</li>
-        </ul>
+        <p>Drag the code blocks from the left into the correct order on the right to build a working radio program.</p>
 
         <div class="parsons-wrapper">
           <div class="parsons-header">
@@ -1232,9 +1182,9 @@
       </div>
     </div>
 
-    <!-- ===== PLENARY ===== -->
+    <!-- ===== PLENARY (5 MINS) ===== -->
     <div class="plenary-box">
-      <h2><i class="fas fa-flag-checkered" style="margin-right:10px;"></i> Plenary — Exit Ticket (3 mins)</h2>
+      <h2><i class="fas fa-flag-checkered" style="margin-right:10px;"></i> Plenary — Exit Ticket (5 mins)</h2>
 
       <p style="color:#1b5e20; margin-bottom:1rem;">Let's review what we learned today.</p>
 
@@ -1251,15 +1201,9 @@
       </div>
 
       <div class="plenary-question">
-        <p>3. What must be the same on both micro:bits for them to communicate?</p>
+        <p>3. What is the difference between AND and OR?</p>
         <button class="reveal-btn" onclick="revealAnswer('plenary3')">Reveal Answer</button>
-        <div class="answer" id="plenary3">The radio group (channel). If they have different groups, they cannot send or receive messages.</div>
-      </div>
-
-      <div class="plenary-question">
-        <p>4. What is the difference between AND and OR?</p>
-        <button class="reveal-btn" onclick="revealAnswer('plenary4')">Reveal Answer</button>
-        <div class="answer" id="plenary4">AND means <strong>both</strong> conditions must be true. OR means <strong>at least one</strong> condition must be true.</div>
+        <div class="answer" id="plenary3">AND means <strong>both</strong> conditions must be true. OR means <strong>at least one</strong> condition must be true.</div>
       </div>
 
       <div style="margin-top:1.5rem; padding-top:1rem; border-top:2px solid #4caf50;">
