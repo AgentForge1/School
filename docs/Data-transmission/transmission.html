@@ -155,13 +155,6 @@
     }
     .stop-check p { margin: 0; color: #7a3300; font-size: 0.9rem; }
     .stop-check strong { color: #7a3300; }
-    .stop-check .wheel-btn {
-      background: #e65100; color: white; border: none;
-      padding: 0.5rem 1.2rem; border-radius: 30px;
-      font-weight: 700; font-size: 0.8rem; cursor: pointer;
-      transition: 0.2s; display: inline-flex; align-items: center; gap: 6px;
-    }
-    .stop-check .wheel-btn:hover { background: #b33f00; }
     .stop-check .unlock-row {
       margin-top: 0.5rem;
       display: flex;
@@ -342,40 +335,6 @@
       font-size: 1.2rem;
       color: #e65100;
     }
-
-    .wheel-modal {
-      display: none;
-      position: fixed; top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(0,0,0,0.7); z-index: 2000;
-      align-items: center; justify-content: center;
-    }
-    .wheel-modal.show { display: flex; }
-    .wheel-modal .wheel-content {
-      background: white; border-radius: 24px;
-      padding: 2rem 2.5rem; text-align: center;
-      max-width: 500px; width: 90%;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-    }
-    .wheel-modal h3 { margin-top: 0; color: #0b2a4a; }
-    .wheel-modal .wheel-display {
-      font-size: 1.8rem; font-weight: 700;
-      color: #2a6f97; margin: 1.5rem 0;
-      min-height: 3.5rem;
-      font-family: 'JetBrains Mono', monospace;
-      line-height: 1.3;
-    }
-    .wheel-modal .wheel-display.spinning {
-      color: #f9a825;
-      animation: blink 0.2s infinite;
-    }
-    @keyframes blink { 0% { opacity: 1; } 50% { opacity: 0.4; } 100% { opacity: 1; } }
-    .wheel-modal .wheel-close {
-      background: #0b2a4a; color: white; border: none;
-      padding: 0.6rem 1.6rem; border-radius: 30px;
-      font-weight: 600; font-size: 0.9rem; cursor: pointer;
-      margin-top: 0.5rem; margin-right: 0.5rem;
-    }
-    .wheel-modal .wheel-close:hover { background: #1f6390; }
 
     .truth-table {
       width: 100%; border-collapse: collapse; margin: 1rem 0;
@@ -561,91 +520,6 @@
     .group-work ul { margin: 0.5rem 0 0 0; padding-left: 1.2rem; }
     .group-work ul li { color: #0d3b6e; font-size: 0.9rem; }
 
-    .plenary-box {
-      background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
-      border: 2px solid #4caf50; border-radius: 20px;
-      padding: 1.6rem 2rem; margin: 2rem 0;
-    }
-    .plenary-box h2 {
-      border-left-color: #4caf50 !important;
-      color: #1b5e20 !important;
-      margin-top: 0 !important;
-    }
-    .plenary-box .plenary-question {
-      background: white; border-radius: 14px;
-      padding: 1rem 1.4rem; margin: 0.8rem 0;
-      border-left: 4px solid #4caf50;
-    }
-    .plenary-box .plenary-question p {
-      font-weight: 600; color: #1b5e20; margin-bottom: 0.4rem;
-    }
-    .plenary-box .plenary-question .answer {
-      display: none; margin-top: 0.4rem; padding: 0.6rem 1rem;
-      background: #e8f5e9; border-radius: 10px;
-      font-size: 0.9rem; color: #1b5e20;
-    }
-    .plenary-box .plenary-question .answer.show { display: block; }
-    .plenary-box .unlock-row {
-      display: flex;
-      gap: 0.5rem;
-      align-items: center;
-      flex-wrap: wrap;
-      margin-top: 0.5rem;
-    }
-    .plenary-box .unlock-row input {
-      padding: 0.3rem 0.6rem;
-      border: 2px solid #4caf50;
-      border-radius: 8px;
-      font-size: 0.75rem;
-      width: 120px;
-      font-family: 'JetBrains Mono', monospace;
-    }
-    .plenary-box .unlock-row input:focus {
-      outline: none;
-      border-color: #2d8f2d;
-    }
-    .plenary-box .unlock-row button {
-      background: #2d8f2d;
-      color: white;
-      border: none;
-      padding: 0.3rem 0.8rem;
-      border-radius: 30px;
-      font-weight: 600;
-      font-size: 0.7rem;
-      cursor: pointer;
-    }
-    .plenary-box .unlock-row button:hover { background: #1b5e20; }
-    .plenary-box .unlock-row .unlock-msg {
-      font-size: 0.7rem;
-      font-weight: 600;
-    }
-    .plenary-box .unlock-row .unlock-msg.ok { color: #2d8f2d; }
-    .plenary-box .unlock-row .unlock-msg.no { color: #b71c1c; }
-
-    .exit-ticket-example {
-      background: white;
-      border-radius: 12px;
-      padding: 1rem 1.4rem;
-      margin: 0.8rem 0;
-      border-left: 4px solid #4caf50;
-    }
-    .exit-ticket-example p {
-      font-weight: 600;
-      color: #1b5e20;
-      margin-bottom: 0.4rem;
-    }
-    .exit-ticket-example .example-item {
-      background: #e8f5e9;
-      border-radius: 8px;
-      padding: 0.5rem 0.8rem;
-      margin-bottom: 0.4rem;
-      font-size: 0.85rem;
-      color: #1b5e20;
-    }
-    .exit-ticket-example .example-item strong {
-      color: #1b5e20;
-    }
-
     .keyword-row {
       display: flex; flex-wrap: wrap; gap: 0.8rem 1.2rem;
       background: #f1f6fc; padding: 0.8rem 1.2rem;
@@ -705,6 +579,23 @@
     .compare-card ul li { font-size: 0.9rem; margin-bottom: 0.3rem; }
     .compare-card .pro { color: #2d8f2d; font-weight: 600; }
     .compare-card .con { color: #b71c1c; font-weight: 600; }
+
+    /* Custom Input for Questions */
+    .encode-box { margin: 1.2rem 0; padding: 1rem; background: #f8fafc; border-radius: 12px; border: 1px solid #dce4ed; }
+    .encode-box h4 { margin-top: 0; margin-bottom: 0.5rem; color: #0b2a4a; }
+    .input-row { display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap; }
+    .input-row input { padding: 0.5rem; border: 2px solid #b6cfe5; border-radius: 8px; font-family: inherit; flex: 1; min-width: 200px; }
+    .input-row button { background: #2a6f97; color: white; border: none; padding: 0.5rem 1rem; border-radius: 8px; cursor: pointer; font-weight: 600; }
+    .input-row button:hover { background: #1f6390; }
+    .result { font-weight: 600; margin-top: 0.3rem; font-size: 0.9rem; }
+    .result.ok { color: #2d8f2d; }
+    .result.no { color: #b71c1c; }
+
+    /* Teacher section */
+    .teacher-section { background: #f1f5f9; border: 2px dashed #94a3b8; padding: 1.5rem; border-radius: 16px; margin-top: 2rem; }
+    .teacher-section h3 { color: #1e293b; margin-top: 0; display: flex; align-items: center; gap: 8px; }
+    .teacher-answer { display: none; margin-top: 0.8rem; background: white; padding: 1rem; border-radius: 8px; border: 1px solid #cbd5e1; }
+    .teacher-answer.show { display: block; }
   </style>
 </head>
 <body>
@@ -772,8 +663,7 @@
     <!-- ===== STOP AND CHECK 1 ===== -->
     <div class="stop-check">
       <span class="badge">🛑 Stop &amp; Check</span>
-      <p><strong>Class check:</strong> Your teacher will spin the wheel and ask you to explain <strong>one way</strong> the tin can telephone could be improved to allow faster messages.</p>
-      <button class="wheel-btn" onclick="openWheel()"><i class="fas fa-dice"></i> Spin the Wheel</button>
+      <p><strong>Class check:</strong> Your teacher will ask you to explain <strong>one way</strong> the tin can telephone could be improved to allow faster messages.</p>
       <div class="unlock-row">
         <input type="password" id="unlock_sc1" placeholder="Teacher password">
         <button onclick="unlockAnswer('unlock_sc1', 'answer_sc1', 'msg_sc1')">Unlock Answer</button>
@@ -893,8 +783,7 @@
     <!-- ===== STOP AND CHECK 2 ===== -->
     <div class="stop-check">
       <span class="badge">🛑 Stop &amp; Check</span>
-      <p><strong>Class check:</strong> Your teacher will spin the wheel to pick students to share <strong>one reason</strong> why serial transmission replaced parallel transmission for external cables.</p>
-      <button class="wheel-btn" onclick="openWheel()"><i class="fas fa-dice"></i> Spin the Wheel</button>
+      <p><strong>Class check:</strong> Your teacher will ask students to share <strong>one reason</strong> why serial transmission replaced parallel transmission for external cables.</p>
       <div class="unlock-row">
         <input type="password" id="unlock_sc2" placeholder="Teacher password">
         <button onclick="unlockAnswer('unlock_sc2', 'answer_sc2', 'msg_sc2')">Unlock Answer</button>
@@ -1012,8 +901,7 @@
     <!-- ===== STOP AND CHECK 3 ===== -->
     <div class="stop-check">
       <span class="badge">🛑 Stop &amp; Check</span>
-      <p><strong>Class check:</strong> Your teacher will spin the wheel and ask you to explain the difference between <strong>half-duplex</strong> and <strong>full-duplex</strong> using a real-world analogy.</p>
-      <button class="wheel-btn" onclick="openWheel()"><i class="fas fa-dice"></i> Spin the Wheel</button>
+      <p><strong>Class check:</strong> Your teacher will ask you to explain the difference between <strong>half-duplex</strong> and <strong>full-duplex</strong> using a real-world analogy.</p>
       <div class="unlock-row">
         <input type="password" id="unlock_sc3" placeholder="Teacher password">
         <button onclick="unlockAnswer('unlock_sc3', 'answer_sc3', 'msg_sc3')">Unlock Answer</button>
@@ -1129,8 +1017,7 @@
     <!-- ===== STOP AND CHECK 4 ===== -->
     <div class="stop-check">
       <span class="badge">🛑 Stop &amp; Check</span>
-      <p><strong>Class check:</strong> Your teacher will spin the wheel and ask you to name <strong>one benefit</strong> and <strong>one drawback</strong> of USB.</p>
-      <button class="wheel-btn" onclick="openWheel()"><i class="fas fa-dice"></i> Spin the Wheel</button>
+      <p><strong>Class check:</strong> Your teacher will ask you to name <strong>one benefit</strong> and <strong>one drawback</strong> of USB.</p>
       <div class="unlock-row">
         <input type="password" id="unlock_sc4" placeholder="Teacher password">
         <button onclick="unlockAnswer('unlock_sc4', 'answer_sc4', 'msg_sc4')">Unlock Answer</button>
@@ -1176,11 +1063,11 @@
         </div>
       </div>
       <div class="task-content">
-        <p><strong>Refer to the plenary analogy in the lesson.</strong> Match each transmission term to its correct analogy. Drag the blocks from the left into the correct order on the right.</p>
+        <p><strong>Match each transmission term to its correct analogy.</strong> Drag the blocks from the left into the correct order on the right.</p>
 
         <div class="timer-hint-box">
           <i class="fas fa-clock"></i>
-          <span>⏱️ Click the timer above to start. The Plenary will be highlighted when time is up. Or click the yellow "Complete Task" button if you finish early.</span>
+          <span>⏱️ Click the timer above to start. The next section will be highlighted when time is up. Or click the yellow "Complete Task" button if you finish early.</span>
         </div>
 
         <div class="parsons-wrapper">
@@ -1220,73 +1107,7 @@
           </ol>
         </div>
 
-        <button class="check-btn-pulse" id="completeTask4">✅ Finished? Click here to go to the Plenary →</button>
-      </div>
-    </div>
-
-    <!-- ===== PLENARY ===== -->
-    <div class="plenary-box">
-      <h2><i class="fas fa-flag-checkered" style="margin-right:10px;"></i> Plenary — Exit Ticket (5 mins)</h2>
-
-      <p style="color:#1b5e20; margin-bottom:1rem;">Let's review what we learned today.</p>
-
-      <div class="plenary-question">
-        <p>1. What is the difference between serial and parallel transmission?</p>
-        <div class="unlock-row">
-          <input type="password" id="unlock_plenary1" placeholder="Teacher password">
-          <button onclick="unlockPlenary('unlock_plenary1', 'plenary1', 'msg_plenary1')">Reveal Answer</button>
-          <span class="unlock-msg" id="msg_plenary1"></span>
-        </div>
-        <div class="answer" id="plenary1"><strong>Serial:</strong> bits are sent one signal at a time over a single wire. <strong>Parallel:</strong> multiple wires are used so that many bits may be sent at the same time.</div>
-      </div>
-
-      <div class="plenary-question">
-        <p>2. What are the two main problems with parallel transmission over long distances?</p>
-        <div class="unlock-row">
-          <input type="password" id="unlock_plenary2" placeholder="Teacher password">
-          <button onclick="unlockPlenary('unlock_plenary2', 'plenary2', 'msg_plenary2')">Reveal Answer</button>
-          <span class="unlock-msg" id="msg_plenary2"></span>
-        </div>
-        <div class="answer" id="plenary2"><strong>Crosstalk</strong> — a signal on one line creates a disturbance in another line, potentially causing a bit to be reversed. <strong>Skew</strong> — each wire has slightly different properties, so signals arrive at slightly different times, and the receiver must wait for all lines before the next set of bits can be sent.</div>
-      </div>
-
-      <div class="plenary-question">
-        <p>3. What is the difference between half-duplex and full-duplex?</p>
-        <div class="unlock-row">
-          <input type="password" id="unlock_plenary3" placeholder="Teacher password">
-          <button onclick="unlockPlenary('unlock_plenary3', 'plenary3', 'msg_plenary3')">Reveal Answer</button>
-          <span class="unlock-msg" id="msg_plenary3"></span>
-        </div>
-        <div class="answer" id="plenary3"><strong>Half-duplex:</strong> data can travel in both directions along a single connection, but not at the same time (e.g., walkie talkies). <strong>Full-duplex:</strong> data can travel in both directions simultaneously using two cables or fibres (e.g., Ethernet, fibre optic).</div>
-      </div>
-
-      <div class="plenary-question">
-        <p>4. Give one benefit and one drawback of USB.</p>
-        <div class="unlock-row">
-          <input type="password" id="unlock_plenary4" placeholder="Teacher password">
-          <button onclick="unlockPlenary('unlock_plenary4', 'plenary4', 'msg_plenary4')">Reveal Answer</button>
-          <span class="unlock-msg" id="msg_plenary4"></span>
-        </div>
-        <div class="answer" id="plenary4"><strong>Benefit:</strong> Hot-swappable (can be plugged in/removed whilst the device is on); simple connector without screws; supports many devices via drivers.<br><strong>Drawback:</strong> Limited to ~5 metres before a hub is needed; not fast enough for internal devices like CPU and RAM (DDR4 is ~10× faster than USB 3).</div>
-      </div>
-
-      <div style="margin-top:1.5rem; padding-top:1rem; border-top:2px solid #4caf50;">
-        <p style="color:#1b5e20; font-weight:600;">🎯 Exit Ticket:</p>
-        <p style="color:#1b5e20;">On a sticky note, write:</p>
-        <ol style="color:#1b5e20;">
-          <li>One thing you learned today</li>
-          <li>One thing you found difficult</li>
-          <li>One question you still have</li>
-        </ol>
-
-        <div class="exit-ticket-example">
-          <p>📝 Example:</p>
-          <div class="example-item"><strong>One thing I learned:</strong> The difference between half-duplex and full-duplex transmission.</div>
-          <div class="example-item"><strong>One thing I found difficult:</strong> Remembering why parallel is no longer faster than serial.</div>
-          <div class="example-item"><strong>One question I still have:</strong> How does a USB hub work?</div>
-        </div>
-
-        <p style="color:#1b5e20; font-weight:600; margin-top:0.5rem;">📌 Stick your note on the board as you leave the room.</p>
+        <button class="check-btn-pulse" id="completeTask4">✅ Finished? Click here to move to Lesson 2 →</button>
       </div>
     </div>
 
@@ -1307,6 +1128,74 @@
       <span>driver</span>
     </div>
 
+    <!-- ===== LESSON 2: EXTENSION TASKS ===== -->
+    <div class="main-task" style="background: #e3f2fd; border-color: #1e88e5; margin-top: 2rem;">
+      <span class="badge" style="background: #1e88e5;">⭐ Lesson 2: Extension Tasks</span>
+      <div style="flex:1;">
+        <h3>Complete these tasks in the second half of the lesson.</h3>
+        <ul style="margin-top: 0.5rem; margin-bottom: 0; color: #0d3b6e;">
+          <li><strong>Research task:</strong> What is the difference between a checksum and a cyclic redundancy check (CRC)? Which is more reliable, and why?</li>
+          <li><strong>Challenge:</strong> A packet is sent with a checksum that says "the number of 1s in the payload is 7". When it arrives, the receiver counts 6 ones. What has happened, and what should the receiver do?</li>
+          <li><strong>Creative:</strong> Draw your own diagram of a small network with 4 routers and a server. Show two different possible paths a packet could take from a client device to the server.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- ===== AI GUIDE & POWERPOINT ===== -->
+    <h2 style="margin-top: 2.5rem;">🤖 AI Guide & Resources</h2>
+    <div class="highlight-box blue" style="border-left-color: #3b82f6; background: #eff6ff;">
+      <h3 style="color: #1e3a8a; margin-top: 0;">Your Personal Tutor</h3>
+      <p style="color: #1e40af;">Ask the AI any question about data transmission.</p>
+      <!-- REPLACE WITH YOUR ACTUAL AI LINK -->
+      <a href="YOUR_AI_LINK_HERE" target="_blank" class="check-btn" style="background: #2563eb; text-decoration: none; display: inline-block;">Open AI Tutor</a>
+    </div>
+
+    <div class="highlight-box" style="margin-top: 1rem;">
+      <h3 style="margin-top: 0;">📺 Recommended Video / PowerPoint</h3>
+      <p>Use these slides to recap the lesson.</p>
+      <!-- REPLACE WITH YOUR ACTUAL POWERPOINT LINK -->
+      <a href="YOUR_POWERPOINT_LINK_HERE" target="_blank" class="check-btn" style="text-decoration: none; display: inline-block;">View PowerPoint</a>
+    </div>
+
+    <!-- ===== TEACHER LESSON PLAN ===== -->
+    <div class="teacher-section">
+      <h3><i class="fas fa-chalkboard-teacher"></i> Teacher Lesson Plan</h3>
+      <p>Enter password to view the full lesson plan.</p>
+      <div class="unlock-row">
+        <input type="password" id="unlock_plan" placeholder="Teacher password" style="padding: 0.5rem; border: 1px solid #94a3b8; border-radius: 6px;">
+        <button onclick="unlockAnswer('unlock_plan', 'lesson_plan_content', 'msg_plan')" style="padding: 0.5rem 1rem; background: #0b2a4a; color: white; border: none; border-radius: 6px; cursor: pointer;">Unlock</button>
+        <span class="unlock-msg" id="msg_plan" style="font-weight: 600; font-size: 0.85rem;"></span>
+      </div>
+      
+      <div class="teacher-answer" id="lesson_plan_content">
+        <h4 style="margin-top: 0; color: #0b2a4a;">Lesson Overview</h4>
+        <p>This is a <strong>double lesson</strong>. The first half of the lesson covers serial vs parallel transmission, simplex/half-duplex/full-duplex, and USB. Students will complete Tasks 1–4 and the Schoolbox worksheet. The second half of the lesson is dedicated to the Extension Tasks.</p>
+        
+        <h4 style="color: #0b2a4a;">Timing (Double Lesson)</h4>
+        <ul style="font-size: 0.9rem;">
+          <li><strong>0–10 min:</strong> Starter (Tin Can Telephone) &amp; Objectives</li>
+          <li><strong>10–25 min:</strong> Task 1 (Serial vs Parallel) &amp; Group Work</li>
+          <li><strong>25–40 min:</strong> Task 2 (Transmission Direction) &amp; Stop &amp; Check</li>
+          <li><strong>40–55 min:</strong> Task 3 (USB Features &amp; Benefits)</li>
+          <li><strong>55–65 min:</strong> Main Task (Schoolbox Worksheet)</li>
+          <li><strong>65–75 min:</strong> Task 4 (Analogy Match)</li>
+          <li><strong>75–95 min:</strong> Lesson 2 Extension Tasks (Research, Challenge, Creative)</li>
+          <li><strong>95–100 min:</strong> Review and Pack Up</li>
+        </ul>
+
+        <h4 style="color: #0b2a4a;">Key Teaching Points</h4>
+        <ul style="font-size: 0.9rem;">
+          <li>Use the tin can telephone analogy throughout the first half.</li>
+          <li>Emphasise that serial is now faster than parallel due to faster processors.</li>
+          <li>Highlight the real-world impact of USB (hot-swappable, universal).</li>
+          <li>Ensure students understand the difference between half-duplex and full-duplex with physical analogies.</li>
+        </ul>
+
+        <h4 style="color: #0b2a4a;">Answers for Teachers</h4>
+        <p style="font-size: 0.9rem;">All "Teacher Answers" for the Stop &amp; Check boxes are hidden behind the password <code>teacher</code>. The answers for the Main Task are on Schoolbox.</p>
+      </div>
+    </div>
+
   </div>
 
   <!-- ===== FOOTER ===== -->
@@ -1318,26 +1207,7 @@
 
 </div>
 
-<!-- ===== RANDOM WHEEL MODAL ===== -->
-<div class="wheel-modal" id="wheelModal">
-  <div class="wheel-content">
-    <h3><i class="fas fa-dice" style="color:#e65100;"></i> Random Student Picker</h3>
-    <div class="wheel-display" id="wheelDisplay">?</div>
-    <p style="color:#64748b; font-size:0.9rem;">Click the button to spin again.</p>
-    <button class="wheel-close" onclick="spinWheel()">Spin Again</button>
-    <button class="wheel-close" onclick="closeWheel()" style="background:#64748b;">Close</button>
-  </div>
-</div>
-
 <script>
-  // ===== STUDENT NAMES =====
-  const studentNames = [
-    'Ela', 'Rialda', 'Leo', 'Amna', 'Yitong', 'Emir', 'Milo', 'Dona',
-    'Fiona', 'Greta', 'Julius', 'Luca', 'Mia', 'Cameron', 'Nicolas',
-    'Eliza', 'Yannik', 'Shengrui', 'Stella', 'Schäfer, Leopold',
-    'Schmidt, Leonard', 'Samuel', 'Selina', 'Emma', 'Ella', 'Wenxuan', 'Yuxin'
-  ];
-
   // ===== CHECK ANSWER FUNCTION =====
   function checkAnswer(id, answer) {
     const input = document.getElementById(id);
@@ -1365,30 +1235,13 @@
       answer.classList.add('show');
       msg.textContent = '✅ Unlocked';
       msg.className = 'unlock-msg ok';
+      msg.style.color = '#2d8f2d';
       input.value = '';
     } else {
       answer.classList.remove('show');
       msg.textContent = '❌ Wrong password';
       msg.className = 'unlock-msg no';
-    }
-  }
-
-  // ===== UNLOCK PLENARY ANSWER =====
-  function unlockPlenary(inputId, answerId, msgId) {
-    const input = document.getElementById(inputId);
-    const answer = document.getElementById(answerId);
-    const msg = document.getElementById(msgId);
-    const password = input.value.trim();
-
-    if (password === 'teacher') {
-      answer.classList.add('show');
-      msg.textContent = '✅ Unlocked';
-      msg.className = 'unlock-msg ok';
-      input.value = '';
-    } else {
-      answer.classList.remove('show');
-      msg.textContent = '❌ Wrong password';
-      msg.className = 'unlock-msg no';
+      msg.style.color = '#b71c1c';
     }
   }
 
@@ -1401,42 +1254,6 @@
     const task2Status = document.getElementById('task2Status');
     const task3Status = document.getElementById('task3Status');
     const task4Status = document.getElementById('task4Status');
-
-    // ===== AUTO-UNLOCK FUNCTIONS (called when timers end) =====
-    window.unlockTask2 = function() {
-      if (!task2.classList.contains('locked')) return;
-      document.getElementById('task1Status').textContent = 'Complete';
-      document.getElementById('task1Status').className = 'task-status done';
-      task2.classList.remove('locked');
-      task2Status.textContent = 'In Progress';
-      task2Status.className = 'task-status pending';
-    };
-
-    window.unlockTask3 = function() {
-      if (!task3.classList.contains('locked')) return;
-      document.getElementById('task2Status').textContent = 'Complete';
-      document.getElementById('task2Status').className = 'task-status done';
-      task3.classList.remove('locked');
-      task3Status.textContent = 'In Progress';
-      task3Status.className = 'task-status pending';
-    };
-
-    window.unlockTask4 = function() {
-      if (!task4.classList.contains('locked')) return;
-      document.getElementById('task3Status').textContent = 'Complete';
-      document.getElementById('task3Status').className = 'task-status done';
-      task4.classList.remove('locked');
-      task4Status.textContent = 'In Progress';
-      task4Status.className = 'task-status pending';
-    };
-
-    window.unlockPlenary = function() {
-      if (!task4.classList.contains('locked')) return;
-      task4Status.textContent = 'Complete';
-      task4Status.className = 'task-status done';
-      document.querySelector('.plenary-box').style.borderColor = '#e65100';
-      document.querySelector('.plenary-box').style.borderWidth = '3px';
-    };
 
     // ===== MANUAL COMPLETE BUTTONS (for early finishers) =====
     document.getElementById('completeTask1').addEventListener('click', () => {
@@ -1469,266 +1286,129 @@
     document.getElementById('completeTask4').addEventListener('click', () => {
       task4Status.textContent = 'Complete';
       task4Status.className = 'task-status done';
-      document.querySelector('.plenary-box').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      // Scroll to Lesson 2 Extension
+      document.querySelector('.main-task[style*="background: #e3f2fd"]').scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
   })();
 
-  // ===== COUNTDOWN TIMERS WITH MIDI AND AUTO-UNLOCK =====
-  const timerIntervals = {};
+  // ===== DRAG AND DROP (PARSONS PROBLEM) =====
+  const terms = [
+    { id: 't1', text: 'Serial — cars sent along a one-way road, one car at a time' },
+    { id: 't2', text: 'Simplex — cars only travel in one direction' },
+    { id: 't3', text: 'Full-duplex — cars travel in both directions at the same time' },
+    { id: 't4', text: 'Parallel — a motorway with 8 lanes, multiple cars at the same time' },
+    { id: 't5', text: 'Half-duplex — cars travel in both directions, but only one direction at a time' }
+  ];
 
-  function playMidiTune() {
-    try {
-      const AudioContext = window.AudioContext || window.webkitAudioContext;
-      const ctx = new AudioContext();
-      const notes = [523.25, 659.25, 783.99, 1046.50];
-      let time = ctx.currentTime;
+  const correctOrder = ['t1', 't4', 't2', 't5', 't3'];
 
-      notes.forEach((freq) => {
-        const osc = ctx.createOscillator();
-        const gain = ctx.createGain();
-        osc.type = 'square';
-        osc.frequency.value = freq;
-        gain.gain.setValueAtTime(0.15, time);
-        gain.gain.exponentialRampToValueAtTime(0.001, time + 0.3);
-        osc.connect(gain);
-        gain.connect(ctx.destination);
-        osc.start(time);
-        osc.stop(time + 0.3);
-        time += 0.2;
-      });
-
-      setTimeout(() => {
-        const osc1 = ctx.createOscillator();
-        const osc2 = ctx.createOscillator();
-        const gain = ctx.createGain();
-        osc1.type = 'triangle';
-        osc2.type = 'triangle';
-        osc1.frequency.value = 1046.50;
-        osc2.frequency.value = 1318.51;
-        gain.gain.setValueAtTime(0.2, ctx.currentTime);
-        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.8);
-        osc1.connect(gain);
-        osc2.connect(gain);
-        gain.connect(ctx.destination);
-        osc1.start();
-        osc2.start();
-        osc1.stop(ctx.currentTime + 0.8);
-        osc2.stop(ctx.currentTime + 0.8);
-      }, 800);
-    } catch (e) {
-      console.log('Audio not supported:', e);
+  function shuffle(array) {
+    let currentIndex = array.length, randomIndex;
+    while (currentIndex != 0) {
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex--;
+      [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
     }
+    return array;
   }
 
-  function startTimer(taskNum, maxSeconds) {
-    const timerEl = document.getElementById('timer' + taskNum);
-    if (!timerEl) return;
+  const itemsContainer = document.getElementById('parsonsItems');
+  const dropContainer = document.getElementById('parsonsDrop');
+  const feedback = document.getElementById('parsonsFeedback');
 
-    if (timerIntervals[taskNum]) {
-      clearInterval(timerIntervals[taskNum]);
-      delete timerIntervals[taskNum];
-      timerEl.innerHTML = '<i class="fas fa-play"></i> Start Timer';
-      timerEl.className = 'task-timer';
-      // Hide answer reveal if this was task 4
-      const reveal = document.getElementById('parsonsAnswerReveal');
-      if (reveal) reveal.classList.remove('show');
+  function initParsons() {
+    itemsContainer.innerHTML = '';
+    dropContainer.innerHTML = '<div class="placeholder">Drag the terms here to match the analogies...</div>';
+    feedback.textContent = '';
+    const shuffled = shuffle([...terms]);
+    shuffled.forEach(term => {
+      const div = document.createElement('div');
+      div.className = 'parsons-item';
+      div.draggable = true;
+      div.id = term.id;
+      div.textContent = term.text;
+      div.addEventListener('dragstart', handleDragStart);
+      itemsContainer.appendChild(div);
+    });
+  }
+
+  let draggedItem = null;
+  function handleDragStart(e) {
+    draggedItem = this;
+    this.classList.add('dragging');
+    e.dataTransfer.effectAllowed = 'move';
+  }
+
+  dropContainer.addEventListener('dragover', (e) => {
+    e.preventDefault();
+    dropContainer.style.background = '#ffecb3';
+  });
+
+  dropContainer.addEventListener('dragleave', () => {
+    dropContainer.style.background = '#fff8e1';
+  });
+
+  dropContainer.addEventListener('drop', (e) => {
+    e.preventDefault();
+    dropContainer.style.background = '#fff8e1';
+    if (draggedItem) {
+      const placeholder = dropContainer.querySelector('.placeholder');
+      if (placeholder) placeholder.remove();
+      dropContainer.appendChild(draggedItem);
+      draggedItem.classList.remove('dragging');
+      draggedItem = null;
+      feedback.textContent = '';
+    }
+  });
+
+  itemsContainer.addEventListener('dragover', (e) => {
+    e.preventDefault();
+    itemsContainer.style.background = '#dbeafe';
+  });
+
+  itemsContainer.addEventListener('dragleave', () => {
+    itemsContainer.style.background = '#ffffff';
+  });
+
+  itemsContainer.addEventListener('drop', (e) => {
+    e.preventDefault();
+    itemsContainer.style.background = '#ffffff';
+    if (draggedItem) {
+      itemsContainer.appendChild(draggedItem);
+      draggedItem.classList.remove('dragging');
+      draggedItem = null;
+      const children = dropContainer.querySelectorAll('.parsons-item');
+      if (children.length === 0) {
+        dropContainer.innerHTML = '<div class="placeholder">Drag the terms here to match the analogies...</div>';
+      }
+      feedback.textContent = '';
+    }
+  });
+
+  document.getElementById('checkParsons').addEventListener('click', () => {
+    const items = dropContainer.querySelectorAll('.parsons-item');
+    const currentOrder = Array.from(items).map(item => item.id);
+    
+    if (currentOrder.length !== correctOrder.length) {
+      feedback.textContent = 'Please drag all terms into the box.';
+      feedback.className = 'parsons-feedback no';
       return;
     }
 
-    let remaining = maxSeconds;
-    timerEl.innerHTML = '<i class="fas fa-stop"></i> ' + formatTime(remaining);
-
-    timerIntervals[taskNum] = setInterval(() => {
-      remaining--;
-      timerEl.innerHTML = '<i class="fas fa-stop"></i> ' + formatTime(remaining);
-
-      if (remaining <= 60) {
-        timerEl.className = 'task-timer danger';
-      } else if (remaining <= maxSeconds * 0.25) {
-        timerEl.className = 'task-timer warning';
-      }
-
-      if (remaining <= 0) {
-        clearInterval(timerIntervals[taskNum]);
-        delete timerIntervals[taskNum];
-        timerEl.className = 'task-timer danger';
-        timerEl.innerHTML = '<i class="fas fa-check"></i> Time\'s up!';
-        playMidiTune();
-
-        // ===== AUTO-UNLOCK LOGIC =====
-        if (taskNum === 1) {
-          unlockTask2();
-        } else if (taskNum === 2) {
-          unlockTask3();
-        } else if (taskNum === 'Main') {
-          unlockTask4();
-        } else if (taskNum === 3) {
-          unlockTask4();
-        } else if (taskNum === 4) {
-          unlockPlenary();
-          // Show Parsons answer when Task 4 timer ends
-          const reveal = document.getElementById('parsonsAnswerReveal');
-          if (reveal) reveal.classList.add('show');
-        }
-      }
-    }, 1000);
-  }
-
-  function formatTime(seconds) {
-    if (seconds < 0) seconds = 0;
-    const mins = Math.floor(seconds / 60);
-    const secs = seconds % 60;
-    return mins.toString().padStart(2, '0') + ':' + secs.toString().padStart(2, '0');
-  }
-
-  // ===== PARSONS PROBLEM (ANALOGY MATCH) =====
-  (function() {
-    const correctOrder = [
-      'Serial — cars sent along a one-way road, one car at a time',
-      'Parallel — a motorway with 8 lanes, multiple cars at the same time',
-      'Simplex — cars only travel in one direction',
-      'Half-duplex — cars travel in both directions, but only one direction at a time',
-      'Full-duplex — cars travel in both directions at the same time'
-    ];
-
-    const itemsContainer = document.getElementById('parsonsItems');
-    const dropZone = document.getElementById('parsonsDrop');
-    const checkBtn = document.getElementById('checkParsons');
-    const resetBtn = document.getElementById('resetParsons');
-    const feedback = document.getElementById('parsonsFeedback');
-
-    let draggedItem = null;
-
-    function shuffleArray(arr) {
-      const a = arr.slice();
-      for (let i = a.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [a[i], a[j]] = [a[j], a[i]];
-      }
-      return a;
+    const isCorrect = currentOrder.every((id, index) => id === correctOrder[index]);
+    if (isCorrect) {
+      feedback.textContent = '✅ Perfect! You matched them all correctly.';
+      feedback.className = 'parsons-feedback ok';
+    } else {
+      feedback.textContent = '❌ Not quite. Try again.';
+      feedback.className = 'parsons-feedback no';
     }
+  });
 
-    function renderItems() {
-      itemsContainer.innerHTML = '';
-      const shuffled = shuffleArray(correctOrder);
-      shuffled.forEach(line => {
-        const div = document.createElement('div');
-        div.className = 'parsons-item';
-        div.draggable = true;
-        div.textContent = line;
-        div.setAttribute('data-line', line);
-        div.addEventListener('dragstart', (e) => {
-          draggedItem = div;
-          div.classList.add('dragging');
-          e.dataTransfer.setData('text/plain', line);
-        });
-        div.addEventListener('dragend', () => {
-          div.classList.remove('dragging');
-        });
-        itemsContainer.appendChild(div);
-      });
-      dropZone.innerHTML = '<div class="placeholder">Drag the terms here to match the analogies...</div>';
-      feedback.textContent = '';
-    }
+  document.getElementById('resetParsons').addEventListener('click', initParsons);
 
-    dropZone.addEventListener('dragover', (e) => {
-      e.preventDefault();
-      dropZone.style.background = '#fff3e0';
-    });
+  initParsons();
 
-    dropZone.addEventListener('dragleave', () => {
-      dropZone.style.background = '#fff8e1';
-    });
-
-    dropZone.addEventListener('drop', (e) => {
-      e.preventDefault();
-      dropZone.style.background = '#fff8e1';
-      if (draggedItem) {
-        const placeholder = dropZone.querySelector('.placeholder');
-        if (placeholder) placeholder.remove();
-
-        const clone = draggedItem.cloneNode(true);
-        clone.draggable = false;
-        clone.style.cursor = 'default';
-        clone.style.marginBottom = '0.3rem';
-        clone.classList.add('placed');
-        dropZone.appendChild(clone);
-
-        draggedItem.remove();
-        draggedItem = null;
-      }
-    });
-
-    checkBtn.addEventListener('click', () => {
-      const placed = dropZone.querySelectorAll('.parsons-item');
-      if (placed.length === 0) {
-        feedback.textContent = '❌ No items placed yet.';
-        feedback.className = 'parsons-feedback no';
-        return;
-      }
-      if (placed.length !== correctOrder.length) {
-        feedback.textContent = `⚠ You have placed ${placed.length} out of ${correctOrder.length} items. Keep going!`;
-        feedback.className = 'parsons-feedback no';
-        return;
-      }
-
-      let correct = 0;
-      placed.forEach((item, index) => {
-        const line = item.getAttribute('data-line');
-        if (line === correctOrder[index]) {
-          correct++;
-          item.style.background = '#e8f5e9';
-          item.style.borderColor = '#4caf50';
-        } else {
-          item.style.background = '#ffebee';
-          item.style.borderColor = '#e53935';
-        }
-      });
-
-      if (correct === correctOrder.length) {
-        feedback.textContent = '✅ Perfect! All analogies matched correctly.';
-        feedback.className = 'parsons-feedback ok';
-        playMidiTune();
-      } else {
-        feedback.textContent = `${correct} out of ${correctOrder.length} items in the correct position. Green = correct, red = wrong.`;
-        feedback.className = 'parsons-feedback no';
-      }
-    });
-
-    resetBtn.addEventListener('click', renderItems);
-
-    renderItems();
-  })();
-
-  // ===== RANDOM WHEEL =====
-  function openWheel() {
-    document.getElementById('wheelModal').classList.add('show');
-    spinWheel();
-  }
-
-  function closeWheel() {
-    document.getElementById('wheelModal').classList.remove('show');
-    document.getElementById('wheelDisplay').classList.remove('spinning');
-  }
-
-  function spinWheel() {
-    const display = document.getElementById('wheelDisplay');
-    display.classList.add('spinning');
-    let count = 0;
-    const maxSpins = 25;
-
-    const spinInterval = setInterval(() => {
-      const randomIndex = Math.floor(Math.random() * studentNames.length);
-      display.textContent = studentNames[randomIndex];
-      count++;
-
-      if (count >= maxSpins) {
-        clearInterval(spinInterval);
-        display.classList.remove('spinning');
-      }
-    }, 80);
-  }
 </script>
-
 </body>
 </html>
