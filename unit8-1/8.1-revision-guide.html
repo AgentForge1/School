@@ -1,0 +1,1061 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>8.1 Revision Guide · Networks &amp; Security</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'Segoe UI', Roboto, system-ui, -apple-system, sans-serif;
+            background:
+                radial-gradient(circle at 10% 20%, rgba(255, 200, 120, 0.18) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(120, 200, 255, 0.22) 0%, transparent 45%),
+                radial-gradient(circle at 50% 50%, rgba(200, 160, 255, 0.10) 0%, transparent 60%),
+                linear-gradient(135deg, #fef9f3 0%, #eef6fb 50%, #f5f0fc 100%);
+            color: #1a2639;
+            line-height: 1.6;
+            padding: 2rem 1.5rem;
+            min-height: 100vh;
+            background-attachment: fixed;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* ---------- HEADER ---------- */
+        .header {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1.2rem;
+            margin-bottom: 2.2rem;
+            background: linear-gradient(120deg, #1b3a5c 0%, #2a6f97 45%, #6a4c93 100%);
+            border-radius: 32px;
+            padding: 1.8rem 2rem;
+            box-shadow: 0 14px 36px -10px rgba(20, 50, 90, 0.35);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::after {
+            content: "";
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 320px;
+            height: 320px;
+            background: radial-gradient(circle, rgba(255,255,255,0.10) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .header-left h1 {
+            font-size: 2.4rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            text-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+        }
+
+        .header-left h1 i {
+            color: #ffd166;
+            font-size: 2.2rem;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+        }
+
+        .header-left .subhead {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 0.98rem;
+            margin-top: 0.4rem;
+            padding-left: 0.2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            flex-wrap: wrap;
+        }
+
+        .header-left .subhead span {
+            background: rgba(255, 255, 255, 0.18);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            padding: 0.2rem 1rem;
+            border-radius: 40px;
+            font-size: 0.82rem;
+            font-weight: 500;
+            color: #ffffff;
+        }
+
+        .progress-wrap {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 60px;
+            padding: 0.6rem 1.4rem 0.6rem 1rem;
+            box-shadow: 0 6px 18px rgba(0, 20, 40, 0.12);
+            display: flex;
+            align-items: center;
+            gap: 0.9rem;
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            position: relative;
+            z-index: 1;
+        }
+
+        .progress-label {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #1b3a5c;
+            white-space: nowrap;
+        }
+
+        .progress-bar-bg {
+            width: 140px;
+            height: 10px;
+            background: #e2ebf5;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, #ef476f, #ffd166, #06d6a0, #118ab2, #6a4c93);
+            background-size: 300% 100%;
+            border-radius: 20px;
+            transition: width 0.4s ease;
+            animation: rainbowShift 4s linear infinite;
+        }
+
+        @keyframes rainbowShift {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 300% 50%; }
+        }
+
+        .progress-pct {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: #6a4c93;
+            min-width: 36px;
+            text-align: right;
+        }
+
+        /* ---------- GRID ---------- */
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.6rem;
+            margin-top: 0.5rem;
+        }
+
+        .card {
+            background: #ffffff;
+            border-radius: 24px;
+            padding: 1.6rem 1.6rem 1.8rem 1.6rem;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05), 0 1px 3px rgba(0, 0, 0, 0.03);
+            border: 1px solid #eef2f8;
+            transition: box-shadow 0.2s ease, transform 0.15s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: var(--accent, #2a6f97);
+            border-radius: 24px 24px 0 0;
+        }
+
+        .card[data-card="1"] { --accent: #ef476f; }
+        .card[data-card="2"] { --accent: #f78c6b; }
+        .card[data-card="3"] { --accent: #ffd166; }
+        .card[data-card="4"] { --accent: #06d6a0; }
+        .card[data-card="5"] { --accent: #118ab2; }
+        .card[data-card="6"] { --accent: #e63946; }
+        .card[data-card="7"] { --accent: #2a9d8f; }
+        .card[data-card="8"] { --accent: #6a4c93; }
+        .card[data-card="9"] { --accent: #ff8fab; }
+
+        .card[data-card="1"] { --accent-light: #fde2e8; }
+        .card[data-card="2"] { --accent-light: #fde6db; }
+        .card[data-card="3"] { --accent-light: #fff3d6; }
+        .card[data-card="4"] { --accent-light: #d9f7ec; }
+        .card[data-card="5"] { --accent-light: #d7eef6; }
+        .card[data-card="6"] { --accent-light: #fbdde0; }
+        .card[data-card="7"] { --accent-light: #d8f0ec; }
+        .card[data-card="8"] { --accent-light: #e8def4; }
+        .card[data-card="9"] { --accent-light: #ffe2eb; }
+
+        .card:hover {
+            box-shadow: 0 18px 36px -12px rgba(20, 60, 100, 0.18), 0 2px 8px rgba(0, 0, 0, 0.04);
+            transform: translateY(-2px);
+        }
+
+        .card-full {
+            grid-column: 1 / -1;
+        }
+
+        /* ---------- CARD HEADER / TOGGLE ---------- */
+        .card-head {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 0.8rem;
+            cursor: pointer;
+            user-select: none;
+            border-bottom: 2px solid #eef2f8;
+            padding-bottom: 0.6rem;
+            margin-bottom: 1.1rem;
+        }
+
+        .card-head h2 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #1f3b5c;
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            margin: 0;
+            padding: 0;
+            border: none;
+        }
+
+        .card-head h2 .num {
+            background: var(--accent, #2a6f97);
+            color: white;
+            font-size: 0.8rem;
+            font-weight: 700;
+            width: 1.9rem;
+            height: 1.9rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            flex-shrink: 0;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.12);
+        }
+
+        .card-head .toggle-icon {
+            color: #8aa2bc;
+            font-size: 1rem;
+            transition: transform 0.25s ease;
+            flex-shrink: 0;
+        }
+
+        .card.collapsed .card-head .toggle-icon {
+            transform: rotate(-90deg);
+        }
+
+        .card-body {
+            overflow: hidden;
+            transition: max-height 0.3s ease, opacity 0.25s ease;
+            max-height: 3500px;
+            opacity: 1;
+        }
+
+        .card.collapsed .card-body {
+            max-height: 0;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        /* ---------- TABLES ---------- */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+            margin: 0.8rem 0 0.6rem 0;
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.03);
+        }
+
+        th {
+            background: var(--accent-light, #e9f1f9);
+            color: #0b2b4b;
+            font-weight: 600;
+            text-align: left;
+            padding: 0.65rem 0.8rem;
+            font-size: 0.83rem;
+            letter-spacing: 0.02em;
+        }
+
+        td {
+            padding: 0.6rem 0.8rem;
+            border-bottom: 1px solid #f1f5fa;
+            vertical-align: top;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* ---------- TEXT ELEMENTS ---------- */
+        h3 {
+            font-size: 1.02rem;
+            font-weight: 600;
+            color: #1e3f60;
+            margin: 1.2rem 0 0.5rem 0;
+        }
+
+        h3:first-of-type {
+            margin-top: 0.2rem;
+        }
+
+        ul, ol {
+            padding-left: 1.5rem;
+            margin: 0.5rem 0 0.7rem 0;
+        }
+
+        li {
+            margin-bottom: 0.3rem;
+        }
+
+        .note {
+            background: var(--accent-light, #eef4fa);
+            border-left: 6px solid var(--accent, #2a6f97);
+            padding: 0.9rem 1.1rem;
+            border-radius: 12px;
+            margin: 1rem 0 0.4rem 0;
+            font-size: 0.9rem;
+            color: #17324d;
+        }
+
+        .note strong {
+            color: #0b2b4b;
+        }
+
+        /* ---------- FLEX LISTS ---------- */
+        .flex-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem 1rem;
+            margin: 0.6rem 0 0.3rem 0;
+            padding: 0;
+        }
+
+        .flex-list li {
+            list-style: none;
+            background: #f3f8fe;
+            padding: 0.25rem 1rem 0.25rem 1.6rem;
+            border-radius: 40px;
+            position: relative;
+            font-size: 0.88rem;
+            border: 1px solid #d4e2f0;
+            margin: 0;
+        }
+
+        .flex-list li::before {
+            content: "✓";
+            position: absolute;
+            left: 0.6rem;
+            color: #1f6e43;
+            font-weight: 700;
+        }
+
+        .flex-list.cross li::before {
+            content: "✕";
+            color: #a12b2b;
+        }
+
+        /* ---------- SELF CHECK ---------- */
+        .self-check {
+            margin-top: 1.2rem;
+            border-top: 1px dashed #cbddee;
+            padding-top: 0.9rem;
+        }
+
+        .self-check-btn {
+            background: #f5f9fe;
+            border: 1px solid var(--accent, #c7d9ea);
+            color: #1f4a73;
+            font-weight: 600;
+            font-size: 0.85rem;
+            padding: 0.4rem 1.2rem;
+            border-radius: 40px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: background 0.15s ease, border-color 0.15s ease, transform 0.1s ease;
+            font-family: inherit;
+        }
+
+        .self-check-btn:hover {
+            background: var(--accent-light, #d9e6f2);
+            border-color: var(--accent, #9bb8d4);
+            transform: translateY(-1px);
+        }
+
+        .self-check-btn i {
+            font-size: 0.8rem;
+            transition: transform 0.2s ease;
+        }
+
+        .self-check-btn.open i {
+            transform: rotate(90deg);
+        }
+
+        .self-check-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, opacity 0.2s ease, margin 0.2s ease;
+            opacity: 0;
+            margin-top: 0;
+            background: #f9fbfe;
+            border-radius: 12px;
+            padding: 0 1rem;
+            border: 1px solid transparent;
+        }
+
+        .self-check-content.open {
+            max-height: 600px;
+            opacity: 1;
+            margin-top: 0.7rem;
+            padding: 0.8rem 1rem;
+            border-color: var(--accent-light, #e0ecf8);
+        }
+
+        .self-check-content p {
+            font-size: 0.88rem;
+            color: #2c3e50;
+            margin-bottom: 0.3rem;
+        }
+
+        .self-check-content p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* ---------- ANSWER TOGGLE ---------- */
+        .answer-toggle-btn {
+            background: transparent;
+            border: 1px dashed var(--accent, #9bb8d4);
+            color: var(--accent, #1f4a73);
+            font-weight: 600;
+            font-size: 0.8rem;
+            padding: 0.3rem 1rem;
+            border-radius: 40px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            transition: background 0.15s ease, border-color 0.15s ease;
+            font-family: inherit;
+            margin-top: 0.5rem;
+        }
+
+        .answer-toggle-btn:hover {
+            background: var(--accent-light, #eef4fa);
+        }
+
+        .answer-toggle-btn i {
+            font-size: 0.75rem;
+            transition: transform 0.2s ease;
+        }
+
+        .answer-toggle-btn.open i {
+            transform: rotate(90deg);
+        }
+
+        .answer-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, opacity 0.2s ease, margin 0.2s ease;
+            opacity: 0;
+            margin-top: 0;
+        }
+
+        .answer-content.open {
+            max-height: 300px;
+            opacity: 1;
+            margin-top: 0.4rem;
+        }
+
+        .answer-content .answer {
+            color: #1f6e43;
+            font-weight: 600;
+        }
+
+        /* ---------- CHECKBOX PROGRESS ---------- */
+        .card-progress {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 1.2rem;
+            padding-top: 0.8rem;
+            border-top: 1px solid #eef4fa;
+        }
+
+        .card-progress label {
+            font-size: 0.78rem;
+            font-weight: 500;
+            color: #5d7f9a;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .card-progress input[type="checkbox"] {
+            width: 16px;
+            height: 16px;
+            accent-color: var(--accent, #1f6e9c);
+            cursor: pointer;
+        }
+
+        /* ---------- FOOTER ---------- */
+        .footer-note {
+            margin-top: 2.5rem;
+            padding-top: 1.5rem;
+            border-top: 2px solid #d4e2f0;
+            font-size: 0.88rem;
+            color: #3d556b;
+            text-align: center;
+            font-style: italic;
+        }
+
+        .footer-note i {
+            color: #6a4c93;
+            margin-right: 6px;
+        }
+
+        /* ---------- RESPONSIVE ---------- */
+        @media (max-width: 800px) {
+            .grid {
+                grid-template-columns: 1fr;
+                gap: 1.2rem;
+            }
+
+            body {
+                padding: 1rem;
+            }
+
+            .header {
+                padding: 1.4rem 1.4rem;
+                border-radius: 24px;
+            }
+
+            .header-left h1 {
+                font-size: 1.8rem;
+            }
+
+            .header-left h1 i {
+                font-size: 1.6rem;
+            }
+
+            .progress-wrap {
+                width: 100%;
+                justify-content: space-between;
+            }
+
+            .progress-bar-bg {
+                flex: 1;
+                width: auto;
+            }
+
+            .card {
+                padding: 1.2rem 1.1rem 1.4rem 1.1rem;
+            }
+        }
+
+        @media (max-width: 450px) {
+            .header-left h1 {
+                font-size: 1.5rem;
+                flex-wrap: wrap;
+            }
+
+            .progress-label {
+                font-size: 0.72rem;
+            }
+
+            .card-head h2 {
+                font-size: 1rem;
+            }
+
+            .card-head h2 .num {
+                width: 1.5rem;
+                height: 1.5rem;
+                font-size: 0.68rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <!-- ========== HEADER ========== -->
+        <div class="header">
+            <div class="header-left">
+                <h1>
+                    <i class="fas fa-clipboard-list"></i> 8.1 Revision Guide
+                </h1>
+                <div class="subhead">
+                    <i class="fas fa-shield-alt" style="color:#ffd166;"></i>
+                    Networks &amp; Security · Key knowledge for the test
+                    <span>Self‑study</span>
+                </div>
+            </div>
+
+            <div class="progress-wrap">
+                <span class="progress-label"><i class="fas fa-tasks" style="margin-right:6px;color:#6a4c93;"></i>Progress</span>
+                <div class="progress-bar-bg">
+                    <div class="progress-bar-fill" id="progressFill"></div>
+                </div>
+                <span class="progress-pct" id="progressPct">0%</span>
+            </div>
+        </div>
+
+        <!-- ========== GRID START ========== -->
+        <div class="grid">
+
+            <!-- 1. TYPES OF NETWORKS -->
+            <div class="card" data-card="1">
+                <div class="card-head" onclick="toggleCard(this)">
+                    <h2><span class="num">1</span> Types of Networks</h2>
+                    <i class="fas fa-chevron-down toggle-icon"></i>
+                </div>
+                <div class="card-body">
+                    <table>
+                        <thead>
+                            <tr><th>Type</th><th>What it is</th><th>Range</th><th>Example</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td><strong>PAN</strong></td><td>Personal Area Network – connects devices around one person</td><td>A few metres</td><td>Smartwatch to phone (Bluetooth)</td></tr>
+                            <tr><td><strong>LAN</strong></td><td>Local Area Network – single building or site</td><td>One building / campus</td><td>School computers, home Wi‑Fi</td></tr>
+                            <tr><td><strong>WAN</strong></td><td>Wide Area Network – connects LANs across cities/countries</td><td>Global</td><td>The Internet</td></tr>
+                        </tbody>
+                    </table>
+                    <div class="note">
+                        <strong>Key point:</strong> A smartwatch uses a PAN because it connects over a very short distance, usually with Bluetooth.
+                    </div>
+                    <div class="self-check">
+                        <button class="self-check-btn" onclick="toggleSelfCheck(this)"><i class="fas fa-chevron-right"></i> Quick self‑check</button>
+                        <div class="self-check-content">
+                            <p><strong>Q:</strong> What type of network is the Internet?</p>
+                            <button class="answer-toggle-btn" onclick="toggleAnswer(this)"><i class="fas fa-chevron-right"></i> Show answer</button>
+                            <div class="answer-content">
+                                <p><span class="answer">A:</span> WAN — it's the biggest WAN.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-progress">
+                        <label><input type="checkbox" class="progress-check" data-card="1"> I've revised this section</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2. WIRED VS WIRELESS -->
+            <div class="card" data-card="2">
+                <div class="card-head" onclick="toggleCard(this)">
+                    <h2><span class="num">2</span> Wired vs Wireless</h2>
+                    <i class="fas fa-chevron-down toggle-icon"></i>
+                </div>
+                <div class="card-body">
+                    <h3>Wired connections</h3>
+                    <table>
+                        <tr><th>Type</th><th>Advantages</th><th>Disadvantages</th></tr>
+                        <tr><td>Ethernet (copper)</td><td>Fast, cheap</td><td>Can suffer interference</td></tr>
+                        <tr><td>Fibre‑optic</td><td>Very fast, reliable, no interference</td><td>More expensive</td></tr>
+                    </table>
+                    <h3>Wireless connections</h3>
+                    <table>
+                        <tr><th>Type</th><th>Typical use</th></tr>
+                        <tr><td>Wi‑Fi</td><td>Homes, schools, offices</td></tr>
+                        <tr><td>Bluetooth</td><td>Short range (headphones, smartwatches)</td></tr>
+                        <tr><td>Cellular (3G/4G/5G)</td><td>Phones anywhere with signal</td></tr>
+                    </table>
+                    <div class="note">
+                        <strong>Remember:</strong> 3G is <em>not</em> the fastest mobile method – 4G and 5G are faster. Copper is <em>not</em> faster than fibre‑optic.
+                    </div>
+                    <div class="self-check">
+                        <button class="self-check-btn" onclick="toggleSelfCheck(this)"><i class="fas fa-chevron-right"></i> Quick self‑check</button>
+                        <div class="self-check-content">
+                            <p><strong>Q:</strong> Which is faster: copper or fibre‑optic?</p>
+                            <button class="answer-toggle-btn" onclick="toggleAnswer(this)"><i class="fas fa-chevron-right"></i> Show answer</button>
+                            <div class="answer-content">
+                                <p><span class="answer">A:</span> Fibre‑optic.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-progress">
+                        <label><input type="checkbox" class="progress-check" data-card="2"> I've revised this section</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3. NETWORK HARDWARE -->
+            <div class="card" data-card="3">
+                <div class="card-head" onclick="toggleCard(this)">
+                    <h2><span class="num">3</span> Network Hardware</h2>
+                    <i class="fas fa-chevron-down toggle-icon"></i>
+                </div>
+                <div class="card-body">
+                    <table>
+                        <tr><th>Hardware</th><th>What it does</th></tr>
+                        <tr><td>Router</td><td>Connects different networks, provides internet access, finds fastest route</td></tr>
+                        <tr><td>Switch</td><td>Connects devices, sends data to the correct device using MAC addresses</td></tr>
+                        <tr><td>Wireless Access Point (WAP)</td><td>Allows devices to connect using Wi‑Fi</td></tr>
+                        <tr><td>NIC</td><td>Connects a device to the network; every device has one; unique MAC address</td></tr>
+                        <tr><td>Server</td><td>Provides services like file sharing, printing, email, websites</td></tr>
+                        <tr><td>All‑in‑One</td><td>Combines router, switch, and WAP (common in homes)</td></tr>
+                    </table>
+                    <div class="note">
+                        A NIC exists on <strong>every</strong> device that connects to a network. It <em>is</em> possible to change your MAC address.
+                    </div>
+                    <div class="self-check">
+                        <button class="self-check-btn" onclick="toggleSelfCheck(this)"><i class="fas fa-chevron-right"></i> Quick self‑check</button>
+                        <div class="self-check-content">
+                            <p><strong>Q:</strong> What does a router do?</p>
+                            <button class="answer-toggle-btn" onclick="toggleAnswer(this)"><i class="fas fa-chevron-right"></i> Show answer</button>
+                            <div class="answer-content">
+                                <p><span class="answer">A:</span> Connects different networks and provides internet access; finds the fastest route for data.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-progress">
+                        <label><input type="checkbox" class="progress-check" data-card="3"> I've revised this section</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 4. TRANSMITTING DATA -->
+            <div class="card" data-card="4">
+                <div class="card-head" onclick="toggleCard(this)">
+                    <h2><span class="num">4</span> Transmitting Data</h2>
+                    <i class="fas fa-chevron-down toggle-icon"></i>
+                </div>
+                <div class="card-body">
+                    <h3>Binary &amp; ASCII</h3>
+                    <ul>
+                        <li>Computers use <strong>binary</strong> (0s and 1s).</li>
+                        <li>A <strong>bit</strong> is the smallest piece of data.</li>
+                        <li><strong>ASCII</strong> turns letters, numbers and symbols into binary.<br>
+                        e.g. 'A' = 01000001, 'B' = 01000010, 'C' = 01000011</li>
+                    </ul>
+                    <h3>Serial vs Parallel</h3>
+                    <table>
+                        <tr><th></th><th>Serial</th><th>Parallel</th></tr>
+                        <tr><td>How it sends</td><td>One bit at a time</td><td>8 bits (a byte) at once</td></tr>
+                        <tr><td>Wires</td><td>One</td><td>Multiple</td></tr>
+                        <tr><td>Speed</td><td>Slower</td><td>Faster</td></tr>
+                        <tr><td>Best for</td><td>Long distances, wireless</td><td>Short distances (inside a computer)</td></tr>
+                    </table>
+                    <h3>Transmission errors</h3>
+                    <p>Caused by interference, power surges, or long distances. Bits can flip from 0 to 1 (or vice versa).</p>
+                    <div class="self-check">
+                        <button class="self-check-btn" onclick="toggleSelfCheck(this)"><i class="fas fa-chevron-right"></i> Quick self‑check</button>
+                        <div class="self-check-content">
+                            <p><strong>Q:</strong> Which transmission method sends one bit at a time?</p>
+                            <button class="answer-toggle-btn" onclick="toggleAnswer(this)"><i class="fas fa-chevron-right"></i> Show answer</button>
+                            <div class="answer-content">
+                                <p><span class="answer">A:</span> Serial transmission.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-progress">
+                        <label><input type="checkbox" class="progress-check" data-card="4"> I've revised this section</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 5. ERROR DETECTION & CORRECTION -->
+            <div class="card" data-card="5">
+                <div class="card-head" onclick="toggleCard(this)">
+                    <h2><span class="num">5</span> Error Detection &amp; Correction</h2>
+                    <i class="fas fa-chevron-down toggle-icon"></i>
+                </div>
+                <div class="card-body">
+                    <h3>Echo checking</h3>
+                    <ol>
+                        <li>Sender transmits data to receiver.</li>
+                        <li>Receiver sends the data <strong>back</strong> to the sender.</li>
+                        <li>Sender compares the returned data with the original.</li>
+                        <li>If they match, transmission is successful.</li>
+                        <li>If they don't match, the data is sent again.</li>
+                    </ol>
+                    <p><strong>Limitations:</strong> doesn't show <em>where</em> the error happened; uses extra data (whole message sent back), which slows things down.</p>
+
+                    <h3>ARQ – Automatic Repeat reQuest</h3>
+                    <ol>
+                        <li>Sender sends data to receiver.</li>
+                        <li>Receiver checks and sends back an acknowledgement:
+                            <ul>
+                                <li><strong>Positive (ACK):</strong> data arrived correctly – no resend.</li>
+                                <li><strong>Negative (NAK):</strong> data arrived with errors – sender must resend.</li>
+                            </ul>
+                        </li>
+                        <li>If no reply arrives in time (<strong>timeout</strong>), sender resends the data.</li>
+                    </ol>
+                    <div class="note">
+                        <strong>Why ARQ is better:</strong> only a small acknowledgement is sent back, not the whole message. Uses less data, faster, and timeout triggers automatic resend.
+                    </div>
+                    <div class="self-check">
+                        <button class="self-check-btn" onclick="toggleSelfCheck(this)"><i class="fas fa-chevron-right"></i> Quick self‑check</button>
+                        <div class="self-check-content">
+                            <p><strong>Q:</strong> What does ARQ stand for?</p>
+                            <button class="answer-toggle-btn" onclick="toggleAnswer(this)"><i class="fas fa-chevron-right"></i> Show answer</button>
+                            <div class="answer-content">
+                                <p><span class="answer">A:</span> Automatic Repeat reQuest.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-progress">
+                        <label><input type="checkbox" class="progress-check" data-card="5"> I've revised this section</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 6. SECURITY THREATS -->
+            <div class="card" data-card="6">
+                <div class="card-head" onclick="toggleCard(this)">
+                    <h2><span class="num">6</span> Security Threats</h2>
+                    <i class="fas fa-chevron-down toggle-icon"></i>
+                </div>
+                <div class="card-body">
+                    <table>
+                        <tr><th>Threat</th><th>What it is</th></tr>
+                        <tr><td>Virus</td><td>Bad software that spreads and damages files or systems</td></tr>
+                        <tr><td>Ransomware</td><td>Locks your files and asks for money to unlock them</td></tr>
+                        <tr><td>Spyware</td><td>Secretly collects your personal info without permission</td></tr>
+                        <tr><td>Adware</td><td>Type of spyware that increases adverts; can lead to malicious sites</td></tr>
+                        <tr><td>Trojan</td><td>Pretends to be something it is not; tracks keystrokes and mouse movements</td></tr>
+                        <tr><td>Social Engineering</td><td>Tricks people into giving away passwords or private info</td></tr>
+                        <tr><td>Brute‑Force Attack</td><td>Tries every possible password until it finds the right one</td></tr>
+                        <tr><td>Unauthorised Access</td><td>Gaining access to a network or data without permission</td></tr>
+                    </table>
+                    <div class="note">
+                        <strong>Remember:</strong> Adware is generally <em>less dangerous</em> than ransomware. Malicious software is most commonly spread via email and downloads, not social media.
+                    </div>
+                    <div class="self-check">
+                        <button class="self-check-btn" onclick="toggleSelfCheck(this)"><i class="fas fa-chevron-right"></i> Quick self‑check</button>
+                        <div class="self-check-content">
+                            <p><strong>Q:</strong> What type of malware pretends to be something it is not?</p>
+                            <button class="answer-toggle-btn" onclick="toggleAnswer(this)"><i class="fas fa-chevron-right"></i> Show answer</button>
+                            <div class="answer-content">
+                                <p><span class="answer">A:</span> Trojan.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-progress">
+                        <label><input type="checkbox" class="progress-check" data-card="6"> I've revised this section</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 7. PREVENTATIVE MEASURES -->
+            <div class="card" data-card="7">
+                <div class="card-head" onclick="toggleCard(this)">
+                    <h2><span class="num">7</span> Preventative Measures</h2>
+                    <i class="fas fa-chevron-down toggle-icon"></i>
+                </div>
+                <div class="card-body">
+                    <table>
+                        <tr><th>Measure</th><th>What it does</th></tr>
+                        <tr><td>Firewall</td><td>Limits access; examines all data entering/leaving; blocks harmful data. Hardware or software.</td></tr>
+                        <tr><td>Antivirus</td><td>Stops viruses; real‑time scans; quarantines harmful files; needs regular updates.</td></tr>
+                        <tr><td>Anti‑spyware</td><td>Scans for and removes adware and trojans; informs the user.</td></tr>
+                        <tr><td>Ransomware Protection</td><td>Stops software that locks files and demands payment.</td></tr>
+                        <tr><td>Monitoring Software</td><td>Allows network administrators to see how well the network is running.</td></tr>
+                        <tr><td>Encryption</td><td>Scrambles data so only the right people can read it.</td></tr>
+                    </table>
+                    <div class="note">
+                        <strong>Antivirus details:</strong> uses databases of code; quarantines harmful files; must be kept up to date.<br>
+                        <strong>Firewall details:</strong> keeps networks safe by limiting access; prevents unauthorised users; examines data against rules.
+                    </div>
+                    <div class="self-check">
+                        <button class="self-check-btn" onclick="toggleSelfCheck(this)"><i class="fas fa-chevron-right"></i> Quick self‑check</button>
+                        <div class="self-check-content">
+                            <p><strong>Q:</strong> What does antivirus software do if it detects a harmful file?</p>
+                            <button class="answer-toggle-btn" onclick="toggleAnswer(this)"><i class="fas fa-chevron-right"></i> Show answer</button>
+                            <div class="answer-content">
+                                <p><span class="answer">A:</span> It quarantines the file and lets the user know.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-progress">
+                        <label><input type="checkbox" class="progress-check" data-card="7"> I've revised this section</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 8. OPERATING SYSTEMS -->
+            <div class="card" data-card="8">
+                <div class="card-head" onclick="toggleCard(this)">
+                    <h2><span class="num">8</span> Operating Systems</h2>
+                    <i class="fas fa-chevron-down toggle-icon"></i>
+                </div>
+                <div class="card-body">
+                    <p><strong>What an OS does:</strong></p>
+                    <ul>
+                        <li>Manages hardware and software</li>
+                        <li>Manages files and folders</li>
+                        <li>Controls memory (RAM)</li>
+                        <li>Communicates with hardware (keyboards, printers, etc.)</li>
+                        <li>Provides a user interface</li>
+                        <li>Manages user accounts</li>
+                        <li>Has built‑in tools to keep devices safe</li>
+                    </ul>
+                    <h3>User interfaces</h3>
+                    <ul>
+                        <li><strong>Command Line:</strong> type text commands (DOS, Terminal)</li>
+                        <li><strong>GUI:</strong> click icons and menus (Windows, Mac)</li>
+                        <li><strong>Speech:</strong> talk to the device (Siri, Alexa)</li>
+                    </ul>
+                    <p><strong>Network OS (NOS):</strong> used on servers; manages many devices, installs updates, controls access, includes utility software.</p>
+                    <div class="note">
+                        Operating systems <strong>are</strong> required on smartphones and portable technology. They <strong>do</strong> manage user accounts and hardware/software.
+                    </div>
+                    <div class="self-check">
+                        <button class="self-check-btn" onclick="toggleSelfCheck(this)"><i class="fas fa-chevron-right"></i> Quick self‑check</button>
+                        <div class="self-check-content">
+                            <p><strong>Q:</strong> Are operating systems required on smartphones?</p>
+                            <button class="answer-toggle-btn" onclick="toggleAnswer(this)"><i class="fas fa-chevron-right"></i> Show answer</button>
+                            <div class="answer-content">
+                                <p><span class="answer">A:</span> Yes — they are required on all modern devices.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-progress">
+                        <label><input type="checkbox" class="progress-check" data-card="8"> I've revised this section</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 9. ADVANTAGES & DISADVANTAGES OF NETWORKS -->
+            <div class="card card-full" data-card="9">
+                <div class="card-head" onclick="toggleCard(this)">
+                    <h2><span class="num">9</span> Advantages &amp; Disadvantages of Networks</h2>
+                    <i class="fas fa-chevron-down toggle-icon"></i>
+                </div>
+                <div class="card-body">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.8rem;">
+                        <div>
+                            <h3 style="margin-top: 0; color: #1c6b3c;">✅ Advantages</h3>
+                            <ul class="flex-list">
+                                <li>Users can share an internet connection</li>
+                                <li>Users can share devices such as printers and scanners</li>
+                                <li>Users can communicate with each other</li>
+                                <li>Users can share software licences (often cheaper)</li>
+                                <li>Files can be accessed by all users on the network</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3 style="margin-top: 0; color: #a12b2b;">❌ Disadvantages</h3>
+                            <ul class="flex-list cross">
+                                <li>Networking hardware can be very expensive</li>
+                                <li>Managing a network can be complicated and requires skilled people</li>
+                                <li>If the file server stops working, nobody can access files</li>
+                                <li>Viruses can spread to all devices if one gets infected</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="self-check">
+                        <button class="self-check-btn" onclick="toggleSelfCheck(this)"><i class="fas fa-chevron-right"></i> Quick self‑check</button>
+                        <div class="self-check-content">
+                            <p><strong>Q:</strong> Name one disadvantage of networks.</p>
+                            <button class="answer-toggle-btn" onclick="toggleAnswer(this)"><i class="fas fa-chevron-right"></i> Show answer</button>
+                            <div class="answer-content">
+                                <p><span class="answer">A:</span> Networking hardware can be very expensive; managing a network is complicated; viruses can spread to all devices.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-progress">
+                        <label><input type="checkbox" class="progress-check" data-card="9"> I've revised this section</label>
+                    </div>
+                </div>
+            </div>
+
+        </div> <!-- GRID END -->
+
+        <div class="footer-note">
+            <i class="fas fa-book"></i> 8.1 Building Networks · Revision Guide · Use alongside your lesson notes and Student's Book.
+        </div>
+    </div>
+
+    <script>
+        /* ---------- TOGGLE CARDS ---------- */
+        function toggleCard(headElement) {
+            const card = headElement.closest('.card');
+            card.classList.toggle('collapsed');
+        }
+
+        /* ---------- TOGGLE SELF CHECK ---------- */
+        function toggleSelfCheck(btn) {
+            const content = btn.nextElementSibling;
+            const isOpen = content.classList.contains('open');
+            if (isOpen) {
+                content.classList.remove('open');
+                btn.classList.remove('open');
+            } else {
+                content.classList.add('open');
+                btn.classList.add('open');
+            }
+        }
+
+        /* ---------- TOGGLE ANSWER ---------- */
+        function toggleAnswer(btn) {
+            const content = btn.nextElementSibling;
+            const isOpen = content.classList.contains('open');
+            if (isOpen) {
+                content.classList.remove('open');
+                btn.classList.remove('open');
+                btn.innerHTML = '<i class="fas fa-chevron-right"></i> Show answer';
+            } else {
+                content.classList.add('open');
+                btn.classList.add('open');
+                btn.innerHTML = '<i class="fas fa-chevron-down"></i> Hide answer';
+            }
+        }
+
+        /* ---------- PROGRESS TRACKING ---------- */
+        (function() {
+            const checkboxes = document.querySelectorAll('.progress-check');
+            const fill = document.getElementById('progressFill');
+            const pct = document.getElementById('progressPct');
+            const storageKey = 'revisionGuide8_1_progress';
+
+            let saved = {};
+            try {
+                saved = JSON.parse(localStorage.getItem(storageKey)) || {};
+            } catch (e) {
+                saved = {};
+            }
+
+            checkboxes.forEach(function(cb) {
+                const cardId = cb.getAttribute('data-card');
+                if (saved[cardId]) {
+                    cb.checked = true;
+                }
+
+                cb.addEventListener('change', function() {
+                    saved[cardId] = this.checked;
+                    localStorage.setItem(storageKey, JSON.stringify(saved));
+                    updateProgress();
+                });
+            });
+
+            function updateProgress() {
+                const total = checkboxes.length;
+                const checked = document.querySelectorAll('.progress-check:checked').length;
+                const percent = total > 0 ? Math.round((checked / total) * 100) : 0;
+                fill.style.width = percent + '%';
+                pct.textContent = percent + '%';
+            }
+
+            updateProgress();
+        })();
+    </script>
+</body>
+</html>

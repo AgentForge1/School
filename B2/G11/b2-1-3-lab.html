@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>B2.1.3 - Exception Handling (Lab)</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background: #f0f4fb;
+            color: #1e293b;
+            padding: 24px;
+            line-height: 1.7;
+        }
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 40px 50px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: #b21f1f;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .back-link:hover {
+            color: #0b2a4a;
+            text-decoration: underline;
+        }
+        h1 {
+            font-size: 2.2rem;
+            color: #0b2a4a;
+            border-bottom: 4px solid #fdbb2d;
+            padding-bottom: 10px;
+            margin-bottom: 25px;
+        }
+        h2 {
+            font-size: 1.5rem;
+            color: #0b2a4a;
+            margin-top: 35px;
+            margin-bottom: 15px;
+            border-left: 5px solid #b21f1f;
+            padding-left: 15px;
+        }
+        h3 {
+            font-size: 1.2rem;
+            color: #0b2a4a;
+            margin-top: 25px;
+            margin-bottom: 10px;
+        }
+        h4 {
+            color: #0b2a4a;
+            margin-top: 18px;
+            margin-bottom: 6px;
+        }
+        .badge {
+            display: inline-block;
+            background: #b21f1f;
+            color: #fff;
+            font-weight: 600;
+            font-size: 0.8rem;
+            padding: 2px 12px;
+            border-radius: 20px;
+            text-transform: uppercase;
+        }
+        .badge.lab {
+            background: #2d8f2d;
+        }
+
+        .code-block {
+            background: #1e293b;
+            color: #e2e8f0;
+            padding: 16px 20px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            overflow-x: auto;
+            margin: 10px 0;
+            line-height: 1.8;
+        }
+        .code-block pre {
+            margin: 0;
+            white-space: pre;
+        }
+        .comment { color: #6b8c9e; }
+        .keyword { color: #f7c948; }
+        .string { color: #a3d9a5; }
+        .function { color: #66b3ff; }
+        .error { color: #f87171; }
+
+        .code-output {
+            background: #0f1724;
+            color: #f7c948;
+            padding: 10px 20px;
+            border-radius: 0 0 8px 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            border-top: 1px solid #2d3748;
+            margin-bottom: 10px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 0.95rem;
+        }
+        th {
+            background: #0b2a4a;
+            color: #fff;
+            font-weight: 600;
+            padding: 12px 15px;
+            text-align: left;
+        }
+        td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #e2e8f0;
+            vertical-align: top;
+        }
+        tr:nth-child(even) {
+            background: #f7fafc;
+        }
+
+        .task-box {
+            background: #f7fafc;
+            border-left: 4px solid #2d8f2d;
+            padding: 15px 20px;
+            border-radius: 0 8px 8px 0;
+            margin: 15px 0;
+        }
+        .starter-box {
+            background: #ebf4ff;
+            border-left: 5px solid #fdbb2d;
+            padding: 15px 20px;
+            border-radius: 0 8px 8px 0;
+            margin: 15px 0;
+        }
+        .plenary-box {
+            background: #f0f7ee;
+            border-left: 5px solid #2d8f2d;
+            padding: 15px 20px;
+            border-radius: 0 8px 8px 0;
+            margin: 15px 0;
+        }
+        .info-box {
+            background: #f0f7ee;
+            border-radius: 8px;
+            padding: 12px 18px;
+            margin: 10px 0;
+            border-left: 4px solid #2a6f97;
+        }
+        .key-takeaway {
+            background: #fefcbf;
+            border-left: 5px solid #fdbb2d;
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin: 25px 0;
+            font-weight: 500;
+        }
+
+        .btn-link {
+            display: inline-block;
+            background: #0b2a4a;
+            color: #fff !important;
+            padding: 8px 20px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            border-bottom: none !important;
+            transition: background 0.2s;
+            margin: 4px 8px 4px 0;
+        }
+        .btn-link:hover {
+            background: #1a3f64;
+            color: #fff !important;
+            border-bottom: none !important;
+        }
+        .btn-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 8px;
+        }
+        .btn-group .btn-link.try-link {
+            background: #2d8f2d;
+        }
+        .btn-group .btn-link.try-link:hover {
+            background: #1f6b1f;
+        }
+
+        .footnote {
+            font-size: 0.85rem;
+            color: #4a5568;
+            margin-top: 4px;
+        }
+
+        hr {
+            border: 0;
+            border-top: 2px solid #e2e8f0;
+            margin: 30px 0;
+        }
+        .footer-meta {
+            margin-top: 30px;
+            font-size: 0.85rem;
+            color: #4a5568;
+            text-align: center;
+            border-top: 1px solid #e2e8f0;
+            padding-top: 20px;
+        }
+
+        @media (max-width: 640px) {
+            .container { padding: 20px; }
+            h1 { font-size: 1.8rem; }
+            table { font-size: 0.85rem; }
+            .btn-group { flex-direction: column; }
+            .btn-link { text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <a class="back-link" href="#" onclick="goBack(); return false;">← Back to B2 Programming</a>
+
+    <script>
+        function goBack() {
+            if (document.referrer && document.referrer.indexOf(window.location.hostname) !== -1) {
+                window.history.back();
+            } else {
+                window.location.href = '../B2.html';
+            }
+        }
+    </script>
+
+    <h1>B2.1.3 – Exception Handling <span class="badge lab">Lab Session</span></h1>
+
+    <!-- ==================== LESSON CONTENT ==================== -->
+    <h2>📖 Lesson Content</h2>
+
+    <h3>What is Error Handling?</h3>
+    <p>Error handling in Python allows your programs to <strong>gracefully manage unexpected situations</strong> and continue running instead of crashing. Using <code>try/except</code> blocks, you can catch errors, provide helpful feedback to users, and maintain application stability even when things go wrong.</p>
+    <p>Think of error handling as your program's safety net - it catches problems before they crash your application and provides meaningful responses that help users understand what happened and how to fix it.</p>
+
+    <h3>Basic try-except Structure</h3>
+    <div class="code-block">
+<pre><code>
+<span class="keyword">def</span> <span class="function">safe_divide</span>(a, b):
+    <span class="keyword">try</span>:
+        <span class="keyword">result</span> = a / b
+        <span class="keyword">return</span> result
+    <span class="keyword">except</span> <span class="error">ZeroDivisionError</span>:
+        <span class="keyword">return</span> <span class="string">"Error: Cannot divide by zero"</span>
+    <span class="keyword">except</span> <span class="error">TypeError</span>:
+        <span class="keyword">return</span> <span class="string">"Error: Please provide numbers only"</span>
+
+<span class="comment"># Testing</span>
+<span class="function">print</span>(<span class="function">safe_divide</span>(10, 2))    <span class="comment"># Returns 5.0</span>
+<span class="function">print</span>(<span class="function">safe_divide</span>(10, 0))    <span class="comment"># Returns error message</span>
+<span class="function">print</span>(<span class="function">safe_divide</span>(<span class="string">"10"</span>, 2))  <span class="comment"># Returns error message</span>
+</code></pre>
+    </div>
+    <div class="code-output">▶ Output: 5.0<br>▶ Output: Error: Cannot divide by zero<br>▶ Output: Error: Please provide numbers only</div>
+    <div class="btn-group">
+        <a href="https://pythontutor.com/visualize.html#code=def%20safe_divide%28a,%20b%29%3A%0A%20%20%20%20try%3A%0A%20%20%20%20%20%20%20%20result%20%3D%20a%20/%20b%0A%20%20%20%20%20%20%20%20return%20result%0A%20%20%20%20except%20ZeroDivisionError%3A%0A%20%20%20%20%20%20%20%20return%20%22Error%3A%20Cannot%20divide%20by%20zero%22%0A%20%20%20%20except%20TypeError%3A%0A%20%20%20%20%20%20%20%20return%20%22Error%3A%20Please%20provide%20numbers%20only%22%0A%0Aprint%28safe_divide%2810,%202%29%29%0Aprint%28safe_divide%2810,%200%29%29%0Aprint%28safe_divide%28%2210%22,%202%29%29&cumulative=false&curInstr=0&heapPrimitives=nevernest&mode=display&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false" target="_blank" class="btn-link try-link">▶ Try it now (PythonTutor)</a>
+    </div>
+
+    <h3>Multiple Exception Handling</h3>
+    <div class="code-block">
+<pre><code>
+<span class="keyword">def</span> <span class="function">safe_file_operation</span>(filename):
+    <span class="keyword">try</span>:
+        <span class="keyword">with</span> <span class="function">open</span>(filename, <span class="string">'r'</span>) <span class="keyword">as</span> file:
+            <span class="keyword">content</span> = file.<span class="function">read</span>()
+            <span class="keyword">return</span> <span class="function">len</span>(content)
+    <span class="keyword">except</span> <span class="error">FileNotFoundError</span>:
+        <span class="function">print</span>(<span class="string">f"File '{filename}' not found"</span>)
+    <span class="keyword">except</span> <span class="error">PermissionError</span>:
+        <span class="function">print</span>(<span class="string">f"Permission denied accessing '{filename}'"</span>)
+    <span class="keyword">except</span> <span class="error">Exception</span> <span class="keyword">as</span> e:
+        <span class="function">print</span>(<span class="string">f"Unexpected error: {e}"</span>)
+    <span class="keyword">return</span> <span class="keyword">None</span>
+
+<span class="comment"># Test the function</span>
+<span class="function">safe_file_operation</span>(<span class="string">"nonexistent.txt"</span>)
+</code></pre>
+    </div>
+    <div class="code-output">▶ Output: File 'nonexistent.txt' not found</div>
+    <div class="btn-group">
+        <a href="https://pythontutor.com/visualize.html#code=def%20safe_file_operation%28filename%29%3A%0A%20%20%20%20try%3A%0A%20%20%20%20%20%20%20%20with%20open%28filename,%20'r'%29%20as%20file%3A%0A%20%20%20%20%20%20%20%20%20%20%20%20content%20%3D%20file.read%28%29%0A%20%20%20%20%20%20%20%20%20%20%20%20return%20len%28content%29%0A%20%20%20%20except%20FileNotFoundError%3A%0A%20%20%20%20%20%20%20%20print%28f%22File%20'%7Bfilename%7D'%20not%20found%22%29%0A%20%20%20%20except%20PermissionError%3A%0A%20%20%20%20%20%20%20%20print%28f%22Permission%20denied%20accessing%20'%7Bfilename%7D'%22%29%0A%20%20%20%20except%20Exception%20as%20e%3A%0A%20%20%20%20%20%20%20%20print%28f%22Unexpected%20error%3A%20%7Be%7D%22%29%0A%20%20%20%20return%20None%0A%0Asafe_file_operation%28%22nonexistent.txt%22%29&cumulative=false&curInstr=0&heapPrimitives=nevernest&mode=display&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false" target="_blank" class="btn-link try-link">▶ Try it now (PythonTutor)</a>
+    </div>
+
+    <h3>Understanding Python Exceptions</h3>
+    <p>Python's exception hierarchy provides systematic error categorization that enables precise error handling and debugging strategies.</p>
+
+    <h4>Common Exception Categories</h4>
+    <table>
+        <thead>
+            <tr><th>Category</th><th>Exception</th><th>Description</th></tr>
+        </thead>
+        <tbody>
+            <tr><td><strong>System</strong></td><td><code>SystemExit</code></td><td>Raised by <code>sys.exit()</code> function</td></tr>
+            <tr><td></td><td><code>KeyboardInterrupt</code></td><td>User interruption (Ctrl+C)</td></tr>
+            <tr><td><strong>Logic</strong></td><td><code>AttributeError</code></td><td>Invalid attribute access</td></tr>
+            <tr><td></td><td><code>NameError</code></td><td>Undefined variable reference</td></tr>
+            <tr><td></td><td><code>TypeError</code></td><td>Wrong data type operations</td></tr>
+            <tr><td></td><td><code>ValueError</code></td><td>Wrong value for correct type</td></tr>
+            <tr><td><strong>Runtime</strong></td><td><code>IndexError</code></td><td>List/string index out of range</td></tr>
+            <tr><td></td><td><code>KeyError</code></td><td>Dictionary key not found</td></tr>
+            <tr><td></td><td><code>FileNotFoundError</code></td><td>File operations on missing files</td></tr>
+            <tr><td></td><td><code>ZeroDivisionError</code></td><td>Division by zero operations</td></tr>
+            <tr><td><strong>I/O</strong></td><td><code>IOError</code></td><td>Input/output operation failures</td></tr>
+            <tr><td></td><td><code>PermissionError</code></td><td>Insufficient file permissions</td></tr>
+            <tr><td></td><td><code>ConnectionError</code></td><td>Network connection problems</td></tr>
+        </tbody>
+    </table>
+
+    <!-- ==================== MAIN TASK ==================== -->
+    <h2>💻 Main Task: Lab Exercises</h2>
+
+    <div class="task-box">
+        <div class="task-title">🧪 Study & Practice: Input Validation with Error Handling</div>
+        <div class="task-desc">
+            <p><strong>Copy and study the code below.</strong> This demonstrates how input validation prevents invalid data from causing errors and provides immediate feedback for correction.</p>
+        </div>
+
+        <div class="code-block">
+<pre><code>
+<span class="keyword">def</span> <span class="function">validate_user_input</span>(data_type, prompt):
+    <span class="comment">"""Robust input validation with error handling"""</span>
+
+    <span class="comment"># Simulate user input for demonstration</span>
+    test_inputs = {
+        <span class="string">"int"</span>: [<span class="string">"25"</span>, <span class="string">"-5"</span>, <span class="string">"abc"</span>, <span class="string">"100"</span>],
+        <span class="string">"email"</span>: [<span class="string">"user@example.com"</span>, <span class="string">"invalid-email"</span>, <span class="string">"test@test.com"</span>],
+        <span class="string">"age"</span>: [<span class="string">"25"</span>, <span class="string">"150"</span>, <span class="string">"-5"</span>, <span class="string">"abc"</span>]
+    }
+
+    inputs = test_inputs.<span class="function">get</span>(data_type, [<span class="string">"25"</span>])
+
+    <span class="keyword">for</span> user_input <span class="keyword">in</span> inputs:
+        <span class="keyword">try</span>:
+            <span class="function">print</span>(<span class="string">f"\nTesting input: '{user_input}' for {data_type}"</span>)
+
+            <span class="keyword">if</span> data_type == <span class="string">"int"</span>:
+                <span class="keyword">value</span> = <span class="function">int</span>(user_input)
+                <span class="keyword">if</span> value < <span class="number">0</span>:
+                    <span class="keyword">raise</span> <span class="error">ValueError</span>(<span class="string">"Number must be non-negative"</span>)
+                <span class="function">print</span>(<span class="string">f"✅ Valid integer: {value}"</span>)
+
+            <span class="keyword">elif</span> data_type == <span class="string">"email"</span>:
+                <span class="keyword">if</span> <span class="string">"@"</span> <span class="keyword">not in</span> user_input <span class="keyword">or</span> <span class="string">"."</span> <span class="keyword">not in</span> user_input:
+                    <span class="keyword">raise</span> <span class="error">ValueError</span>(<span class="string">"Invalid email format"</span>)
+                <span class="function">print</span>(<span class="string">f"✅ Valid email: {user_input}"</span>)
+
+            <span class="keyword">elif</span> data_type == <span class="string">"age"</span>:
+                <span class="keyword">age</span> = <span class="function">int</span>(user_input)
+                <span class="keyword">if</span> <span class="keyword">not</span> <span class="number">0</span> <= age <= <span class="number">150</span>:
+                    <span class="keyword">raise</span> <span class="error">ValueError</span>(<span class="string">"Age must be between 0 and 150"</span>)
+                <span class="function">print</span>(<span class="string">f"✅ Valid age: {age}"</span>)
+
+        <span class="keyword">except</span> <span class="error">ValueError</span> <span class="keyword">as</span> e:
+            <span class="function">print</span>(<span class="string">f"❌ Invalid input: {e}"</span>)
+        <span class="keyword">except</span> <span class="error">Exception</span> <span class="keyword">as</span> e:
+            <span class="function">print</span>(<span class="string">f"❌ Unexpected error: {e}"</span>)
+
+<span class="comment"># Test validation</span>
+<span class="function">validate_user_input</span>(<span class="string">"int"</span>, <span class="string">"Enter a number: "</span>)
+<span class="function">validate_user_input</span>(<span class="string">"email"</span>, <span class="string">"Enter email: "</span>)
+<span class="function">validate_user_input</span>(<span class="string">"age"</span>, <span class="string">"Enter age: "</span>)
+</code></pre>
+        </div>
+        <div class="code-output">▶ Output: Testing input: '25' for int<br>▶ Output: ✅ Valid integer: 25<br>▶ Output: Testing input: '-5' for int<br>▶ Output: ❌ Invalid input: Number must be non-negative<br>▶ Output: Testing input: 'abc' for int<br>▶ Output: ❌ Invalid input: invalid literal for int() with base 10: 'abc'</div>
+
+        <div class="info-box">
+            <p><strong>📌 Key Learning Points:</strong></p>
+            <ul style="margin-left: 20px;">
+                <li><strong>try/except blocks</strong> – Catch specific exceptions like <code>ValueError</code></li>
+                <li><strong>Input validation</strong> – Check data ranges and types before processing</li>
+                <li><strong>Error messages</strong> – Provide clear, helpful error messages to users</li>
+                <li><strong>Exception hierarchy</strong> – Handle specific exceptions before general ones</li>
+                <li><strong>User experience</strong> – Loop until valid input is provided</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="task-box">
+        <div class="task-title">✏️ Your Turn: Write Your Own</div>
+        <div class="task-desc">
+            <p>Now, write your own Python programs that demonstrate exception handling for the scenarios below. Use the online Python IDE to test your code.</p>
+        </div>
+
+        <p style="margin-top: 10px;"><strong>Scenarios to implement:</strong></p>
+        <ul style="margin-left: 20px; margin-bottom: 10px;">
+            <li>Ask the user for two numbers and divide them. Handle <code>ZeroDivisionError</code> and <code>ValueError</code>.</li>
+            <li>Ask the user for a filename and try to open it. Handle <code>FileNotFoundError</code>.</li>
+            <li>Ask the user for an index and access a list element. Handle <code>IndexError</code>.</li>
+            <li>Ask the user for a dictionary key and access the value. Handle <code>KeyError</code>.</li>
+        </ul>
+
+        <div class="btn-group">
+            <a href="https://jamesabela.github.io/jsfun/pythoncopy?blank" target="_blank" class="btn-link">💻 Online Python IDE</a>
+            <a href="https://docs.google.com/presentation/d/e/2PACX-1vTDtqDYBuZGEnTj02RIgIfZU3OJg4OuTRH_CuVpYqUh0OPhn71IpppwF-wHtvFRsHtXw_AAIm_rYvLJ/pub?start=false&loop=false&delayms=3000&slide=id.g3ab61963dd6_0_93" target="_blank" class="btn-link">📄 View Questions (Presentation)</a>
+            <a href="https://pythontutor.com/visualize.html#mode=edit" target="_blank" class="btn-link try-link">🐍 PythonTutor (Visualize your code)</a>
+        </div>
+    </div>
+
+    <div class="info-box">
+        <p><strong>📌 Important:</strong> Save your code as a .txt file. You will submit all work to <strong>Schoolbox</strong> at the end of <strong>B2.1.4 Debugging Techniques</strong>.</p>
+    </div>
+
+    <!-- ==================== PLENARY ==================== -->
+    <h2>🎯 Plenary</h2>
+    <div class="plenary-box">
+        <p><strong>🎮 Plenary Activity</strong></p>
+        <p>Test your understanding of exception handling with this Blooket quiz.</p>
+        <a href="https://play.blooket.com/host/brawl?id=68b039b160411a31861db0c0" target="_blank" class="btn-link">▶ Blooket</a>
+    </div>
+
+    <!-- ==================== KEY TAKEAWAY ==================== -->
+    <h2>💡 Key Takeaway</h2>
+    <div class="key-takeaway">
+        <p><em>"Error handling is your program's safety net—it catches problems before they crash your application and provides meaningful responses that help users understand what happened and how to fix it. By mastering <code>try/except</code> blocks, input validation, and graceful degradation, you can build robust, user-friendly programs that handle the unexpected with confidence."</em></p>
+    </div>
+
+    <hr>
+
+    <div class="footer-meta">
+        B2.1.3 – Exception Handling (Lab Session) • IB Computer Science
+    </div>
+
+</div>
+
+</body>
+</html>

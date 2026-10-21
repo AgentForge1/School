@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A1.1.3 - GPU (HL)</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: Arial, sans-serif;
+            background: #f0f4fb;
+            color: #1e293b;
+            padding: 24px;
+            line-height: 1.7;
+        }
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 40px 50px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: #b21f1f;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .back-link:hover { color: #0b2a4a; text-decoration: underline; }
+        h1 {
+            font-size: 2.2rem;
+            color: #0b2a4a;
+            border-bottom: 4px solid #fdbb2d;
+            padding-bottom: 10px;
+            margin-bottom: 25px;
+        }
+        h2 {
+            font-size: 1.5rem;
+            color: #0b2a4a;
+            margin-top: 35px;
+            margin-bottom: 15px;
+            border-left: 5px solid #b21f1f;
+            padding-left: 15px;
+        }
+        .badge {
+            display: inline-block;
+            background: #b21f1f;
+            color: #fff;
+            font-weight: 600;
+            font-size: 0.8rem;
+            padding: 2px 12px;
+            border-radius: 20px;
+            text-transform: uppercase;
+        }
+        .badge-hl {
+            background: #7c3a3a;
+        }
+        .command-term {
+            background: #ebf4ff;
+            border-left: 5px solid #0b2a4a;
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin: 15px 0;
+            font-style: italic;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 0.95rem;
+        }
+        th {
+            background: #0b2a4a;
+            color: #fff;
+            font-weight: 600;
+            padding: 12px 15px;
+            text-align: left;
+        }
+        td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #e2e8f0;
+            vertical-align: top;
+        }
+        tr:nth-child(even) { background: #f7fafc; }
+        .extension-grid {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 4px 15px;
+            background: #f7fafc;
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+        .extension-grid .label { font-weight: 600; color: #0b2a4a; }
+        .extension-grid .desc { color: #1e293b; }
+        a {
+            color: #b21f1f;
+            text-decoration: none;
+            border-bottom: 1px dotted #b21f1f;
+        }
+        a:hover {
+            color: #0b2a4a;
+            border-bottom: 2px solid #0b2a4a;
+        }
+        hr {
+            border: 0;
+            border-top: 2px solid #e2e8f0;
+            margin: 30px 0;
+        }
+        .footer-meta {
+            margin-top: 30px;
+            font-size: 0.85rem;
+            color: #4a5568;
+            text-align: center;
+            border-top: 1px solid #e2e8f0;
+            padding-top: 20px;
+        }
+        .key-takeaway {
+            background: #fefcbf;
+            border-left: 5px solid #fdbb2d;
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin: 25px 0;
+            font-weight: 500;
+        }
+        .lesson-nav {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #e2e8f0;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .lesson-nav a { border-bottom: none; font-weight: 500; }
+
+        /* Blooket starter */
+        .blooket-box {
+            background: #eef4fc;
+            border: 2px solid #b21f1f;
+            border-radius: 14px;
+            padding: 16px 22px;
+            margin: 10px 0 25px;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 14px 24px;
+        }
+        .blooket-box .blooket-btn {
+            background: #b21f1f;
+            color: white;
+            padding: 6px 24px;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 1rem;
+            border: none;
+            display: inline-block;
+        }
+        .blooket-box .blooket-btn a {
+            color: white;
+            border-bottom: none;
+        }
+        .blooket-box .blooket-btn a:hover { color: #fdbb2d; border-bottom: none; }
+
+        /* Task styles matching the image */
+        .task-block {
+            background: #f8fafc;
+            border-radius: 14px;
+            padding: 6px 0;
+            margin: 12px 0;
+        }
+        .task-row {
+            display: flex;
+            align-items: flex-start;
+            padding: 12px 16px;
+            border-bottom: 1px solid #e8eef4;
+            gap: 12px;
+        }
+        .task-row:last-child { border-bottom: none; }
+        .task-step {
+            font-weight: 700;
+            color: #0b2a4a;
+            background: #dce8f5;
+            padding: 0 12px;
+            border-radius: 30px;
+            font-size: 0.75rem;
+            min-width: 28px;
+            text-align: center;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+        .task-row .task-desc { flex: 1; }
+        .task-row .task-desc a { border-bottom: 1px dotted #b21f1f; }
+
+        /* Task 2 – green background */
+        .task-row.task-starter {
+            background: #e6f5e6;
+            border-left: 4px solid #2d7d46;
+            border-radius: 0 8px 8px 0;
+            margin: 4px 0;
+        }
+        .task-row.task-starter .task-desc strong {
+            color: #1a6b33;
+        }
+
+        .task-1-resources {
+            background: #f1f6fc;
+            border-radius: 10px;
+            padding: 12px 16px;
+            margin-top: 8px;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 10px 16px;
+        }
+        .task-1-resources .pill {
+            background: white;
+            padding: 2px 14px;
+            border-radius: 30px;
+            border: 1px solid #dce4ed;
+            font-size: 0.85rem;
+        }
+        .task-1-resources .teach-link {
+            background: #0b2a4a;
+            color: white;
+            padding: 3px 16px;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            border: none;
+        }
+        .task-1-resources .teach-link a {
+            color: white;
+            border-bottom: 1px solid rgba(255,255,255,0.4);
+        }
+        .task-1-resources .teach-link a:hover { border-bottom: 2px solid white; color: #fdbb2d; }
+
+        .code-lab-link {
+            background: #1a5f87;
+            color: white;
+            padding: 2px 14px;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            display: inline-block;
+            margin: 4px 0;
+        }
+        .code-lab-link a {
+            color: white;
+            border-bottom: 1px solid rgba(255,255,255,0.4);
+        }
+        .code-lab-link a:hover { border-bottom: 2px solid white; color: #fdbb2d; }
+
+        @media (max-width: 640px) {
+            .container { padding: 20px; }
+            h1 { font-size: 1.8rem; }
+            table, .extension-grid { font-size: 0.85rem; }
+            .extension-grid { grid-template-columns: 1fr; gap: 2px; }
+            .task-1-resources { flex-direction: column; align-items: flex-start; }
+            .blooket-box { flex-direction: column; align-items: flex-start; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <a class="back-link" href="index.html">← Back to A1 Unit</a>
+
+    <h1>A1.1.3 – GPU (HL) <span class="badge badge-hl">HL</span></h1>
+
+    <h2>📌 Learning Objective</h2>
+    <p>By the end of this lesson, you will be able to:</p>
+    <ul>
+        <li><strong>Analyse</strong> the internal architecture of a GPU in detail</li>
+        <li><strong>Evaluate</strong> the use of GPUs for parallel processing and general-purpose computing (GPGPU)</li>
+        <li><strong>Discuss</strong> the trade-offs between GPU and CPU architectures for different workloads</li>
+    </ul>
+
+    <h2>🎯 IB Command Term: <span class="badge">Analyse</span></h2>
+    <div class="command-term">
+        <strong>Analyse</strong> – <em>"Break down in order to bring out the essential elements or structure."</em>
+    </div>
+
+    <!-- Blooket Starter Activity -->
+    <div class="blooket-box">
+        <span style="font-weight:700; color:#0b2a4a;">🎮 Starter Activity – Blooket Rush</span>
+        <span style="color:#3d5f7a;">Test your current knowledge before we begin!</span>
+        <span class="blooket-btn"><a href="https://play.blooket.com/host/rush?id=68b03753ddff7a4868b8d256" target="_blank">🚀 Launch Blooket</a></span>
+    </div>
+
+    <h2>🔑 Key Terms (HL)</h2>
+    <table>
+        <thead><tr><th>Term</th><th>Definition</th></tr></thead>
+        <tbody>
+            <tr><td><strong>GPGPU</strong></td><td>General-Purpose computing on Graphics Processing Units – using GPUs for non-graphics tasks.</td></tr>
+            <tr><td><strong>SIMD</strong></td><td>Single Instruction, Multiple Data – a parallel processing architecture where one instruction operates on multiple data elements.</td></tr>
+            <tr><td><strong>SM (Streaming Multiprocessor)</strong></td><td>A unit within a GPU that contains multiple CUDA cores and shared memory.</td></tr>
+            <tr><td><strong>Memory Bandwidth</strong></td><td>The rate at which data can be read from or written to GPU memory.</td></tr>
+            <tr><td><strong>Tensor Cores</strong></td><td>Specialised cores in NVIDIA GPUs designed for matrix multiplication, accelerating AI workloads.</td></tr>
+        </tbody>
+    </table>
+
+    <!-- Tasks matching the image layout -->
+    <h2>📖 Your Tasks</h2>
+    <div class="task-block">
+        <!-- Task 1 -->
+        <div class="task-row">
+            <span class="task-step">1</span>
+            <span class="task-desc">
+                <strong>Read &amp; Teach</strong> — Use the resources below to learn about GPU architecture, then explain it to the AI.
+                <div class="task-1-resources">
+                    <span class="pill"><a href="https://mr-ellis.github.io/School/ebooks/DP%20Computer%20Science_%20A%201.1.3.pdf" target="_blank">📖 eBook (HL)</a></span>
+                    <span class="pill"><a href="https://faq.computersciencewiki.org/index.php/home/article/a1.1.3-explain-the-differences-between-the-cpu-and-the-gpu-hl-only" target="_blank">🌐 CS Wiki (HL)</a></span>
+                    <span class="pill"><a href="https://docs.google.com/presentation/d/e/2PACX-1vRPbZjHkkX-jWYZ75TZ_fIJSz9q6e5GsIdYOtHdreEFRPlx-hsgaj4DStqC9CKwYUxADvVEi30aCZ_v/pub?start=false&loop=false&delayms=3000&slide=id.p" target="_blank">📊 Lesson Slides</a></span>
+                    <span class="pill">📘 Textbook</span>
+                    <span class="teach-link"><a href="https://www.revisiondojo.com/teach-jojo?subjectId=6523&classroomId=cd512bbe-da19-4a8c-a8cb-c05f014c20ce" target="_blank">🤖 Teach the AI</a></span>
+                </div>
+                <span style="font-size:0.9rem; color:#4a6a85;">Take notes on CPU vs GPU differences, GPGPU applications, and trade-offs.</span>
+            </span>
+        </div>
+        <!-- Task 2 – green background -->
+        <div class="task-row task-starter">
+            <span class="task-step">2</span>
+            <span class="task-desc">
+                <strong>Complete the Starter Activity</strong> — Answer the <strong>mild, medium and spicy</strong> questions from the <a href="https://docs.google.com/presentation/d/e/2PACX-1vQe-ehQDMGvfO9jdTB_vWqIUiJjH9-a_c_uJ0FbPY_IIcpDfdyqRnWTfUpIDGTCAAs42ocaOI9_jsMX/pub?start=false&loop=false&delayms=3000&slide=id.g3ab61963dd6_0_93" target="_blank">Lesson Starter PowerPoint</a>.<br>
+                Use <span class="code-lab-link"><a href="https://jamesabela.github.io/jsfun/pythoncopy?blank" target="_blank">🐍 Python Code Lab</a></span> to write your questions and answers in a text file.<br>
+                <strong>📌 Important:</strong> Save your code as a <strong>.txt</strong> file. You will submit all starter activity answers to <strong>Schoolbox</strong> at the end of A1.1.9 Debugging Techniques.
+            </span>
+        </div>
+        <!-- Task 3 -->
+        <div class="task-row">
+            <span class="task-step">3</span>
+            <span class="task-desc"><strong>Extension Activities</strong> — Choose from the activities below if you finish early.</span>
+        </div>
+        <!-- Task 4 -->
+        <div class="task-row">
+            <span class="task-step">4</span>
+            <span class="task-desc"><strong>Plenary</strong> — Test yourself with the <a href="https://quizlet.com/pt/1065896681/a-113-explain-the-differences-between-the-cpu-and-the-gpu-hl-only-flash-cards/?funnelUUID=0bac7dd0-abfd-4e21-9620-15450cc11c43" target="_blank">Quizlet flashcards</a>.</span>
+        </div>
+    </div>
+
+    <h2>⭐ Extension Activities</h2>
+    <div class="extension-grid">
+        <span class="label">1. GPGPU Use Cases</span>
+        <span class="desc">Research three applications that use GPGPU (e.g., deep learning, cryptocurrency mining, scientific simulation). Explain why a GPU is suitable for each.</span>
+
+        <span class="label">2. Architecture Comparison</span>
+        <span class="desc">Create a detailed diagram comparing the memory hierarchy of a CPU and a GPU. Include L1/L2/L3 cache, registers, VRAM, and shared memory.</span>
+
+        <span class="label">3. Performance Analysis</span>
+        <span class="desc">Find benchmark data comparing CPU vs GPU performance for a specific task (e.g., matrix multiplication). Analyse the results and explain the reasons for the performance difference.</span>
+    </div>
+
+    <div class="key-takeaway">
+        <p><em>"GPUs have evolved from graphics accelerators to general-purpose parallel processors, driving advances in AI and scientific computing."</em></p>
+    </div>
+
+    <hr>
+
+    <div class="lesson-nav">
+        <a href="A1.1.2.html">← Previous: GPU Architecture</a>
+        <span></span>
+    </div>
+
+    <div class="footer-meta">
+        A1.1.3 – GPU (HL) • IB Computer Science • Year 12
+    </div>
+</div>
+
+</body>
+</html>

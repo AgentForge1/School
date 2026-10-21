@@ -1,0 +1,965 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>8.2 Lesson 2 · Linear Search &amp; CreateAI</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: #f0f4fb;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      color: #1e293b;
+      padding: 2rem 1.5rem;
+      line-height: 1.7;
+      min-height: 100vh;
+    }
+    .container { max-width: 1100px; margin: 0 auto; }
+
+    .nav {
+      background: #0b2a4a;
+      padding: 0.9rem 2rem;
+      border-radius: 60px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 1.8rem;
+      margin-bottom: 2.5rem;
+      box-shadow: 0 8px 20px rgba(0,20,40,0.08);
+    }
+    .nav a {
+      color: #e6edf5;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.95rem;
+      letter-spacing: 0.3px;
+      transition: 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .nav a i { font-size: 0.9rem; opacity: 0.7; }
+    .nav a:hover { color: #ffffff; text-decoration: underline; text-underline-offset: 4px; }
+    .nav .brand {
+      margin-right: auto;
+      font-weight: 600;
+      color: white;
+      font-size: 1.1rem;
+    }
+    .nav .brand i { margin-right: 8px; color: #7bb3ff; }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: #1f6390;
+      text-decoration: none;
+      font-weight: 500;
+      margin-bottom: 1.5rem;
+    }
+    .back-link:hover { text-decoration: underline; }
+
+    .page-header { margin-bottom: 2rem; }
+    .page-header h1 {
+      font-size: 2.4rem;
+      font-weight: 700;
+      color: #0b2a4a;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .page-header h1 i { color: #2a6f97; font-size: 2rem; }
+    .page-header .sub {
+      color: #475569;
+      font-size: 1rem;
+      background: #e9eff8;
+      display: inline-block;
+      padding: 0.3rem 1.4rem;
+      border-radius: 40px;
+      margin-top: 0.3rem;
+    }
+
+    .lesson-content {
+      background: white;
+      border-radius: 24px;
+      padding: 2rem 2.5rem;
+      border: 1px solid #e5edf5;
+      box-shadow: 0 4px 14px rgba(0, 20, 40, 0.04);
+    }
+    .lesson-content h2 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: #0b2a4a;
+      margin: 1.8rem 0 0.8rem 0;
+      border-left: 5px solid #2a6f97;
+      padding-left: 15px;
+    }
+    .lesson-content h2:first-of-type { margin-top: 0; }
+    .lesson-content h3 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #0b2a4a;
+      margin: 1.2rem 0 0.4rem 0;
+    }
+    .lesson-content p { margin-bottom: 0.6rem; }
+    .lesson-content ul, .lesson-content ol {
+      padding-left: 1.6rem;
+      margin: 0.5rem 0 1rem 0;
+    }
+    .lesson-content li { margin-bottom: 0.25rem; }
+
+    .objectives-box {
+      background: #eef6fc;
+      border-radius: 16px;
+      padding: 0.8rem 1.4rem;
+      margin: 0.5rem 0 1.2rem 0;
+      border-left: 4px solid #2a6f97;
+    }
+    .objectives-box strong { color: #0b2a4a; }
+    .objectives-box ul {
+      margin: 0.2rem 0 0 1.2rem;
+      padding-left: 0.5rem;
+    }
+    .objectives-box ul li { list-style-type: disc; font-size: 0.95rem; }
+
+    .strand-box {
+      background: #f3e5f5;
+      border-radius: 16px;
+      padding: 0.8rem 1.4rem;
+      margin: 1rem 0 1.2rem 0;
+      border-left: 4px solid #8e24aa;
+      font-size: 0.9rem;
+    }
+    .strand-box strong { color: #4a148c; }
+    .strand-box p { margin-bottom: 0.3rem; color: #3e1058; }
+
+    .highlight-box {
+      background: #eef6fc;
+      padding: 1rem 1.6rem;
+      border-radius: 16px;
+      border-left: 5px solid #2a6f97;
+      margin: 1rem 0;
+    }
+    .highlight-box strong { color: #0b2a4a; }
+    .highlight-box.green { border-left-color: #4caf50; background: #edf7ed; }
+    .highlight-box.amber { border-left-color: #f9a825; background: #fff8e1; }
+    .highlight-box.purple { border-left-color: #8e24aa; background: #f7edfa; }
+
+    .starter-callout {
+      background: linear-gradient(135deg, #fff3e0, #ffe0b2);
+      border: 2px solid #e65100;
+      border-radius: 20px;
+      padding: 1.4rem 1.8rem;
+      margin: 1.5rem 0;
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+    .starter-callout .badge {
+      background: #e65100;
+      color: white;
+      font-weight: 700;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      padding: 0.3rem 0.9rem;
+      border-radius: 30px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .starter-callout h3 { margin-top: 0; color: #7a3300; font-size: 1.15rem; }
+    .starter-callout p { margin-bottom: 0.3rem; color: #5a2900; }
+    .starter-callout a {
+      color: #e65100;
+      font-weight: 600;
+      text-decoration: none;
+      border-bottom: 2px solid #e65100;
+    }
+    .starter-callout a:hover { color: #7a3300; }
+
+    .main-task {
+      background: linear-gradient(135deg, #fff8e1, #ffecb3);
+      border: 2px solid #f9a825;
+      border-radius: 20px;
+      padding: 1.4rem 1.8rem;
+      margin: 1.5rem 0;
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+    .main-task .badge {
+      background: #f9a825;
+      color: #4a2c00;
+      font-weight: 700;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      padding: 0.3rem 0.9rem;
+      border-radius: 30px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .main-task h3 { margin-top: 0; color: #7a4b00; font-size: 1.15rem; }
+    .main-task p { margin-bottom: 0.3rem; color: #5a3a00; }
+
+    .demo-callout {
+      background: linear-gradient(135deg, #e8f4fd, #d4ecfb);
+      border: 2px solid #1e88e5;
+      border-radius: 20px;
+      padding: 1.4rem 1.8rem;
+      margin: 1.5rem 0;
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+    .demo-callout .badge {
+      background: #1e88e5;
+      color: white;
+      font-weight: 700;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      padding: 0.3rem 0.9rem;
+      border-radius: 30px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .demo-callout h3 { margin-top: 0; color: #0d47a1; font-size: 1.15rem; }
+    .demo-callout p { margin-bottom: 0.3rem; color: #0d3b6e; }
+    .demo-callout a {
+      color: #1e88e5;
+      font-weight: 600;
+      text-decoration: none;
+      border-bottom: 2px solid #1e88e5;
+    }
+
+    .pair-task {
+      background: linear-gradient(135deg, #f3e5f5, #e1bee7);
+      border: 2px solid #8e24aa;
+      border-radius: 20px;
+      padding: 1.4rem 1.8rem;
+      margin: 1.5rem 0;
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+    .pair-task .badge {
+      background: #8e24aa;
+      color: white;
+      font-weight: 700;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      padding: 0.3rem 0.9rem;
+      border-radius: 30px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .pair-task h3 { margin-top: 0; color: #4a148c; font-size: 1.15rem; }
+    .pair-task p { margin-bottom: 0.3rem; color: #3e1058; }
+
+    .tools-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      background: #f8fafc;
+      padding: 1rem 1.4rem;
+      border-radius: 16px;
+      border: 1px solid #dceaf7;
+      margin: 1rem 0;
+    }
+    .tool-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: white;
+      color: #0b2a4a;
+      padding: 0.6rem 1.2rem;
+      border-radius: 40px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.85rem;
+      border: 2px solid #b6cfe5;
+      transition: 0.2s;
+    }
+    .tool-btn:hover {
+      transform: translateY(-2px);
+      border-color: #2a6f97;
+      background: #f0f7ff;
+    }
+    .tool-btn i { color: #2a6f97; }
+
+    .code-block {
+      background: #0b1e2e;
+      color: #e2edf7;
+      padding: 1rem 1.5rem;
+      border-radius: 16px;
+      font-family: 'JetBrains Mono', 'Fira Code', monospace;
+      font-size: 0.9rem;
+      overflow-x: auto;
+      margin: 0.8rem 0;
+      white-space: pre-wrap;
+      word-break: break-word;
+      line-height: 1.6;
+    }
+    .code-block .comment { color: #6a9fb5; }
+    .code-block .keyword { color: #ff9f7c; }
+    .code-block .string { color: #b5d6a8; }
+    .code-block .func { color: #7bb3ff; }
+
+    /* ===== WORKSHEET DATA TABLE ===== */
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1rem 0;
+      font-family: 'JetBrains Mono', 'Fira Code', monospace;
+      font-size: 0.95rem;
+    }
+    .data-table td {
+      border: 2px solid #2a6f97;
+      padding: 0.7rem 0.9rem;
+      text-align: center;
+      background: #f8fafc;
+      font-weight: 600;
+      color: #0b2a4a;
+    }
+    .data-table td.index {
+      background: #e9eff8;
+      color: #475569;
+      font-size: 0.75rem;
+      font-weight: 500;
+    }
+
+    /* ===== INTERACTIVE SENSOR QUIZ ===== */
+    .sensor-quiz {
+      background: #f8fafc;
+      border: 2px solid #1e88e5;
+      border-radius: 20px;
+      padding: 1.4rem 1.8rem;
+      margin: 1.5rem 0;
+    }
+    .sensor-quiz h3 {
+      margin-top: 0;
+      color: #0d47a1;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .sensor-quiz .sensor-q {
+      margin: 1rem 0;
+      padding: 1rem 1.2rem;
+      background: white;
+      border-radius: 14px;
+      border: 1px solid #e5edf5;
+    }
+    .sensor-quiz .sensor-q p {
+      font-weight: 600;
+      margin-bottom: 0.6rem;
+    }
+    .sensor-quiz .sensor-q button {
+      background: #eef6fc;
+      border: 1.5px solid #d4e3f0;
+      color: #0b2a4a;
+      padding: 0.5rem 1.1rem;
+      border-radius: 30px;
+      font-size: 0.85rem;
+      margin: 0.2rem 0.3rem 0.2rem 0;
+      cursor: pointer;
+      transition: 0.2s;
+      font-weight: 500;
+    }
+    .sensor-quiz .sensor-q button:hover {
+      background: #dbeafe;
+      border-color: #7bb3ff;
+    }
+    .sensor-quiz .sensor-q button.correct {
+      background: #c8e6c9;
+      border-color: #2d8f2d;
+      color: #1b5e20;
+      font-weight: 700;
+    }
+    .sensor-quiz .sensor-q button.incorrect {
+      background: #ffcdd2;
+      border-color: #e53935;
+      color: #b71c1c;
+    }
+    .sensor-quiz .sensor-q .sensor-feedback {
+      font-size: 0.85rem;
+      margin-top: 0.4rem;
+      min-height: 1.2rem;
+      font-weight: 500;
+    }
+    .sensor-quiz .sensor-q .sensor-feedback.ok { color: #2d8f2d; }
+    .sensor-quiz .sensor-q .sensor-feedback.no { color: #b71c1c; }
+    .sensor-quiz .reveal-answer {
+      background: #0b2a4a;
+      color: white;
+      border: none;
+      padding: 0.6rem 1.4rem;
+      border-radius: 40px;
+      font-weight: 600;
+      font-size: 0.85rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 0.5rem;
+      transition: 0.2s;
+    }
+    .sensor-quiz .reveal-answer:hover {
+      background: #1f6390;
+    }
+    .sensor-quiz .answer-reveal {
+      display: none;
+      margin-top: 0.8rem;
+      padding: 1rem 1.4rem;
+      background: #e8f5e9;
+      border-left: 5px solid #4caf50;
+      border-radius: 12px;
+    }
+    .sensor-quiz .answer-reveal.show { display: block; }
+    .sensor-quiz .answer-reveal strong { color: #1b5e20; }
+
+    .quiz {
+      background: #f8fafc;
+      border: 1px solid #dceaf7;
+      border-radius: 20px;
+      padding: 1.4rem 1.6rem;
+      margin: 1.2rem 0;
+    }
+    .quiz h3 { margin-top: 0; display: flex; align-items: center; gap: 8px; }
+    .quiz .q {
+      margin: 1rem 0;
+      padding: 0.9rem 1.2rem;
+      background: white;
+      border-radius: 14px;
+      border: 1px solid #e5edf5;
+    }
+    .quiz .q p { font-weight: 600; margin-bottom: 0.6rem; }
+    .quiz .q button {
+      background: #eef6fc;
+      border: 1.5px solid #d4e3f0;
+      color: #0b2a4a;
+      padding: 0.4rem 1rem;
+      border-radius: 30px;
+      font-size: 0.85rem;
+      margin: 0.2rem 0.3rem 0.2rem 0;
+      cursor: pointer;
+      transition: 0.2s;
+      font-weight: 500;
+    }
+    .quiz .q button:hover { background: #dbeafe; border-color: #7bb3ff; }
+    .quiz .q button.correct { background: #c8e6c9; border-color: #2d8f2d; color: #1b5e20; font-weight: 700; }
+    .quiz .q button.incorrect { background: #ffcdd2; border-color: #e53935; color: #b71c1c; }
+    .quiz .q .answer-feedback { font-size: 0.82rem; margin-top: 0.4rem; min-height: 1.2rem; font-weight: 500; }
+    .quiz .q .answer-feedback.ok { color: #2d8f2d; }
+    .quiz .q .answer-feedback.no { color: #b71c1c; }
+
+    .keyword-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem 1.2rem;
+      background: #f1f6fc;
+      padding: 0.8rem 1.2rem;
+      border-radius: 12px;
+      margin: 0.5rem 0 1rem 0;
+    }
+    .keyword-row span {
+      background: white;
+      padding: 0.2rem 0.8rem;
+      border-radius: 20px;
+      border: 1px solid #dce4ed;
+      font-size: 0.85rem;
+    }
+
+    .divider { margin: 2.5rem 0 0.5rem; border: 0; height: 1px; background: linear-gradient(to right, #d4e0ec, transparent); }
+
+    .project-divider {
+      margin: 3rem 0 1.5rem;
+      border: 0;
+      height: 3px;
+      background: linear-gradient(to right, #8e24aa, #1e88e5, transparent);
+      border-radius: 3px;
+    }
+
+    @media (max-width: 680px) {
+      body { padding: 1rem; }
+      .nav { flex-direction: column; align-items: flex-start; border-radius: 30px; gap: 0.6rem; }
+      .nav .brand { margin-right: 0; }
+      .page-header h1 { font-size: 1.8rem; flex-wrap: wrap; }
+      .lesson-content { padding: 1.2rem 1.4rem; }
+      .code-block { font-size: 0.8rem; padding: 0.8rem 1rem; }
+      .starter-callout, .main-task, .demo-callout, .pair-task { flex-direction: column; gap: 0.6rem; }
+      .data-table td { padding: 0.4rem 0.5rem; font-size: 0.75rem; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- ===== NAV ===== -->
+  <nav class="nav">
+    <span class="brand"><i class="fas fa-graduation-cap"></i> IGCSE CompSci</span>
+    <a href="../year8-units.html"><i class="fas fa-arrow-left"></i> Year 8 Units</a>
+    <a href="../unit8-2-pseudocode.html"><i class="fas fa-diagram-project"></i> 8.2 Pseudocode</a>
+  </nav>
+
+  <a href="../unit8-2-pseudocode.html" class="back-link"><i class="fas fa-arrow-left"></i> Back to 8.2 Pseudocode &amp; Algorithms</a>
+
+  <!-- ===== HEADER ===== -->
+  <div class="page-header">
+    <h1><i class="fas fa-magnifying-glass"></i> Lesson 2 · Linear Search &amp; CreateAI</h1>
+    <div class="sub"><i class="fas fa-arrow-right" style="margin-right:6px;"></i> Worksheet 8.2 Lesson 2</div>
+  </div>
+
+  <!-- ===== LESSON CONTENT ===== -->
+  <div class="lesson-content">
+
+    <!-- Learning Objectives -->
+    <div class="objectives-box">
+      <strong><i class="fas fa-bullseye" style="color:#1f6390; margin-right:6px;"></i> Learning Objectives:</strong>
+      <ul>
+        <li><strong>8CT.01</strong> Follow and understand algorithms that are presented as pseudocode.</li>
+        <li><strong>8CT.04</strong> Understand what a searching algorithm is and why searching algorithms are needed.</li>
+        <li><strong>8CT.05</strong> Describe how a linear search works and trace it through a data set.</li>
+        <li><strong>8CT.07</strong> Predict the outcome of algorithms and test that they meet those outcomes.</li>
+      </ul>
+    </div>
+
+    <!-- Strand 3 / Machine Learning Link -->
+    <div class="strand-box">
+      <strong><i class="fas fa-brain" style="margin-right:6px;"></i> Strand 3 · Machine Learning Models &amp; Algorithms (The Pattern Architect)</strong>
+      <p>This lesson builds the algorithmic thinking, prediction, and rule-based logic that form the foundation of machine learning. Searching algorithms and the conditional statements inside them (checking each item, deciding whether it matches) are the same logical rules AI models use to evaluate inputs and classify data. When you train an AI model in CreateAI, you're teaching it to recognise patterns — and the micro:bit's response is controlled by the conditional logic you write. This connects to understanding the conceptual meaning of training a model and the difference between classification and grouping.</p>
+    </div>
+
+    <!-- ===== STARTER ===== -->
+    <div class="starter-callout">
+      <span class="badge">🔥 Starter</span>
+      <div>
+        <h3>Blooket Warm-Up</h3>
+        <p>Quick Blooket to recap pseudocode basics before we look at searching algorithms.</p>
+        <p><a href="https://play.blooket.com/host?id=68e248e2d5404af5a2c66704" target="_blank">▶ Open Blooket Starter</a></p>
+      </div>
+    </div>
+
+    <!-- ===== RECAP ===== -->
+    <h2>🔁 Quick Recap: What is Pseudocode?</h2>
+    <p>In Lesson 1, we learned that <strong>pseudocode</strong> is a text version of an algorithm that looks similar to code but isn't tied to any one programming language.</p>
+    <p>Good pseudocode should be:</p>
+    <ul>
+      <li><strong>Short</strong> — only the essential steps</li>
+      <li><strong>Clear</strong> — easy to read and understand</li>
+      <li><strong>Precise</strong> — no vague instructions</li>
+      <li><strong>Started with START and ended with STOP</strong> — always uppercase</li>
+    </ul>
+
+    <!-- ===== WHAT IS A LINEAR SEARCH? ===== -->
+    <h2>🔍 What is a Linear Search?</h2>
+    <p>A <strong>linear search</strong> (also called a sequential search) is the simplest searching algorithm. It works by checking each item in a list <strong>one at a time, in order</strong>, from the start, until either:</p>
+    <ul>
+      <li>the item you're looking for is found, or</li>
+      <li>you reach the end of the list and the item isn't there.</li>
+    </ul>
+
+    <div class="highlight-box">
+      <i class="fas fa-lightbulb" style="color:#1f6390; margin-right:8px;"></i>
+      <strong>Key idea:</strong> A linear search doesn't skip ahead. It checks every item in turn. This makes it easy to write but slow for large lists.
+    </div>
+
+    <!-- ===== DATA SET ===== -->
+    <h2>📊 The Data Set</h2>
+    <p>We'll use this list of animals from <strong>Worksheet 8.2 Lesson 2</strong> to trace a linear search:</p>
+
+    <table class="data-table">
+      <tr>
+        <td class="index">Index</td>
+        <td class="index">1</td>
+        <td class="index">2</td>
+        <td class="index">3</td>
+        <td class="index">4</td>
+        <td class="index">5</td>
+        <td class="index">6</td>
+        <td class="index">7</td>
+        <td class="index">8</td>
+        <td class="index">9</td>
+        <td class="index">10</td>
+      </tr>
+      <tr>
+        <td class="index">Item</td>
+        <td>Cat</td>
+        <td>Hamster</td>
+        <td>Bat</td>
+        <td>Parrot</td>
+        <td>Horse</td>
+        <td>Lion</td>
+        <td>Tiger</td>
+        <td>Camel</td>
+        <td>Bear</td>
+        <td>Swan</td>
+      </tr>
+    </table>
+
+    <!-- ===== WORKED EXAMPLE ===== -->
+    <h2>📝 Worked Example: Searching for "Tiger"</h2>
+    <p>Let's trace a linear search to find the data item <strong>'Tiger'</strong> in this list.</p>
+
+    <h3>Step-by-step trace</h3>
+    <ol>
+      <li>Start at <strong>index 1</strong>: is "Cat" == "Tiger"? <strong>No</strong> → move to the next item.</li>
+      <li>Index 2: is "Hamster" == "Tiger"? <strong>No</strong> → move on.</li>
+      <li>Index 3: is "Bat" == "Tiger"? <strong>No</strong> → move on.</li>
+      <li>Index 4: is "Parrot" == "Tiger"? <strong>No</strong> → move on.</li>
+      <li>Index 5: is "Horse" == "Tiger"? <strong>No</strong> → move on.</li>
+      <li>Index 6: is "Lion" == "Tiger"? <strong>No</strong> → move on.</li>
+      <li>Index 7: is "Tiger" == "Tiger"? <strong>Yes!</strong> → the item is found at index 7. Stop searching.</li>
+    </ol>
+
+    <div class="highlight-box green">
+      <i class="fas fa-check-circle" style="color:#2d8f2d; margin-right:8px;"></i>
+      <strong>Result:</strong> "Tiger" is found at <strong>index 7</strong>. The linear search checked <strong>7 items</strong> before finding it.
+    </div>
+
+    <h3>Pseudocode for a linear search</h3>
+    <div class="code-block">
+<span class="keyword">START</span>
+items = [<span class="string">"Cat"</span>, <span class="string">"Hamster"</span>, <span class="string">"Bat"</span>, <span class="string">"Parrot"</span>, <span class="string">"Horse"</span>,
+         <span class="string">"Lion"</span>, <span class="string">"Tiger"</span>, <span class="string">"Camel"</span>, <span class="string">"Bear"</span>, <span class="string">"Swan"</span>]
+target = <span class="string">"Tiger"</span>
+found = <span class="keyword">FALSE</span>
+index = 1
+
+<span class="keyword">WHILE</span> index &lt;= 10 <span class="keyword">AND</span> found == <span class="keyword">FALSE</span>
+    <span class="keyword">IF</span> items[index] == target <span class="keyword">THEN</span>
+        found = <span class="keyword">TRUE</span>
+    <span class="keyword">ELSE</span>
+        index = index + 1
+    <span class="keyword">ENDIF</span>
+<span class="keyword">ENDWHILE</span>
+
+<span class="keyword">IF</span> found == <span class="keyword">TRUE</span> <span class="keyword">THEN</span>
+    <span class="keyword">OUTPUT</span> <span class="string">"Item found at index "</span> + index
+<span class="keyword">ELSE</span>
+    <span class="keyword">OUTPUT</span> <span class="string">"Item not found"</span>
+<span class="keyword">ENDIF</span>
+<span class="keyword">STOP</span>
+    </div>
+
+    <div class="highlight-box">
+      <i class="fas fa-info-circle" style="color:#1f6390; margin-right:8px;"></i>
+      <strong>Notice:</strong> The linear search uses a <strong>WHILE loop</strong> to move through the list and an <strong>IF statement</strong> to check each item. The loop stops as soon as the item is found — it doesn't keep searching unnecessarily.
+    </div>
+
+    <!-- ===== WHY ARE SEARCHING ALGORITHMS NEEDED? ===== -->
+    <h2>❓ Why Are Searching Algorithms Needed?</h2>
+    <p>Searching algorithms are needed because computers store huge amounts of data — far more than a person could check by hand. A searching algorithm gives the computer a <strong>reliable, repeatable set of steps</strong> to find a specific item quickly and accurately.</p>
+
+    <h3>Key reasons:</h3>
+    <ul>
+      <li><strong>Speed</strong> — a computer can check thousands of items per second.</li>
+      <li><strong>Accuracy</strong> — the algorithm won't miss an item or get distracted.</li>
+      <li><strong>Consistency</strong> — the same steps work every time, for any data set.</li>
+      <li><strong>Automation</strong> — searches can run without a human watching.</li>
+    </ul>
+
+    <div class="highlight-box amber">
+      <i class="fas fa-question-circle" style="color:#b45309; margin-right:8px;"></i>
+      <strong>Think about it:</strong> If a website has 10 million users and you log in, the computer must find <em>your</em> account among all of them. Without a searching algorithm, that would be impossible.
+    </div>
+
+    <!-- ===== MAIN TASK ===== -->
+    <div class="main-task">
+      <span class="badge">⭐ Main Task</span>
+      <div>
+        <h3>📝 Worksheet 8.2 Lesson 2 — Linear Search</h3>
+        <p>Complete <strong>Worksheet 8.2 Lesson 2</strong> to practise working with linear search.</p>
+        <p><strong>The worksheet asks you to:</strong></p>
+        <ul style="margin-top:0.3rem;">
+          <li>Explain what a linear search is and how it is used</li>
+          <li>Describe how a linear search works on the animal data set to find "Tiger"</li>
+          <li>Explain why searching algorithms are needed</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- ===== CREATEAI PROJECT ==================================== -->
+    <!-- ============================================================ -->
+
+    <hr class="project-divider" />
+
+    <div style="text-align:center; margin-bottom:1.5rem;">
+      <h2 style="border-left:none; padding-left:0; font-size:1.8rem; color:#4a148c;">
+        <i class="fas fa-robot" style="margin-right:10px;"></i> CreateAI Project
+      </h2>
+      <p style="color:#64748b; font-size:0.95rem; max-width:700px; margin:0 auto;">
+        This project connects the conditional logic you've been learning to real-world AI.
+        It runs across several lessons, with a show-and-tell at the end.
+      </p>
+    </div>
+
+    <!-- ===== TEACHER DEMO: CREATEAI ===== -->
+    <h2>🤖 Teacher Demo — CreateAI in Action</h2>
+
+    <div class="demo-callout">
+      <span class="badge">👨‍🏫 Demo</span>
+      <div>
+        <h3>Watch the teacher demonstrate CreateAI</h3>
+        <p>Your teacher will show you how to train an AI model using the micro:bit's sensors. Watch carefully — you'll need to answer some questions afterwards.</p>
+        <p><strong>Demo link:</strong> <a href="https://createai.microbit.org/data-samples" target="_blank">createai.microbit.org/data-samples</a></p>
+      </div>
+    </div>
+
+    <h3>🔍 What to look out for in the demo</h3>
+    <ul>
+      <li>How the teacher collects <strong>training data</strong> for each movement</li>
+      <li>How the <strong>AI model</strong> learns to recognise patterns</li>
+      <li>How the micro:bit <strong>reacts</strong> when the AI detects a movement</li>
+    </ul>
+
+    <!-- ===== INTERACTIVE SENSOR QUIZ ===== -->
+    <div class="sensor-quiz" id="sensorQuiz">
+      <h3><i class="fas fa-question-circle" style="color:#0d47a1;"></i> Class discussion — What sensors did the teacher use?</h3>
+      <p style="font-size:0.9rem; color:#475569;">After the demo, answer these questions to identify the sensors used. Click an answer to check if you're right.</p>
+
+      <div class="sensor-q" data-correct="b">
+        <p>1. Was the micro:bit detecting movement or orientation?</p>
+        <button data-opt="a">A. Orientation only</button>
+        <button data-opt="b">B. Both movement and orientation</button>
+        <button data-opt="c">C. Neither</button>
+        <button data-opt="d">D. Only sound</button>
+        <div class="sensor-feedback"></div>
+      </div>
+
+      <div class="sensor-q" data-correct="c">
+        <p>2. What sensor measures acceleration and tilt?</p>
+        <button data-opt="a">A. Light sensor</button>
+        <button data-opt="b">B. Temperature sensor</button>
+        <button data-opt="c">C. Accelerometer</button>
+        <button data-opt="d">D. Microphone</button>
+        <div class="sensor-feedback"></div>
+      </div>
+
+      <div class="sensor-q" data-correct="a">
+        <p>3. Could other sensors (light, sound, temperature) be used instead?</p>
+        <button data-opt="a">A. Yes, different sensors can be used for different projects</button>
+        <button data-opt="b">B. No, only the accelerometer works with AI</button>
+        <button data-opt="c">C. Only the light sensor works</button>
+        <button data-opt="d">D. Sensors cannot be used with AI</button>
+        <div class="sensor-feedback"></div>
+      </div>
+
+      <button class="reveal-answer" id="revealAnswerBtn">
+        <i class="fas fa-eye"></i> Reveal Key Sensors
+      </button>
+
+      <div class="answer-reveal" id="answerReveal">
+        <strong><i class="fas fa-check-circle" style="margin-right:6px;"></i> Key sensors used in CreateAI:</strong>
+        <p style="margin-top:0.4rem;">The <strong>accelerometer</strong> is the main sensor used for motion detection. It measures acceleration and tilt in three dimensions (X, Y, Z). Other sensors like the <strong>magnetometer</strong> (compass) or <strong>light sensor</strong> could also be used for different projects.</p>
+      </div>
+    </div>
+
+    <!-- ===== PAIRED PROJECT ===== -->
+    <h2>👥 Paired Project — Complete a CreateAI Tutorial</h2>
+
+    <div class="pair-task">
+      <span class="badge">👥 Pairs</span>
+      <div>
+        <h3>Work in pairs to complete one CreateAI tutorial</h3>
+        <p>Now it's your turn. In pairs, choose <strong>one</strong> of the official CreateAI tutorials below and work through it together.</p>
+        <p><strong>Choose ONE of these tutorials:</strong></p>
+        <ul style="margin-top:0.4rem;">
+          <li><strong>AI Storytelling Friend</strong> — train a model to recognise movements that tell a story.</li>
+          <li><strong>Simple AI Exercise Timer</strong> — use AI to detect exercise movements and count reps.</li>
+          <li><strong>AI Activity Timer</strong> — build a timer that responds to different activities.</li>
+          <li><strong>AI Sports Data Logger</strong> — log sports movements and track performance.</li>
+        </ul>
+        <p style="margin-top:0.4rem;"><em>All tutorials are available at <a href="https://createai.microbit.org/" target="_blank" style="color:#4a148c; font-weight:600;">createai.microbit.org</a>.</em></p>
+      </div>
+    </div>
+
+    <h3>🛠️ Step 1: Open CreateAI</h3>
+    <p>Go to <a href="https://createai.microbit.org/" target="_blank" style="color:#0d47a1; font-weight:600;">createai.microbit.org</a> and open the project tool. Make sure you and your partner are both logged in or working on the same computer.</p>
+
+    <h3>📹 Step 2: Choose and Complete Your Tutorial</h3>
+    <p>Pick <strong>one</strong> tutorial from the list above and follow it through. The tutorial will guide you through:</p>
+    <ol>
+      <li><strong>Collecting training data</strong> — record examples of each movement.</li>
+      <li><strong>Training the model</strong> — let the AI learn the patterns.</li>
+      <li><strong>Testing the model</strong> — check if the AI identifies movements correctly.</li>
+      <li><strong>Programming the micro:bit</strong> — use MakeCode to make the micro:bit react.</li>
+    </ol>
+
+    <div class="highlight-box" style="background:#fff8e1; border-left-color:#f9a825;">
+      <i class="fas fa-lightbulb" style="color:#b45309; margin-right:8px;"></i>
+      <strong>Teacher tip:</strong> If you need to edit the code for your program, use the <strong>MakeCode editor</strong>. Your teacher will show you how to open it from the CreateAI project page.
+    </div>
+
+    <h3>🎒 Homework — bring your materials for next lesson</h3>
+    <div class="highlight-box green" style="background:#e0ffee; border-left-color:#3cff8c;">
+      <i class="fas fa-box-open" style="color:#1b5e20; margin-right:8px;"></i>
+      <strong>Next lesson:</strong> You'll build a physical prototype of your AI project. Bring in materials to make your model move or react. Examples:
+      <ul style="margin-top:0.4rem;">
+        <li><strong>Elastic bands</strong> — to create a moving part or lever</li>
+        <li><strong>Small toys</strong> or figures — to be moved by your device</li>
+        <li><strong>Card, straws, tape, string</strong> — for building a simple mechanism</li>
+        <li><strong>Anything else</strong> you think you'll need to make your project move or react</li>
+      </ul>
+    </div>
+
+    <div class="highlight-box" style="background:#e0ffee; border-left-color:#3cff8c;">
+      <i class="fas fa-lightbulb" style="color:#1b5e20; margin-right:8px;"></i>
+      <strong>In the next lesson:</strong> You'll use the materials you brought in to build and test your prototype. At the end of the project, <strong>1 or 2 groups will be picked to demonstrate their program</strong> to the class in a show and tell.
+    </div>
+
+    <!-- ===== SELF-CHECK QUIZ ===== -->
+    <div class="quiz" id="quiz">
+      <h3><i class="fas fa-circle-question" style="color:#2a6f97;"></i> Quick Self-Check</h3>
+      <p style="font-size:0.9rem; color:#475569;">Click an answer to see if you're right. This is just for you — no marks are recorded.</p>
+
+      <div class="q" data-correct="b">
+        <p>1. What is a linear search?</p>
+        <button data-opt="a">A. A search that jumps to the middle of a list</button>
+        <button data-opt="b">B. A search that checks each item one at a time, in order</button>
+        <button data-opt="c">C. A search that only works on numbers</button>
+        <button data-opt="d">D. A search that sorts the list first</button>
+        <div class="answer-feedback"></div>
+      </div>
+
+      <div class="q" data-correct="c">
+        <p>2. In the animal list, at which index is "Tiger" found?</p>
+        <button data-opt="a">A. 5</button>
+        <button data-opt="b">B. 6</button>
+        <button data-opt="c">C. 7</button>
+        <button data-opt="d">D. 8</button>
+        <div class="answer-feedback"></div>
+      </div>
+
+      <div class="q" data-correct="a">
+        <p>3. Why are searching algorithms needed?</p>
+        <button data-opt="a">A. Computers store huge amounts of data that need to be searched quickly and accurately</button>
+        <button data-opt="b">B. They make programs run slower</button>
+        <button data-opt="c">C. They are only used for games</button>
+        <button data-opt="d">D. They replace the need for data</button>
+        <div class="answer-feedback"></div>
+      </div>
+
+      <div class="q" data-correct="d">
+        <p>4. What happens if a linear search reaches the end of the list without finding the item?</p>
+        <button data-opt="a">A. The program crashes</button>
+        <button data-opt="b">B. It starts again from the beginning</button>
+        <button data-opt="c">C. It finds the closest match</button>
+        <button data-opt="d">D. It reports that the item was not found</button>
+        <div class="answer-feedback"></div>
+      </div>
+
+      <div class="q" data-correct="b">
+        <p>5. Which sensor is mainly used in CreateAI for detecting movement?</p>
+        <button data-opt="a">A. Light sensor</button>
+        <button data-opt="b">B. Accelerometer</button>
+        <button data-opt="c">C. Temperature sensor</button>
+        <button data-opt="d">D. Microphone</button>
+        <div class="answer-feedback"></div>
+      </div>
+    </div>
+
+    <!-- ===== KEYWORDS ===== -->
+    <h2>🔑 Keywords</h2>
+    <div class="keyword-row">
+      <span>linear search</span>
+      <span>sequential search</span>
+      <span>searching algorithm</span>
+      <span>data set</span>
+      <span>index</span>
+      <span>target</span>
+      <span>pseudocode</span>
+      <span>WHILE loop</span>
+      <span>IF statement</span>
+      <span>algorithm</span>
+      <span>AI model</span>
+      <span>training data</span>
+      <span>accelerometer</span>
+      <span>sensor</span>
+      <span>classification</span>
+    </div>
+
+  </div>
+
+  <!-- ===== FOOTER ===== -->
+  <hr class="divider" />
+  <div style="display: flex; justify-content: space-between; font-size: 0.8rem; color: #5d7f9a; padding: 0.5rem 0; flex-wrap: wrap; gap: 0.5rem;">
+    <span><i class="fas fa-arrow-left" style="margin-right: 6px;"></i><a href="../unit8-2-pseudocode.html" style="color: #1f6390; text-decoration: none;">Back to 8.2 Pseudocode &amp; Algorithms</a></span>
+    <span>8.2 Lesson 2 · Linear Search &amp; CreateAI</span>
+  </div>
+
+</div>
+
+<script>
+  // ===== SELF-CHECK QUIZ =====
+  (function() {
+    const questions = document.querySelectorAll('#quiz .q');
+    questions.forEach(q => {
+      const correct = q.getAttribute('data-correct');
+      const buttons = q.querySelectorAll('button');
+      const fb = q.querySelector('.answer-feedback');
+
+      buttons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          buttons.forEach(b => b.classList.remove('correct', 'incorrect'));
+          const chosen = btn.getAttribute('data-opt');
+          if (chosen === correct) {
+            btn.classList.add('correct');
+            fb.textContent = '✅ Correct!';
+            fb.className = 'answer-feedback ok';
+          } else {
+            btn.classList.add('incorrect');
+            fb.textContent = '❌ Not quite. Try again.';
+            fb.className = 'answer-feedback no';
+          }
+        });
+      });
+    });
+  })();
+
+  // ===== SENSOR QUIZ =====
+  (function() {
+    const questions = document.querySelectorAll('#sensorQuiz .sensor-q');
+    questions.forEach(q => {
+      const correct = q.getAttribute('data-correct');
+      const buttons = q.querySelectorAll('button');
+      const fb = q.querySelector('.sensor-feedback');
+
+      buttons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          buttons.forEach(b => b.classList.remove('correct', 'incorrect'));
+          const chosen = btn.getAttribute('data-opt');
+          if (chosen === correct) {
+            btn.classList.add('correct');
+            fb.textContent = '✅ Correct!';
+            fb.className = 'sensor-feedback ok';
+          } else {
+            btn.classList.add('incorrect');
+            fb.textContent = '❌ Not quite. Try again.';
+            fb.className = 'sensor-feedback no';
+          }
+        });
+      });
+    });
+
+    const revealBtn = document.getElementById('revealAnswerBtn');
+    const answerReveal = document.getElementById('answerReveal');
+    if (revealBtn && answerReveal) {
+      revealBtn.addEventListener('click', () => {
+        answerReveal.classList.toggle('show');
+        revealBtn.innerHTML = answerReveal.classList.contains('show')
+          ? '<i class="fas fa-eye-slash"></i> Hide Key Sensors'
+          : '<i class="fas fa-eye"></i> Reveal Key Sensors';
+      });
+    }
+  })();
+</script>
+
+</body>
+</html>

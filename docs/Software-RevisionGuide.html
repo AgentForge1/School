@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Software-RevisionGuide</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Segoe UI', Roboto, system-ui, sans-serif;
+      background: #f3f6fc;
+      color: #1e2b3c;
+      padding: 2rem 1rem;
+      line-height: 1.6;
+    }
+
+    .guide-container {
+      max-width: 1000px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 2rem;
+      box-shadow: 0 20px 40px -10px rgba(0, 20, 50, 0.2);
+      padding: 2rem 2rem 2.5rem;
+      border: 1px solid #d9e2ef;
+    }
+
+    h1 {
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: #0a2a4a;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      border-bottom: 4px solid #ffc857;
+      padding-bottom: 0.65rem;
+      margin-bottom: 2rem;
+    }
+
+    h1 small {
+      font-size: 1rem;
+      font-weight: 400;
+      color: #4b6a8b;
+      margin-left: auto;
+      background: #e9f0fa;
+      padding: 0.3rem 1rem;
+      border-radius: 40px;
+    }
+
+    h2 {
+      font-size: 1.6rem;
+      font-weight: 600;
+      color: #1a3e6b;
+      margin: 2.5rem 0 1rem;
+      padding-left: 0.75rem;
+      border-left: 6px solid #ffc857;
+    }
+
+    h3 {
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: #214a7a;
+      margin: 1.5rem 0 0.6rem;
+    }
+
+    .card {
+      background: #f9fbfe;
+      border-radius: 1.2rem;
+      padding: 1.5rem 1.8rem;
+      margin: 1.2rem 0;
+      border: 1px solid #d0ddeb;
+    }
+
+    .tip-box {
+      background: #fff8e7;
+      border-left: 5px solid #ffc857;
+      border-radius: 0.8rem;
+      padding: 1rem 1.4rem;
+      margin: 1rem 0;
+      font-size: 0.95rem;
+    }
+
+    .tip-box strong {
+      color: #8a6d1f;
+    }
+
+    .check-box {
+      background: #e8f5e9;
+      border-left: 5px solid #4caf50;
+      border-radius: 0.8rem;
+      padding: 1rem 1.4rem;
+      margin: 1rem 0;
+      font-size: 0.95rem;
+    }
+
+    .check-box strong {
+      color: #2e7d32;
+    }
+
+    .keyword {
+      font-weight: 600;
+      color: #1f4973;
+      background: #eef5ff;
+      padding: 0.1rem 0.4rem;
+      border-radius: 12px;
+      font-size: 0.9rem;
+    }
+
+    .highlight {
+      background: #fff3d6;
+      padding: 0.1rem 0.3rem;
+      border-radius: 4px;
+      font-weight: 500;
+    }
+
+    .qa-toggle {
+      background: #e9f0fa;
+      border: none;
+      border-radius: 40px;
+      padding: 0.4rem 1.2rem;
+      font-weight: 600;
+      font-size: 0.85rem;
+      color: #1f4973;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      margin-top: 0.5rem;
+      border: 1px solid #bed3ec;
+      transition: background 0.15s;
+    }
+
+    .qa-toggle:hover {
+      background: #d4e3fc;
+    }
+
+    .qa-content {
+      display: none;
+      margin-top: 0.8rem;
+      background: white;
+      border-radius: 0.8rem;
+      padding: 1rem 1.4rem;
+      border-left: 4px solid #ffc857;
+      font-size: 0.95rem;
+    }
+
+    .qa-content.show {
+      display: block;
+    }
+
+    ul, ol {
+      padding-left: 1.5rem;
+      margin: 0.5rem 0;
+    }
+
+    li {
+      margin-bottom: 0.3rem;
+    }
+
+    .footer-note {
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+      border-top: 2px dashed #b8cee8;
+      font-size: 0.9rem;
+      color: #4b6a8b;
+      text-align: center;
+    }
+
+    @media (max-width: 700px) {
+      .guide-container { padding: 1.5rem; }
+      h1 { font-size: 1.6rem; flex-wrap: wrap; }
+    }
+  </style>
+</head>
+<body>
+  <div class="guide-container">
+    <h1>
+      📘 Unit 6 Software — Revision Guide
+      <small>IGCSE Computer Science</small>
+    </h1>
+
+    <p style="margin-bottom: 2rem; color: #2c4b6e;">
+      This guide teaches you the <strong>concepts</strong> you need to understand for the Unit 6 Software exam.
+      It explains key ideas, gives exam technique tips, and provides practice questions so you can
+      test your understanding. Work through each section, then try the practice questions without
+      looking at the notes.
+    </p>
+
+    <!-- ============================================================ -->
+    <!-- SECTION 1: OPERATING SYSTEMS -->
+    <!-- ============================================================ -->
+    <h2>1. Operating Systems</h2>
+
+    <div class="card">
+      <h3>What is an operating system?</h3>
+      <p>An <strong>operating system (OS)</strong> is system software that manages the computer's hardware and provides a platform for applications to run. Without an OS, a computer cannot function.</p>
+
+      <h3>Key functions of an OS</h3>
+      <p>You need to know these functions and be able to explain them:</p>
+      <ul>
+        <li><strong>Managing files</strong> — creating, deleting, organising files and folders; tracking where data is stored on secondary storage.</li>
+        <li><strong>Providing a user interface</strong> — allowing the user to interact with the computer (e.g., GUI, command line).</li>
+        <li><strong>Managing peripherals and drivers</strong> — communicating with hardware devices via device drivers.</li>
+        <li><strong>Managing memory</strong> — allocating RAM to programs and ensuring they don't interfere with each other.</li>
+        <li><strong>Multitasking</strong> — allowing multiple programs to run "at the same time" by rapidly switching between them (time slicing).</li>
+        <li><strong>Providing a platform for running applications</strong> — giving applications access to services like file storage, networking, and input/output.</li>
+        <li><strong>Managing user accounts and security</strong> — handling logins, access rights, permissions, and protecting data.</li>
+        <li><strong>Handling interrupts</strong> — responding to signals from hardware or software (see Section 3).</li>
+      </ul>
+
+      <div class="tip-box">
+        <strong>📝 Exam tip:</strong> If a question asks you to "explain" a function, don't just name it — say <em>what</em> it does and <em>why</em> it matters. For example, "Managing memory" is a name; "Managing memory means allocating RAM to programs and preventing them from accessing each other's memory, which keeps the system stable and secure" is an explanation.
+      </div>
+    </div>
+
+    <!-- Multitasking deep dive -->
+    <div class="card">
+      <h3>How multitasking works</h3>
+      <p>A single CPU can only execute one instruction at a time. Multitasking creates the <em>illusion</em> that multiple programs are running simultaneously.</p>
+      <p>The OS uses a <strong>scheduler</strong> to give each process a small slice of CPU time (called a <strong>time slice</strong> or <strong>quantum</strong>). It rapidly switches between processes. Because the switches happen many times per second, it looks like everything is running at once.</p>
+      <p>When the OS switches from one process to another, it must:</p>
+      <ul>
+        <li>Save the state of the current process (registers, program counter).</li>
+        <li>Load the saved state of the next process.</li>
+      </ul>
+
+      <div class="check-box">
+        <strong>✅ Check your understanding:</strong>
+        <ul>
+          <li>Can you explain why multitasking is an <em>illusion</em>?</li>
+          <li>What is a time slice?</li>
+          <li>Why does the OS need to save the state of a process?</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- SECTION 2: INTERRUPTS -->
+    <!-- ============================================================ -->
+    <h2>2. Interrupts</h2>
+
+    <div class="card">
+      <h3>What is an interrupt?</h3>
+      <p>An <strong>interrupt</strong> is a signal sent to the CPU that tells it to pause what it's doing and deal with something more urgent. Without interrupts, the CPU would have to constantly check every device to see if it needed attention (called <em>polling</em>), which wastes time.</p>
+
+      <h3>Types of interrupt</h3>
+      <ul>
+        <li><strong>Hardware interrupt</strong> — generated by a hardware device, e.g., a key press on a keyboard, a mouse click, or a printer finishing a job.</li>
+        <li><strong>Software interrupt</strong> — generated by a program, e.g., division by zero, two processes trying to access the same memory location, or a program requesting a service from the OS (system call).</li>
+      </ul>
+
+      <h3>What happens when an interrupt occurs?</h3>
+      <ol>
+        <li>The CPU finishes the current instruction.</li>
+        <li>It checks the interrupt and identifies its source.</li>
+        <li>The current state of the process is saved (registers, program counter).</li>
+        <li>The CPU runs the <strong>interrupt service routine (ISR)</strong> — a small piece of code that handles the interrupt.</li>
+        <li>Once the ISR is finished, the saved state is restored, and the original process continues.</li>
+      </ol>
+
+      <div class="tip-box">
+        <strong>📝 Exam tip:</strong> If you're asked to "describe the actions of the OS as a result of an interrupt," don't just say "it handles it." Walk through the steps: save state → identify source → run ISR → restore state.
+      </div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- SECTION 3: UTILITY SOFTWARE -->
+    <!-- ============================================================ -->
+    <h2>3. Utility Software</h2>
+
+    <div class="card">
+      <h3>What is utility software?</h3>
+      <p><strong>Utility software</strong> is system software that helps maintain, manage, and optimise the computer. It is <em>not</em> essential for the computer to run, but it helps it run efficiently and safely.</p>
+      <p>Examples: disk defragmenter, disk clean-up, backup software, antivirus software.</p>
+
+      <h3>Disk defragmenter</h3>
+      <p>Over time, files on a magnetic hard drive become <strong>fragmented</strong> — split into pieces scattered across the disk. This happens because files are created, deleted, and resized, leaving gaps.</p>
+      <p>A defragmenter rearranges the pieces so each file is stored <strong>contiguously</strong> (together). It also consolidates free space. This reduces the movement of the read/write head, so files load faster.</p>
+
+      <div class="tip-box">
+        <strong>📝 Exam tip:</strong> Know the difference between magnetic and solid-state drives:
+        <ul>
+          <li><strong>Magnetic drives</strong> have moving parts (spinning platters, read/write head) and <em>do</em> benefit from defragmentation.</li>
+          <li><strong>Solid-state drives (SSDs)</strong> have no moving parts and do <em>not</em> need defragmentation. In fact, defragmenting an SSD causes unnecessary writes, which reduces its lifespan.</li>
+        </ul>
+      </div>
+
+      <div class="check-box">
+        <strong>✅ Check your understanding:</strong>
+        <ul>
+          <li>Why do magnetic drives need defragmentation but SSDs don't?</li>
+          <li>What is fragmentation, and how does it slow down a computer?</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- SECTION 4: FIRMWARE & BOOTLOADER -->
+    <!-- ============================================================ -->
+    <h2>4. Firmware &amp; Bootloader</h2>
+
+    <div class="card">
+      <h3>What is firmware?</h3>
+      <p><strong>Firmware</strong> is software stored permanently on a hardware device, typically in <strong>ROM</strong> (read-only memory) or flash memory. It is <strong>non-volatile</strong> — it keeps its contents when the power is off.</p>
+      <p>Firmware provides low-level control for the device's hardware and acts as an intermediary between the hardware and higher-level software.</p>
+
+      <h3>What is a bootloader?</h3>
+      <p>The <strong>bootloader</strong> is the first program that runs when a computer is switched on. It is stored in firmware (ROM). Its job is to:</p>
+      <ol>
+        <li>Initialise the hardware (Power-On Self-Test, or POST).</li>
+        <li>Locate the operating system on secondary storage.</li>
+        <li>Load the OS into RAM.</li>
+        <li>Transfer control to the OS so it can start.</li>
+      </ol>
+
+      <div class="tip-box">
+        <strong>📝 Exam tip:</strong> Don't confuse firmware with the OS. Firmware is stored in ROM and is non-volatile; the OS is stored on secondary storage (like a hard drive) and is loaded into RAM by the bootloader.
+      </div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- SECTION 5: PROGRAMMING LANGUAGES -->
+    <!-- ============================================================ -->
+    <h2>5. Programming Languages</h2>
+
+    <div class="card">
+      <h3>Low-level vs high-level languages</h3>
+      <p><strong>Low-level languages</strong> are close to machine code. They are specific to a particular processor and give direct control over hardware.</p>
+      <ul>
+        <li><strong>Machine code</strong> — binary instructions (0s and 1s) that the CPU executes directly.</li>
+        <li><strong>Assembly language</strong> — uses <strong>mnemonics</strong> (short codes like MOV, ADD) instead of binary. Each mnemonic corresponds to one machine code instruction.</li>
+      </ul>
+      <p><strong>High-level languages</strong> are closer to human language. They are <strong>portable</strong> (machine-independent), easier to read and write, and provide built-in functions and libraries.</p>
+
+      <h3>Why use assembly language?</h3>
+      <ul>
+        <li>It gives direct control over hardware — useful for device drivers.</li>
+        <li>It produces very efficient (fast and small) code.</li>
+        <li>Sometimes it's the only way to access certain hardware features.</li>
+      </ul>
+
+      <h3>Why use a high-level language?</h3>
+      <ul>
+        <li>Easier and faster to write, read, and maintain.</li>
+        <li>Portable across different hardware.</li>
+        <li>Built-in functions and libraries speed up development.</li>
+      </ul>
+
+      <div class="tip-box">
+        <strong>📝 Exam tip:</strong> If a question asks why assembly is used for a device driver, the key reason is <em>direct hardware control</em>. If it asks why a high-level language is used for an application, the key reasons are <em>easier to write</em> and <em>portable</em>.
+      </div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- SECTION 6: TRANSLATORS -->
+    <!-- ============================================================ -->
+    <h2>6. Translators</h2>
+
+    <div class="card">
+      <h3>What is a translator?</h3>
+      <p>A <strong>translator</strong> converts source code into machine code that the CPU can execute. There are three types you need to know:</p>
+
+      <h3>Assembler</h3>
+      <p>Translates <strong>assembly language</strong> into machine code. Each assembly mnemonic is converted into the corresponding binary instruction.</p>
+
+      <h3>Compiler</h3>
+      <p>Translates <strong>high-level source code</strong> into machine code <strong>all at once</strong>. It produces an executable file that can be run without the compiler or the source code.</p>
+      <p><strong>Advantages:</strong> Fast execution, can distribute without source code.<br>
+      <strong>Disadvantages:</strong> Takes time to compile, harder to debug (errors reported after compilation).</p>
+
+      <h3>Interpreter</h3>
+      <p>Translates and executes high-level source code <strong>line by line</strong>, every time the program is run. It does not produce a separate executable file.</p>
+      <p><strong>Advantages:</strong> Easier to debug (stops at the error), no compilation step.<br>
+      <strong>Disadvantages:</strong> Slower execution, requires source code to be present.</p>
+
+      <div class="tip-box">
+        <strong>📝 Exam tip:</strong> When comparing compilers and interpreters, focus on: <em>speed of execution</em>, <em>when translation happens</em>, and <em>whether source code is needed at runtime</em>.
+      </div>
+
+      <div class="check-box">
+        <strong>✅ Check your understanding:</strong>
+        <ul>
+          <li>Which translator is used for assembly language?</li>
+          <li>Why might a compiler be better than an interpreter for a complex application?</li>
+          <li>Why might an interpreter be better for debugging?</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- SECTION 7: IDEs -->
+    <!-- ============================================================ -->
+    <h2>7. Integrated Development Environments (IDEs)</h2>
+
+    <div class="card">
+      <h3>What is an IDE?</h3>
+      <p>An <strong>IDE</strong> is a software application that provides comprehensive facilities for writing, testing, and debugging code. It combines several tools into one interface.</p>
+
+      <h3>Common IDE features</h3>
+      <ul>
+        <li><strong>Code editor</strong> — where you write your code.</li>
+        <li><strong>Syntax highlighting</strong> — displays different parts of code in different colours (keywords, strings, comments) to improve readability.</li>
+        <li><strong>Prettyprint</strong> — automatically formats code with consistent indentation and spacing.</li>
+        <li><strong>Auto-completion</strong> — suggests code as you type (e.g., variable names, function names).</li>
+        <li><strong>Auto-correction</strong> — inserts missing brackets or braces.</li>
+        <li><strong>Error diagnostics</strong> — highlights syntax errors and warnings.</li>
+        <li><strong>Breakpoints</strong> — pause execution at a specific line so you can inspect variables.</li>
+        <li><strong>Variable watch / inspection</strong> — view the current values of variables while the program runs.</li>
+        <li><strong>Run-time environment</strong> — allows you to run and test your code.</li>
+        <li><strong>Translators</strong> — built-in compilers or interpreters.</li>
+      </ul>
+
+      <div class="tip-box">
+        <strong>📝 Exam tip:</strong> If you're asked about features that "change how the code appears," focus on <em>syntax highlighting</em>, <em>prettyprint</em>, <em>line numbering</em>, and <em>code folding</em>. If asked about debugging features, focus on <em>error diagnostics</em>, <em>breakpoints</em>, and <em>variable watch</em>.
+      </div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- SECTION 8: EXAM TECHNIQUE -->
+    <!-- ============================================================ -->
+    <h2>8. Exam Technique</h2>
+
+    <div class="card">
+      <h3>Command words</h3>
+      <p>Pay attention to the command word — it tells you how much detail is needed:</p>
+      <ul>
+        <li><strong>State / Give / Name</strong> — a short answer, often one word or phrase. No explanation needed.</li>
+        <li><strong>Describe</strong> — say what happens or what something is. More detail than "state," but no need to explain why.</li>
+        <li><strong>Explain</strong> — say <em>how</em> or <em>why</em>. You need to give reasons and make connections.</li>
+        <li><strong>Compare</strong> — give similarities and differences.</li>
+        <li><strong>Discuss</strong> — give advantages and disadvantages.</li>
+      </ul>
+
+      <div class="tip-box">
+        <strong>📝 Mark allocation:</strong> Look at the number of marks. A 2-mark question usually needs two distinct points. A 3-mark question might need three points, or one point with three stages of development. Don't write one sentence for a 4-mark question — you won't get full marks.
+      </div>
+
+      <h3>Common mistakes to avoid</h3>
+      <ul>
+        <li>Confusing firmware with the operating system.</li>
+        <li>Saying SSDs need defragmentation (they don't).</li>
+        <li>Confusing a compiler with an interpreter.</li>
+        <li>Describing an interrupt without mentioning the ISR or saving state.</li>
+        <li>Writing vague answers like "it manages things" instead of being specific.</li>
+      </ul>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- SECTION 9: PRACTICE QUESTIONS -->
+    <!-- ============================================================ -->
+    <h2>9. Practice Questions</h2>
+    <p style="margin-bottom: 1rem; color: #2c4b6e;">
+      Try these questions <strong>without</strong> looking at your notes. Then check your answers by clicking the button.
+    </p>
+
+    <div class="card">
+      <h3>Question 1</h3>
+      <p>Explain what is meant by <em>multitasking</em> and describe how an operating system achieves it. <em>(4 marks)</em></p>
+      <button class="qa-toggle" data-target="p1">Show answer ▼</button>
+      <div id="p1" class="qa-content">
+        <p><strong>Multitasking</strong> is the ability of an operating system to run multiple programs seemingly at the same time.</p>
+        <p>The OS uses a <strong>scheduler</strong> to allocate a small amount of CPU time (a <strong>time slice</strong>) to each process in turn. When the time slice expires, the OS saves the state of the current process (registers, program counter), loads the saved state of the next process, and resumes it. Because the switching happens very quickly, it appears that all programs are running simultaneously.</p>
+        <p><em>(4 marks: 1 for definition, 1 for scheduler/time slice, 1 for saving/restoring state, 1 for the illusion of simultaneity.)</em></p>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>Question 2</h3>
+      <p>Describe what happens when a hardware interrupt is generated, from the moment the signal is sent to the moment the original task resumes. <em>(4 marks)</em></p>
+      <button class="qa-toggle" data-target="p2">Show answer ▼</button>
+      <div id="p2" class="qa-content">
+        <ol>
+          <li>The CPU finishes the current instruction and checks the interrupt.</li>
+          <li>The current state of the process is saved (registers, program counter).</li>
+          <li>The CPU identifies the source and runs the appropriate <strong>interrupt service routine (ISR)</strong>.</li>
+          <li>After the ISR completes, the saved state is restored, and the original task continues.</li>
+        </ol>
+        <p><em>(4 marks: 1 for each correct stage.)</em></p>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>Question 3</h3>
+      <p>A student says: "I defragment my SSD every week to keep it running fast." Explain why this is not a good idea. <em>(2 marks)</em></p>
+      <button class="qa-toggle" data-target="p3">Show answer ▼</button>
+      <div id="p3" class="qa-content">
+        <p>Solid-state drives (SSDs) have <strong>no moving parts</strong>, so defragmentation does not improve their performance. In fact, defragmenting an SSD causes <strong>unnecessary write operations</strong>, which reduces the drive's lifespan because SSDs have a limited number of write cycles.</p>
+        <p><em>(2 marks: 1 for no moving parts / no benefit, 1 for reducing lifespan.)</em></p>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>Question 4</h3>
+      <p>Explain the difference between a compiler and an interpreter, and give one advantage of each. <em>(4 marks)</em></p>
+      <button class="qa-toggle" data-target="p4">Show answer ▼</button>
+      <div id="p4" class="qa-content">
+        <p>A <strong>compiler</strong> translates the entire source code into machine code all at once, producing an executable file. <strong>Advantage:</strong> the compiled program runs faster because translation is already done.</p>
+        <p>An <strong>interpreter</strong> translates and executes the source code line by line, every time the program is run. <strong>Advantage:</strong> it is easier to debug because it stops at the line where an error occurs.</p>
+        <p><em>(4 marks: 1 for compiler definition, 1 for compiler advantage, 1 for interpreter definition, 1 for interpreter advantage.)</em></p>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>Question 5</h3>
+      <p>Describe two features of an IDE that help a programmer write code more efficiently. <em>(4 marks)</em></p>
+      <button class="qa-toggle" data-target="p5">Show answer ▼</button>
+      <div id="p5" class="qa-content">
+        <ul>
+          <li><strong>Auto-completion</strong> — suggests variable names, function names, and other code as the programmer types, reducing typing and helping avoid spelling errors.</li>
+          <li><strong>Syntax highlighting</strong> — displays different parts of the code in different colours, making it easier to read and spot syntax errors.</li>
+          <li><strong>Prettyprint</strong> — automatically formats the code with consistent indentation, making it easier to read and follow the structure.</li>
+          <li><strong>Error diagnostics</strong> — highlights syntax errors as the programmer types, allowing them to fix mistakes immediately.</li>
+        </ul>
+        <p><em>(4 marks: 2 for each feature — 1 for naming it, 1 for explaining how it helps.)</em></p>
+      </div>
+    </div>
+
+    <div class="footer-note">
+      ⚡ Software-RevisionGuide · Unit 6 Software · IGCSE Computer Science
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      const toggles = document.querySelectorAll('.qa-toggle');
+      toggles.forEach(btn => {
+        btn.addEventListener('click', function(e) {
+          e.preventDefault();
+          const targetId = this.getAttribute('data-target');
+          const content = document.getElementById(targetId);
+          if (!content) return;
+
+          const isVisible = content.classList.contains('show');
+          if (isVisible) {
+            content.classList.remove('show');
+            this.textContent = 'Show answer ▼';
+          } else {
+            content.classList.add('show');
+            this.textContent = 'Hide answer ▲';
+          }
+        });
+      });
+    })();
+  </script>
+</body>
+</html>

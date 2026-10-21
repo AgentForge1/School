@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A1.3.3 – Compare Different Approaches to Scheduling</title>
+<style>
+  :root {
+    --bg: #f0f4fb;
+    --panel: #ffffff;
+    --panel-2: #f7fafc;
+    --text: #1e293b;
+    --muted: #4a5568;
+    --navy: #0b2a4a;
+    --crimson: #b21f1f;
+    --gold: #fdbb2d;
+    --border: #dce4ed;
+    --blue-pill: #1a5f87;
+    --red-pill: #b21f1f;
+    --team-fcfs: #0b2a4a;
+    --team-rr: #2d7d46;
+    --team-pri: #b45309;
+    --team-mlq: #6d28d9;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    padding: 24px;
+  }
+  .wrap {
+    max-width: 980px;
+    margin: 0 auto;
+    background: #fff;
+    padding: 44px 52px;
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(11,42,74,0.10);
+  }
+  a { color: var(--crimson); text-decoration: none; border-bottom: 1px dotted var(--crimson); transition: color 0.15s, border-color 0.15s; }
+  a:hover { color: var(--navy); border-bottom: 2px solid var(--navy); }
+  .back { display: inline-block; margin-bottom: 24px; color: var(--crimson); text-decoration: none; font-weight: 600; border-bottom: none; font-size: 0.95rem; letter-spacing: 0.2px; }
+  .back:hover { color: var(--navy); text-decoration: underline; border-bottom: none; }
+  h1 { font-size: 2.2rem; color: var(--navy); border-bottom: 4px solid var(--gold); padding-bottom: 12px; margin: 0 0 28px; letter-spacing: -0.3px; line-height: 1.25; }
+  h2 { font-size: 1.5rem; color: var(--navy); margin: 38px 0 16px; border-left: 5px solid var(--crimson); padding-left: 16px; letter-spacing: -0.2px; }
+  h3 { font-size: 1.15rem; color: var(--navy); margin: 24px 0 10px; }
+  .badge { display: inline-block; background: var(--crimson); color: #fff; font-weight: 600; font-size: 0.8rem; padding: 2px 12px; border-radius: 20px; text-transform: uppercase; }
+  .command-term { background: #ebf4ff; border-left: 5px solid var(--navy); padding: 16px 22px; border-radius: 8px; margin: 16px 0; font-style: italic; font-size: 1.02rem; }
+  .panel { background: var(--panel-2); border: 1px solid var(--border); border-radius: 12px; padding: 1.1rem 1.4rem; margin: 1rem 0; }
+  .panel.accent { border-left: 4px solid var(--navy); }
+  .panel.warn { border-left: 4px solid var(--gold); background: #fff8e1; }
+  .panel.danger { border-left: 4px solid var(--crimson); background: #fdeaea; }
+  .panel.good { border-left: 4px solid #2d7d46; background: #e6f5e6; }
+  .panel.mission { background: #fef3c7; border-left: 5px solid var(--gold); border-radius: 0 12px 12px 0; padding: 1.4rem 1.6rem; margin: 1rem 0; }
+  .btn {
+    display: inline-block;
+    background: var(--crimson);
+    color: #fff;
+    font-weight: 700;
+    padding: 0.7rem 1.4rem;
+    border-radius: 10px;
+    text-decoration: none;
+    margin: 0.35rem 0.35rem 0.35rem 0;
+    border-bottom: none;
+    box-shadow: 0 2px 6px rgba(178,31,31,0.25);
+    transition: background 0.2s, box-shadow 0.2s, transform 0.15s;
+    letter-spacing: 0.2px;
+  }
+  .btn:hover { background: var(--navy); color: #fff; border-bottom: none; box-shadow: 0 4px 12px rgba(11,42,74,0.3); transform: translateY(-1px); }
+  .btn.green { background: #2d7d46; box-shadow: 0 2px 6px rgba(45,125,70,0.25); }
+  .btn.green:hover { background: #1a6b33; box-shadow: 0 4px 12px rgba(26,107,51,0.3); }
+  .btn.gold { background: var(--gold); color: var(--navy); box-shadow: 0 2px 6px rgba(253,187,45,0.4); }
+  .btn.gold:hover { background: #e5a820; color: var(--navy); box-shadow: 0 4px 12px rgba(229,168,32,0.5); }
+  details { background: var(--panel-2); border: 1px solid var(--border); border-radius: 10px; padding: 0.8rem 1.1rem; margin: 0.9rem 0; }
+  summary { cursor: pointer; font-weight: 700; color: var(--crimson); }
+  details[open] summary { margin-bottom: 0.6rem; }
+  table { width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.88rem; border-radius: 8px; overflow: hidden; }
+  th { background: var(--navy); color: #fff; font-weight: 600; padding: 0.65rem 0.85rem; text-align: left; }
+  td { border-bottom: 1px solid var(--border); padding: 0.6rem 0.85rem; vertical-align: top; }
+  tr:nth-child(even) td { background: var(--panel-2); }
+  .timing { display: inline-block; background: var(--navy); color: #fff; font-size: 0.7rem; font-weight: 700; padding: 0.2rem 0.65rem; border-radius: 12px; margin-left: 0.5rem; vertical-align: middle; letter-spacing: 0.3px; }
+  .timing.optional { background: #6b7280; }
+  .takeaway { background: #fefcbf; border-left: 5px solid var(--gold); padding: 18px 24px; border-radius: 10px; margin: 28px 0; font-weight: 500; font-style: italic; font-size: 1.02rem; }
+  .phase { display: flex; align-items: center; gap: 0.7rem; margin: 1.8rem 0 0.6rem; }
+  .phase-num { display: inline-flex; align-items: center; justify-content: center; width: 2.1rem; height: 2.1rem; border-radius: 50%; background: var(--crimson); color: #fff; font-weight: 700; font-size: 0.95rem; flex-shrink: 0; box-shadow: 0 2px 6px rgba(178,31,31,0.3); }
+  .phase h2 { margin: 0; border: none; padding: 0; }
+  .phase.extension .phase-num { background: #6b7280; box-shadow: 0 2px 6px rgba(107,114,128,0.3); }
+  .phase.extension h2 { color: #4b5563; border-color: #6b7280; }
+  .objective-list { list-style: none; padding-left: 0; }
+  .objective-list li { padding: 0.45rem 0 0.45rem 1.9rem; position: relative; }
+  .objective-list li::before { content: "🎯"; position: absolute; left: 0; }
+
+  .info-links { display: grid; grid-template-columns: 1fr 1fr; gap: 0.9rem; margin: 1rem 0; }
+  @media (max-width: 700px) { .info-links { grid-template-columns: 1fr; } }
+  .info-link {
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+    background: #fff;
+    border: 2px solid var(--border);
+    border-left-width: 6px;
+    border-radius: 12px;
+    padding: 1rem 1.3rem;
+    text-decoration: none;
+    color: var(--text);
+    transition: box-shadow 0.2s, transform 0.15s, background 0.2s;
+    border-bottom: 2px solid var(--border);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  }
+  .info-link:hover {
+    background: #f8fafc;
+    box-shadow: 0 6px 16px rgba(11,42,74,0.14);
+    transform: translateY(-2px);
+  }
+  .info-link .icon { font-size: 1.6rem; }
+  .info-link .text strong { display: block; font-size: 0.98rem; }
+  .info-link .text small { color: var(--muted); font-size: 0.82rem; }
+  .info-link.fcfs { border-left-color: var(--team-fcfs); }
+  .info-link.rr { border-left-color: var(--team-rr); }
+  .info-link.pri { border-left-color: var(--team-pri); }
+  .info-link.mlq { border-left-color: var(--team-mlq); }
+
+  .class-clarify {
+    background: #ede9fe;
+    border-left: 5px solid var(--team-mlq);
+    border-radius: 0 12px 12px 0;
+    padding: 0.9rem 1.3rem;
+    margin: 1.1rem 0;
+  }
+  .class-clarify h4 { margin: 0 0 0.4rem; color: #5b21b6; font-size: 1.02rem; }
+  .class-clarify p { margin: 0.4rem 0; font-size: 0.95rem; }
+  .class-clarify .term { background: #ddd6fe; border-radius: 4px; padding: 1px 6px; font-weight: 600; color: #4c1d95; }
+
+  .roles { display: grid; grid-template-columns: 1fr 1fr; gap: 1.1rem; margin: 1.2rem 0; }
+  @media (max-width: 700px) { .roles { grid-template-columns: 1fr; } }
+  .role-box { background: #fff; border: 2px solid var(--border); border-radius: 12px; padding: 1.1rem 1.3rem; box-shadow: 0 1px 3px rgba(0,0,0,0.04); }
+  .role-box h4 { margin: 0 0 0.6rem; font-size: 1.05rem; }
+  .role-box.a { border-color: var(--navy); }
+  .role-box.a h4 { color: var(--navy); }
+  .role-box.b { border-color: #2d7d46; }
+  .role-box.b h4 { color: #2d7d46; }
+  .role-box ul { margin: 0.3rem 0 0; padding-left: 1.2rem; font-size: 0.9rem; }
+  .role-box ul ul { margin-top: 0.3rem; }
+  .timeline { display: grid; gap: 0.7rem; margin: 1.2rem 0; }
+  .timeline-item {
+    display: flex;
+    gap: 0.9rem;
+    align-items: flex-start;
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1rem 1.2rem;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  }
+  .timeline-item .time { flex-shrink: 0; background: var(--navy); color: #fff; font-size: 0.78rem; font-weight: 700; padding: 0.25rem 0.7rem; border-radius: 12px; letter-spacing: 0.3px; }
+  .timeline-item .desc { font-size: 0.95rem; }
+  .timeline-item.clickable { cursor: pointer; transition: background 0.2s, border-color 0.2s, box-shadow 0.2s; }
+  .timeline-item.clickable:hover { background: #fff8e1; border-color: var(--gold); box-shadow: 0 4px 14px rgba(253,187,45,0.25); }
+  .unit-reminder { background: #fff8e1; border-left: 5px solid var(--gold); border-radius: 0 10px 10px 0; padding: 16px 22px; margin: 24px 0; font-size: 0.94rem; }
+  .unit-reminder strong { color: #7a4a0a; }
+  .lesson-nav { display: flex; justify-content: space-between; margin-top: 34px; padding-top: 22px; border-top: 1px solid var(--border); flex-wrap: wrap; gap: 12px; }
+  .lesson-nav a { border-bottom: none; font-weight: 600; }
+  .lesson-nav a:hover { border-bottom: none; }
+  .footer-meta { margin-top: 30px; font-size: 0.85rem; color: var(--muted); text-align: center; border-top: 1px solid var(--border); padding-top: 22px; letter-spacing: 0.2px; }
+  @media (max-width: 640px) {
+    .wrap { padding: 24px; }
+    h1 { font-size: 1.75rem; }
+  }
+
+  .code-lab-link {
+    background: #1a5f87;
+    color: white;
+    padding: 3px 16px;
+    border-radius: 30px;
+    font-weight: 600;
+    font-size: 0.85rem;
+    display: inline-block;
+    margin: 4px 0;
+    transition: background 0.2s;
+  }
+  .code-lab-link:hover { background: #134a6a; }
+  .code-lab-link a { color: white; border-bottom: none; }
+  .code-lab-link a:hover { color: var(--gold); border-bottom: none; }
+
+  .feynman-jojo-box {
+    background: #ebf4ff;
+    border-left: 5px solid var(--navy);
+    border-radius: 0 12px 12px 0;
+    padding: 22px 26px;
+    margin: 16px 0;
+    box-shadow: 0 2px 8px rgba(11,42,74,0.06);
+  }
+  .feynman-jojo-box h4 { margin: 0 0 0.7rem; color: var(--navy); font-size: 1.15rem; }
+  .feynman-jojo-box p { margin: 0.5rem 0; font-size: 1rem; }
+  .feynman-jojo-box .launch-btn { margin-bottom: 1rem; }
+  .feynman-jojo-box .why { font-size: 0.92rem; color: var(--muted); font-style: italic; margin-top: 0.8rem; border-top: 1px dashed var(--border); padding-top: 0.8rem; }
+
+  .matrix-choice { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; margin: 1.4rem 0; }
+  @media (max-width: 600px) { .matrix-choice { grid-template-columns: 1fr; } }
+  .pill-option {
+    display: block;
+    text-align: center;
+    padding: 1.6rem 1.3rem;
+    border-radius: 14px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1.1rem;
+    border-bottom: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+  }
+  .pill-option:hover { transform: translateY(-4px); box-shadow: 0 10px 22px rgba(0,0,0,0.22); border-bottom: none; }
+  .pill-option .pill-label { display: block; font-size: 0.8rem; font-weight: 600; text-transform: uppercase; opacity: 0.9; margin-bottom: 0.5rem; letter-spacing: 1px; }
+  .pill-option.blue-pill { background: linear-gradient(135deg, #1a5f87, #0b2a4a); color: #fff; }
+  .pill-option.blue-pill:hover { color: #fff; }
+  .pill-option.red-pill { background: linear-gradient(135deg, #b21f1f, #7a1515); color: #fff; }
+  .pill-option.red-pill:hover { color: #fff; }
+  .pill-option .pill-sub { display: block; font-size: 0.88rem; font-weight: 400; opacity: 0.9; margin-top: 0.5rem; }
+
+  .level-box { border-left: 5px solid var(--border); background: #fff; border-radius: 0 10px 10px 0; padding: 14px 20px; margin: 14px 0; }
+  .level-box.level-1 { border-left-color: #b91c1c; }
+  .level-box.level-2 { border-left-color: #b45309; }
+  .level-box.level-3 { border-left-color: #0369a1; }
+  .level-box.level-4 { border-left-color: #15803d; }
+  .level-box h4 { margin: 0 0 0.5rem; font-size: 1rem; }
+  .level-box.level-1 h4 { color: #b91c1c; }
+  .level-box.level-2 h4 { color: #b45309; }
+  .level-box.level-3 h4 { color: #0369a1; }
+  .level-box.level-4 h4 { color: #15803d; }
+  .level-box .exemplar { font-style: italic; background: #f8fafc; border-left: 3px solid var(--border); padding: 10px 14px; border-radius: 0 6px 6px 0; margin: 10px 0; }
+  .level-box .why { font-size: 0.92rem; color: var(--muted); margin: 8px 0 0; }
+
+  .locked-panel {
+    background: #f1f5f9;
+    border: 2px dashed var(--border);
+    border-radius: 12px;
+    padding: 24px;
+    text-align: center;
+    margin: 16px 0;
+  }
+  .locked-panel .lock-icon { font-size: 2rem; margin-bottom: 8px; }
+  .locked-panel .lock-text { font-weight: 600; color: var(--navy); margin-bottom: 6px; }
+  .locked-panel .lock-sub { font-size: 0.88rem; color: var(--muted); margin-bottom: 14px; }
+  .lock-input {
+    padding: 10px 14px;
+    border: 2px solid var(--border);
+    border-radius: 8px;
+    font-size: 1rem;
+    width: 220px;
+    margin-right: 8px;
+    font-family: inherit;
+  }
+  .lock-input:focus { outline: none; border-color: var(--navy); }
+  .lock-btn {
+    padding: 10px 20px;
+    background: var(--navy);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    font-family: inherit;
+    transition: background 0.2s;
+  }
+  .lock-btn:hover { background: #071c33; }
+  .lock-error { color: var(--crimson); font-weight: 600; margin-top: 10px; font-size: 0.9rem; min-height: 22px; }
+  #unlockedContent { display: none; }
+  #unlockedContent.show { display: block; }
+
+  .confetti-piece {
+    position: fixed;
+    width: 10px;
+    height: 10px;
+    top: -10px;
+    z-index: 9999;
+    pointer-events: none;
+    animation: confetti-fall linear forwards;
+  }
+  @keyframes confetti-fall {
+    0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+    100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <a class="back" href="#">← Back to A1 Unit</a>
+
+  <h1>A1.3.3 – Compare Different Approaches to Scheduling</h1>
+
+  <!-- ============ STARTER ============ -->
+  <div class="phase">
+    <span class="phase-num">1</span>
+    <h2>Starter — Know Your Command Term <span class="timing">5 min</span></h2>
+  </div>
+
+  <a class="btn" href="https://mr-ellis.github.io/School/command-terms.html" target="_blank" rel="noopener">📖 Open Command Terms</a>
+
+  <div class="command-term">
+    <strong>Compare</strong> – "Give an account of the similarities and differences between two or more items, referring to both throughout."
+  </div>
+
+  <!-- ============ LEARNING OBJECTIVES ============ -->
+  <div class="phase">
+    <span class="phase-num">2</span>
+    <h2>Learning Objectives</h2>
+  </div>
+
+  <div class="panel accent">
+    <ul class="objective-list">
+      <li><strong>Describe</strong> the four scheduling algorithms: FCFS, Round Robin, Priority, and Multilevel Queue.</li>
+      <li><strong>Compare</strong> them across key dimensions — pre-emptive status, response time, fairness, overhead, and starvation risk.</li>
+      <li><strong>Justify</strong> which algorithm is best for a given workload, using comparative language.</li>
+    </ul>
+  </div>
+
+  <!-- ============ MISSION ============ -->
+  <div class="panel mission">
+    <h2 style="margin-top:0;border:none;padding:0;color:var(--navy)">🏢 Operating System Recruitment Challenge</h2>
+    <p><strong>Microsoft is hiring a new CPU scheduler.</strong></p>
+    <p>Four scheduling teams are competing. Your team must prove your algorithm deserves to run <strong>Windows 2030</strong>.</p>
+    <p>The team that builds the strongest <em>comparative</em> case wins the contract.</p>
+  </div>
+
+  <!-- ============ TASK 1 ============ -->
+  <div class="phase">
+    <span class="phase-num">3</span>
+    <h2>Task 1 — The Pitch & Challenge <span class="timing">10 + 18 min</span></h2>
+  </div>
+
+  <h3>📋 Part 1 — Prepare Your Pitch (10 minutes)</h3>
+
+  <p>Work in <strong>pairs</strong>. Each pair is assigned <strong>one</strong> scheduling algorithm.</p>
+
+  <div class="roles">
+    <div class="role-box a">
+      <h4>👤 Role A — Poster Designer</h4>
+      <ul>
+        <li>Read your algorithm's <strong>Information Sheet</strong>.</li>
+        <li>Create a <strong>poster</strong> that shows:
+          <ul>
+            <li>How your algorithm works</li>
+            <li>A slogan</li>
+            <li>One strength and one weakness</li>
+            <li>Where it would be used in the real world</li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+    <div class="role-box b">
+      <h4>👤 Role B — Note Taker & Challenger</h4>
+      <ul>
+        <li>Read your algorithm's <strong>Information Sheet</strong>.</li>
+        <li>Take detailed notes on:
+          <ul>
+            <li>Key facts (pre-emptive, response time, fairness, overhead, starvation risk)</li>
+            <li>How your algorithm compares to the other three</li>
+          </ul>
+        </li>
+        <li>Prepare to use <strong>comparative language</strong>:
+          <ul>
+            <li>"Unlike FCFS…"</li>
+            <li>"Whereas Round Robin…"</li>
+            <li>"Both Priority and MLQ…"</li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <h3>📌 Your Information Sheet</h3>
+  <p>Click your team's algorithm to open its Information Sheet:</p>
+
+  <div class="info-links">
+    <a class="info-link fcfs" href="A1.3.3-info-fcfs.html">
+      <span class="icon">📄</span>
+      <span class="text">
+        <strong>Team FCFS</strong>
+        <small>First-Come, First-Served</small>
+      </span>
+    </a>
+    <a class="info-link rr" href="A1.3.3-info-rr.html">
+      <span class="icon">📄</span>
+      <span class="text">
+        <strong>Team Round Robin</strong>
+        <small>Round Robin (RR)</small>
+      </span>
+    </a>
+    <a class="info-link pri" href="A1.3.3-info-priority.html">
+      <span class="icon">📄</span>
+      <span class="text">
+        <strong>Team Priority</strong>
+        <small>Priority Scheduling</small>
+      </span>
+    </a>
+    <a class="info-link mlq" href="A1.3.3-info-mlq.html">
+      <span class="icon">📄</span>
+      <span class="text">
+        <strong>Team Multilevel Queue</strong>
+        <small>Multilevel Queue (MLQ)</small>
+      </span>
+    </a>
+  </div>
+
+  <div class="class-clarify">
+    <h4>🔍 What does "class" mean in this context?</h4>
+    <p>Here, <span class="term">class</span> does <strong>not</strong> mean a programming class. It means a <strong>category of processes that share similar characteristics</strong> — for example, system processes vs. user processes, or interactive vs. background work.</p>
+    <p>MLQ gives each class its <strong>own queue</strong>, rather than putting every process into one big pool like FCFS or Round Robin.</p>
+  </div>
+
+  <h3>🗣️ Part 2 — The Pitch & Challenge (18 minutes)</h3>
+
+  <div class="timeline">
+    <div class="timeline-item">
+      <span class="time">8 min</span>
+      <div class="desc">
+        <strong>Poster Presentations:</strong> Students with posters stand in the four corners of the room (one corner per algorithm). Each poster designer gives a <strong>2-minute explanation</strong> of their algorithm to the class.
+      </div>
+    </div>
+    <div class="timeline-item">
+      <span class="time">8 min</span>
+      <div class="desc">
+        <strong>The Challenge:</strong> The note-takers (Role B) come forward. They must <strong>compare their algorithm against another team's</strong> and explain why Microsoft should choose theirs.
+      </div>
+    </div>
+  </div>
+
+  <div class="panel warn">
+    <strong>Rule for the Challenge:</strong> You may not describe your algorithm in isolation. Every argument must reference <strong>at least one other algorithm</strong> — "unlike FCFS…", "whereas Round Robin…". This is the Compare command term in action.
+  </div>
+
+  <div class="timeline">
+    <div class="timeline-item clickable" id="decisionItem" onclick="fireConfetti()">
+      <span class="time">2 min</span>
+      <div class="desc">
+        <strong>The Decision:</strong> Sit down as a class. Vote on which algorithm won the contract. The winning team must have made the strongest <em>comparative</em> case — not just described their algorithm. <span style="color:var(--crimson);font-weight:700;">👉 Click here to celebrate!</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ TASK 2 ============ -->
+  <div class="phase">
+    <span class="phase-num">4</span>
+    <h2>Task 2 — Contract Bid <span class="timing">10 min</span></h2>
+  </div>
+
+  <div class="panel accent">
+    <em>"Compare First-Come First-Served and Round Robin scheduling. [4 marks]"</em>
+  </div>
+
+  <div class="panel good">
+    <strong>📝 Before you write — access both Information Sheets:</strong>
+    <p>You need to compare <strong>two</strong> algorithms, so you need to look at <strong>both</strong> Information Sheets. Open the FCFS sheet and the Round Robin sheet side by side. Use the "How X Compares to the Others" sections in each sheet to find your similarity, difference, consequence, and trade-off.</p>
+    <p style="margin-top:0.6rem;">
+      <a class="btn" href="A1.3.3-info-fcfs.html" target="_blank" rel="noopener">📄 Open FCFS Sheet</a>
+      <a class="btn green" href="A1.3.3-info-rr.html" target="_blank" rel="noopener">📄 Open Round Robin Sheet</a>
+    </p>
+  </div>
+
+  <div class="panel good">
+    <strong>📝 How to use the sentence frame:</strong>
+    <p>The sentence frame below gives you the <strong>structure</strong> of a full-mark comparative answer. Fill in each blank with the correct detail:</p>
+    <ul>
+      <li><strong>First "Both ___ and ___"</strong> → name the two algorithms (FCFS and Round Robin)</li>
+      <li><strong>"are ___"</strong> → state the similarity (both are CPU scheduling algorithms)</li>
+      <li><strong>"However, ___ is ___ and runs ___"</strong> → name one algorithm, its pre-emptive status, and how it allocates the CPU</li>
+      <li><strong>"whereas ___ is ___ and gives ___"</strong> → name the other algorithm and contrast it</li>
+      <li><strong>"The effect of this difference is that ___"</strong> → the consequence for a running process (e.g. convoy effect vs even CPU sharing)</li>
+      <li><strong>"___ pays for this with ___"</strong> → the trade-off (e.g. Round Robin pays with context-switch overhead)</li>
+    </ul>
+    <p>Work through the frame in order. When you've filled every blank, you have a Level 4 comparative answer.</p>
+
+    <hr style="border:0;border-top:1px dashed #2d7d46;margin:16px 0;opacity:0.5;">
+
+    <p><strong>✍️ Where to write your answer:</strong> Complete the sentence frame directly in <strong>Schoolbox</strong>. Open the <a href="https://lms.isr-school.com/homepage/5169" target="_blank" rel="noopener">A1.3.3 Contract Bid activity on Schoolbox</a>, fill in each blank of the sentence frame, and submit it when you're done.</p>
+  </div>
+
+  <!-- ============ PLENARY — SELF-ASSESSMENT ============ -->
+  <div class="phase">
+    <span class="phase-num">5</span>
+    <h2>Plenary — Self-Assessment <span class="timing">5 min</span></h2>
+  </div>
+
+  <p>Look at your Contract Bid answer. Decide which level you achieved — be honest.</p>
+
+  <div class="locked-panel" id="lockPanel">
+    <div class="lock-icon">🔒</div>
+    <div class="lock-text">Teacher access required</div>
+    <div class="lock-sub">Enter the password to reveal the Level 1–4 model answers</div>
+    <input type="password" class="lock-input" id="lockInput" placeholder="Enter password" onkeydown="if(event.key==='Enter'){checkLock();}">
+    <button class="lock-btn" onclick="checkLock()">Unlock</button>
+    <div class="lock-error" id="lockError"></div>
+  </div>
+
+  <div id="unlockedContent">
+    <div class="panel accent">
+      <strong>Teacher reveals: Level 1–4 model answers</strong>
+      <p style="margin-top:0.6rem;">The question: <em>"Compare First-Come First-Served and Round Robin scheduling. [4 marks]"</em></p>
+
+      <div class="level-box level-1">
+        <h4>Level 1 — 1 mark (Descriptive, no comparison)</h4>
+        <div class="exemplar">"FCFS runs processes in the order they arrive. It is non-pre-emptive. Round Robin gives each process a fixed time slice called a quantum. It is pre-emptive."</div>
+        <p class="why"><strong>Why 1 mark:</strong> Describes each algorithm separately. No comparison. Doesn't refer to both throughout. This is the trap students fall into — describing instead of comparing.</p>
+      </div>
+
+      <div class="level-box level-2">
+        <h4>Level 2 — 2 marks (Similarity AND difference, no consequence)</h4>
+        <div class="exemplar">"Both FCFS and Round Robin are CPU scheduling algorithms. However, FCFS is non-pre-emptive and Round Robin is pre-emptive."</div>
+        <p class="why"><strong>Why 2 marks:</strong> States a similarity (both are scheduling algorithms) and a difference (pre-emptive vs non-pre-emptive). But doesn't explain what the difference <em>means</em> or what the consequence is.</p>
+      </div>
+
+      <div class="level-box level-3">
+        <h4>Level 3 — 3 marks (Similarity + difference + consequence)</h4>
+        <div class="exemplar">"Both FCFS and Round Robin are CPU scheduling algorithms that decide the order in which processes run. However, FCFS is non-pre-emptive and runs each process to completion, whereas Round Robin is pre-emptive and gives each a fixed time slice before moving it to the back of the queue. The effect of this difference is that FCFS can make short processes wait behind a long one (the convoy effect), while Round Robin shares the CPU more evenly so short processes respond sooner."</div>
+        <p class="why"><strong>Why 3 marks:</strong> Similarity + difference + consequence, all using comparative language. Missing the trade-off.</p>
+      </div>
+
+      <div class="level-box level-4">
+        <h4>Level 4 — 4 marks (Similarity + difference + consequence + trade-off)</h4>
+        <div class="exemplar">"Both FCFS and Round Robin are processor scheduling algorithms that decide the order in which ready processes use the CPU <strong>[1]</strong>.<br><br>
+        However, FCFS is non-pre-emptive and runs each process to completion, whereas Round Robin is pre-emptive and gives each process a fixed time slice before moving it to the back of the queue <strong>[1]</strong>.<br><br>
+        The effect of this difference is that FCFS can make short processes wait behind a long one (the convoy effect), while Round Robin shares the CPU more evenly so short processes respond sooner <strong>[1]</strong>.<br><br>
+        Round Robin pays for this with the overhead of frequent context switching, which FCFS largely avoids <strong>[1]</strong>."</div>
+        <p class="why"><strong>Why 4 marks:</strong> Similarity + difference + consequence + trade-off, comparative throughout. This is the full-mark answer.</p>
+      </div>
+
+      <hr style="border:0;border-top:1px dashed #cbd5e1;margin:18px 0;">
+
+      <p><strong>Mark allocation:</strong></p>
+      <ul>
+        <li><strong>[1]</strong> — States a similarity (both are CPU scheduling algorithms)</li>
+        <li><strong>[1]</strong> — States a difference (pre-emptive vs non-pre-emptive)</li>
+        <li><strong>[1]</strong> — Links the difference to a consequence (convoy effect vs even CPU sharing)</li>
+        <li><strong>[1]</strong> — Identifies the trade-off (Round Robin's context-switching overhead vs FCFS's avoidance of it)</li>
+      </ul>
+    </div>
+
+    <div class="panel warn">
+      <strong>Honest self-assessment:</strong> Decide which level your answer reached. Be ready to say why.<br><br>
+      🙋 <strong>Show of hands:</strong> Who got Level 1? Level 2? Level 3? Level 4?<br><br>
+      If you didn't use comparative language ("unlike", "whereas", "both… and…", "the effect of this difference is…"), you haven't hit the Compare standard — and that's the feedback you need for next time.
+    </div>
+  </div>
+
+  <!-- ============ EXTENSION 1 — TEACH THE AI ============ -->
+  <div class="phase extension">
+    <span class="phase-num">6</span>
+    <h2>Extension 1 — Teach the AI what you learned today <span class="timing optional">if time</span></h2>
+  </div>
+
+  <div class="feynman-jojo-box">
+    <div class="launch-btn">
+      <a class="btn gold" href="https://www.revisiondojo.com/teach-jojo?subjectId=6523&classroomId=cd512bbe-da19-4a8c-a8cb-c05f014c20ce" target="_blank" rel="noopener">🤖 Launch Teach Jojo</a>
+    </div>
+    <h4>🧠 Teach the AI what you learned today</h4>
+    <p>You've just written a comparative answer. Now teach it to Jojo.</p>
+    <p>Jojo is an AI that learns from you. Explain what you learned today about FCFS and Round Robin — in your own words. Jojo will ask follow-up questions, and those questions will expose any gaps in your understanding.</p>
+    <p class="why"><strong>Why this works:</strong> The Feynman technique — teaching a concept to someone else is one of the most effective ways to learn. If you can't explain it simply, you don't understand it well enough yet.</p>
+  </div>
+
+  <!-- ============ EXTENSION 2 — CHOOSE YOUR PATH ============ -->
+  <div class="phase extension">
+    <span class="phase-num">7</span>
+    <h2>Extension 2 — Choose your path <span class="timing optional">if time</span></h2>
+  </div>
+
+  <p style="text-align:center;font-weight:600;color:var(--navy);font-size:1.05rem;">Choose your path. <em>There is no turning back.</em></p>
+
+  <div class="matrix-choice">
+    <a class="pill-option blue-pill" href="https://quizlet.com/pt/1066036290/a133-compare-different-approaches-to-scheduling-flash-cards/" target="_blank" rel="noopener">
+      <span class="pill-label">💊 Blue Pill</span>
+      Launch Quizlet
+      <span class="pill-sub">Test yourself with flashcards</span>
+    </a>
+    <a class="pill-option red-pill" href="https://play.blooket.com/host?id=68b0379dda963af6c9571984" target="_blank" rel="noopener">
+      <span class="pill-label">💊 Red Pill</span>
+      Launch Blooket
+      <span class="pill-sub">Compete in a live quiz game</span>
+    </a>
+  </div>
+
+  <!-- ============ KEY TAKEAWAY ============ -->
+  <div class="takeaway">
+    💡 <strong>Key Takeaway:</strong> "No scheduling approach is best in every way. FCFS is simple but non-pre-emptive and suffers the convoy effect; Round Robin is pre-emptive and responsive but pays in context-switching overhead; Priority serves urgent work first but can starve low-priority processes; Multilevel Queue separates workloads cleanly but can starve lower queues. To <em>compare</em> them is to say which is more responsive, which carries more overhead, which can starve — and to justify your choice for the workload in front of you."
+  </div>
+
+  <hr>
+
+  <div class="lesson-nav">
+    <a href="A1.3.2-summary.html">← Previous: A1.3.2 Functions of an OS</a>
+    <a href="A1.3.4-summary.html">Next: A1.3.4 →</a>
+  </div>
+
+  <div class="footer-meta">
+    A1.3.3 – Compare Different Approaches to Scheduling • IB Computer Science • Year 12
+  </div>
+
+</div>
+
+<script>
+function fireConfetti() {
+  var colors = ['#b21f1f', '#fdbb2d', '#0b2a4a', '#2d7d46', '#6d28d9'];
+  for (var i = 0; i < 80; i++) {
+    var piece = document.createElement('div');
+    piece.className = 'confetti-piece';
+    piece.style.left = Math.random() * 100 + 'vw';
+    piece.style.background = colors[Math.floor(Math.random() * colors.length)];
+    piece.style.width = (Math.random() * 8 + 6) + 'px';
+    piece.style.height = (Math.random() * 8 + 6) + 'px';
+    piece.style.animationDuration = (Math.random() * 2 + 2) + 's';
+    piece.style.animationDelay = (Math.random() * 0.5) + 's';
+    piece.style.borderRadius = Math.random() > 0.5 ? '50%' : '0';
+    document.body.appendChild(piece);
+    setTimeout(function(p) {
+      return function() { p.remove(); };
+    }(piece), 4500);
+  }
+}
+
+function checkLock() {
+  var input = document.getElementById('lockInput');
+  var error = document.getElementById('lockError');
+  var locked = document.getElementById('lockPanel');
+  var unlocked = document.getElementById('unlockedContent');
+
+  if (input.value === 'Password262026') {
+    locked.style.display = 'none';
+    unlocked.classList.add('show');
+    error.textContent = '';
+  } else {
+    error.textContent = 'Incorrect password. Try again.';
+    input.value = '';
+    input.focus();
+  }
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,968 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A1.4.1 – Interpreters and Compilers (HL)</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: Arial, sans-serif;
+            background: #f0f4fb;
+            color: #1e293b;
+            padding: 24px;
+            line-height: 1.7;
+        }
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 40px 50px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: #b21f1f;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .back-link:hover { color: #0b2a4a; text-decoration: underline; }
+        h1 {
+            font-size: 2.2rem;
+            color: #0b2a4a;
+            border-bottom: 4px solid #fdbb2d;
+            padding-bottom: 10px;
+            margin-bottom: 25px;
+        }
+        h2 {
+            font-size: 1.5rem;
+            color: #0b2a4a;
+            margin-top: 35px;
+            margin-bottom: 15px;
+            border-left: 5px solid #b21f1f;
+            padding-left: 15px;
+        }
+        h3 {
+            font-size: 1.15rem;
+            color: #0b2a4a;
+            margin-top: 22px;
+            margin-bottom: 10px;
+        }
+        .badge {
+            display: inline-block;
+            background: #b21f1f;
+            color: #fff;
+            font-weight: 600;
+            font-size: 0.8rem;
+            padding: 2px 12px;
+            border-radius: 20px;
+            text-transform: uppercase;
+        }
+        .command-term {
+            background: #ebf4ff;
+            border-left: 5px solid #0b2a4a;
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin: 15px 0;
+            font-style: italic;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 0.9rem;
+        }
+        th {
+            background: #0b2a4a;
+            color: #fff;
+            font-weight: 600;
+            padding: 12px 15px;
+            text-align: left;
+        }
+        td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #e2e8f0;
+            vertical-align: top;
+        }
+        tr:nth-child(even) { background: #f7fafc; }
+        a {
+            color: #b21f1f;
+            text-decoration: none;
+            border-bottom: 1px dotted #b21f1f;
+        }
+        a:hover {
+            color: #0b2a4a;
+            border-bottom: 2px solid #0b2a4a;
+        }
+        hr {
+            border: 0;
+            border-top: 2px solid #e2e8f0;
+            margin: 30px 0;
+        }
+        .footer-meta {
+            margin-top: 30px;
+            font-size: 0.85rem;
+            color: #4a5568;
+            text-align: center;
+            border-top: 1px solid #e2e8f0;
+            padding-top: 20px;
+        }
+        .key-takeaway {
+            background: #fefcbf;
+            border-left: 5px solid #fdbb2d;
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin: 25px 0;
+            font-weight: 500;
+        }
+        .lesson-nav {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #e2e8f0;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .lesson-nav a { border-bottom: none; font-weight: 500; }
+
+        /* Blooket starter */
+        .blooket-box {
+            background: #eef4fc;
+            border: 2px solid #b21f1f;
+            border-radius: 14px;
+            padding: 16px 22px;
+            margin: 10px 0 25px;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 14px 24px;
+        }
+        .blooket-box .blooket-btn {
+            background: #b21f1f;
+            color: white;
+            padding: 6px 24px;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 1rem;
+            border: none;
+            display: inline-block;
+        }
+        .blooket-box .blooket-btn a {
+            color: white;
+            border-bottom: none;
+        }
+        .blooket-box .blooket-btn a:hover { color: #fdbb2d; border-bottom: none; }
+
+        /* Task styles */
+        .task-block {
+            background: #f8fafc;
+            border-radius: 14px;
+            padding: 6px 0;
+            margin: 12px 0;
+        }
+        .task-row {
+            display: flex;
+            align-items: flex-start;
+            padding: 12px 16px;
+            border-bottom: 1px solid #e8eef4;
+            gap: 12px;
+        }
+        .task-row:last-child { border-bottom: none; }
+        .task-step {
+            font-weight: 700;
+            color: #0b2a4a;
+            background: #dce8f5;
+            padding: 0 12px;
+            border-radius: 30px;
+            font-size: 0.75rem;
+            min-width: 28px;
+            text-align: center;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+        .task-row .task-desc { flex: 1; }
+        .task-row .task-desc a { border-bottom: 1px dotted #b21f1f; }
+
+        .task-row.task-starter {
+            background: #e6f5e6;
+            border-left: 4px solid #2d7d46;
+            border-radius: 0 8px 8px 0;
+            margin: 4px 0;
+        }
+        .task-row.task-starter .task-desc strong {
+            color: #1a6b33;
+        }
+
+        .task-1-resources {
+            background: #f1f6fc;
+            border-radius: 10px;
+            padding: 12px 16px;
+            margin-top: 8px;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 10px 16px;
+        }
+        .task-1-resources .pill {
+            background: white;
+            padding: 2px 14px;
+            border-radius: 30px;
+            border: 1px solid #dce4ed;
+            font-size: 0.85rem;
+        }
+        .task-1-resources .pill.empty {
+            color: #4a5568;
+            cursor: default;
+        }
+        .task-1-resources .teach-link {
+            background: #0b2a4a;
+            color: white;
+            padding: 3px 16px;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            border: none;
+        }
+        .task-1-resources .teach-link a {
+            color: white;
+            border-bottom: 1px solid rgba(255,255,255,0.4);
+        }
+        .task-1-resources .teach-link a:hover { border-bottom: 2px solid white; color: #fdbb2d; }
+
+        .code-lab-link {
+            background: #1a5f87;
+            color: white;
+            padding: 2px 14px;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            display: inline-block;
+            margin: 4px 0;
+        }
+        .code-lab-link a {
+            color: white;
+            border-bottom: 1px solid rgba(255,255,255,0.4);
+        }
+        .code-lab-link a:hover { border-bottom: 2px solid white; color: #fdbb2d; }
+
+        /* Unit-end reminder */
+        .unit-reminder {
+            background: #fff8e1;
+            border-left: 5px solid #fdbb2d;
+            border-radius: 0 10px 10px 0;
+            padding: 14px 20px;
+            margin: 20px 0;
+            font-size: 0.92rem;
+        }
+        .unit-reminder strong { color: #7a4a0a; }
+
+        /* Flip cards */
+        .flip-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin: 20px 0;
+        }
+        @media (max-width: 800px) { .flip-grid { grid-template-columns: 1fr 1fr; } }
+        @media (max-width: 520px) { .flip-grid { grid-template-columns: 1fr; } }
+
+        .flip-card {
+            perspective: 1200px;
+            height: 320px;
+            cursor: pointer;
+        }
+        @media (max-width: 800px) { .flip-card { height: 340px; } }
+        @media (max-width: 520px) { .flip-card { height: auto; min-height: 300px; } }
+
+        .flip-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+        }
+        .flip-card.flipped .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+        .flip-card-front, .flip-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 12px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+        .flip-card-front {
+            background: #0b2a4a;
+            color: #fff;
+        }
+        .flip-card-front .big-icon {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+        }
+        .flip-card-front .big-name {
+            font-weight: 700;
+            font-size: 1.05rem;
+        }
+        .flip-card-front .flip-hint {
+            font-size: 0.75rem;
+            opacity: 0.7;
+            margin-top: 10px;
+        }
+        .flip-card-back {
+            background: #fef3c7;
+            color: #7a4a0a;
+            transform: rotateY(180deg);
+            font-size: 0.85rem;
+            line-height: 1.5;
+            border: 2px solid #fdbb2d;
+            justify-content: center;
+            align-items: flex-start;
+            text-align: left;
+            overflow: hidden;
+        }
+        .flip-card-back strong { display: block; margin-top: 6px; }
+        .flip-card-back strong:first-child { margin-top: 0; }
+
+        /* Application flip cards */
+        .app-card .flip-card-front {
+            background: #1a5f87;
+        }
+        .app-card .flip-card-back {
+            background: #e0f2fe;
+            border-color: #0ea5e9;
+            color: #0c4a6e;
+        }
+
+        /* Scenario explorer */
+        .scenario {
+            background: #f7fafc;
+            border-left: 5px solid #0b2a4a;
+            border-radius: 0 10px 10px 0;
+            padding: 14px 18px;
+            margin: 12px 0;
+        }
+        .scenario .scenario-q {
+            font-weight: 600;
+            color: #0b2a4a;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+        }
+        .scenario .scenario-q:hover { color: #b21f1f; }
+        .scenario .reveal-btn {
+            font-size: 0.75rem;
+            background: #b21f1f;
+            color: white;
+            padding: 2px 12px;
+            border-radius: 20px;
+            border: none;
+            font-weight: 600;
+            flex-shrink: 0;
+            cursor: pointer;
+            font-family: inherit;
+        }
+        .scenario .reveal-btn:hover { background: #0b2a4a; }
+        .scenario .scenario-a {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, margin-top 0.3s ease;
+            margin-top: 0;
+            color: #1e293b;
+            font-size: 0.92rem;
+        }
+        .scenario.open .scenario-a {
+            max-height: 800px;
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 1px dashed #cbd5e1;
+        }
+        .scenario .scenario-a ul { padding-left: 1.2rem; }
+        .scenario .scenario-a li { margin-bottom: 6px; }
+
+        /* Quick quiz */
+        .quiz {
+            background: #f1f6fc;
+            border-radius: 10px;
+            padding: 20px 24px;
+            margin: 20px 0;
+        }
+        .quiz h3 { margin-top: 0; }
+        .quiz-q { margin-bottom: 18px; }
+        .quiz-q .q-text {
+            font-weight: 600;
+            color: #0b2a4a;
+            margin-bottom: 8px;
+        }
+        .quiz-options { display: flex; flex-direction: column; gap: 6px; }
+        .quiz-option {
+            background: white;
+            border: 2px solid #dce4ed;
+            border-radius: 8px;
+            padding: 8px 14px;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            font-size: 0.9rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .quiz-option:hover { border-color: #0b2a4a; background: #ebf4ff; }
+        .quiz-option.correct {
+            border-color: #2d7d46;
+            background: #e6f5e6;
+            color: #1a6b33;
+            font-weight: 600;
+        }
+        .quiz-option.wrong {
+            border-color: #b21f1f;
+            background: #fdeaea;
+            color: #a13232;
+        }
+        .quiz-option .mark { font-weight: 700; }
+        .quiz-score {
+            text-align: center;
+            font-weight: 700;
+            color: #0b2a4a;
+            font-size: 1.05rem;
+            margin-top: 10px;
+        }
+
+        /* Match-up */
+        .match-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin: 20px 0;
+        }
+        @media (max-width: 700px) { .match-grid { grid-template-columns: 1fr; } }
+        .match-col h4 {
+            color: #0b2a4a;
+            font-size: 0.95rem;
+            margin-bottom: 8px;
+            text-align: center;
+        }
+        .match-item {
+            background: white;
+            border: 2px solid #dce4ed;
+            border-radius: 8px;
+            padding: 10px 14px;
+            margin-bottom: 8px;
+            cursor: pointer;
+            font-size: 0.88rem;
+            transition: all 0.15s ease;
+        }
+        .match-item:hover { border-color: #0b2a4a; }
+        .match-item.selected { border-color: #fdbb2d; background: #fefcbf; font-weight: 600; }
+        .match-item.matched { border-color: #2d7d46; background: #e6f5e6; color: #1a6b33; cursor: default; }
+        .match-item.matched::after { content: " ✓"; font-weight: 700; }
+        .match-feedback {
+            text-align: center;
+            margin-top: 10px;
+            font-weight: 600;
+            color: #2d7d46;
+            min-height: 24px;
+        }
+
+        @media (max-width: 640px) {
+            .container { padding: 20px; }
+            h1 { font-size: 1.8rem; }
+            table { font-size: 0.8rem; }
+            .task-1-resources { flex-direction: column; align-items: flex-start; }
+            .blooket-box { flex-direction: column; align-items: flex-start; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <a class="back-link" href="index.html">← Back to A1 Unit</a>
+
+    <h1>A1.4.1 – Interpreters and Compilers (HL)</h1>
+
+    <h2>📌 Learning Objective</h2>
+    <ul>
+        <li><strong>Describe</strong> how compilers, interpreters and JIT compilers turn source code into something the computer can run</li>
+        <li><strong>Compare</strong> them on error detection, speed, portability and memory use</li>
+        <li><strong>Choose</strong> the right translation method for a given situation</li>
+    </ul>
+
+    <h2>🎯 IB Command Term: <span class="badge">Evaluate</span></h2>
+    <div class="command-term">
+        <strong>Evaluate</strong> – <em>"Weigh up the strengths and weaknesses."</em><br>
+        You must compare translation methods against real criteria (speed, portability, error detection) and justify which one fits a given scenario.
+    </div>
+
+    <!-- Blooket Starter Activity -->
+    <div class="blooket-box">
+        <span style="font-weight:700; color:#0b2a4a;">🎮 Starter Activity – Blooket</span>
+        <span style="color:#3d5f7a;">Test your current knowledge before we begin!</span>
+        <span class="blooket-btn"><a href="https://play.blooket.com/host/cafe?id=68b037c560411a31861db095" target="_blank">🚀 Launch Blooket</a></span>
+    </div>
+
+    <h2>💡 The Big Idea</h2>
+    <p>A computer only understands <strong>machine code</strong> — simple instructions made of 1s and 0s. When you write code in a language like Python, Java or C++, something has to <strong>translate</strong> it into machine code. There are three main ways to do this:</p>
+
+    <div class="command-term">
+        <strong>1. Compiler</strong> – translates the <em>whole</em> program into machine code <em>before</em> it runs.<br><br>
+        <strong>2. Interpreter</strong> – reads the code and runs it <em>line by line</em>, translating as it goes.<br><br>
+        <strong>3. JIT compiler</strong> – a mix of both. Starts interpreting, then compiles the <em>hot</em> parts (the bits that run most often) into machine code while the program is running.
+    </div>
+
+    <h2>🔧 How Each Method Works</h2>
+    <p>Click any card to reveal what that method does.</p>
+
+    <div class="flip-grid">
+        <div class="flip-card" onclick="this.classList.toggle('flipped')">
+            <div class="flip-card-inner">
+                <div class="flip-card-front">
+                    <span class="big-icon">🏗️</span>
+                    <span class="big-name">Compiler</span>
+                    <span class="flip-hint">Click to flip</span>
+                </div>
+                <div class="flip-card-back">
+                    <strong>What it does:</strong> Reads the whole program and turns it into machine code before the program starts.<br>
+                    <strong>Errors:</strong> Found <em>before</em> you run it — the compiler checks everything first.<br>
+                    <strong>Speed:</strong> Very fast at run time (the translation is already done).<br>
+                    <strong>Examples:</strong> C, C++, Rust, Go.
+                </div>
+            </div>
+        </div>
+        <div class="flip-card" onclick="this.classList.toggle('flipped')">
+            <div class="flip-card-inner">
+                <div class="flip-card-front">
+                    <span class="big-icon">📜</span>
+                    <span class="big-name">Interpreter</span>
+                    <span class="flip-hint">Click to flip</span>
+                </div>
+                <div class="flip-card-back">
+                    <strong>What it does:</strong> Reads the code line by line and runs each line straight away.<br>
+                    <strong>Errors:</strong> Found <em>while</em> the program runs — you only see them when that line is reached.<br>
+                    <strong>Speed:</strong> Slower at run time (translation happens every time).<br>
+                    <strong>Examples:</strong> Python, Ruby, JavaScript (in the browser).
+                </div>
+            </div>
+        </div>
+        <div class="flip-card" onclick="this.classList.toggle('flipped')">
+            <div class="flip-card-inner">
+                <div class="flip-card-front">
+                    <span class="big-icon">⚡</span>
+                    <span class="big-name">JIT Compiler</span>
+                    <span class="flip-hint">Click to flip</span>
+                </div>
+                <div class="flip-card-back">
+                    <strong>What it does:</strong> Starts by interpreting, then spots the parts of code that run the most and compiles <em>those</em> into machine code on the fly.<br>
+                    <strong>Errors:</strong> Found early for syntax; some checks happen at run time.<br>
+                    <strong>Speed:</strong> Nearly as fast as a compiler after a short warm-up.<br>
+                    <strong>Examples:</strong> Java, C# (.NET), modern JavaScript (V8).
+                </div>
+            </div>
+        </div>
+        <div class="flip-card" onclick="this.classList.toggle('flipped')">
+            <div class="flip-card-inner">
+                <div class="flip-card-front">
+                    <span class="big-icon">📦</span>
+                    <span class="big-name">Bytecode</span>
+                    <span class="flip-hint">Click to flip</span>
+                </div>
+                <div class="flip-card-back">
+                    <strong>What it is:</strong> A middle step between source code and machine code. Simpler than source, but not tied to one type of computer.<br>
+                    <strong>Why it helps:</strong> You can write it once and run it anywhere — you just need a small program (a <em>virtual machine</em>) to read it.<br>
+                    <strong>Examples:</strong> Python .pyc files, Java .class files, WebAssembly.
+                </div>
+            </div>
+        </div>
+        <div class="flip-card" onclick="this.classList.toggle('flipped')">
+            <div class="flip-card-inner">
+                <div class="flip-card-front">
+                    <span class="big-icon">🔤</span>
+                    <span class="big-name">Lexer &amp; Parser</span>
+                    <span class="flip-hint">Click to flip</span>
+                </div>
+                <div class="flip-card-back">
+                    <strong>Lexer:</strong> Breaks your source code into small pieces called <em>tokens</em> (keywords, names, symbols).<br>
+                    <strong>Parser:</strong> Arranges those tokens into a tree that shows the structure of the program.<br>
+                    <strong>Why it matters:</strong> Both compilers and interpreters use these first steps — the difference is what happens next.
+                </div>
+            </div>
+        </div>
+        <div class="flip-card" onclick="this.classList.toggle('flipped')">
+            <div class="flip-card-inner">
+                <div class="flip-card-front">
+                    <span class="big-icon">🧠</span>
+                    <span class="big-name">Virtual Machine</span>
+                    <span class="flip-hint">Click to flip</span>
+                </div>
+                <div class="flip-card-back">
+                    <strong>What it is:</strong> A program that acts like a pretend computer. It reads bytecode and runs it.<br>
+                    <strong>Why it helps:</strong> The same bytecode can run on Windows, Mac or Linux — you just need the right VM for each one.<br>
+                    <strong>Examples:</strong> Java Virtual Machine (JVM), Python's interpreter, the .NET runtime.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <h2>📊 Comparing the Methods</h2>
+    <p>This table is the heart of A1.4.1 — learn to compare the methods across these criteria.</p>
+
+    <table>
+        <tr>
+            <th>Criterion</th>
+            <th>Compiler</th>
+            <th>Interpreter</th>
+            <th>JIT Compiler</th>
+        </tr>
+        <tr>
+            <td><strong>When are errors found?</strong></td>
+            <td>Before the program runs — the compiler checks everything first.</td>
+            <td>While the program runs — you only find errors when that line is reached.</td>
+            <td>Syntax errors found early; some issues only show up during execution.</td>
+        </tr>
+        <tr>
+            <td><strong>How long until it starts?</strong></td>
+            <td>Slow to compile (can take minutes), but instant once done.</td>
+            <td>Almost instant — no compile step at all.</td>
+            <td>Fast to start, but slows down briefly as it "warms up".</td>
+        </tr>
+        <tr>
+            <td><strong>How fast does it run?</strong></td>
+            <td>Fastest — the translation is already done.</td>
+            <td>Slowest — translates every line every time.</td>
+            <td>Almost as fast as a compiler once warmed up.</td>
+        </tr>
+        <tr>
+            <td><strong>Portability</strong></td>
+            <td>Poor — must be recompiled for each type of computer.</td>
+            <td>Excellent — the same source code runs anywhere with the right interpreter.</td>
+            <td>Good — bytecode runs anywhere with a VM, though the JIT must generate machine code per platform.</td>
+        </tr>
+        <tr>
+            <td><strong>Memory use</strong></td>
+            <td>Moderate.</td>
+            <td>Small.</td>
+            <td>Largest — it needs the interpreter, bytecode, and generated machine code all at once.</td>
+        </tr>
+        <tr>
+            <td><strong>Best for…</strong></td>
+            <td>Games, operating systems, anything that must run as fast as possible.</td>
+            <td>Learning, scripting, quick tests — where instant feedback matters.</td>
+            <td>Long-running, portable apps like web browsers and servers.</td>
+        </tr>
+    </table>
+
+    <h2>🌍 Which Method Fits? — Scenarios</h2>
+    <p>For each scenario, <strong>click the question to reveal</strong> the best method and why.</p>
+
+    <div class="scenario">
+        <div class="scenario-q" onclick="this.parentElement.classList.toggle('open')">
+            <span>🐍 Writing a quick script to test an idea</span>
+            <button class="reveal-btn">Reveal</button>
+        </div>
+        <div class="scenario-a">
+            <ul>
+                <li><strong>Winner: Interpreter (e.g. Python).</strong></li>
+                <li>No compile step — you type a line, hit run, and see the result instantly.</li>
+                <li>Perfect for experimenting, notebooks and small scripts.</li>
+                <li>Slower at run time, but that doesn't matter if you're only running it once.</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="scenario">
+        <div class="scenario-q" onclick="this.parentElement.classList.toggle('open')">
+            <span>🎮 A video game physics engine</span>
+            <button class="reveal-btn">Reveal</button>
+        </div>
+        <div class="scenario-a">
+            <ul>
+                <li><strong>Winner: Compiler (C++ or Rust).</strong></li>
+                <li>Every frame needs to run in a few milliseconds — speed is everything.</li>
+                <li>Compiled code runs directly on the processor with no translation overhead.</li>
+                <li>Not portable — you'd need a separate build for Windows, Mac and consoles.</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="scenario">
+        <div class="scenario-q" onclick="this.parentElement.classList.toggle('open')">
+            <span>📱 A mobile app that must run on Android and iOS</span>
+            <button class="reveal-btn">Reveal</button>
+        </div>
+        <div class="scenario-a">
+            <ul>
+                <li><strong>Winner: Bytecode + JIT.</strong></li>
+                <li>Compile once to bytecode; each phone's virtual machine runs it.</li>
+                <li>The JIT speeds up the parts of the app you use most.</li>
+                <li>Best mix of portability and speed for mobile apps.</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="scenario">
+        <div class="scenario-q" onclick="this.parentElement.classList.toggle('open')">
+            <span>🌐 Running JavaScript in a web browser</span>
+            <button class="reveal-btn">Reveal</button>
+        </div>
+        <div class="scenario-a">
+            <ul>
+                <li><strong>Winner: JIT compiler.</strong></li>
+                <li>The browser needs to start quickly (so users aren't kept waiting), but also run fast once a page is loaded.</li>
+                <li>JIT gives quick startup AND good speed after a brief warm-up.</li>
+                <li>If a JIT optimises something and later finds it was wrong, it can go back to interpreting — so the code stays correct.</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="scenario">
+        <div class="scenario-q" onclick="this.parentElement.classList.toggle('open')">
+            <span>🔒 A macro inside a spreadsheet file</span>
+            <button class="reveal-btn">Reveal</button>
+        </div>
+        <div class="scenario-a">
+            <ul>
+                <li><strong>Winner: Bytecode interpreter (in a sandbox).</strong></li>
+                <li>Macros come from unknown sources — they need to be checked before they run.</li>
+                <li>The sandbox limits what the macro can do (no deleting your files, no calling home).</li>
+                <li>Speed isn't critical — safety is.</li>
+            </ul>
+        </div>
+    </div>
+
+    <h2>🎮 Match-Up Challenge</h2>
+    <p>Click a <strong>method</strong> on the left, then click its <strong>defining feature</strong> on the right.</p>
+
+    <div class="match-grid">
+        <div class="match-col">
+            <h4>Translation method</h4>
+            <div class="match-item" data-match="1">Compiler</div>
+            <div class="match-item" data-match="2">Interpreter</div>
+            <div class="match-item" data-match="3">JIT compiler</div>
+            <div class="match-item" data-match="4">Bytecode</div>
+            <div class="match-item" data-match="5">Lexer</div>
+        </div>
+        <div class="match-col">
+            <h4>Defining feature</h4>
+            <div class="match-item" data-match="4">A portable middle step between source code and machine code</div>
+            <div class="match-item" data-match="1">Translates the whole program to machine code before it runs</div>
+            <div class="match-item" data-match="3">Compiles the hot parts of code to machine code while running</div>
+            <div class="match-item" data-match="2">Runs code line by line, translating as it goes</div>
+            <div class="match-item" data-match="5">Breaks source code into small pieces called tokens</div>
+        </div>
+    </div>
+    <div class="match-feedback" id="matchFeedback"></div>
+
+    <h2>🧠 Quick Quiz</h2>
+    <div class="quiz" id="quizContainer">
+        <div class="quiz-q" data-answer="2">
+            <div class="q-text">1. Which method translates the whole program <em>before</em> it runs?</div>
+            <div class="quiz-options">
+                <div class="quiz-option" data-opt="1"><span>Interpreter</span><span class="mark"></span></div>
+                <div class="quiz-option" data-opt="2"><span>Compiler</span><span class="mark"></span></div>
+                <div class="quiz-option" data-opt="3"><span>JIT compiler</span><span class="mark"></span></div>
+                <div class="quiz-option" data-opt="4"><span>Virtual machine</span><span class="mark"></span></div>
+            </div>
+        </div>
+        <div class="quiz-q" data-answer="3">
+            <div class="q-text">2. Which method is most portable across different computers?</div>
+            <div class="quiz-options">
+                <div class="quiz-option" data-opt="1"><span>Compiler — the binary works everywhere</span><span class="mark"></span></div>
+                <div class="quiz-option" data-opt="2"><span>JIT — it writes the machine code for you</span><span class="mark"></span></div>
+                <div class="quiz-option" data-opt="3"><span>Interpreter — you just ship the source and the interpreter</span><span class="mark"></span></div>
+                <div class="quiz-option" data-opt="4"><span>Compiler — it uses special portable files</span><span class="mark"></span></div>
+            </div>
+        </div>
+        <div class="quiz-q" data-answer="1">
+            <div class="q-text">3. Which method finds the most errors <em>before</em> the program is run?</div>
+            <div class="quiz-options">
+                <div class="quiz-option" data-opt="1"><span>Compiler — it checks the whole program first</span><span class="mark"></span></div>
+                <div class="quiz-option" data-opt="2"><span>Interpreter — it checks each line as you type it</span><span class="mark"></span></div>
+                <div class="quiz-option" data-opt="3"><span>JIT — it finds errors during the warm-up</span><span class="mark"></span></div>
+                <div class="quiz-option" data-opt="4"><span>Bytecode — it verifies everything at load time</span><span class="mark"></span></div>
+            </div>
+        </div>
+        <div class="quiz-q" data-answer="4">
+            <div class="q-text">4. Why might a JIT compiler be used in a web browser?</div>
+            <div class="quiz-options">
+                <div class="quiz-option" data-opt="1"><span>Because it uses the least memory</span><span class="mark"></span></div>
+                <div class="quiz-option" data-opt="2"><span>Because it never has any errors</span><span class="mark"></span></div>
+                <div class="quiz-option" data-opt="3"><span>Because it doesn't need bytecode</span><span class="mark"></span></div>
+                <div class="quiz-option" data-opt="4"><span>Because it gives quick startup plus good speed once running</span><span class="mark"></span></div>
+            </div>
+        </div>
+        <div class="quiz-q" data-answer="2">
+            <div class="q-text">5. What is bytecode?</div>
+            <div class="quiz-options">
+                <div class="quiz-option" data-opt="1"><span>Another word for machine code</span><span class="mark"></span></div>
+                <div class="quiz-option" data-opt="2"><span>A portable middle step between source code and machine code</span><span class="mark"></span></div>
+                <div class="quiz-option" data-opt="3"><span>Source code that has been deleted</span><span class="mark"></span></div>
+                <div class="quiz-option" data-opt="4"><span>A type of high-level programming language</span><span class="mark"></span></div>
+            </div>
+        </div>
+        <div class="quiz-score" id="quizScore">Score: 0 / 5</div>
+    </div>
+
+    <!-- Tasks -->
+    <h2>📖 Your Tasks</h2>
+    <div class="task-block">
+        <!-- Task 1 -->
+        <div class="task-row">
+            <span class="task-step">1</span>
+            <span class="task-desc">
+                <strong>Read &amp; Teach</strong> — Use the resources below to learn about translation processes, then explain the trade-offs to the AI.
+                <div class="task-1-resources">
+                    <span class="pill"><a href="https://mr-ellis.github.io/School/lessonplans/IB%20Computer%20Science/ebooks/DP%20Computer%20Science_%20A%201.4.1.pdf" target="_blank">📖 eBook</a></span>
+                    <span class="pill"><a href="https://faq.computersciencewiki.org/index.php/home/article/a1.4.1-evaluate-the-translation-processes-of-interpreters-and-compilers" target="_blank">🌐 CS Wiki</a></span>
+                    <span class="pill"><a href="https://docs.google.com/presentation/d/e/2PACX-1vTP6I7Yj_a0Hqsxs1DAg09pW83V0OQK97IKramcpZ2HdA1d_Dub37gos_19M0BLxWMyYgAOEb3Zw_Nj/pub?start=false&loop=false&delayms=3000&slide=id.p" target="_blank">📊 Lesson Slides</a></span>
+                    <span class="pill"><a href="https://mr-ellis.github.io/School/lessonplans/IB%20Computer%20Science/DP%20Computer%20Science_%20A%201.4.1.pdf" target="_blank">📘 Textbook</a></span>
+                    <span class="teach-link"><a href="https://www.revisiondojo.com/teach-jojo?subjectId=6523&classroomId=cd512bbe-da19-4a8c-a8cb-c05f014c20ce" target="_blank">🤖 Teach the AI</a></span>
+                </div>
+            </span>
+        </div>
+        <!-- Task 2 – green -->
+        <div class="task-row task-starter">
+            <span class="task-step">2</span>
+            <span class="task-desc">
+                <strong>Complete the Lesson Questions</strong> — Answer the <strong>mild, medium and spicy</strong> questions from the <a href="https://docs.google.com/presentation/d/e/2PACX-1vTP6I7Yj_a0Hqsxs1DAg09pW83V0OQK97IKramcpZ2HdA1d_Dub37gos_19M0BLxWMyYgAOEb3Zw_Nj/pub?start=false&loop=false&delayms=3000&slide=id.p" target="_blank">Lesson Slides</a>.<br>
+                Use <span class="code-lab-link"><a href="https://jamesabela.github.io/jsfun/pythoncopy?blank" target="_blank">🐍 Python Code Lab</a></span> to write your questions and answers in a text file.
+            </span>
+        </div>
+        <!-- Task 3 -->
+        <div class="task-row">
+            <span class="task-step">3</span>
+            <span class="task-desc"><strong>Plenary</strong> — Test yourself with the <a href="https://quizlet.com/pt/1066039073/a-141-evaluate-the-translation-processes-of-interpreters-and-compilers-hl-only-flash-cards/" target="_blank">Quizlet flashcards</a>.</span>
+        </div>
+    </div>
+
+    <!-- Unit-end submission reminder -->
+    <div class="unit-reminder">
+        📌 <strong>End-of-unit submission:</strong> Save your Lesson Questions as a <strong>.txt</strong> file. You will submit <strong>all</strong> starter activity answers to <strong>Schoolbox</strong> at the end of the unit.
+    </div>
+
+    <div class="key-takeaway">
+        <p><em>"There's no single 'best' way to translate code. Compilers give the fastest programs but aren't portable. Interpreters are portable and instant to run but slower. JIT compilers mix both, giving quick startup and near-native speed. Pick the right tool for the job."</em></p>
+    </div>
+
+    <hr>
+
+    <div class="lesson-nav">
+        <a href="A1.3.7-summary.html">← Previous: A1.3.7 Uses of Control Systems</a>
+        <a href="index.html">Back to A1 Unit →</a>
+    </div>
+
+    <div class="footer-meta">
+        A1.4.1 – Interpreters and Compilers (HL) • IB Computer Science • Year 12
+    </div>
+</div>
+
+<script>
+    // ===== Quick Quiz =====
+    (function() {
+        const quizQs = document.querySelectorAll('#quizContainer .quiz-q');
+        const scoreEl = document.getElementById('quizScore');
+        let correctCount = 0;
+        const answered = new Set();
+
+        quizQs.forEach((q, idx) => {
+            const answer = q.getAttribute('data-answer');
+            const options = q.querySelectorAll('.quiz-option');
+            options.forEach(opt => {
+                opt.addEventListener('click', () => {
+                    if (answered.has(idx)) return;
+                    answered.add(idx);
+
+                    const chosen = opt.getAttribute('data-opt');
+                    const mark = opt.querySelector('.mark');
+
+                    if (chosen === answer) {
+                        opt.classList.add('correct');
+                        mark.textContent = '✓';
+                        correctCount++;
+                    } else {
+                        opt.classList.add('wrong');
+                        mark.textContent = '✗';
+                        options.forEach(o => {
+                            if (o.getAttribute('data-opt') === answer) {
+                                o.classList.add('correct');
+                                o.querySelector('.mark').textContent = '✓';
+                            }
+                        });
+                    }
+                    scoreEl.textContent = 'Score: ' + correctCount + ' / ' + quizQs.length;
+                });
+            });
+        });
+    })();
+
+    // ===== Match-Up =====
+    (function() {
+        const items = document.querySelectorAll('.match-item');
+        const feedback = document.getElementById('matchFeedback');
+        let selected = null;
+        let matchedCount = 0;
+        const totalMatches = 5;
+
+        items.forEach(item => {
+            item.addEventListener('click', () => {
+                if (item.classList.contains('matched')) return;
+
+                if (!selected) {
+                    selected = item;
+                    item.classList.add('selected');
+                    return;
+                }
+
+                if (selected === item) {
+                    selected.classList.remove('selected');
+                    selected = null;
+                    return;
+                }
+
+                const selCol = selected.parentElement;
+                const curCol = item.parentElement;
+
+                if (selCol === curCol) {
+                    selected.classList.remove('selected');
+                    selected = item;
+                    item.classList.add('selected');
+                    return;
+                }
+
+                if (selected.getAttribute('data-match') === item.getAttribute('data-match')) {
+                    selected.classList.remove('selected');
+                    selected.classList.add('matched');
+                    item.classList.add('matched');
+                    matchedCount++;
+                    selected = null;
+
+                    if (matchedCount === totalMatches) {
+                        feedback.textContent = '🎉 All matched — challenge complete!';
+                    } else {
+                        feedback.textContent = '✅ Correct! (' + matchedCount + '/' + totalMatches + ')';
+                    }
+                } else {
+                    item.classList.add('wrong');
+                    setTimeout(() => {
+                        item.classList.remove('wrong');
+                        selected.classList.remove('selected');
+                        selected = null;
+                    }, 400);
+                    feedback.textContent = '❌ Not quite — try again.';
+                }
+            });
+        });
+    })();
+</script>
+
+</body>
+</html>

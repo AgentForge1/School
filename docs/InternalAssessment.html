@@ -1,47 +1,1111 @@
-<nav class="back-link">
-    <a href="year11.html">← Back to Grade 11 Unit Pages</a>
-</nav>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IB Computer Science IA · Success Hub</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: #0b2a4a;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      color: #1e293b;
+      padding: 2rem 1.5rem;
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      background: #f0f6fc;
+      border-radius: 32px;
+      padding: 2.5rem 3rem;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    }
 
-<section class="unit">
-    <h2>Internal Assessment</h2>
+    /* ===== NAV ===== */
+    .nav {
+      background: #0b2a4a;
+      padding: 0.9rem 2rem;
+      border-radius: 60px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 1.8rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 8px 20px rgba(0,20,40,0.08);
+    }
+    .nav a {
+      color: #e6edf5;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.95rem;
+      letter-spacing: 0.3px;
+      transition: 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .nav a i { font-size: 0.9rem; opacity: 0.7; }
+    .nav a:hover { color: #ffffff; text-decoration: underline; text-underline-offset: 4px; }
+    .nav .brand {
+      margin-right: auto;
+      font-weight: 600;
+      color: white;
+      font-size: 1.1rem;
+    }
+    .nav .brand i { margin-right: 8px; color: #7bb3ff; }
+    #adminModeBtn, #lockAdminBtn {
+      color: #e6edf5;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.95rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    #adminModeBtn:hover, #lockAdminBtn:hover { color: #ffffff; text-decoration: underline; text-underline-offset: 4px; }
+    #lockAdminBtn { color: #fdbb2d; }
 
-    <h3>Activities</h3>
-    <ul>
-        <li>Project planning</li>
-        <li>Criterion A documentation</li>
-        <li>Criterion B development</li>
-        <li>Criterion C evaluation</li>
-    </ul>
+    /* ===== TOP QUICK LINKS ROW ===== */
+    .top-quick-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 2rem;
+      justify-content: flex-start;
+    }
+    .top-quick-links a {
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.9rem;
+      padding: 0.6rem 1.8rem;
+      border-radius: 60px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: 0.2s;
+    }
 
-    <h3>Teaching & Resources</h3>
-    <ul>
-        <li>IA Guide</li>
-        <li>PowerPoints</li>
-        <li>Videos</li>
-        <li>eBook</li>
-        <li>Textbook</li>
-        <li>Revision Dojo</li>
-        <li>Online Exercises and other resources</li>
-    </ul>
+    /* Yellow buttons (IA Introduction, Rubric) */
+    .top-quick-links a.btn-yellow {
+      background: #fdbb2d;
+      color: #0b2a4a;
+      border: 1px solid #e6a800;
+      box-shadow: 0 4px 10px rgba(253, 187, 45, 0.3);
+    }
+    .top-quick-links a.btn-yellow i { color: #7a5900; }
+    .top-quick-links a.btn-yellow:hover {
+      background: #fcd15a;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(253, 187, 45, 0.45);
+    }
 
-    <h3>IA Structure</h3>
-    <p><strong>Criterion A:</strong> Planning</p>
-    <p><strong>Criterion B:</strong> Development</p>
-    <p><strong>Criterion C:</strong> Evaluation</p>
+    /* Green buttons (Template, Interactive Checklist) */
+    .top-quick-links a.btn-green {
+      background: #1f7b4d;
+      color: #ffffff;
+      border: 1px solid #16603a;
+      box-shadow: 0 4px 10px rgba(31, 123, 77, 0.25);
+    }
+    .top-quick-links a.btn-green i { color: #a7f3c9; }
+    .top-quick-links a.btn-green:hover {
+      background: #16603a;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(31, 123, 77, 0.4);
+    }
 
-    <h3>Worksheet instructions</h3>
-    <p>Upload drafts and final versions of each IA section.</p>
+    /* Red button (Access Resources, 4-week bootcamp) */
+    .top-quick-links a.btn-red {
+      background: #991b1b;
+      color: #ffffff;
+      border: 1px solid #7f1d1d;
+      box-shadow: 0 4px 10px rgba(153, 27, 27, 0.25);
+    }
+    .top-quick-links a.btn-red i { color: #fca5a5; }
+    .top-quick-links a.btn-red:hover {
+      background: #7f1d1d;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(153, 27, 27, 0.4);
+    }
 
-    <h3>Scoring rubric</h3>
-    <ul>
-        <li><strong>1:</strong> Attempted but incomplete</li>
-        <li><strong>2:</strong> Meets expectations</li>
-        <li><strong>3:</strong> Excellent detail and justification</li>
-    </ul>
+    /* Blue button (GUI Guide) */
+    .top-quick-links a.btn-blue {
+      background: #1a5f87;
+      color: #ffffff;
+      border: 1px solid #134f75;
+      box-shadow: 0 4px 10px rgba(26, 95, 135, 0.25);
+    }
+    .top-quick-links a.btn-blue i { color: #93c5fd; }
+    .top-quick-links a.btn-blue:hover {
+      background: #134f75;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(26, 95, 135, 0.4);
+    }
 
-    <h3>Online practice</h3>
-    <ul>
-        <li>IA exemplars</li>
-        <li>PDF templates</li>
-    </ul>
-</section>
+    /* Purple button (Python to EXE Guide) */
+    .top-quick-links a.btn-purple {
+      background: #6b21a5;
+      color: #ffffff;
+      border: 1px solid #5a1b8a;
+      box-shadow: 0 4px 10px rgba(107, 33, 165, 0.25);
+    }
+    .top-quick-links a.btn-purple i { color: #d8b4fe; }
+    .top-quick-links a.btn-purple:hover {
+      background: #5a1b8a;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(107, 33, 165, 0.4);
+    }
+
+    /* ===== HEADER ===== */
+    .page-header {
+      text-align: left;
+      margin-bottom: 2rem;
+      padding-bottom: 1rem;
+      border-bottom: 3px solid #cbddee;
+    }
+    .page-header h1 {
+      font-size: 2.8rem;
+      font-weight: 700;
+      color: #0b2a4a;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .page-header h1 i { color: #1a5f87; }
+    .page-header .sub {
+      font-size: 1.1rem;
+      color: #3b5f7a;
+      margin-top: 0.2rem;
+      background: #e9eff8;
+      display: inline-block;
+      padding: 0.3rem 1.4rem;
+      border-radius: 40px;
+      font-weight: 400;
+    }
+    .page-header .sub i { margin-right: 6px; color: #1f7b4d; }
+
+    /* ===== STUDENT FOLDERS ===== */
+    .student-folders-section {
+      background: white;
+      border-radius: 24px;
+      padding: 1.8rem 2rem;
+      box-shadow: 0 6px 18px rgba(0, 20, 40, 0.04);
+      border: 1px solid #e5edf5;
+      margin-bottom: 2rem;
+    }
+    .student-folders-section h3 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #0b2a4a;
+      margin-bottom: 0.8rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .student-folders-section h3 i { color: #1a5f87; }
+    .folder-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: 0.8rem;
+    }
+    .folder-link {
+      background: #f0f4fb;
+      padding: 0.6rem 1rem;
+      border-radius: 60px;
+      text-align: center;
+      text-decoration: none;
+      color: #0b2a4a;
+      font-weight: 500;
+      font-size: 0.9rem;
+      transition: 0.2s;
+      border: 1px solid transparent;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+    .folder-link:hover {
+      background: #dceaf7;
+      border-color: #b6d0e8;
+      transform: translateY(-2px);
+    }
+    .folder-link i { color: #1a5f87; font-size: 0.9rem; }
+    .folder-link .year-badge {
+      font-size: 0.55rem;
+      font-weight: 700;
+      padding: 0.05rem 0.5rem;
+      border-radius: 30px;
+      background: #dceaf7;
+      color: #13416b;
+      margin-left: 4px;
+    }
+    .folder-link .year-badge.y12 { background: #fdeaea; color: #a13232; }
+
+    /* ===== CRITERIA CARDS ===== */
+    .criteria-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.8rem;
+      margin: 2rem 0 1.5rem;
+    }
+    .criteria-card {
+      background: white;
+      border-radius: 24px;
+      padding: 1.8rem;
+      box-shadow: 0 6px 18px rgba(0, 20, 40, 0.04);
+      border: 1px solid #e5edf5;
+      border-left: 6px solid #1a5f87;
+      transition: 0.2s ease;
+      position: relative;
+      overflow: hidden;
+      cursor: default;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+    }
+    .criteria-card:hover {
+      border-color: #b6d0e8;
+      box-shadow: 0 12px 28px rgba(0, 32, 64, 0.06);
+      transform: translateY(-2px);
+    }
+    .criteria-card .criteria-letter {
+      position: absolute;
+      top: 12px;
+      right: 16px;
+      font-size: 2.8rem;
+      font-weight: 800;
+      opacity: 0.08;
+      color: #0b2a4a;
+      pointer-events: none;
+    }
+    .criteria-card .criteria-letter.large { font-size: 2.2rem; }
+    .criteria-card h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #0b2a4a;
+      margin-bottom: 0.2rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .criteria-card h3 .badge {
+      font-size: 0.6rem;
+      background: #dceaf7;
+      color: #13416b;
+      padding: 0.15rem 0.7rem;
+      border-radius: 30px;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+    .criteria-card p {
+      color: #475569;
+      font-size: 0.9rem;
+      margin: 0.3rem 0 0.8rem;
+    }
+    .criteria-card .weight {
+      font-size: 0.75rem;
+      color: #6b7f8f;
+      background: #edf2f7;
+      padding: 0.1rem 0.8rem;
+      border-radius: 20px;
+      display: inline-block;
+      margin-bottom: 0.6rem;
+    }
+    .criteria-card ul {
+      list-style: none;
+      padding: 0;
+      margin: 0.5rem 0 0;
+    }
+    .criteria-card ul li {
+      padding: 0.2rem 0;
+      font-size: 0.82rem;
+      color: #334155;
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+    }
+    .criteria-card ul li i {
+      color: #2a6f97;
+      font-size: 0.7rem;
+      margin-top: 0.2rem;
+      min-width: 16px;
+    }
+
+    /* lock icons */
+    .lock-icons {
+      position: absolute;
+      top: 12px;
+      right: 70px;
+      display: flex;
+      gap: 6px;
+      z-index: 10;
+    }
+    .lock-icon {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 0.65rem;
+      font-weight: 700;
+      padding: 2px 6px;
+      border-radius: 8px;
+    }
+    .lock-y11 { color: #1a5f87; background: #e3f2fd; }
+    .lock-y12 { color: #a13232; background: #fdeaea; }
+    .criteria-card:not(.is-y11-locked) .lock-y11 { color: #2d7d46; background: #e6f7e6; }
+    .criteria-card:not(.is-y12-locked) .lock-y12 { color: #2d7d46; background: #e6f7e6; }
+
+    /* btn row */
+    .criteria-card .btn-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 0.8rem;
+      border-top: 1px solid #e8eff6;
+      padding-top: 0.9rem;
+      justify-content: space-between;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+    .criteria-card .btn-row .btn {
+      background: #ecf3fa;
+      padding: 0.35rem 1.1rem;
+      border-radius: 30px;
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: #13416b;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      border: 1px solid transparent;
+      transition: 0.15s;
+      cursor: pointer;
+    }
+    .criteria-card .btn-row .btn:hover { background: #d6e4f2; border-color: #b6cfe5; }
+    .criteria-card .btn-row .btn-primary {
+      background: #1a5f87;
+      color: #fff;
+    }
+    .criteria-card .btn-row .btn-primary:hover { background: #134f75; }
+    .criteria-card .btn-row .launch-arrow {
+      color: #2a6f97;
+      font-size: 1.2rem;
+      transition: transform 0.2s;
+    }
+    .criteria-card:hover .launch-arrow { transform: translateX(4px); }
+
+    /* teacher controls */
+    .teacher-controls {
+      display: none;
+      margin-top: 0.4rem;
+      padding-top: 0.4rem;
+      border-top: 1px solid #eef2f6;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px 14px;
+      position: relative;
+      z-index: 2;
+    }
+    .cover-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.8rem;
+    }
+    .cover-item input[type="checkbox"] {
+      width: 16px;
+      height: 16px;
+      accent-color: #0b2a4a;
+      cursor: pointer;
+    }
+    .cover-item label {
+      cursor: pointer;
+      font-weight: 500;
+      color: #0b2a4a;
+      font-size: 0.75rem;
+    }
+    .cover-item .y11-label { color: #1a5f87; }
+    .cover-item .y12-label { color: #a13232; }
+    .teacher-edit {
+      font-size: 0.6rem;
+      color: #6b7f8f;
+      background: #edf2f7;
+      padding: 1px 10px;
+      border-radius: 12px;
+      cursor: pointer;
+      user-select: none;
+      transition: background 0.2s;
+    }
+    .teacher-edit:hover { background: #d5dce6; }
+    .teacher-badge {
+      font-size: 0.55rem;
+      background: #cbd5e1;
+      color: #334155;
+      padding: 1px 8px;
+      border-radius: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+    }
+    body.is-teacher .teacher-controls { display: flex; }
+
+    /* color variants for criteria cards */
+    .criteria-card.c-a { border-left-color: #2d7d46; }
+    .criteria-card.c-b { border-left-color: #1a5f87; }
+    .criteria-card.c-c { border-left-color: #a13232; }
+    .criteria-card.c-d { border-left-color: #6b21a5; }
+    .criteria-card.c-e { border-left-color: #b45309; }
+    .criteria-card.c-ref { border-left-color: #fdbb2d; }
+
+    /* ===== TIMELINE ===== */
+    .section-head {
+      font-size: 1.9rem;
+      font-weight: 600;
+      color: #0b2a4a;
+      margin: 2.8rem 0 1.5rem 0;
+      padding-bottom: 0.25rem;
+      border-bottom: 4px solid #cbddee;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .section-head i { color: #1f6390; font-size: 1.8rem; width: 2.2rem; }
+    .section-head small { font-size: 0.9rem; font-weight: 400; color: #3b5f7a; margin-left: 8px; }
+
+    .timeline-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin-top: 0.8rem;
+    }
+    .timeline-item {
+      background: white;
+      border-radius: 20px;
+      padding: 1.5rem;
+      border-left: 5px solid #1a5f87;
+      box-shadow: 0 4px 12px rgba(0, 20, 40, 0.04);
+      transition: 0.2s;
+      display: flex;
+      flex-direction: column;
+    }
+    .timeline-item:hover { box-shadow: 0 8px 20px rgba(0, 32, 64, 0.08); }
+    .timeline-item .milestone {
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: #1a5f87;
+      background: #dceaf7;
+      padding: 0.15rem 0.8rem;
+      border-radius: 20px;
+      display: inline-block;
+      margin-bottom: 0.3rem;
+      align-self: flex-start;
+    }
+    .timeline-item .milestone.red { background: #fdeaea; color: #a13232; }
+    .timeline-item .milestone.green { background: #e3f5e9; color: #1f6b3a; }
+    .timeline-item .milestone.orange { background: #fdeac8; color: #a8691b; }
+    .timeline-item .milestone.purple { background: #e8e0f5; color: #4a2d7a; }
+    .timeline-item h4 {
+      font-size: 1rem;
+      font-weight: 600;
+      color: #0b2a4a;
+      margin: 0.2rem 0 0.1rem;
+    }
+    .timeline-item .due {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #b21f1f;
+      margin-bottom: 0.3rem;
+    }
+    .timeline-item .desc {
+      font-size: 0.85rem;
+      color: #475569;
+      flex: 1;
+    }
+    .timeline-item .desc ul {
+      list-style: none;
+      padding: 0.2rem 0 0;
+      margin: 0;
+    }
+    .timeline-item .desc ul li {
+      padding: 0.15rem 0;
+      font-size: 0.8rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 6px;
+    }
+    .timeline-item .desc ul li i {
+      color: #1a5f87;
+      font-size: 0.6rem;
+      margin-top: 0.25rem;
+      min-width: 14px;
+    }
+
+    /* ===== PASSWORD MODAL ===== */
+    .password-modal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0,0,0,0.4);
+      backdrop-filter: blur(4px);
+      justify-content: center;
+      align-items: center;
+      z-index: 999;
+    }
+    .password-modal.active { display: flex; }
+    .password-box {
+      background: white;
+      border-radius: 40px;
+      padding: 2.5rem 2.8rem;
+      max-width: 400px;
+      width: 90%;
+      box-shadow: 0 30px 50px rgba(0,0,0,0.3);
+      text-align: center;
+    }
+    .password-box h3 { margin-bottom: 1rem; color: #0b2a4a; }
+    .password-box p { color: #3b5f7a; margin-bottom: 1.2rem; }
+    .password-box input {
+      width: 100%;
+      padding: 0.8rem 1rem;
+      border: 2px solid #d4e0ec;
+      border-radius: 60px;
+      font-size: 1rem;
+      margin-bottom: 1rem;
+      outline: none;
+    }
+    .password-box input:focus { border-color: #1f6390; }
+    .password-box .btn {
+      background: #1f6390;
+      color: white;
+      border: none;
+      padding: 0.6rem 2rem;
+      border-radius: 60px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .password-box .btn:hover { background: #134f75; }
+    .password-box .error { color: #b13a3a; font-size: 0.85rem; margin-top: 0.5rem; min-height: 1.5rem; }
+    .modal-type-badge {
+      display: inline-block;
+      background: #0b2a4a;
+      color: white;
+      padding: 0.2rem 1rem;
+      border-radius: 20px;
+      font-size: 0.7rem;
+      margin-bottom: 0.8rem;
+    }
+
+    /* ===== DIVIDER ===== */
+    .divider-light { margin: 2.2rem 0 0.2rem; border: 0; height: 1px; background: linear-gradient(to right, #d4e0ec, transparent); }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 680px) {
+      body { padding: 0.5rem; }
+      .container { padding: 1.2rem; border-radius: 20px; }
+      .nav { flex-direction: column; align-items: flex-start; border-radius: 30px; gap: 0.6rem; }
+      .nav .brand { margin-right: 0; }
+      .page-header h1 { font-size: 2rem; flex-wrap: wrap; }
+      .criteria-grid { grid-template-columns: 1fr; }
+      .timeline-grid { grid-template-columns: 1fr; }
+      .folder-grid { grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); }
+      .lock-icons { right: 50px; }
+      .lock-icons .lock-icon { font-size: 0.5rem; padding: 1px 4px; }
+      .criteria-card .criteria-letter { font-size: 2rem; }
+      .top-quick-links { justify-content: center; }
+      .top-quick-links a { width: 100%; justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- ===== PASSWORD MODAL ===== -->
+  <div id="passwordModal" class="password-modal">
+    <div class="password-box">
+      <div class="modal-type-badge" id="modalType">🔒 Enter Password</div>
+      <h3><i class="fas fa-lock" style="color:#1f6390;"></i> Teacher Access</h3>
+      <p>Enter the password to enable teacher controls.</p>
+      <input type="password" id="pwdInput" placeholder="Enter password" autocomplete="off">
+      <button class="btn" id="pwdSubmitBtn"><i class="fas fa-key"></i> Access</button>
+      <div class="error" id="pwdError"></div>
+    </div>
+  </div>
+
+  <!-- ===== NAV ===== -->
+  <nav class="nav">
+    <span class="brand"><i class="fas fa-microchip"></i> IB CompSci</span>
+    <a href="year11.html"><i class="fas fa-arrow-left"></i> Year 11</a>
+    <a href="year12.html"><i class="fas fa-arrow-left"></i> Year 12</a>
+    <a href="ia-resources.html"><i class="fas fa-tasks"></i> IA Hub</a>
+    <a id="adminModeBtn" href="#"><i class="fas fa-user-shield"></i> Admin</a>
+  </nav>
+
+  <!-- ===== TOP QUICK LINKS ===== -->
+  <div class="top-quick-links">
+    <!-- Your 4-week bootcamp = RED -->
+    <a href="ia-success-blueprint.html" class="btn-red">
+      <i class="fas fa-rocket"></i> Your 4-week bootcamp
+    </a>
+    <!-- Access Resources = RED -->
+    <a href="ia-resources.html" class="btn-red">
+      <i class="fas fa-graduation-cap"></i> Access Resources
+    </a>
+    <!-- IA Introduction = YELLOW -->
+    <a href="https://mr-ellis.github.io/School/ebooks/IA%20Introduction.pdf" target="_blank" class="btn-yellow">
+      <i class="fas fa-file-pdf"></i> IA Introduction
+    </a>
+    <!-- Template = GREEN -->
+    <a href="https://view.officeapps.live.com/op/view.aspx?src=https%3A%2F%2Fraw.githubusercontent.com%2FMr-Ellis%2FSchool%2Frefs%2Fheads%2Fmain%2Febooks%2FInternal%2520Assessment%2520Template.docx&wdOrigin=BROWSELINK" target="_blank" class="btn-green">
+      <i class="fas fa-download"></i> Download and use this template
+    </a>
+    <!-- Rubric = YELLOW -->
+    <a href="https://mr-ellis.github.io/School/ebooks/Rubric.pdf" target="_blank" class="btn-yellow">
+      <i class="fas fa-clipboard-list"></i> Rubric
+    </a>
+    <!-- Interactive Checklist = GREEN -->
+    <a href="ia-checklist.html" class="btn-green">
+      <i class="fas fa-check-square"></i> Interactive Checklist
+    </a>
+    <!-- GUI Guide = BLUE -->
+    <a href="ia-gui-guide.html" class="btn-blue">
+      <i class="fas fa-desktop"></i> GUI Guide
+    </a>
+    <!-- Python to EXE Guide = PURPLE -->
+    <a href="python-to-exe-guide.html" class="btn-purple">
+      <i class="fas fa-file-export"></i> Python to EXE
+    </a>
+  </div>
+
+  <!-- ===== HEADER ===== -->
+  <div class="page-header">
+    <h1><i class="fas fa-rocket"></i> IA Success Hub</h1>
+    <div class="sub"><i class="fas fa-check-circle"></i> Your launchpad for acing every criterion of the Computer Science IA</div>
+  </div>
+
+  <!-- ===== STUDENT IA FOLDERS ===== -->
+  <div class="student-folders-section">
+    <h3><i class="fas fa-folder-open"></i> 📁 Your IA Documents</h3>
+    <p style="color: #475569; font-size: 0.9rem; margin-bottom: 1rem;">Click on your name to access your personal IA SharePoint folder.</p>
+    <div class="folder-grid">
+      <a href="https://isrschool-my.sharepoint.com/:f:/r/personal/craig_ellis_isr-school_de/Documents/2027%20IAs/Ben?d=w7db207229e33491aa2f427ea5b52b4b5&csf=1&web=1&e=YSBmAk" target="_blank" class="folder-link"><i class="fas fa-user"></i> Ben <span class="year-badge y12">Y12</span></a>
+      <a href="https://isrschool-my.sharepoint.com/:f:/r/personal/craig_ellis_isr-school_de/Documents/2027%20IAs/Demir?d=w0b9fed18c64c4f03b58dc7def9dc7558&csf=1&web=1&e=cM1bAr" target="_blank" class="folder-link"><i class="fas fa-user"></i> Demir <span class="year-badge y12">Y12</span></a>
+      <a href="https://isrschool-my.sharepoint.com/:f:/r/personal/craig_ellis_isr-school_de/Documents/2027%20IAs/Derinsu?d=wa938497a88d54200ad0908da4d1403b2&csf=1&web=1&e=KbkJqZ" target="_blank" class="folder-link"><i class="fas fa-user"></i> Derinsu <span class="year-badge y12">Y12</span></a>
+      <a href="https://isrschool-my.sharepoint.com/:f:/r/personal/craig_ellis_isr-school_de/Documents/2027%20IAs/Lamees?d=w36bff2dc8a3a46ca85b43ac305d3cffd&csf=1&web=1&e=XvRiVq" target="_blank" class="folder-link"><i class="fas fa-user"></i> Lamees <span class="year-badge y12">Y12</span></a>
+      <a href="https://isrschool-my.sharepoint.com/:f:/r/personal/craig_ellis_isr-school_de/Documents/2027%20IAs/Lucas?d=w71fb69bd16f348719e29cd426c5d7cc9&csf=1&web=1&e=VWkEMY" target="_blank" class="folder-link"><i class="fas fa-user"></i> Lucas <span class="year-badge y12">Y12</span></a>
+      <a href="https://isrschool-my.sharepoint.com/:f:/r/personal/craig_ellis_isr-school_de/Documents/2027%20IAs/Oscar?d=we21c76c4b8b74c42b407c5b27b3ea518&csf=1&web=1&e=j85gaR" target="_blank" class="folder-link"><i class="fas fa-user"></i> Oscar <span class="year-badge y12">Y12</span></a>
+      <a href="https://isrschool-my.sharepoint.com/:f:/r/personal/craig_ellis_isr-school_de/Documents/2027%20IAs/Sara?d=w6ab50040f7a14476ab8370c5907ed4b2&csf=1&web=1&e=V4fQYo" target="_blank" class="folder-link"><i class="fas fa-user"></i> Sara <span class="year-badge y12">Y12</span></a>
+      <a href="https://isrschool-my.sharepoint.com/:f:/r/personal/craig_ellis_isr-school_de/Documents/2027%20IAs/Shunya?d=w273598f30afd45bbb0854378561eb44c&csf=1&web=1&e=0BUQQ5" target="_blank" class="folder-link"><i class="fas fa-user"></i> Shunya <span class="year-badge y12">Y12</span></a>
+    </div>
+    <div style="margin-top: 0.8rem; padding-top: 0.8rem; border-top: 1px solid #e5edf5;">
+      <p style="font-size: 0.85rem; color: #6b7f8f;"><i class="fas fa-info-circle"></i> Grade 11 student folders will appear here when IA work begins.</p>
+    </div>
+  </div>
+
+  <!-- ===== CRITERIA LAUNCH CARDS ===== -->
+  <div class="criteria-grid">
+    <!-- Criterion A -->
+    <div class="criteria-card c-a is-y11-locked is-y12-locked" data-lesson="CriterionA">
+      <div class="lock-icons">
+        <span class="lock-icon lock-y11"><i class="fas fa-lock"></i> Y11</span>
+        <span class="lock-icon lock-y12"><i class="fas fa-lock"></i> Y12</span>
+      </div>
+      <span class="criteria-letter">A</span>
+      <h3>📋 Criterion A <span class="badge">Problem Specification</span></h3>
+      <span class="weight">4 marks · 300 words</span>
+      <p>Define the problem, its requirements, and the computational context.</p>
+      <ul>
+        <li><i class="fas fa-check-circle"></i> <strong>Describe</strong> the problem scenario &amp; measurable requirements</li>
+        <li><i class="fas fa-check-circle"></i> <strong>State</strong> appropriate success criteria (measurable)</li>
+        <li><i class="fas fa-check-circle"></i> <strong>Explain</strong> the choice of computational context</li>
+      </ul>
+      <div class="btn-row">
+        <a href="https://mr-ellis.github.io/School/ebooks/CriterionA.pdf" target="_blank" class="btn btn-primary"><i class="fas fa-rocket"></i> Launch Guide</a>
+        <span class="launch-arrow"><i class="fas fa-arrow-right"></i></span>
+      </div>
+      <div class="teacher-controls">
+        <div class="cover-item">
+          <input type="checkbox" class="cover-checkbox" data-lesson="CriterionA" data-class="Y11" id="cover-CriterionA-Y11">
+          <label for="cover-CriterionA-Y11"><span class="y11-label">Year 11</span> covered</label>
+        </div>
+        <div class="cover-item">
+          <input type="checkbox" class="cover-checkbox" data-lesson="CriterionA" data-class="Y12" id="cover-CriterionA-Y12">
+          <label for="cover-CriterionA-Y12"><span class="y12-label">Year 12</span> covered</label>
+        </div>
+        <span class="teacher-badge">Teacher only</span>
+        <span class="teacher-edit toggle-cover" data-lesson="CriterionA">(toggle both)</span>
+      </div>
+    </div>
+
+    <!-- Criterion B -->
+    <div class="criteria-card c-b is-y11-locked is-y12-locked" data-lesson="CriterionB">
+      <div class="lock-icons">
+        <span class="lock-icon lock-y11"><i class="fas fa-lock"></i> Y11</span>
+        <span class="lock-icon lock-y12"><i class="fas fa-lock"></i> Y12</span>
+      </div>
+      <span class="criteria-letter">B</span>
+      <h3>📐 Criterion B <span class="badge">Planning</span></h3>
+      <span class="weight">4 marks · 150 words</span>
+      <p>Decompose the problem and create a plan addressing the success criteria.</p>
+      <ul>
+        <li><i class="fas fa-check-circle"></i> <strong>Construct</strong> a reasonable decomposition (diagrams)</li>
+        <li><i class="fas fa-check-circle"></i> <strong>Construct</strong> a plan (GANTT/AGILE) that addresses success criteria</li>
+        <li><i class="fas fa-check-circle"></i> Plan must be consistent with Criterion A</li>
+      </ul>
+      <div class="btn-row">
+        <a href="https://mr-ellis.github.io/School/ebooks/CriterionB.pdf" target="_blank" class="btn btn-primary"><i class="fas fa-rocket"></i> Launch Guide</a>
+        <span class="launch-arrow"><i class="fas fa-arrow-right"></i></span>
+      </div>
+      <div class="teacher-controls">
+        <div class="cover-item">
+          <input type="checkbox" class="cover-checkbox" data-lesson="CriterionB" data-class="Y11" id="cover-CriterionB-Y11">
+          <label for="cover-CriterionB-Y11"><span class="y11-label">Year 11</span> covered</label>
+        </div>
+        <div class="cover-item">
+          <input type="checkbox" class="cover-checkbox" data-lesson="CriterionB" data-class="Y12" id="cover-CriterionB-Y12">
+          <label for="cover-CriterionB-Y12"><span class="y12-label">Year 12</span> covered</label>
+        </div>
+        <span class="teacher-badge">Teacher only</span>
+        <span class="teacher-edit toggle-cover" data-lesson="CriterionB">(toggle both)</span>
+      </div>
+    </div>
+
+    <!-- Criterion C -->
+    <div class="criteria-card c-c is-y11-locked is-y12-locked" data-lesson="CriterionC">
+      <div class="lock-icons">
+        <span class="lock-icon lock-y11"><i class="fas fa-lock"></i> Y11</span>
+        <span class="lock-icon lock-y12"><i class="fas fa-lock"></i> Y12</span>
+      </div>
+      <span class="criteria-letter">C</span>
+      <h3>🧩 Criterion C <span class="badge">System Overview</span></h3>
+      <span class="weight">6 marks · 150 words</span>
+      <p>Create a complete system model and algorithms, with a testing strategy.</p>
+      <ul>
+        <li><i class="fas fa-check-circle"></i> <strong>Complete system model</strong> (diagrams, UI, connections)</li>
+        <li><i class="fas fa-check-circle"></i> <strong>Algorithms</strong> for components (pseudocode/flowcharts)</li>
+        <li><i class="fas fa-check-circle"></i> <strong>Describe</strong> a testing strategy aligned with success criteria</li>
+      </ul>
+      <div class="btn-row">
+        <a href="https://mr-ellis.github.io/School/ebooks/CriterionC.pdf" target="_blank" class="btn btn-primary"><i class="fas fa-rocket"></i> Launch Guide</a>
+        <span class="launch-arrow"><i class="fas fa-arrow-right"></i></span>
+      </div>
+      <div class="teacher-controls">
+        <div class="cover-item">
+          <input type="checkbox" class="cover-checkbox" data-lesson="CriterionC" data-class="Y11" id="cover-CriterionC-Y11">
+          <label for="cover-CriterionC-Y11"><span class="y11-label">Year 11</span> covered</label>
+        </div>
+        <div class="cover-item">
+          <input type="checkbox" class="cover-checkbox" data-lesson="CriterionC" data-class="Y12" id="cover-CriterionC-Y12">
+          <label for="cover-CriterionC-Y12"><span class="y12-label">Year 12</span> covered</label>
+        </div>
+        <span class="teacher-badge">Teacher only</span>
+        <span class="teacher-edit toggle-cover" data-lesson="CriterionC">(toggle both)</span>
+      </div>
+    </div>
+
+    <!-- Criterion D -->
+    <div class="criteria-card c-d is-y11-locked is-y12-locked" data-lesson="CriterionD">
+      <div class="lock-icons">
+        <span class="lock-icon lock-y11"><i class="fas fa-lock"></i> Y11</span>
+        <span class="lock-icon lock-y12"><i class="fas fa-lock"></i> Y12</span>
+      </div>
+      <span class="criteria-letter">D</span>
+      <h3>💻 Criterion D <span class="badge">Development</span></h3>
+      <span class="weight">12 marks · 1,000 words</span>
+      <p>Build a fully functional product using appropriate techniques and justify your choices.</p>
+      <ul>
+        <li><i class="fas fa-check-circle"></i> <strong>Fully functional</strong> product (video evidence required)</li>
+        <li><i class="fas fa-check-circle"></i> Use <strong>appropriate techniques</strong> (loops, data structures, libraries)</li>
+        <li><i class="fas fa-check-circle"></i> <strong>Evaluate</strong> and <strong>justify</strong> implementation choices &amp; testing strategy</li>
+      </ul>
+      <div class="btn-row">
+        <a href="https://mr-ellis.github.io/School/ebooks/CriterionD.pdf" target="_blank" class="btn btn-primary"><i class="fas fa-rocket"></i> Launch Guide</a>
+        <span class="launch-arrow"><i class="fas fa-arrow-right"></i></span>
+      </div>
+      <div class="teacher-controls">
+        <div class="cover-item">
+          <input type="checkbox" class="cover-checkbox" data-lesson="CriterionD" data-class="Y11" id="cover-CriterionD-Y11">
+          <label for="cover-CriterionD-Y11"><span class="y11-label">Year 11</span> covered</label>
+        </div>
+        <div class="cover-item">
+          <input type="checkbox" class="cover-checkbox" data-lesson="CriterionD" data-class="Y12" id="cover-CriterionD-Y12">
+          <label for="cover-CriterionD-Y12"><span class="y12-label">Year 12</span> covered</label>
+        </div>
+        <span class="teacher-badge">Teacher only</span>
+        <span class="teacher-edit toggle-cover" data-lesson="CriterionD">(toggle both)</span>
+      </div>
+    </div>
+
+    <!-- Criterion E -->
+    <div class="criteria-card c-e is-y11-locked is-y12-locked" data-lesson="CriterionE">
+      <div class="lock-icons">
+        <span class="lock-icon lock-y11"><i class="fas fa-lock"></i> Y11</span>
+        <span class="lock-icon lock-y12"><i class="fas fa-lock"></i> Y12</span>
+      </div>
+      <span class="criteria-letter">E</span>
+      <h3>📄 Criterion E <span class="badge">Evaluation</span></h3>
+      <span class="weight">4 marks · 400 words</span>
+      <p>Evaluate your product against success criteria and justify future improvements.</p>
+      <ul>
+        <li><i class="fas fa-check-circle"></i> <strong>Evaluate</strong> the extent to which success criteria were met</li>
+        <li><i class="fas fa-check-circle"></i> <strong>Justify</strong> improvements to the product</li>
+        <li><i class="fas fa-check-circle"></i> Must be consistent with Criterion A</li>
+      </ul>
+      <div class="btn-row">
+        <a href="https://mr-ellis.github.io/School/ebooks/CriterionE.pdf" target="_blank" class="btn btn-primary"><i class="fas fa-rocket"></i> Launch Guide</a>
+        <span class="launch-arrow"><i class="fas fa-arrow-right"></i></span>
+      </div>
+      <div class="teacher-controls">
+        <div class="cover-item">
+          <input type="checkbox" class="cover-checkbox" data-lesson="CriterionE" data-class="Y11" id="cover-CriterionE-Y11">
+          <label for="cover-CriterionE-Y11"><span class="y11-label">Year 11</span> covered</label>
+        </div>
+        <div class="cover-item">
+          <input type="checkbox" class="cover-checkbox" data-lesson="CriterionE" data-class="Y12" id="cover-CriterionE-Y12">
+          <label for="cover-CriterionE-Y12"><span class="y12-label">Year 12</span> covered</label>
+        </div>
+        <span class="teacher-badge">Teacher only</span>
+        <span class="teacher-edit toggle-cover" data-lesson="CriterionE">(toggle both)</span>
+      </div>
+    </div>
+
+    <!-- Example Papers (Graded Scores + Student Examples + OLD SPEC OneDrive) -->
+    <div class="criteria-card c-ref is-y11-locked is-y12-locked" data-lesson="UnpackingExamples">
+      <div class="lock-icons">
+        <span class="lock-icon lock-y11"><i class="fas fa-lock"></i> Y11</span>
+        <span class="lock-icon lock-y12"><i class="fas fa-lock"></i> Y12</span>
+      </div>
+      <span class="criteria-letter large">★</span>
+      <h3>📚 Example Papers <span class="badge">Reference</span></h3>
+      <span class="weight">Graded scores · Student examples · Old spec exemplar</span>
+      <p>See how real IA submissions were graded and structured. Study the graded scores and full student exemplars.</p>
+      <ul>
+        <li><i class="fas fa-check-circle"></i> <strong>Graded scores</strong> — see how the rubric was applied to real IAs</li>
+        <li><i class="fas fa-check-circle"></i> <strong>Student examples</strong> — full IA submissions from past cohorts</li>
+        <li><i class="fas fa-check-circle"></i> <strong style="color: #b45309;">⚠️ Old spec</strong> — excellent exemplar (pre-2027 spec) on OneDrive</li>
+      </ul>
+      <div class="btn-row">
+        <a href="https://mr-ellis.github.io/School/ebooks/Graded%20scores.pdf" target="_blank" class="btn btn-primary"><i class="fas fa-chart-line"></i> Graded Scores</a>
+        <a href="https://mr-ellis.github.io/School/ebooks/IA%20Student%20examples.pdf" target="_blank" class="btn btn-primary"><i class="fas fa-file-alt"></i> Student Examples</a>
+        <a href="https://isrschool-my.sharepoint.com/:f:/g/personal/craig_ellis_isr-school_de/IgBv4EwtRYb1SKrigSCsytk2AUDHEM5anZWrFhMfH0Y7BkQ?e=rQSaGC" target="_blank" class="btn btn-primary" style="background: #b45309; border-color: #8a3d00;"><i class="fas fa-folder-open"></i> Old spec exemplar</a>
+      </div>
+      <div class="teacher-controls">
+        <div class="cover-item">
+          <input type="checkbox" class="cover-checkbox" data-lesson="UnpackingExamples" data-class="Y11" id="cover-UnpackingExamples-Y11">
+          <label for="cover-UnpackingExamples-Y11"><span class="y11-label">Year 11</span> covered</label>
+        </div>
+        <div class="cover-item">
+          <input type="checkbox" class="cover-checkbox" data-lesson="UnpackingExamples" data-class="Y12" id="cover-UnpackingExamples-Y12">
+          <label for="cover-UnpackingExamples-Y12"><span class="y12-label">Year 12</span> covered</label>
+        </div>
+        <span class="teacher-badge">Teacher only</span>
+        <span class="teacher-edit toggle-cover" data-lesson="UnpackingExamples">(toggle both)</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== TIMELINE ===== -->
+  <div class="section-head">
+    <i class="fas fa-calendar-check"></i> IA Timeline & Milestones
+    <small>Key deadlines 2026</small>
+  </div>
+
+  <div class="timeline-grid">
+    <div class="timeline-item">
+      <span class="milestone orange">Draft</span>
+      <h4>🎬 Program + Screen Recording Draft</h4>
+      <div class="due"><i class="fas fa-flag"></i> Sep 30</div>
+      <div class="desc">
+        <ul>
+          <li><i class="fas fa-check"></i> Core functionality complete</li>
+          <li><i class="fas fa-check"></i> Screen recording draft (informal demo)</li>
+          <li><i class="fas fa-check"></i> Final testing &amp; polish remains</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <span class="milestone red">Criterion D</span>
+      <h4>📝 Criterion D Submission</h4>
+      <div class="due"><i class="fas fa-flag"></i> Oct 30</div>
+      <div class="desc">
+        <ul>
+          <li><i class="fas fa-check"></i> Criterion D (Development) complete</li>
+          <li><i class="fas fa-check"></i> Justification of techniques</li>
+          <li><i class="fas fa-check"></i> Testing strategy documented</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <span class="milestone purple">Full Draft</span>
+      <h4>📄 FINAL Draft (one complete review provided)</h4>
+      <div class="due"><i class="fas fa-flag"></i> Dec 15</div>
+      <div class="desc">
+        <ul>
+          <li><i class="fas fa-check"></i> All criteria A–E complete</li>
+          <li><i class="fas fa-check"></i> Full draft for teacher review</li>
+          <li><i class="fas fa-check"></i> Video recorded &amp; edited</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <span class="milestone green">Final Deadline</span>
+      <h4>✅ Final Changes Deadline</h4>
+      <div class="due"><i class="fas fa-flag"></i> Jan 14</div>
+      <div class="desc">
+        <ul>
+          <li><i class="fas fa-check"></i> All revisions complete</li>
+          <li><i class="fas fa-check"></i> Final proofread &amp; submission</li>
+          <li><i class="fas fa-check"></i> <strong>Celebrate!</strong> 🎉</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider-light">
+  <div style="display: flex; justify-content: space-between; flex-wrap: wrap; font-size: 0.8rem; color: #5d7f9a; padding: 0.8rem 0;">
+    <span><i class="fas fa-sync-alt"></i> Always free · IA aligned</span>
+    <span><i class="fas fa-heart" style="color: #c44545;"></i> Good luck! You've got this.</span>
+  </div>
+
+</div>
+
+<script>
+  (function() {
+    const TEACHER_PASSWORD = 'Password262026';
+    const allLessons = ['CriterionA', 'CriterionB', 'CriterionC', 'CriterionD', 'CriterionE', 'UnpackingExamples'];
+
+    function getUnlockedLessons(year) {
+      const unlocked = [];
+      document.querySelectorAll('.criteria-card[data-lesson]').forEach(card => {
+        const lesson = card.getAttribute('data-lesson');
+        const checkboxes = card.querySelectorAll('.cover-checkbox');
+        const anyChecked = Array.from(checkboxes).some(cb => cb.dataset.class === year && cb.checked);
+        if (anyChecked) unlocked.push(lesson);
+      });
+      return unlocked;
+    }
+
+    function updateUI() {
+      const y11Unlocked = getUnlockedLessons('Y11');
+      const y12Unlocked = getUnlockedLessons('Y12');
+
+      document.querySelectorAll('.criteria-card[data-lesson]').forEach(card => {
+        const checkboxes = card.querySelectorAll('.cover-checkbox');
+        const y11Checked = Array.from(checkboxes).some(cb => cb.dataset.class === 'Y11' && cb.checked);
+        const y12Checked = Array.from(checkboxes).some(cb => cb.dataset.class === 'Y12' && cb.checked);
+
+        if (y11Checked) card.classList.remove('is-y11-locked');
+        else card.classList.add('is-y11-locked');
+
+        if (y12Checked) card.classList.remove('is-y12-locked');
+        else card.classList.add('is-y12-locked');
+
+        const anyChecked = y11Checked || y12Checked;
+        if (anyChecked) card.classList.remove('locked');
+        else card.classList.add('locked');
+      });
+    }
+
+    document.querySelectorAll('.cover-checkbox').forEach(function(cb) {
+      const lesson = cb.getAttribute('data-lesson');
+      const className = cb.getAttribute('data-class');
+      const storageKey = 'ia_cover_' + lesson + '_' + className;
+
+      const saved = localStorage.getItem(storageKey);
+      if (saved === 'true') cb.checked = true;
+
+      cb.addEventListener('change', function() {
+        localStorage.setItem(storageKey, cb.checked ? 'true' : 'false');
+        updateUI();
+      });
+    });
+
+    document.querySelectorAll('.toggle-cover').forEach(function(toggle) {
+      toggle.addEventListener('click', function(e) {
+        e.preventDefault();
+        const lesson = this.getAttribute('data-lesson');
+        const cbs = document.querySelectorAll('.cover-checkbox[data-lesson="' + lesson + '"]');
+        const anyUnchecked = Array.from(cbs).some(cb => !cb.checked);
+        cbs.forEach(function(cb) {
+          cb.checked = anyUnchecked;
+          const key = 'ia_cover_' + cb.getAttribute('data-lesson') + '_' + cb.getAttribute('data-class');
+          localStorage.setItem(key, anyUnchecked ? 'true' : 'false');
+        });
+        updateUI();
+      });
+    });
+
+    // ---- Password Modal ----
+    const modal = document.getElementById('passwordModal');
+    const pwdInput = document.getElementById('pwdInput');
+    const pwdError = document.getElementById('pwdError');
+    const pwdSubmitBtn = document.getElementById('pwdSubmitBtn');
+
+    function openModal() {
+      modal.classList.add('active');
+      pwdInput.value = '';
+      pwdError.textContent = '';
+      pwdInput.focus();
+    }
+    function closeModal() { modal.classList.remove('active'); }
+
+    function activateTeacherMode() {
+      document.body.classList.add('is-teacher');
+      sessionStorage.setItem('teacherMode', 'true');
+      let lockBtn = document.getElementById('lockAdminBtn');
+      if (!lockBtn) {
+        lockBtn = document.createElement('a');
+        lockBtn.id = 'lockAdminBtn';
+        lockBtn.innerHTML = '<i class="fas fa-unlock-alt"></i> Lock Admin';
+        lockBtn.href = '#';
+        lockBtn.style.color = '#fdbb2d';
+        lockBtn.addEventListener('click', function(e) {
+          e.preventDefault();
+          sessionStorage.removeItem('teacherMode');
+          window.location.reload();
+        });
+        document.querySelector('.nav').appendChild(lockBtn);
+      }
+    }
+
+    pwdSubmitBtn.addEventListener('click', function() {
+      const entered = pwdInput.value.trim();
+      if (entered === TEACHER_PASSWORD) {
+        activateTeacherMode();
+        closeModal();
+      } else {
+        pwdError.textContent = '❌ Incorrect password. Try again.';
+        pwdInput.value = '';
+        pwdInput.focus();
+      }
+    });
+
+    pwdInput.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') { e.preventDefault(); pwdSubmitBtn.click(); }
+    });
+
+    modal.addEventListener('click', function(e) { if (e.target === this) closeModal(); });
+    document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeModal(); });
+
+    document.getElementById('adminModeBtn').addEventListener('click', function(e) {
+      e.preventDefault();
+      openModal();
+    });
+
+    updateUI();
+    if (sessionStorage.getItem('teacherMode') === 'true') activateTeacherMode();
+  })();
+</script>
+
+</body>
+</html>

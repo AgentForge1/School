@@ -1,0 +1,1379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>5 · Cyber Security Threats</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: #f0f4fb;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      color: #1e293b;
+      padding: 2rem 1.5rem;
+      line-height: 1.5;
+      min-height: 100vh;
+    }
+    .container { max-width: 1200px; margin: 0 auto; }
+
+    .nav {
+      background: #0b2a4a;
+      padding: 0.9rem 2rem;
+      border-radius: 60px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 1.8rem;
+      margin-bottom: 2.8rem;
+      box-shadow: 0 8px 20px rgba(0,20,40,0.08);
+    }
+    .nav a {
+      color: #e6edf5;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.95rem;
+      letter-spacing: 0.3px;
+      transition: 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .nav a i { font-size: 0.9rem; opacity: 0.7; }
+    .nav a:hover { color: #ffffff; text-decoration: underline; text-underline-offset: 4px; }
+    .nav .brand {
+      margin-right: auto;
+      font-weight: 600;
+      color: white;
+      font-size: 1.1rem;
+    }
+    .nav .brand i { margin-right: 8px; color: #7bb3ff; }
+
+    .main-title {
+      font-size: 2.8rem;
+      font-weight: 700;
+      color: #0b2a4a;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.2rem;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .main-title i { color: #2a6f97; font-size: 2.2rem; }
+    .subhead {
+      color: #475569;
+      font-size: 1rem;
+      margin-bottom: 2.5rem;
+      border-left: 4px solid #2a6f97;
+      padding-left: 1.2rem;
+      font-weight: 400;
+      background: #e9eff8;
+      display: inline-block;
+      padding: 0.4rem 1.4rem;
+      border-radius: 40px;
+    }
+
+    .section-head {
+      font-size: 1.9rem;
+      font-weight: 600;
+      color: #0b2a4a;
+      margin: 2.8rem 0 1.5rem 0;
+      padding-bottom: 0.25rem;
+      border-bottom: 4px solid #cbddee;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .section-head i { color: #1f6390; font-size: 1.8rem; width: 2.2rem; }
+
+    /* ===== LESSON CONTENT ===== */
+    .lesson-content {
+      background: white;
+      border-radius: 24px;
+      padding: 2rem 2.2rem;
+      margin-top: 1.5rem;
+      border: 1px solid #e5edf5;
+      box-shadow: 0 6px 18px rgba(0, 20, 40, 0.04);
+    }
+    .lesson-content h3 {
+      color: #0b2a4a;
+      font-size: 1.4rem;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .lesson-content h3 i { color: #1f6390; }
+    .lesson-content h4 {
+      color: #1f6390;
+      font-size: 1.1rem;
+      margin: 1.5rem 0 0.5rem 0;
+    }
+    .lesson-content .key-point {
+      background: #e9eff8;
+      border-left: 4px solid #1f6390;
+      padding: 0.8rem 1.2rem;
+      border-radius: 8px;
+      margin: 0.8rem 0;
+    }
+    .lesson-content .key-point strong { color: #0b2a4a; }
+    .lesson-content ul {
+      padding-left: 1.5rem;
+      margin: 0.5rem 0 1rem 0;
+    }
+    .lesson-content ul li { margin-bottom: 0.3rem; }
+
+    /* ===== ACTIVITY BOX ===== */
+    .activity-box {
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 1.2rem 1.5rem;
+      margin: 1.2rem 0;
+      border: 2px solid #1f6390;
+      box-shadow: 0 4px 12px rgba(0, 20, 40, 0.06);
+    }
+    .activity-box.green { border-color: #2d7d46; }
+    .activity-box.amber { border-color: #f5b342; }
+    .activity-box strong { color: #0b2a4a; }
+
+    /* ===== KEY TOOL CARDS (exact match to MAC/IP page) ===== */
+    .key-tool-card {
+      background: #f8fafc;
+      border-radius: 16px;
+      padding: 1.2rem 1.5rem;
+      border: 2px solid #f5b342;
+      position: relative;
+    }
+    .key-tool-card .badge {
+      position: absolute;
+      top: -10px;
+      right: 16px;
+      background: #f5b342;
+      color: #0b2a4a;
+      font-size: 0.65rem;
+      font-weight: 700;
+      padding: 2px 12px;
+      border-radius: 20px;
+      letter-spacing: 0.5px;
+    }
+    .key-tool-card h5 {
+      margin-bottom: 0.3rem;
+      color: #0b2a4a;
+    }
+    .key-tool-card p {
+      font-size: 0.9rem;
+      color: #475569;
+      margin-bottom: 0.5rem;
+    }
+    .key-tool-card .btn {
+      background: #1a5f87;
+      color: white;
+      padding: 0.3rem 1rem;
+      border-radius: 30px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-decoration: none;
+      display: inline-block;
+      border: none;
+      cursor: pointer;
+    }
+    .key-tool-card .btn:hover { background: #134f75; }
+    .key-tool-card .btn-green { background: #2d7d46; }
+    .key-tool-card .btn-green:hover { background: #1f5f34; }
+    .key-tool-card .btn-locked {
+      background: #e8dfd0;
+      color: #6a4e2e;
+      cursor: pointer;
+    }
+    .key-tool-card .btn-locked i { color: #b8943e; }
+
+    /* ===== FLIP CARDS ===== */
+    .flip-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 1rem;
+      margin: 1.2rem 0;
+    }
+    .flip-card {
+      perspective: 1000px;
+      height: 240px;
+      cursor: pointer;
+    }
+    .flip-card-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      transition: transform 0.6s;
+      transform-style: preserve-3d;
+    }
+    .flip-card.flipped .flip-card-inner { transform: rotateY(180deg); }
+    .flip-card-front, .flip-card-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      border-radius: 16px;
+      padding: 1.2rem 1.1rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      box-shadow: 0 4px 12px rgba(0, 20, 40, 0.06);
+    }
+    .flip-card-front {
+      background: white;
+      border: 2px solid #dceaf7;
+      text-align: center;
+    }
+    .flip-card-front .icon { font-size: 2.4rem; margin-bottom: 0.4rem; }
+    .flip-card-front h4 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #0b2a4a;
+      margin-bottom: 0.3rem;
+    }
+    .flip-card-front .flip-hint {
+      font-size: 0.72rem;
+      color: #94a3b8;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      margin-top: 0.4rem;
+    }
+    .flip-card-back {
+      background: #0b2a4a;
+      color: white;
+      transform: rotateY(180deg);
+      text-align: left;
+    }
+    .flip-card-back h5 {
+      font-size: 0.9rem;
+      margin-bottom: 0.3rem;
+      color: #7bb3ff;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+    }
+    .flip-card-back p { font-size: 0.82rem; line-height: 1.5; color: #e2edf7; }
+    .flip-card.virus .flip-card-front .icon { color: #e53935; }
+    .flip-card.worm .flip-card-front .icon { color: #f9a825; }
+    .flip-card.trojan .flip-card-front .icon { color: #8e24aa; }
+    .flip-card.ransomware .flip-card-front .icon { color: #b71c1c; }
+    .flip-card.spyware .flip-card-front .icon { color: #1e88e5; }
+    .flip-card.adware .flip-card-front .icon { color: #43a047; }
+
+    /* ===== SCENARIO GAME ===== */
+    .scenario-game {
+      background: #f8fafc;
+      border: 1px solid #dceaf7;
+      border-radius: 20px;
+      padding: 1.4rem 1.6rem;
+      margin: 1.2rem 0;
+    }
+    .scenario-game h3 { margin-top: 0; display: flex; align-items: center; gap: 8px; }
+    .scenario-game .scenario-box {
+      background: white;
+      border-radius: 14px;
+      padding: 1.2rem 1.4rem;
+      border-left: 5px solid #2a6f97;
+      margin: 1rem 0;
+      font-size: 0.95rem;
+    }
+    .scenario-game .scenario-box .scenario-num {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: #2a6f97;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      margin-bottom: 0.3rem;
+    }
+    .scenario-game .options {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin: 0.8rem 0;
+    }
+    .scenario-game .options button {
+      background: white;
+      border: 2px solid #b6cfe5;
+      color: #0b2a4a;
+      padding: 0.5rem 1rem;
+      border-radius: 30px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    .scenario-game .options button:hover { background: #f0f7ff; border-color: #7bb3ff; }
+    .scenario-game .options button.correct { background: #c8e6c9; border-color: #2d8f2d; color: #1b5e20; }
+    .scenario-game .options button.incorrect { background: #ffcdd2; border-color: #e53935; color: #b71c1c; }
+    .scenario-game .feedback { font-size: 0.9rem; font-weight: 600; min-height: 1.4rem; margin-top: 0.4rem; }
+    .scenario-game .feedback.ok { color: #2d8f2d; }
+    .scenario-game .feedback.no { color: #b71c1c; }
+    .scenario-game .progress {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      font-size: 0.85rem;
+      color: #475569;
+      font-weight: 600;
+      margin-bottom: 0.6rem;
+    }
+    .scenario-game .progress .bar {
+      flex: 1;
+      height: 8px;
+      background: #e2e8f0;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    .scenario-game .progress .bar .fill {
+      height: 100%;
+      background: linear-gradient(to right, #2d8f2d, #4caf50);
+      width: 0%;
+      transition: 0.3s;
+    }
+
+    /* ===== PHISHING INSPECTOR ===== */
+    .phishing-inspector {
+      background: #f8fafc;
+      border: 1px solid #dceaf7;
+      border-radius: 20px;
+      padding: 1.4rem 1.6rem;
+      margin: 1.2rem 0;
+    }
+    .phishing-inspector h3 { margin-top: 0; display: flex; align-items: center; gap: 8px; }
+    .email-preview {
+      background: white;
+      border: 2px solid #dceaf7;
+      border-radius: 14px;
+      padding: 1.2rem 1.4rem;
+      margin: 1rem 0;
+      font-size: 0.9rem;
+      line-height: 1.6;
+    }
+    .email-preview .email-header {
+      border-bottom: 1px solid #e5edf5;
+      padding-bottom: 0.6rem;
+      margin-bottom: 0.8rem;
+      font-size: 0.82rem;
+      color: #64748b;
+    }
+    .email-preview .email-header .email-field { margin-bottom: 0.2rem; }
+    .email-preview .email-header .email-field strong {
+      color: #475569;
+      display: inline-block;
+      min-width: 60px;
+    }
+    .email-preview .email-body { color: #1e293b; }
+    .flag-btn {
+      background: white;
+      border: 2px solid #dceaf7;
+      border-radius: 8px;
+      padding: 0.5rem 0.9rem;
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      margin: 0.3rem 0.3rem 0 0;
+      transition: 0.2s;
+      color: #475569;
+    }
+    .flag-btn:hover { border-color: #f9a825; background: #fff8e1; }
+    .flag-btn.correct-flag { background: #c8e6c9; border-color: #2d8f2d; color: #1b5e20; }
+    .flag-btn.incorrect-flag { background: #ffcdd2; border-color: #e53935; color: #b71c1c; }
+    .phishing-feedback { font-size: 0.9rem; font-weight: 600; min-height: 1.4rem; margin-top: 0.6rem; }
+    .phishing-feedback.ok { color: #2d8f2d; }
+    .phishing-feedback.no { color: #b71c1c; }
+
+    /* ===== MATCH GAME ===== */
+    .match-game {
+      background: #f8fafc;
+      border: 1px solid #dceaf7;
+      border-radius: 20px;
+      padding: 1.4rem 1.6rem;
+      margin: 1.2rem 0;
+    }
+    .match-game h3 { margin-top: 0; display: flex; align-items: center; gap: 8px; }
+    .match-game .match-cols {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin: 1rem 0;
+    }
+    .match-game .col { display: flex; flex-direction: column; gap: 0.6rem; }
+    .match-game .col h4 {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      color: #64748b;
+      font-weight: 700;
+    }
+    .match-game .match-item {
+      background: white;
+      border: 2px solid #d4e3f0;
+      border-radius: 12px;
+      padding: 0.7rem 1rem;
+      font-size: 0.85rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: 0.2s;
+      user-select: none;
+    }
+    .match-game .match-item:hover { border-color: #7bb3ff; background: #f0f7ff; }
+    .match-game .match-item.selected {
+      border-color: #2a6f97;
+      background: #e0f2fe;
+      box-shadow: 0 0 0 3px rgba(42, 111, 151, 0.2);
+    }
+    .match-game .match-item.matched {
+      background: #c8e6c9;
+      border-color: #2d8f2d;
+      color: #1b5e20;
+      cursor: default;
+      font-weight: 600;
+    }
+    .match-game .feedback { font-size: 0.9rem; font-weight: 600; min-height: 1.4rem; margin-top: 0.5rem; }
+    .match-game .feedback.ok { color: #2d8f2d; }
+    .match-game .feedback.no { color: #b71c1c; }
+
+    .btn {
+      background: linear-gradient(135deg, #1f6390, #0b2a4a);
+      color: white;
+      border: none;
+      padding: 0.5rem 1.4rem;
+      border-radius: 40px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .btn:hover { transform: translateY(-1px); box-shadow: 0 4px 14px rgba(11,42,74,0.3); }
+    .btn.secondary { background: white; color: #1f6390; border: 2px solid #b6cfe5; }
+    .btn.secondary:hover { background: #f0f7ff; box-shadow: none; }
+
+    /* ===== LOCKED EXTENSION ===== */
+    .locked-section {
+      position: relative;
+      background: #f8fafc;
+      border: 2px dashed #b6cfe5;
+      border-radius: 20px;
+      padding: 1.6rem 1.8rem;
+      margin: 1.2rem 0;
+      text-align: center;
+    }
+    .locked-section .lock-icon {
+      font-size: 2.2rem;
+      color: #94a3b8;
+      margin-bottom: 0.5rem;
+    }
+    .locked-section h3 { color: #475569; margin-bottom: 0.3rem; }
+    .locked-section p { color: #64748b; font-size: 0.9rem; }
+    .locked-section.unlocked {
+      border: 1px solid #dceaf7;
+      text-align: left;
+      background: white;
+    }
+    .locked-section.unlocked .lock-icon { display: none; }
+    .locked-section .locked-content { display: none; }
+    .locked-section.unlocked .locked-content { display: block; }
+    .locked-section.unlocked .locked-message { display: none; }
+
+    /* ===== KEYWORDS ===== */
+    .keyword-tag {
+      background: white;
+      padding: 0.2rem 0.8rem;
+      border-radius: 20px;
+      border: 1px solid #dce4ed;
+      font-size: 0.85rem;
+    }
+
+    .divider-light { margin: 2.2rem 0 0.2rem; border: 0; height: 1px; background: linear-gradient(to right, #d4e0ec, transparent); }
+
+    /* ===== PASSWORD MODAL ===== */
+    .password-modal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0,0,0,0.4);
+      backdrop-filter: blur(4px);
+      justify-content: center;
+      align-items: center;
+      z-index: 999;
+    }
+    .password-modal.active { display: flex; }
+    .password-box {
+      background: white;
+      border-radius: 40px;
+      padding: 2.5rem 2.8rem;
+      max-width: 400px;
+      width: 90%;
+      box-shadow: 0 30px 50px rgba(0,0,0,0.3);
+      text-align: center;
+    }
+    .password-box h3 { margin-bottom: 1rem; color: #0b2a4a; }
+    .password-box input {
+      width: 100%;
+      padding: 0.8rem 1rem;
+      border: 2px solid #d4e0ec;
+      border-radius: 60px;
+      font-size: 1rem;
+      margin-bottom: 1rem;
+      outline: none;
+    }
+    .password-box input:focus { border-color: #1f6390; }
+    .password-box .btn {
+      background: #1f6390;
+      color: white;
+      border: none;
+      padding: 0.6rem 2rem;
+      border-radius: 60px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .password-box .btn:hover { background: #134f75; }
+    .password-box .error { color: #b13a3a; font-size: 0.85rem; margin-top: 0.5rem; min-height: 1.5rem; }
+
+    /* ===== DROPDOWN ANSWER ===== */
+    .dropdown-answer {
+      background: #f8fafc;
+      border-radius: 8px;
+      padding: 0.8rem 1rem;
+      margin: 0.5rem 0 0.8rem 0;
+      border-left: 4px solid #2a6f97;
+      cursor: pointer;
+      user-select: none;
+      transition: background 0.2s;
+    }
+    .dropdown-answer:hover { background: #eef4fa; }
+    .dropdown-answer .answer-content {
+      display: none;
+      margin-top: 0.5rem;
+      padding-top: 0.5rem;
+      border-top: 1px solid #d4e0ec;
+      color: #1e293b;
+    }
+    .dropdown-answer.active .answer-content { display: block; }
+    .dropdown-answer .hint-text {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: #1f6390;
+      font-weight: 500;
+    }
+    .dropdown-answer .hint-text i { transition: transform 0.2s; }
+    .dropdown-answer.active .hint-text i { transform: rotate(180deg); }
+
+    /* ===== RESOURCE CARDS ===== */
+    .resources-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 1.2rem;
+      margin: 1rem 0;
+    }
+    .resource-card {
+      background: #f8fafc;
+      border-radius: 16px;
+      padding: 1rem 1.2rem;
+      border: 1px solid #e5edf5;
+      text-align: center;
+    }
+    .resource-card h5 {
+      color: #0b2a4a;
+      font-size: 0.95rem;
+      margin-bottom: 0.3rem;
+    }
+    .resource-card p {
+      font-size: 0.85rem;
+      color: #475569;
+      margin-bottom: 0.5rem;
+    }
+    .resource-card .btn {
+      background: #1a5f87;
+      color: white;
+      padding: 0.3rem 1rem;
+      border-radius: 30px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-decoration: none;
+      display: inline-block;
+    }
+    .resource-card .btn:hover { background: #134f75; }
+    .resource-card .btn-green { background: #2d7d46; }
+    .resource-card .btn-green:hover { background: #1f5f34; }
+
+    @media (max-width: 680px) {
+      body { padding: 1rem; }
+      .nav { flex-direction: column; align-items: flex-start; border-radius: 30px; gap: 0.6rem; }
+      .nav .brand { margin-right: 0; }
+      .main-title { font-size: 2rem; flex-wrap: wrap; }
+      .lesson-content { padding: 1.2rem; }
+      .activity-box { padding: 1rem; }
+      .flip-grid { grid-template-columns: 1fr 1fr; }
+      .match-game .match-cols { grid-template-columns: 1fr; }
+      .password-box { padding: 1.8rem; }
+      .key-tool-card { grid-column: span 1; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- ===== PASSWORD MODAL ===== -->
+  <div id="passwordModal" class="password-modal">
+    <div class="password-box">
+      <h3><i class="fas fa-lock" style="color:#1f6390;"></i> Protected Resource</h3>
+      <p style="color:#3b5f7a; margin-bottom:1.2rem;">Enter password to access lesson plan</p>
+      <input type="password" id="pwdInput" placeholder="password" autocomplete="off">
+      <button class="btn" id="pwdSubmitBtn"><i class="fas fa-key"></i> Unlock</button>
+      <div class="error" id="pwdError"></div>
+    </div>
+  </div>
+
+  <!-- ===== NAV ===== -->
+  <nav class="nav">
+    <span class="brand"><i class="fas fa-graduation-cap"></i> IGCSE CompSci</span>
+    <a href="../year10-units.html"><i class="fas fa-arrow-left"></i> Year 10 Units</a>
+    <a href="../unit5-networks.html"><i class="fas fa-network-wired"></i> Unit 5 Networks</a>
+  </nav>
+
+  <a href="../unit5-networks.html" class="back-link" style="display:inline-flex; align-items:center; gap:6px; color:#1f6390; text-decoration:none; font-weight:500; margin-bottom:1.5rem;">
+    <i class="fas fa-arrow-left"></i> Back to Unit 5 Networks &amp; the Internet
+  </a>
+
+  <!-- ===== HEADER ===== -->
+  <div class="main-title">
+    <i class="fas fa-shield-halved"></i> 5 · Cyber Security Threats
+  </div>
+  <div class="subhead">
+    <i class="fas fa-check-circle" style="color:#1f7b4d; margin-right: 6px;"></i> 
+    Cambridge IGCSE Computer Science 0478/0984
+  </div>
+
+  <!-- ===== LESSON CONTENT ===== -->
+  <div class="lesson-content">
+
+    <h3><i class="fas fa-bullseye"></i> Learning Objectives</h3>
+    <ul>
+      <li>Describe the processes involved in, and the aim of carrying out, a range of cyber security threats including:</li>
+      <li><strong>Brute-force attack · Data interception · DDoS · Hacking · Malware (virus, worm, Trojan horse, spyware, adware, ransomware) · Pharming · Phishing and social engineering</strong></li>
+    </ul>
+
+    <div class="key-point">
+      <strong>💡 Key Fact:</strong> Cyber security threats are methods used by criminals to gain unauthorised access to computer systems, steal data, or disrupt services.
+    </div>
+
+    <!-- ===== STARTER ===== -->
+    <div class="activity-box">
+      <strong>🎯 Starter Activity – Blooket Warm-Up</strong>
+      <p>Test your existing knowledge of cyber security threats before we dive in.</p>
+      <a href="https://play.blooket.com/host/brawl?id=63d2ad48278530b1660ba8cb" target="_blank" class="btn" style="background:#1a5f87; color:white; padding:0.4rem 1.2rem; border-radius:30px; font-size:0.8rem; font-weight:600; text-decoration:none; display:inline-block; margin-top:0.5rem;">
+        <i class="fas fa-gamepad"></i> Play Blooket Starter
+      </a>
+    </div>
+
+    <!-- ===== FLIP CARDS ===== -->
+    <h4>🦠 Malware — Flip the Cards</h4>
+    <p><strong>Malware</strong> = <strong>Mal</strong>icious + <strong>Soft</strong>ware. Click each card to flip it and reveal what it does.</p>
+
+    <div class="flip-grid">
+      <div class="flip-card virus">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <div class="icon"><i class="fas fa-virus"></i></div>
+            <h4>Virus</h4>
+            <div class="flip-hint">Click to flip →</div>
+          </div>
+          <div class="flip-card-back">
+            <h5>What it does</h5>
+            <p>Replicates its code inside other programs. Infects other computers and harms the computer by deleting, corrupting or modifying files.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="flip-card worm">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <div class="icon"><i class="fas fa-worm"></i></div>
+            <h4>Worm</h4>
+            <div class="flip-hint">Click to flip →</div>
+          </div>
+          <div class="flip-card-back">
+            <h5>What it does</h5>
+            <p>Replicates itself to spread to other computers. May cause no damage, but slows down networks and computers significantly.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="flip-card trojan">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <div class="icon"><i class="fas fa-horse-head"></i></div>
+            <h4>Trojan Horse</h4>
+            <div class="flip-hint">Click to flip →</div>
+          </div>
+          <div class="flip-card-back">
+            <h5>What it does</h5>
+            <p>Hides malicious code inside a legitimate-looking program, game or file. When the user opens it, the harmful code runs.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="flip-card ransomware">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <div class="icon"><i class="fas fa-lock"></i></div>
+            <h4>Ransomware</h4>
+            <div class="flip-hint">Click to flip →</div>
+          </div>
+          <div class="flip-card-back">
+            <h5>What it does</h5>
+            <p>Encrypts the hard drive so the user can't access files. A ransom (often cryptocurrency like Bitcoin) is demanded to restore access.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="flip-card spyware">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <div class="icon"><i class="fas fa-user-secret"></i></div>
+            <h4>Spyware</h4>
+            <div class="flip-hint">Click to flip →</div>
+          </div>
+          <div class="flip-card-back">
+            <h5>What it does</h5>
+            <p>Secretly finds information about the user, their computer or their company. Sends it to a hacker for misuse.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="flip-card adware">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <div class="icon"><i class="fas fa-rectangle-ad"></i></div>
+            <h4>Adware</h4>
+            <div class="flip-hint">Click to flip →</div>
+          </div>
+          <div class="flip-card-back">
+            <h5>What it does</h5>
+            <p>Displays large numbers of adverts, often in multiple windows. In worst cases, new adverts appear faster than you can close them.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== SCENARIO GAME ===== -->
+    <div class="scenario-game" id="scenarioGame">
+      <h3><i class="fas fa-magnifying-glass" style="color:#2a6f97;"></i> Interactive: Identify the Attack</h3>
+      <p style="font-size:0.9rem; color:#475569;">Read each scenario and click the correct type of malware.</p>
+
+      <div class="progress">
+        <span id="scenarioProgressText">0 / 6 correct</span>
+        <div class="bar"><div class="fill" id="scenarioFill"></div></div>
+      </div>
+
+      <div id="scenarioContainer"></div>
+
+      <div class="feedback" id="scenarioFeedback"></div>
+      <button class="btn secondary" id="resetScenarios" style="margin-top:0.8rem;"><i class="fas fa-rotate-left"></i> Reset</button>
+    </div>
+
+    <!-- ===== OTHER ATTACKS ===== -->
+    <h4>🎯 Other Types of Attack</h4>
+
+    <div class="key-point">
+      <strong>🔓 Brute-force attack</strong><br>
+      A hacker tries <strong>every possible combination</strong> of passwords until the correct one is found. A computer program can try millions of passwords per second. <em>Protection: use a strong password; lock accounts after 3 failed attempts.</em>
+    </div>
+
+    <div class="key-point">
+      <strong>🕵️ Data interception</strong><br>
+      Obtaining data, <strong>without permission</strong>, that is passing through a network. Also known as a <strong>man-in-the-middle (MITM) attack</strong>. <em>Protection: use encrypted connections (HTTPS); avoid unencrypted public Wi-Fi.</em>
+    </div>
+
+    <div class="key-point">
+      <strong>🌊 Distributed Denial of Service (DDoS)</strong><br>
+      Many computers <strong>flood a server</strong> with pointless requests, making it slow down or go offline. The computers used are often part of a <strong>botnet</strong> — their owners don't even know. <em>Protection: firewalls, manual settings on switches and routers.</em>
+    </div>
+
+    <div class="key-point">
+      <strong>💻 Hacking</strong><br>
+      Activities that <strong>misuse computer systems or networks</strong>. People who do this are called hackers.
+    </div>
+
+    <div class="key-point">
+      <strong>🎣 Phishing</strong><br>
+      Emails, texts or phone calls pretending to be from a <strong>bank or trusted website</strong>, trying to get personal information like usernames, passwords or credit card details.
+    </div>
+
+    <div class="key-point">
+      <strong>🌾 Pharming</strong><br>
+      Combines <strong>phishing</strong> and <strong>farming</strong>. The user's computer or a DNS server is altered so that a domain name points to an <strong>incorrect IP address</strong> — the hacker's fake website.
+    </div>
+
+    <div class="key-point">
+      <strong>🧠 Social engineering</strong><br>
+      Obtaining confidential information by <strong>asking people for it</strong> — often using confidence tricks. For example, phoning a receptionist, pretending to be IT support, and asking for their password.
+    </div>
+
+    <!-- ===== PHISHING INSPECTOR ===== -->
+    <div class="phishing-inspector" id="phishingInspector">
+      <h3><i class="fas fa-fish" style="color:#2a6f97;"></i> Interactive: Spot the Phishing Email</h3>
+      <p style="font-size:0.9rem; color:#475569;">Click on the parts of the email below that give away that it's a phishing scam. There are 4 red flags to find!</p>
+
+      <div class="email-preview">
+        <div class="email-header">
+          <div class="email-field"><strong>From:</strong> <span>Halifax Bank Plc (no-reply@home.ne.jp)</span></div>
+          <div class="email-field"><strong>To:</strong> <span>Undisclosed recipients</span></div>
+          <div class="email-field"><strong>Subject:</strong> <span>PROBLEM WITH YOUR BANK ACCOUNT</span></div>
+        </div>
+        <div class="email-body">
+          <p><strong>Dear Customer,</strong></p>
+          <p>This e-mail has been sent to you by Direct Banking to inform you that we are unable to process your last bank statement and will no longer processes it until the error is rectified.</p>
+          <p>Due to this, to ensure that your service is not interrupted, we request you to <strong>confirm and verify your billing information today</strong>.</p>
+          <p><a href="#">VERIFY</a></p>
+          <p>Regards<br>Direct Banking Billing Department</p>
+        </div>
+      </div>
+
+      <p style="font-size:0.85rem; font-weight:600; margin-top:1rem;">Flag the problems you spot:</p>
+      <div>
+        <button class="flag-btn" data-flag="from">Sender's address doesn't match the bank</button>
+        <button class="flag-btn" data-flag="greeting">Generic greeting (not personalised)</button>
+        <button class="flag-btn" data-flag="body">Poor spelling / grammar</button>
+        <button class="flag-btn" data-flag="request">Asks for personal information</button>
+        <button class="flag-btn" data-flag="urgent">Creates a sense of urgency</button>
+        <button class="flag-btn" data-flag="link">Suspicious link</button>
+      </div>
+      <div class="phishing-feedback" id="phishingFeedback"></div>
+    </div>
+
+    <!-- ===== MATCH GAME ===== -->
+    <div class="match-game" id="matchGame">
+      <h3><i class="fas fa-puzzle-piece" style="color:#2a6f97;"></i> Interactive: Match the Attack to its Definition</h3>
+      <p style="font-size:0.9rem; color:#475569;">Click an attack on the left, then click its matching definition on the right.</p>
+
+      <div class="match-cols">
+        <div class="col" id="matchLeft">
+          <h4>Attack</h4>
+          <div class="match-item" data-key="brute">Brute-force attack</div>
+          <div class="match-item" data-key="intercept">Data interception</div>
+          <div class="match-item" data-key="ddos">DDoS attack</div>
+          <div class="match-item" data-key="hacking">Hacking</div>
+          <div class="match-item" data-key="pharming">Pharming</div>
+          <div class="match-item" data-key="social">Social engineering</div>
+        </div>
+        <div class="col" id="matchRight">
+          <h4>Definition</h4>
+          <div class="match-item" data-key="intercept">Obtaining data, without permission, passing through a network</div>
+          <div class="match-item" data-key="pharming">Changing DNS records to point to the wrong IP address</div>
+          <div class="match-item" data-key="brute">Trying all possible passwords until the correct one is found</div>
+          <div class="match-item" data-key="social">Obtaining confidential information by asking for it — usually with confidence tricks</div>
+          <div class="match-item" data-key="ddos">Flooding a server or network with pointless requests to make it fail or slow down</div>
+          <div class="match-item" data-key="hacking">Activities that misuse computer systems or networks</div>
+        </div>
+      </div>
+
+      <div class="feedback" id="matchFeedback"></div>
+      <button class="btn secondary" id="resetMatch" style="margin-top:0.5rem;"><i class="fas fa-rotate-left"></i> Reset</button>
+    </div>
+
+    <!-- ===== MAIN TASK (Schoolbox) ===== -->
+    <div class="activity-box amber">
+      <strong>⭐ Main Task – Worksheet 5 (on Schoolbox)</strong>
+      <p>Log into <strong>Schoolbox</strong> and complete <strong>Worksheet 5 — Cyber Security Threats</strong>.</p>
+      <ul style="margin: 0.5rem 0 0 1.2rem;">
+        <li><strong>Task 1:</strong> Tick which hacking technique has been used in each scenario and underline the supporting parts.</li>
+        <li><strong>Task 2:</strong> Explain the security risk and advice for each user action.</li>
+        <li><strong>Task 3:</strong> Analyse the phishing text message — what action and why?</li>
+        <li><strong>Task 4:</strong> Draw a diagram to explain how pharming works.</li>
+        <li><strong>Task 5:</strong> Research DDoS attacks and a real-world example.</li>
+      </ul>
+      <p style="margin-top:0.6rem; font-size:0.9rem;"><i class="fas fa-info-circle"></i> Submit your completed worksheet on Schoolbox. Then check with your teacher — you can move on to the extension task below.</p>
+    </div>
+
+    <!-- ===== EXTENSION (locked until teacher confirms) ===== -->
+    <div class="locked-section" id="lockedExtension">
+      <div class="locked-message">
+        <div class="lock-icon"><i class="fas fa-lock"></i></div>
+        <h3>🔒 Extension Task</h3>
+        <p>Complete and submit Worksheet 5 on Schoolbox first. Then click below to unlock the extension.</p>
+        <button class="btn" id="unlockExtensionBtn" style="margin-top:1rem; background:#2d7d46;">
+          <i class="fas fa-check"></i> I've submitted Worksheet 5
+        </button>
+      </div>
+      <div class="locked-content">
+        <h3 style="margin-top:0;"><i class="fas fa-check-circle" style="color:#2d8f2d; margin-right:8px;"></i> Extension Task – Cyber Security Deep Dive</h3>
+        <p>Research and write up detailed answers to the following:</p>
+        <ul>
+          <li>Explain why <strong>IPv6</strong> was introduced and how it differs from IPv4.</li>
+          <li>Describe the difference between <strong>static</strong> and <strong>dynamic</strong> IP addresses.</li>
+          <li>Research: What is a <strong>subnet mask</strong> and why is it used?</li>
+          <li>Explain how a <strong>router</strong> uses IP addresses and a <strong>switch</strong> uses MAC addresses.</li>
+          <li>Find a real-world example of a <strong>DDoS attack</strong>. Write a short case study covering: when, who was affected, how it was accomplished, and how the organisation could protect themselves.</li>
+        </ul>
+        <p style="margin-top:0.8rem;"><i class="fas fa-file-word"></i> Submit your extension work to your teacher via Schoolbox or email.</p>
+      </div>
+    </div>
+
+    <!-- ===== QUICK SELF-CHECK ===== -->
+    <h4>🎮 Interactive Activities &amp; Quick Self-Check</h4>
+
+    <div class="resources-grid">
+      <div class="resource-card">
+        <h5><i class="fas fa-flask"></i> The Computer Science Lab</h5>
+        <p>Read and test your knowledge on Chapter 5: The Internet and Its Uses.</p>
+        <a href="https://www.thecomputersciencelab.com/chapter-5-the-internet-and-its-uses" target="_blank" class="btn btn-green">Open Resource</a>
+      </div>
+      <div class="resource-card">
+        <h5><i class="fas fa-graduation-cap"></i> Seneca</h5>
+        <p>Complete the Seneca learning session on networks.</p>
+        <a href="https://app.senecalearning.com/classroom/course/b89946c5-cfe7-42d6-ae51-9b4631a07589/section/c8ae02eb-4850-4cb6-ba1a-884e871834d5/section-overview?tab=notes&mode=default&contentType=" target="_blank" class="btn">Start Seneca</a>
+      </div>
+      <div class="resource-card">
+        <h5><i class="fas fa-play"></i> Blooket</h5>
+        <p>Play the Cyber Security Blooket. Join with the code from your teacher.</p>
+        <a href="https://play.blooket.com/host/brawl?id=63d2ad48278530b1660ba8cb" target="_blank" class="btn btn-green">Play Blooket</a>
+      </div>
+    </div>
+
+    <div class="scenario-game" id="quiz" style="margin-top:1.5rem;">
+      <h3><i class="fas fa-circle-question" style="color:#2a6f97;"></i> Quick Self-Check</h3>
+      <p style="font-size:0.9rem; color:#475569;">Answer all 5 questions correctly to check your understanding.</p>
+
+      <div class="progress">
+        <span id="quizProgressText">0 / 5 correct</span>
+        <div class="bar"><div class="fill" id="quizFill"></div></div>
+      </div>
+
+      <div class="q" data-correct="b" style="background:white; border-radius:14px; padding:0.9rem 1.2rem; margin:1rem 0; border:1px solid #e5edf5;">
+        <p style="font-weight:600; margin-bottom:0.6rem;">1. Which type of malware encrypts your files and demands payment?</p>
+        <button data-opt="a" style="background:#eef6fc; border:1.5px solid #d4e3f0; color:#0b2a4a; padding:0.4rem 1rem; border-radius:30px; font-size:0.85rem; margin:0.2rem 0.3rem 0.2rem 0; cursor:pointer; font-weight:500;">A. Virus</button>
+        <button data-opt="b" style="background:#eef6fc; border:1.5px solid #d4e3f0; color:#0b2a4a; padding:0.4rem 1rem; border-radius:30px; font-size:0.85rem; margin:0.2rem 0.3rem 0.2rem 0; cursor:pointer; font-weight:500;">B. Ransomware</button>
+        <button data-opt="c" style="background:#eef6fc; border:1.5px solid #d4e3f0; color:#0b2a4a; padding:0.4rem 1rem; border-radius:30px; font-size:0.85rem; margin:0.2rem 0.3rem 0.2rem 0; cursor:pointer; font-weight:500;">C. Adware</button>
+        <button data-opt="d" style="background:#eef6fc; border:1.5px solid #d4e3f0; color:#0b2a4a; padding:0.4rem 1rem; border-radius:30px; font-size:0.85rem; margin:0.2rem 0.3rem 0.2rem 0; cursor:pointer; font-weight:500;">D. Worm</button>
+        <div class="answer-feedback" style="font-size:0.82rem; margin-top:0.4rem; min-height:1.2rem; font-weight:500;"></div>
+      </div>
+
+      <div class="q" data-correct="c" style="background:white; border-radius:14px; padding:0.9rem 1.2rem; margin:1rem 0; border:1px solid #e5edf5;">
+        <p style="font-weight:600; margin-bottom:0.6rem;">2. What does a DDoS attack do?</p>
+        <button data-opt="a" style="background:#eef6fc; border:1.5px solid #d4e3f0; color:#0b2a4a; padding:0.4rem 1rem; border-radius:30px; font-size:0.85rem; margin:0.2rem 0.3rem 0.2rem 0; cursor:pointer; font-weight:500;">A. Encrypts files on a single computer</button>
+        <button data-opt="b" style="background:#eef6fc; border:1.5px solid #d4e3f0; color:#0b2a4a; padding:0.4rem 1rem; border-radius:30px; font-size:0.85rem; margin:0.2rem 0.3rem 0.2rem 0; cursor:pointer; font-weight:500;">B. Steals passwords by guessing</button>
+        <button data-opt="c" style="background:#eef6fc; border:1.5px solid #d4e3f0; color:#0b2a4a; padding:0.4rem 1rem; border-radius:30px; font-size:0.85rem; margin:0.2rem 0.3rem 0.2rem 0; cursor:pointer; font-weight:500;">C. Floods a server with pointless requests to slow it down</button>
+        <button data-opt="d" style="background:#eef6fc; border:1.5px solid #d4e3f0; color:#0b2a4a; padding:0.4rem 1rem; border-radius:30px; font-size:0.85rem; margin:0.2rem 0.3rem 0.2rem 0; cursor:pointer; font-weight:500;">D. Displays adverts in multiple windows</button>
+        <div class="answer-feedback" style="font-size:0.82rem; margin-top:0.4rem; min-height:1.2rem; font-weight:500;"></div>
+      </div>
+
+      <div class="q" data-correct="a" style="background:white; border-radius:14px; padding:0.9rem 1.2rem; margin:1rem 0; border:1px solid #e5edf5;">
+        <p style="font-weight:600; margin-bottom:0.6rem;">3. Which type of malware hides malicious code inside a legitimate-looking program?</p>
+        <button data-opt="a" style="background:#eef6fc; border:1.5px solid #d4e3f0; color:#0b2a4a; padding:0.4rem 1rem; border-radius:30px; font-size:0.85rem; margin:0.2rem 0.3rem 0.2rem 0; cursor:pointer; font-weight:500;">A. Trojan horse</button>
+        <button data-opt="b" style="background:#eef6fc; border:1.5px solid #d4e3f0; color:#0b2a4a; padding:0.4rem 1rem; border-radius:30px; font-size:0.85rem; margin:0.2rem 0.3rem 0.2rem 0; cursor:pointer; font-weight:500;">B. Worm</button>
+        <button data-opt="c" style="background:#eef6fc; border:1.5px solid #d4e3f0; color:#0b2a4a; padding:0.4rem 1rem; border-radius:30px; font-size:0.85rem; margin:0.2rem 0.3rem 0.2rem 0; cursor:pointer; font-weight:500;">C. Spyware</button>
+        <button data-opt="d" style="background:#eef6fc; border:1.5px solid #d4e3f0; color:#0b2a4a; padding:0.4rem 1rem; border-radius:30px; font-size:0.85rem; margin:0.2rem 0.3rem 0.2rem 0; cursor:pointer; font-weight:500;">D. Adware</button>
+        <div class="answer-feedback" style="font-size:0.82rem; margin-top:0.4rem; min-height:1.2rem; font-weight:500;"></div>
+      </div>
+
+      <div class="q" data-correct="d" style="background:white; border-radius:14px; padding:0.9rem 1.2rem; margin:1rem 0; border:1px solid #e5edf5;">
+        <p style="font-weight:600; margin-bottom:0.6rem;">4. Which of these is a way to protect against a brute-force attack?</p>
+        <button data-opt="a" style="background:#eef6fc; border:1.5px solid #d4e3f0; color:#0b2a4a; padding:0.4rem 1rem; border-radius:30px; font-size:0.85rem; margin:0.2rem 0.3rem 0.2rem 0; cursor:pointer; font-weight:500;">A. Use the same password everywhere</button>
+        <button data-opt="b" style="background:#eef6fc; border:1.5px solid #d4e3f0; color:#0b2a4a; padding:0.4rem 1rem; border-radius:30px; font-size:0.85rem; margin:0.2rem 0.3rem 0.2rem 0; cursor:pointer; font-weight:500;">B. Share your password with friends</button>
+        <button data-opt="c" style="background:#eef6fc; border:1.5px solid #d4e3f0; color:#0b2a4a; padding:0.4rem 1rem; border-radius:30px; font-size:0.85rem; margin:0.2rem 0.3rem 0.2rem 0; cursor:pointer; font-weight:500;">C. Write your password on a sticky note</button>
+        <button data-opt="d" style="background:#eef6fc; border:1.5px solid #d4e3f0; color:#0b2a4a; padding:0.4rem 1rem; border-radius:30px; font-size:0.85rem; margin:0.2rem 0.3rem 0.2rem 0; cursor:pointer; font-weight:500;">D. Lock the account after 3 failed login attempts</button>
+        <div class="answer-feedback" style="font-size:0.82rem; margin-top:0.4rem; min-height:1.2rem; font-weight:500;"></div>
+      </div>
+
+      <div class="q" data-correct="b" style="background:white; border-radius:14px; padding:0.9rem 1.2rem; margin:1rem 0; border:1px solid #e5edf5;">
+        <p style="font-weight:600; margin-bottom:0.6rem;">5. What is pharming?</p>
+        <button data-opt="a" style="background:#eef6fc; border:1.5px solid #d4e3f0; color:#0b2a4a; padding:0.4rem 1rem; border-radius:30px; font-size:0.85rem; margin:0.2rem 0.3rem 0.2rem 0; cursor:pointer; font-weight:500;">A. Sending fake emails to trick users</button>
+        <button data-opt="b" style="background:#eef6fc; border:1.5px solid #d4e3f0; color:#0b2a4a; padding:0.4rem 1rem; border-radius:30px; font-size:0.85rem; margin:0.2rem 0.3rem 0.2rem 0; cursor:pointer; font-weight:500;">B. Changing DNS records so a domain points to a fake IP address</button>
+        <button data-opt="c" style="background:#eef6fc; border:1.5px solid #d4e3f0; color:#0b2a4a; padding:0.4rem 1rem; border-radius:30px; font-size:0.85rem; margin:0.2rem 0.3rem 0.2rem 0; cursor:pointer; font-weight:500;">C. Trying every possible password</button>
+        <button data-opt="d" style="background:#eef6fc; border:1.5px solid #d4e3f0; color:#0b2a4a; padding:0.4rem 1rem; border-radius:30px; font-size:0.85rem; margin:0.2rem 0.3rem 0.2rem 0; cursor:pointer; font-weight:500;">D. Installing malware on a USB stick</button>
+        <div class="answer-feedback" style="font-size:0.82rem; margin-top:0.4rem; min-height:1.2rem; font-weight:500;"></div>
+      </div>
+    </div>
+
+    <!-- ===== KEYWORDS ===== -->
+    <h4>🔑 Keywords</h4>
+    <div style="display: flex; flex-wrap: wrap; gap: 0.8rem 1.2rem; background: #f1f6fc; padding: 0.8rem 1.2rem; border-radius: 12px; margin: 0.5rem 0 1rem 0;">
+      <span class="keyword-tag">malware</span>
+      <span class="keyword-tag">virus</span>
+      <span class="keyword-tag">worm</span>
+      <span class="keyword-tag">Trojan horse</span>
+      <span class="keyword-tag">ransomware</span>
+      <span class="keyword-tag">spyware</span>
+      <span class="keyword-tag">adware</span>
+      <span class="keyword-tag">hacking</span>
+      <span class="keyword-tag">brute-force attack</span>
+      <span class="keyword-tag">data interception</span>
+      <span class="keyword-tag">DDoS</span>
+      <span class="keyword-tag">phishing</span>
+      <span class="keyword-tag">pharming</span>
+      <span class="keyword-tag">social engineering</span>
+    </div>
+
+  </div>
+
+  <!-- ===== KEY TOOLS (below lesson, matching MAC/IP page) ===== -->
+  <div class="section-head">
+    <i class="fas fa-tools"></i> Key Tools
+  </div>
+
+  <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.2rem; margin-bottom: 1rem;">
+
+    <!-- Presentation (student + teacher) -->
+    <div class="key-tool-card">
+      <div class="badge">⭐ Key Tool</div>
+      <h5><i class="fas fa-desktop"></i> Lesson Presentation</h5>
+      <p>Slides for the lesson — T5 Cyber Security Threats.</p>
+      <a href="https://view.officeapps.live.com/op/view.aspx?src=https%3A%2F%2Fraw.githubusercontent.com%2FMr-Ellis%2FSchool%2Frefs%2Fheads%2Fmain%2Fdocs%2FResources%2FIGCSE%2520Computer%2520Science%2F5%2520Networks-internet%2FT5%2520Cyber%2520security%2520threats.pptx&wdOrigin=BROWSELINK" target="_blank" class="btn">
+        <i class="fas fa-desktop"></i> Open Slides
+      </a>
+    </div>
+
+    <!-- Computer Science Lab -->
+    <div class="key-tool-card">
+      <div class="badge">⭐ Key Tool</div>
+      <h5><i class="fas fa-flask"></i> The Computer Science Lab</h5>
+      <p>Chapter 5: The Internet and Its Uses — revision notes and quizzes.</p>
+      <a href="https://www.thecomputersciencelab.com/chapter-5-the-internet-and-its-uses" target="_blank" class="btn btn-green">
+        <i class="fas fa-external-link-alt"></i> Open Resource
+      </a>
+    </div>
+
+    <!-- Lesson Plan (LOCKED - teacher only) -->
+    <div class="key-tool-card">
+      <div class="badge">🔒 Teacher Only</div>
+      <h5><i class="fas fa-lock"></i> Lesson Plan 5</h5>
+      <p>Full lesson plan with starter, main activities, and plenary. <strong>Teacher access only.</strong></p>
+      <button class="btn btn-locked unlock-btn" data-lesson="T5">
+        <i class="fas fa-lock"></i> Open Lesson Plan
+      </button>
+    </div>
+
+  </div>
+
+  <hr class="divider-light">
+  <div style="display: flex; justify-content: flex-end; font-size: 0.8rem; color: #5d7f9a; padding: 0.8rem 0;">
+    <i class="fas fa-save" style="margin-right: 8px;"></i> progress saved automatically in your browser
+  </div>
+</div>
+
+<script>
+  // ===== FLIP CARDS =====
+  (function() {
+    document.querySelectorAll('.flip-card').forEach(card => {
+      card.addEventListener('click', () => card.classList.toggle('flipped'));
+    });
+  })();
+
+  // ===== SCENARIO GAME =====
+  (function() {
+    const scenarios = [
+      { text: "Tyler goes to a website that says it will supply cracked software that doesn't need a licence. After installing the software, the user is pleased as it works as expected. They notice later that many adverts display on their computer.", answer: "adware" },
+      { text: "Leila clicked on a file in an email attachment. Today, when she turned on her computer it said that all her files are now encrypted. She has been given 24 hours to pay one bitcoin to unencrypt the files.", answer: "ransomware" },
+      { text: "Richard has downloaded a file from the Internet and run it. After a short while he has noticed that many of the files on his computer have been deleted or corrupted.", answer: "virus" },
+      { text: "A program has been written that targets computers on the Internet. It automatically replicates itself, and whilst it doesn't harm any individual computers, it does slow down the network.", answer: "worm" },
+      { text: "A user downloads what looks like a free game. When they install it, hidden code runs in the background that lets a hacker take control of the computer.", answer: "trojan" },
+      { text: "A user notices their computer is running slowly. Later they find out that a program has been secretly collecting their browsing habits and sending them to a third party.", answer: "spyware" }
+    ];
+    const options = ["virus", "worm", "trojan", "ransomware", "adware", "spyware"];
+
+    const container = document.getElementById('scenarioContainer');
+    const feedback = document.getElementById('scenarioFeedback');
+    const progressText = document.getElementById('scenarioProgressText');
+    const progressFill = document.getElementById('scenarioFill');
+    const resetBtn = document.getElementById('resetScenarios');
+    const correctAnswers = {};
+
+    function build() {
+      container.innerHTML = '';
+      scenarios.forEach((s, i) => {
+        correctAnswers[i] = false;
+        const box = document.createElement('div');
+        box.className = 'scenario-box';
+        box.innerHTML = `
+          <div class="scenario-num">Scenario ${i + 1}</div>
+          <p>${s.text}</p>
+          <div class="options" data-index="${i}">
+            ${options.map(opt => `<button data-opt="${opt}">${opt.charAt(0).toUpperCase() + opt.slice(1)}</button>`).join('')}
+          </div>
+          <div class="feedback" id="fb-${i}"></div>
+        `;
+        container.appendChild(box);
+      });
+
+      container.querySelectorAll('.options').forEach(optGroup => {
+        const idx = parseInt(optGroup.getAttribute('data-index'));
+        const buttons = optGroup.querySelectorAll('button');
+        const fb = document.getElementById('fb-' + idx);
+        const answer = scenarios[idx].answer;
+
+        buttons.forEach(btn => {
+          btn.addEventListener('click', () => {
+            if (correctAnswers[idx]) return;
+            const chosen = btn.getAttribute('data-opt');
+            if (chosen === answer) {
+              buttons.forEach(b => b.classList.remove('correct', 'incorrect'));
+              btn.classList.add('correct');
+              fb.textContent = '✅ Correct!';
+              fb.className = 'feedback ok';
+              correctAnswers[idx] = true;
+              updateProgress();
+            } else {
+              btn.classList.add('incorrect');
+              fb.textContent = '❌ Not quite — try again.';
+              fb.className = 'feedback no';
+              setTimeout(() => btn.classList.remove('incorrect'), 800);
+            }
+          });
+        });
+      });
+      updateProgress();
+    }
+
+    function updateProgress() {
+      const total = scenarios.length;
+      const done = Object.values(correctAnswers).filter(Boolean).length;
+      progressText.textContent = done + ' / ' + total + ' correct';
+      progressFill.style.width = ((done / total) * 100) + '%';
+      if (done === total) {
+        feedback.textContent = '🎉 All 6 correct! Great work.';
+        feedback.className = 'feedback ok';
+      }
+    }
+
+    resetBtn.addEventListener('click', () => { build(); feedback.textContent = ''; });
+    build();
+  })();
+
+  // ===== PHISHING INSPECTOR =====
+  (function() {
+    const correctFlags = ['from', 'greeting', 'body', 'request'];
+    const feedback = document.getElementById('phishingFeedback');
+    const found = new Set();
+
+    document.querySelectorAll('.flag-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const flag = btn.getAttribute('data-flag');
+        if (correctFlags.includes(flag)) {
+          if (!found.has(flag)) {
+            found.add(flag);
+            btn.classList.add('correct-flag');
+            feedback.textContent = '✅ Correct! Found ' + found.size + ' / ' + correctFlags.length + ' red flags.';
+            feedback.className = 'phishing-feedback ok';
+            if (found.size === correctFlags.length) {
+              feedback.textContent = '🎉 All 4 red flags found! Great work.';
+            }
+          }
+        } else {
+          btn.classList.add('incorrect-flag');
+          feedback.textContent = '❌ Not quite — that one is actually fine.';
+          feedback.className = 'phishing-feedback no';
+          setTimeout(() => btn.classList.remove('incorrect-flag'), 1000);
+        }
+      });
+    });
+  })();
+
+  // ===== MATCH GAME =====
+  (function() {
+    const leftItems = document.querySelectorAll('#matchLeft .match-item');
+    const rightItems = document.querySelectorAll('#matchRight .match-item');
+    const feedback = document.getElementById('matchFeedback');
+    const resetBtn = document.getElementById('resetMatch');
+    let selectedLeft = null;
+
+    function clearSel() {
+      leftItems.forEach(i => i.classList.remove('selected'));
+      selectedLeft = null;
+    }
+
+    leftItems.forEach(item => {
+      item.addEventListener('click', () => {
+        if (item.classList.contains('matched')) return;
+        clearSel();
+        selectedLeft = item;
+        item.classList.add('selected');
+      });
+    });
+
+    rightItems.forEach(item => {
+      item.addEventListener('click', () => {
+        if (item.classList.contains('matched')) return;
+        if (!selectedLeft) {
+          feedback.textContent = '👆 Pick an attack on the left first.';
+          feedback.className = 'feedback no';
+          return;
+        }
+        const leftKey = selectedLeft.getAttribute('data-key');
+        const rightKey = item.getAttribute('data-key');
+        if (leftKey === rightKey) {
+          selectedLeft.classList.add('matched');
+          selectedLeft.classList.remove('selected');
+          item.classList.add('matched');
+          clearSel();
+          feedback.textContent = '✅ Correct match!';
+          feedback.className = 'feedback ok';
+        } else {
+          item.classList.add('incorrect');
+          feedback.textContent = '❌ Not quite — try again.';
+          feedback.className = 'feedback no';
+          setTimeout(() => item.classList.remove('incorrect'), 800);
+          clearSel();
+        }
+        const matched = document.querySelectorAll('#matchLeft .match-item.matched').length;
+        if (matched === leftItems.length) {
+          feedback.textContent = '🎉 All matched! Great work.';
+          feedback.className = 'feedback ok';
+        }
+      });
+    });
+
+    resetBtn.addEventListener('click', () => {
+      leftItems.forEach(i => i.classList.remove('matched', 'selected'));
+      rightItems.forEach(i => i.classList.remove('matched', 'incorrect'));
+      feedback.textContent = '';
+      clearSel();
+    });
+  })();
+
+  // ===== EXTENSION UNLOCK =====
+  (function() {
+    const unlockBtn = document.getElementById('unlockExtensionBtn');
+    const lockedExt = document.getElementById('lockedExtension');
+    unlockBtn.addEventListener('click', () => {
+      lockedExt.classList.add('unlocked');
+    });
+  })();
+
+  // ===== QUIZ =====
+  (function() {
+    const questions = document.querySelectorAll('#quiz .q');
+    const progressText = document.getElementById('quizProgressText');
+    const progressFill = document.getElementById('quizFill');
+
+    const correctAnswers = {};
+    questions.forEach((q, i) => { correctAnswers[i] = false; });
+
+    function update() {
+      const total = Object.keys(correctAnswers).length;
+      const done = Object.values(correctAnswers).filter(Boolean).length;
+      progressText.textContent = done + ' / ' + total + ' correct';
+      progressFill.style.width = ((done / total) * 100) + '%';
+      if (done === total) {
+        progressText.textContent = '🎉 All 5 correct! Well done.';
+        progressText.style.color = '#2d8f2d';
+      }
+    }
+
+    questions.forEach((q, i) => {
+      const correct = q.getAttribute('data-correct');
+      const buttons = q.querySelectorAll('button');
+      const fb = q.querySelector('.answer-feedback');
+      buttons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const chosen = btn.getAttribute('data-opt');
+          if (chosen === correct) {
+            buttons.forEach(b => b.classList.remove('correct', 'incorrect'));
+            btn.classList.add('correct');
+            btn.style.background = '#c8e6c9';
+            btn.style.borderColor = '#2d8f2d';
+            btn.style.color = '#1b5e20';
+            fb.textContent = '✅ Correct!';
+            fb.className = 'answer-feedback ok';
+            fb.style.color = '#2d8f2d';
+            correctAnswers[i] = true;
+            update();
+          } else {
+            btn.classList.add('incorrect');
+            btn.style.background = '#ffcdd2';
+            btn.style.borderColor = '#e53935';
+            btn.style.color = '#b71c1c';
+            fb.textContent = '❌ Not quite. Try again.';
+            fb.className = 'answer-feedback no';
+            fb.style.color = '#b71c1c';
+            correctAnswers[i] = false;
+            update();
+          }
+        });
+      });
+    });
+    update();
+  })();
+
+  // ===== PASSWORD PROTECTION FOR LESSON PLAN =====
+  (function() {
+    const modal = document.getElementById('passwordModal');
+    const pwdInput = document.getElementById('pwdInput');
+    const pwdError = document.getElementById('pwdError');
+    const pwdSubmitBtn = document.getElementById('pwdSubmitBtn');
+    let pendingPath = '';
+
+    const PDF_URLS = {
+      'T5': 'https://view.officeapps.live.com/op/view.aspx?src=https%3A%2F%2Fraw.githubusercontent.com%2FMr-Ellis%2FSchool%2Frefs%2Fheads%2Fmain%2Fdocs%2FResources%2FIGCSE%2520Computer%2520Science%2F5%2520Networks-internet%2FLesson%2520Plan%25205.docx&wdOrigin=BROWSELINK'
+    };
+
+    function openModal(path) {
+      pendingPath = path;
+      pwdInput.value = '';
+      pwdError.textContent = '';
+      modal.classList.add('active');
+      pwdInput.focus();
+    }
+
+    function closeModal() {
+      modal.classList.remove('active');
+      pendingPath = '';
+    }
+
+    function attemptUnlock() {
+      const entered = pwdInput.value.trim();
+      if (entered === 'teacher') {
+        if (pendingPath) {
+          window.open(pendingPath, '_blank');
+        }
+        closeModal();
+      } else {
+        pwdError.textContent = '❌ Incorrect password. Try again.';
+        pwdInput.value = '';
+        pwdInput.focus();
+      }
+    }
+
+    document.querySelectorAll('.unlock-btn').forEach(function(btn) {
+      btn.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        const lesson = this.getAttribute('data-lesson');
+        const url = PDF_URLS[lesson];
+        if (url) {
+          openModal(url);
+        } else {
+          alert('No lesson plan found.');
+        }
+      });
+    });
+
+    pwdSubmitBtn.addEventListener('click', attemptUnlock);
+    pwdInput.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        attemptUnlock();
+      }
+    });
+
+    modal.addEventListener('click', function(e) {
+      if (e.target === modal) {
+        closeModal();
+      }
+    });
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && modal.classList.contains('active')) {
+        closeModal();
+      }
+    });
+  })();
+</script>
+
+</body>
+</html>
