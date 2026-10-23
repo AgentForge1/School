@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lesson 3 · Artificial Intelligence</title>
+<style>
+  :root{
+    --navy:#0b2545;
+    --navy-2:#12315a;
+    --page-bg:#eef2f8;
+    --card:#ffffff;
+    --text:#1a2332;
+    --muted:#5a6b82;
+    --border:#dbe3ee;
+    --accent:#2563eb;
+    --accent-soft:#dbeafe;
+    --green:#15803d;
+    --green-soft:#dcfce7;
+    --amber:#b45309;
+    --amber-soft:#fef3c7;
+    --radius:20px;
+    --radius-sm:12px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+    background:var(--page-bg);
+    color:var(--text);
+    line-height:1.65;
+    font-size:16px;
+    font-weight:400;
+    padding:0;
+  }
+
+  .topbar-wrap{max-width:1080px;margin:18px auto 0;padding:0 28px;}
+  .topbar{
+    background:var(--navy);color:#fff;padding:14px 26px;border-radius:999px;
+    display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;
+    box-shadow:0 4px 18px rgba(11,37,69,.14);
+  }
+  .topbar .brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:1.05rem;color:#fff;text-decoration:none;letter-spacing:-.005em;}
+  .topbar .brand .cap{font-size:1.25rem;}
+  .topbar .navlinks{display:flex;gap:26px;flex-wrap:wrap;}
+  .topbar .navlinks a{color:#e6edf7;text-decoration:none;font-size:.95rem;font-weight:500;display:inline-flex;align-items:center;gap:6px;opacity:.92;transition:opacity .15s;}
+  .topbar .navlinks a:hover{opacity:1;text-decoration:underline;}
+
+  .page{max-width:1080px;margin:0 auto;padding:36px 28px 80px;}
+
+  .hero{margin-bottom:32px;}
+  .hero h1{
+    font-size:clamp(2.1rem,4.5vw,3.1rem);line-height:1.15;margin:0 0 20px;
+    font-weight:700;color:var(--navy);letter-spacing:-.025em;
+    display:flex;align-items:center;gap:16px;flex-wrap:wrap;
+  }
+  .hero h1 .emoji{font-size:1em;font-weight:400;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif;}
+  .hero .pill{
+    display:inline-flex;align-items:center;gap:12px;background:#e2e8f2;color:var(--navy);
+    border-radius:999px;padding:10px 24px 10px 10px;font-size:1rem;font-weight:400;
+    border-left:5px solid #2b8a9b;
+  }
+  .hero .pill .dot{width:24px;height:24px;border-radius:50%;background:var(--green);color:#fff;display:grid;place-items:center;font-size:.8rem;font-weight:700;flex-shrink:0;line-height:1;}
+
+  .card{
+    background:var(--card);border-radius:var(--radius);padding:34px 40px;margin-bottom:26px;
+    box-shadow:0 2px 4px rgba(11,37,69,.04), 0 8px 24px rgba(11,37,69,.05);
+    border:1px solid rgba(219,227,238,.5);
+  }
+  @media(max-width:640px){.card{padding:24px 20px;}.topbar-wrap{padding:0 16px;}.page{padding:28px 16px 60px;}}
+
+  .card h2{
+    font-size:1.5rem;margin:0 0 18px;font-weight:600;color:var(--navy);
+    display:flex;align-items:center;gap:10px;letter-spacing:-.01em;
+  }
+  .card h3{
+    font-size:1.1rem;margin:26px 0 12px;font-weight:600;color:var(--navy);
+    display:flex;align-items:center;gap:8px;letter-spacing:-.005em;
+  }
+  .card p{margin:0 0 14px;}
+  .card ul,.card ol{margin:0 0 14px;padding-left:24px;}
+  .card ul li,.card ol li{margin-bottom:6px;}
+
+  .callout{
+    background:#e8f1fb;border-left:4px solid var(--accent);border-radius:10px;
+    padding:16px 20px;margin:20px 0;font-size:.98rem;line-height:1.65;font-weight:400;
+  }
+  .callout strong{color:var(--navy);font-weight:600;}
+  .callout.tip{background:#dcfce7;border-left-color:var(--green);}
+  .callout.warn{background:#fef3c7;border-left-color:var(--amber);}
+
+  .btn{
+    display:inline-flex;align-items:center;gap:8px;background:var(--navy);color:#fff;
+    border:1px solid var(--navy);padding:10px 20px;border-radius:10px;text-decoration:none;
+    font-weight:500;font-size:.93rem;transition:.15s;cursor:pointer;line-height:1.4;font-family:inherit;
+  }
+  .btn:hover{background:var(--navy-2);border-color:var(--navy-2);color:#fff;text-decoration:none;}
+  .btn.green{background:var(--green);border-color:var(--green);}
+  .btn.green:hover{background:#115e30;border-color:#115e30;}
+  .btn.purple{background:#6d28d9;border-color:#6d28d9;}
+  .btn.purple:hover{background:#5b21b6;border-color:#5b21b6;}
+  .btn.red{background:#dc2626;border-color:#dc2626;}
+  .btn.red:hover{background:#b91c1c;border-color:#b91c1c;}
+  .btn.outline{background:#fff;color:var(--navy);border-color:var(--border);}
+  .btn.outline:hover{background:#f4f7fb;border-color:#b8c5d6;color:var(--navy);}
+  .btn-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:14px;}
+
+  details.reveal{
+    margin-top:16px;border:1px solid var(--border);border-radius:var(--radius-sm);
+    background:#f8fafd;overflow:hidden;
+  }
+  details.reveal summary{
+    cursor:pointer;padding:13px 18px;font-weight:600;font-size:.95rem;color:var(--accent);
+    list-style:none;display:flex;align-items:center;gap:8px;
+  }
+  details.reveal summary::-webkit-details-marker{display:none;}
+  details.reveal summary::before{content:"▶";font-size:.7rem;transition:.2s;}
+  details.reveal[open] summary::before{transform:rotate(90deg);}
+  details.reveal .body{padding:6px 18px 18px;border-top:1px solid var(--border);background:#fff;}
+
+  /* Task Panels */
+  .task-panel {
+    margin: 1.8rem 0; padding: 1.6rem 1.8rem;
+    border-radius: var(--radius); border: 2px solid var(--border);
+    background: #ffffff;
+  }
+  .task-panel.locked {
+    background: #f8fafc; border-color: #dceaf7; opacity: 0.7; position: relative;
+  }
+  .task-panel.locked .task-content {
+    pointer-events: none; user-select: none; filter: blur(3px);
+  }
+  .task-panel.locked::after {
+    content: "🔒 Complete the previous task to unlock";
+    position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    background: var(--navy); color: white;
+    padding: 0.8rem 1.6rem; border-radius: 40px;
+    font-weight: 600; font-size: 0.85rem; z-index: 10;
+    box-shadow: 0 4px 20px rgba(0,20,40,0.2); white-space: nowrap;
+  }
+  .task-header {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: 1rem; flex-wrap: wrap; gap: 0.5rem;
+  }
+  .task-header h3 {
+    margin: 0; font-size: 1.15rem;
+    display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+  }
+  .task-status {
+    font-size: 0.8rem; font-weight: 600;
+    padding: 0.3rem 0.9rem; border-radius: 30px;
+  }
+  .task-status.done { background: var(--green-soft); color: var(--green); }
+  .task-status.pending { background: var(--amber-soft); color: var(--amber); }
+  .task-status.locked-status { background: #f1f5f9; color: #64748b; }
+
+  .stars { display: inline-flex; gap: 2px; font-size: 0.75rem; margin-left: 4px; }
+  .stars .star-filled { color: #f9a825; }
+  .stars .star-empty { color: #d4e3f0; }
+
+  .encode-box { margin: 1.2rem 0; padding: 1rem; background: #f8fafc; border-radius: 12px; border: 1px solid var(--border); }
+  .encode-box h4 { margin-top: 0; margin-bottom: 0.5rem; color: var(--navy); }
+  .input-row { display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap; }
+  .input-row input { padding: 0.5rem; border: 2px solid #b6cfe5; border-radius: 8px; font-family: inherit; flex: 1; min-width: 200px; }
+  .input-row button { background: #2a6f97; color: white; border: none; padding: 0.5rem 1rem; border-radius: 8px; cursor: pointer; font-weight: 600; }
+  .input-row button:hover { background: #1f6390; }
+  .result { font-weight: 600; margin-top: 0.3rem; font-size: 0.9rem; }
+  .result.ok { color: var(--green); }
+  .result.no { color: #dc2626; }
+
+  .check-btn-pulse {
+    background: #f9a825; color: #4a2c00; border: 2px solid #e65100;
+    padding: 0.7rem 1.6rem; border-radius: 40px;
+    font-weight: 700; font-size: 0.9rem; cursor: pointer; margin-top: 0.8rem;
+    transition: 0.2s; display: inline-flex; align-items: center; gap: 8px;
+  }
+  .check-btn-pulse:hover { background: #e65100; color: white; }
+
+  .compare-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; margin: 1.2rem 0; }
+  @media (max-width: 680px) { .compare-grid { grid-template-columns: 1fr; } }
+  .compare-card { background: #f8fafd; border-radius: 16px; padding: 1.2rem 1.4rem; border: 2px solid var(--border); }
+  .compare-card h4 { margin: 0 0 0.6rem 0; color: var(--navy); display: flex; align-items: center; gap: 8px; }
+  .compare-card ul { margin: 0.3rem 0 0 1.2rem; padding-left: 0.5rem; }
+  .compare-card ul li { font-size: 0.9rem; margin-bottom: 0.3rem; }
+  .compare-card .pro { color: var(--green); font-weight: 600; }
+  .compare-card .con { color: #dc2626; font-weight: 600; }
+
+  /* Teacher panel */
+  .teacher-panel{background:#fff;border:1px solid var(--border);border-radius:var(--radius-sm);padding:0;overflow:hidden; margin-top: 2rem;}
+  .teacher-panel summary{
+    cursor:pointer;font-weight:600;color:var(--navy);font-size:.98rem;
+    list-style:none;display:flex;align-items:center;gap:10px;padding:18px 22px;
+  }
+  .teacher-panel summary::-webkit-details-marker{display:none;}
+  .teacher-panel summary::before{content:"🔒";font-size:1.05rem;}
+  .teacher-panel[open] summary{border-bottom:1px solid var(--border);}
+  .teacher-panel[open] summary::before{content:"🔓";}
+  .teacher-panel .panel-body{padding:22px;}
+  .lock-screen{text-align:center;padding:20px 12px;}
+  .lock-screen input{
+    padding:10px 14px;border-radius:10px;background:#fff;border:1px solid var(--border);
+    color:var(--text);font-size:.95rem;margin-right:8px;font-family:inherit;
+  }
+  .lock-screen input:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px rgba(37,99,235,.15);}
+  .hidden{display:none !important;}
+
+  a{color:var(--accent);text-decoration:none;}
+  a:hover{text-decoration:underline;}
+</style>
+</head>
+<body>
+
+<div class="topbar-wrap">
+  <div class="topbar">
+    <a href="#" class="brand"><span class="cap">🎓</span> IGCSE CompSci</a>
+    <nav class="navlinks">
+      <a href="#">← Back to Unit 7</a>
+      <a href="#">← Year 10</a>
+    </nav>
+  </div>
+</div>
+
+<div class="page">
+
+  <div class="hero">
+    <h1><span class="emoji">🧠</span> Artificial Intelligence</h1>
+    <div class="pill">
+      <span class="dot">✓</span>
+      Lesson 3 · Characteristics, Expert Systems &amp; Machine Learning
+    </div>
+  </div>
+
+  <!-- ============ STARTER ============ -->
+  <section class="card">
+    <h2>🔥 Starter – What is Intelligence?</h2>
+    <p>With a partner, discuss what you think intelligence is.</p>
+    <p><em>Be ready to share your ideas with the class.</em></p>
+
+    <details class="reveal">
+      <summary>Show suggested answer</summary>
+      <div class="body">
+        <p>Intelligence includes the following abilities:</p>
+        <ul>
+          <li>The ability to learn</li>
+          <li>The ability to understand</li>
+          <li>The ability to cope with or try new situations</li>
+          <li>The ability to apply ideas you know to different situations</li>
+          <li>The ability to think abstractly and discover patterns</li>
+        </ul>
+        <p><strong>Artificial intelligence mimics one or more of these natural intelligence abilities.</strong></p>
+      </div>
+    </details>
+  </section>
+
+  <!-- ============ OBJECTIVES ============ -->
+  <section class="card">
+    <h2>🎯 Learning Objectives</h2>
+    <ul>
+      <li>Understand what is meant by artificial intelligence (AI).</li>
+      <li>Describe the main characteristics of AI including the collection of data and rules, the ability to reason, and the ability to learn and adapt.</li>
+      <li>Explain the basic operation and components of AI systems that simulate intelligent behaviour, including expert systems and machine learning.</li>
+    </ul>
+
+    <div class="callout">
+      <strong>Why This Matters:</strong> Artificial Intelligence is a branch of Computer Science that deals with the simulation of intelligent behaviours by computers. Understanding AI is essential for the IGCSE exam and for understanding the technology that surrounds us today.
+    </div>
+  </section>
+
+  <!-- ============ TASK 1: CHARACTERISTICS OF AI ============ -->
+  <div class="task-panel" id="task1">
+    <div class="task-header">
+      <h3>
+        <i class="fas fa-lock" style="color:#2a6f97;"></i> Task 1: Characteristics of AI
+        <span class="stars"><span class="star-filled">★</span><span class="star-empty">★</span><span class="star-empty">★</span></span> Mild
+      </h3>
+      <span class="task-status pending" id="task1Status">In Progress</span>
+    </div>
+    <div class="task-content">
+      <p>Read the information below and answer the questions. You must answer <strong>all 3</strong> before moving on.</p>
+
+      <div class="compare-grid">
+        <div class="compare-card">
+          <h4><i class="fas fa-list" style="color:#2a6f97;"></i> Collection of Data &amp; Rules</h4>
+          <p>AI systems need data to work with. Rules are used to determine the answers to questions. They may be programmed by a human or 'discovered' by machine learning.</p>
+        </div>
+        <div class="compare-card">
+          <h4><i class="fas fa-brain" style="color:#2a6f97;"></i> Ability to Reason</h4>
+          <p>AI is able to use reasoning to find out new information based on the rules it is given. <strong>Example:</strong> Humans eat vegetables. Zach is human. Reasoning deduces: Zach eats vegetables.</p>
+        </div>
+      </div>
+
+      <div class="callout tip">
+        <strong>The ability to learn and adapt</strong> means the system can improve its performance over time as it is exposed to more data.
+      </div>
+
+      <div class="encode-box">
+        <h4>🔍 Question 1: What does AI stand for?</h4>
+        <div class="input-row">
+          <input type="text" id="q1" placeholder="Type your answer...">
+          <button onclick="checkAnswer('q1','artificial intelligence')">Check</button>
+        </div>
+        <div class="result" id="q1Result"></div>
+      </div>
+
+      <div class="encode-box">
+        <h4>🔍 Question 2: Name one characteristic of AI.</h4>
+        <div class="input-row">
+          <input type="text" id="q2" placeholder="Type your answer...">
+          <button onclick="checkAnswer('q2','the ability to reason')">Check</button>
+        </div>
+        <div class="result" id="q2Result"></div>
+      </div>
+
+      <div class="encode-box">
+        <h4>🔍 Question 3: What type of reasoning is used when you deduce new information from given rules?</h4>
+        <div class="input-row">
+          <input type="text" id="q3" placeholder="Type your answer...">
+          <button onclick="checkAnswer('q3','deductive reasoning')">Check</button>
+        </div>
+        <div class="result" id="q3Result"></div>
+      </div>
+
+      <button class="check-btn-pulse" id="completeTask1">✅ Finished? Click here to unlock Task 2 →</button>
+    </div>
+  </div>
+
+  <!-- ============ VIDEO: WHAT IS AI? ============ -->
+  <section class="card">
+    <h2>🎬 Video – What is Artificial Intelligence?</h2>
+    <p>Watch this video for an overview of what AI is and how it works.</p>
+    <div style="margin: 1rem 0;">
+      <iframe width="100%" height="315" src="https://www.youtube.com/embed/2ePf9rue1Ao" title="What is Artificial Intelligence?" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="border-radius:16px; border: 2px solid var(--border);"></iframe>
+    </div>
+    <p style="font-size:0.85rem; color:var(--muted); margin-top:0.4rem;"><em>What is Artificial Intelligence? (5m27s) — this video gives an overview of the topic.</em></p>
+  </section>
+
+  <!-- ============ TASK 2: EXPERT SYSTEMS ============ -->
+  <div class="task-panel locked" id="task2">
+    <div class="task-header">
+      <h3>
+        <i class="fas fa-lock" style="color:#2a6f97;"></i> Task 2: Expert Systems
+        <span class="stars"><span class="star-filled">★</span><span class="star-filled">★</span><span class="star-empty">★</span></span> Medium
+      </h3>
+      <span class="task-status locked-status" id="task2Status">Locked</span>
+    </div>
+    <div class="task-content">
+      <p>Read the information below and answer the questions. You must answer <strong>all 4</strong> before moving on.</p>
+
+      <div class="callout tip">
+        <strong>An expert system</strong> is a computer program that simulates a human expert. It is made up of four main components.
+      </div>
+
+      <div class="compare-grid">
+        <div class="compare-card">
+          <h4><i class="fas fa-database" style="color:#2a6f97;"></i> Knowledge Base &amp; Rule Base</h4>
+          <p>The knowledge base stores facts. The rule base stores rules on how these facts can be used. Rules are like <strong>IF-THEN</strong> statements. For example: <em>IF you like football AND you like talking THEN we suggest being a football commentator.</em></p>
+        </div>
+        <div class="compare-card">
+          <h4><i class="fas fa-cogs" style="color:#2a6f97;"></i> Inference Engine &amp; Interface</h4>
+          <p>The <strong>inference engine</strong> controls the steps taken to solve the problem. It uses the rule base and knowledge base to deduce conclusions. The <strong>interface</strong> is how the user interacts with the system (e.g. web page, chat bot).</p>
+        </div>
+      </div>
+
+      <div class="encode-box">
+        <h4>🔍 Question 1: What is the name of the component that stores facts?</h4>
+        <div class="input-row">
+          <input type="text" id="q4" placeholder="Type your answer...">
+          <button onclick="checkAnswer('q4','knowledge base')">Check</button>
+        </div>
+        <div class="result" id="q4Result"></div>
+      </div>
+
+      <div class="encode-box">
+        <h4>🔍 Question 2: What is the name of the component that uses the rules to deduce conclusions?</h4>
+        <div class="input-row">
+          <input type="text" id="q5" placeholder="Type your answer...">
+          <button onclick="checkAnswer('q5','inference engine')">Check</button>
+        </div>
+        <div class="result" id="q5Result"></div>
+      </div>
+
+      <div class="encode-box">
+        <h4>🔍 Question 3: What type of statement is used in a rule base?</h4>
+        <div class="input-row">
+          <input type="text" id="q6" placeholder="Type your answer...">
+          <button onclick="checkAnswer('q6','if-then')">Check</button>
+        </div>
+        <div class="result" id="q6Result"></div>
+      </div>
+
+      <div class="encode-box">
+        <h4>🔍 Question 4: Name one example of an interface for an expert system.</h4>
+        <div class="input-row">
+          <input type="text" id="q7" placeholder="Type your answer...">
+          <button onclick="checkAnswer('q7','chat bot')">Check</button>
+        </div>
+        <div class="result" id="q7Result"></div>
+      </div>
+
+      <button class="check-btn-pulse" id="completeTask2">✅ Finished? Click here to unlock Task 3 →</button>
+    </div>
+  </div>
+
+  <!-- ============ TASK 3: MACHINE LEARNING ============ -->
+  <div class="task-panel locked" id="task3">
+    <div class="task-header">
+      <h3>
+        <i class="fas fa-lock" style="color:#2a6f97;"></i> Task 3: Machine Learning
+        <span class="stars"><span class="star-filled">★</span><span class="star-filled">★</span><span class="star-empty">★</span></span> Medium
+      </h3>
+      <span class="task-status locked-status" id="task3Status">Locked</span>
+    </div>
+    <div class="task-content">
+      <p>Read the information below and answer the questions. You must answer <strong>all 3</strong> before moving on.</p>
+
+      <div class="callout tip">
+        <strong>Machine learning</strong> is where a program is able to automatically adapt its own processes or data. Rather than giving the program rules, a large amount of data is collected by the program which then makes its own rules.
+      </div>
+
+      <div class="compare-grid">
+        <div class="compare-card">
+          <h4><i class="fas fa-fish" style="color:#2a6f97;"></i> Detecting Fish or Chips</h4>
+          <p>In machine learning we don't give the computer the rules to detect the difference. Instead we give sets of data for it to learn from. The program finds patterns in the data.</p>
+        </div>
+        <div class="compare-card">
+          <h4><i class="fas fa-chart-bar" style="color:#2a6f97;"></i> Training Data</h4>
+          <p>The program has no knowledge of what fish or chips are. It looks at properties such as colour, number of items, weight, temperature, and crispness to find patterns.</p>
+        </div>
+      </div>
+
+      <div class="encode-box">
+        <h4>🔍 Question 1: What is given to a machine learning program so it can learn?</h4>
+        <div class="input-row">
+          <input type="text" id="q8" placeholder="Type your answer...">
+          <button onclick="checkAnswer('q8','training data')">Check</button>
+        </div>
+        <div class="result" id="q8Result"></div>
+      </div>
+
+      <div class="encode-box">
+        <h4>🔍 Question 2: What does a machine learning program create for itself?</h4>
+        <div class="input-row">
+          <input type="text" id="q9" placeholder="Type your answer...">
+          <button onclick="checkAnswer('q9','rules')">Check</button>
+        </div>
+        <div class="result" id="q9Result"></div>
+      </div>
+
+      <div class="encode-box">
+        <h4>🔍 Question 3: What is the name of the technique where a program learns from data without being given explicit rules?</h4>
+        <div class="input-row">
+          <input type="text" id="q10" placeholder="Type your answer...">
+          <button onclick="checkAnswer('q10','machine learning')">Check</button>
+        </div>
+        <div class="result" id="q10Result"></div>
+      </div>
+
+      <button class="check-btn-pulse" id="completeTask3">✅ Finished? Click here to unlock the Main Task →</button>
+    </div>
+  </div>
+
+  <!-- ============ VIDEO: MACHINE LEARNING ============ -->
+  <section class="card">
+    <h2>🎬 Video – Machine Learning Explained</h2>
+    <p>Watch this video to understand how machine learning works.</p>
+    <div style="margin: 1rem 0;">
+      <iframe width="100%" height="315" src="https://www.youtube.com/embed/3bJ7RChxMWQ" title="Machine Learning Explained in 5 Minutes" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="border-radius:16px; border: 2px solid var(--border);"></iframe>
+    </div>
+    <p style="font-size:0.85rem; color:var(--muted); margin-top:0.4rem;"><em>Machine learning explained in 5 minutes (5m14s).</em></p>
+  </section>
+
+  <!-- ============ MAIN TASK ============ -->
+  <section class="card">
+    <h2>⭐ Main Task – Schoolbox Worksheet</h2>
+    <p><strong>This is the task your teacher will mark to see if you understand today's work.</strong></p>
+    <p>Log in to Schoolbox: <a href="https://lms.isr-school.com/" target="_blank">https://lms.isr-school.com/</a></p>
+    <p>Complete the worksheet on <strong>Artificial Intelligence</strong>. It covers the characteristics of AI, expert systems, and machine learning.</p>
+    
+    <div class="btn-row" style="margin-top: 1.5rem;">
+      <a href="https://lms.isr-school.com/" target="_blank" rel="noopener" class="btn">
+        📄 Open Schoolbox Worksheet
+      </a>
+      <!-- Blooket Button -->
+      <a href="https://play.blooket.com/host/factory?id=63d2ada3948bd9bb30273ff9" target="_blank" rel="noopener" class="btn purple">
+        🎮 Blooket Factory
+      </a>
+      <!-- Button to manually unlock Task 4 -->
+      <button class="btn green" id="completeMainTask">
+        ✅ Click here when finished and submitted
+      </button>
+    </div>
+  </section>
+
+  <!-- ============ TASK 4: PLENARY GAP FILL ============ -->
+  <div class="task-panel locked" id="task4">
+    <div class="task-header">
+      <h3>
+        <i class="fas fa-lock" style="color:#2a6f97;"></i> Task 4: Plenary Gap Fill
+        <span class="stars"><span class="star-filled">★</span><span class="star-filled">★</span><span class="star-filled">★</span></span> Spicy
+      </h3>
+      <span class="task-status locked-status" id="task4Status">Locked</span>
+    </div>
+    <div class="task-content">
+      <p><strong>Fill in the gaps with the correct words.</strong></p>
+
+      <div class="callout warn">
+        <p><strong>Word bank:</strong> training data · artificial intelligence · reason · data and rules · machine learning · expert</p>
+        <p>AI stands for <strong>__________</strong>. The main characteristics include the collection of <strong>__________</strong>, the ability to <strong>__________</strong> and the ability to learn and adapt.</p>
+        <p><strong>__________</strong> systems are one use of AI. Another technique is <strong>__________</strong>. Here <strong>__________</strong> is given to a computer program which then creates its own rules.</p>
+      </div>
+
+      <div class="encode-box">
+        <h4>🔍 Fill in the blank: AI stands for __________.</h4>
+        <div class="input-row">
+          <input type="text" id="q11" placeholder="Type your answer...">
+          <button onclick="checkAnswer('q11','artificial intelligence')">Check</button>
+        </div>
+        <div class="result" id="q11Result"></div>
+      </div>
+
+      <div class="encode-box">
+        <h4>🔍 Fill in the blank: The main characteristics include the collection of __________.</h4>
+        <div class="input-row">
+          <input type="text" id="q12" placeholder="Type your answer...">
+          <button onclick="checkAnswer('q12','data and rules')">Check</button>
+        </div>
+        <div class="result" id="q12Result"></div>
+      </div>
+
+      <div class="encode-box">
+        <h4>🔍 Fill in the blank: The ability to __________.</h4>
+        <div class="input-row">
+          <input type="text" id="q13" placeholder="Type your answer...">
+          <button onclick="checkAnswer('q13','reason')">Check</button>
+        </div>
+        <div class="result" id="q13Result"></div>
+      </div>
+
+      <div class="encode-box">
+        <h4>🔍 Fill in the blank: __________ systems are one use of AI.</h4>
+        <div class="input-row">
+          <input type="text" id="q14" placeholder="Type your answer...">
+          <button onclick="checkAnswer('q14','expert')">Check</button>
+        </div>
+        <div class="result" id="q14Result"></div>
+      </div>
+
+      <div class="encode-box">
+        <h4>🔍 Fill in the blank: Another technique is __________.</h4>
+        <div class="input-row">
+          <input type="text" id="q15" placeholder="Type your answer...">
+          <button onclick="checkAnswer('q15','machine learning')">Check</button>
+        </div>
+        <div class="result" id="q15Result"></div>
+      </div>
+
+      <div class="encode-box">
+        <h4>🔍 Fill in the blank: Here __________ is given to a computer program which then creates its own rules.</h4>
+        <div class="input-row">
+          <input type="text" id="q16" placeholder="Type your answer...">
+          <button onclick="checkAnswer('q16','training data')">Check</button>
+        </div>
+        <div class="result" id="q16Result"></div>
+      </div>
+
+      <button class="check-btn-pulse" id="completeTask4" style="margin-top:1rem;">✅ Finished? Click here to move to the Extension →</button>
+    </div>
+  </div>
+
+  <!-- ============ EXTENSION TASK ============ -->
+  <section class="card" id="extension">
+    <h2>⭐ Extension Task – AI in the Future</h2>
+    <p>Discuss with a partner: How could machine learning, expert systems, and AI be used in the future?</p>
+    <p>Consider the benefits and risks of these technologies.</p>
+    <div class="btn-row">
+      <a href="https://www.thecomputersciencelab.com/theoryhub" target="_blank" rel="noopener" class="btn outline">
+        📚 Open Theory Hub
+      </a>
+    </div>
+  </section>
+
+  <!-- ============ AI GUIDE & POWERPOINT ============ -->
+  <section class="card">
+    <h2>🤖 AI Guide</h2>
+    <p>Your personal tutor! Ask the AI any question about artificial intelligence.</p>
+    <div class="btn-row">
+      <a href="https://chatgpt.com/g/g-hyr9cmYPE-igcse-a-level-computer-science-guide" target="_blank" rel="noopener" class="btn">
+        💬 Ask the AI Tutor
+      </a>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>📊 Lesson Presentation</h2>
+    <p>Use these slides to recap the lesson.</p>
+    <div class="btn-row">
+      <a href="https://view.officeapps.live.com/op/view.aspx?src=https%3A%2F%2Fraw.githubusercontent.com%2FMr-Ellis%2FSchool%2Frefs%2Fheads%2Fmain%2Fdocs%2FResources%2FIGCSE%2520Computer%2520Science%2F7%2520Technologies%2FT3%2520Artificial%2520intelligence.pptx&wdOrigin=BROWSELINK" target="_blank" rel="noopener" class="btn outline">
+        📊 Open PowerPoint
+      </a>
+    </div>
+  </section>
+
+  <!-- ============ TEACHER PANEL ============ -->
+  <section class="card">
+    <h2>Additional Resources</h2>
+
+    <details class="teacher-panel">
+      <summary>📋 Lesson Plan (Teacher only) — click to toggle</summary>
+      <div class="panel-body">
+
+        <div class="lock-screen" id="lockScreen">
+          <p style="color:var(--muted);margin-bottom:14px;">Enter password to view the full lesson plan.</p>
+          <input type="password" id="lockInput" placeholder="Password">
+          <button class="btn" id="lockBtn">Unlock</button>
+          <p id="lockMsg" style="color:#dc2626;font-size:.85rem;margin-top:10px;min-height:1.2em;"></p>
+        </div>
+
+        <div id="teacherContent" class="hidden">
+          <h3>Lesson Overview</h3>
+          <p>This lesson introduces students to artificial intelligence, covering what AI is, its main characteristics, and two key areas: expert systems and machine learning. Students will complete Tasks 1–4, the Schoolbox worksheet, and an extension discussion.</p>
+
+          <h3>Timing</h3>
+          <ul>
+            <li><strong>0–10 min</strong> — Starter &amp; Objectives</li>
+            <li><strong>10–25 min</strong> — Task 1 (Characteristics of AI)</li>
+            <li><strong>25–40 min</strong> — Task 2 (Expert Systems)</li>
+            <li><strong>40–55 min</strong> — Task 3 (Machine Learning)</li>
+            <li><strong>55–65 min</strong> — Main Task (Schoolbox Worksheet)</li>
+            <li><strong>65–80 min</strong> — Task 4 (Plenary Gap Fill)</li>
+            <li><strong>80–95 min</strong> — Extension Task (AI in the Future)</li>
+            <li><strong>95–100 min</strong> — Review and Pack Up</li>
+          </ul>
+
+          <h3>Key Teaching Points</h3>
+          <ul>
+            <li>Use the happy/sad face example to illustrate rules.</li>
+            <li>Emphasise the difference between expert systems (pre-programmed rules) and machine learning (rules discovered from data).</li>
+            <li>Ensure students understand the four components of an expert system.</li>
+            <li>Use the fish and chips example to illustrate how machine learning finds patterns.</li>
+          </ul>
+        </div>
+      </div>
+    </details>
+  </section>
+
+  <!-- ============ REFERENCE ============ -->
+  <section class="card">
+    <h2>📚 Reference Material</h2>
+    <p>Additional content on computer systems — The Computer Science Lab Theory Hub.</p>
+    <div class="btn-row">
+      <a href="https://www.thecomputersciencelab.com/theoryhub" target="_blank" rel="noopener" class="btn outline">
+        Open Reference →
+      </a>
+    </div>
+  </section>
+
+  <p style="text-align:center;color:var(--muted);font-size:.85rem;margin-top:40px;">progress saved automatically in your browser</p>
+</div>
+
+<script>
+  /* ===== CHECK ANSWER FUNCTION ===== */
+  function checkAnswer(id, answer) {
+    const input = document.getElementById(id);
+    const result = document.getElementById(id + 'Result');
+    const value = input.value.toLowerCase().trim().replace(/[^a-z0-9\s-]/g, '');
+    if (value === answer.toLowerCase()) {
+      result.textContent = '✅ Correct!';
+      result.className = 'result ok';
+      input.style.borderColor = 'var(--green)';
+    } else {
+      result.textContent = '❌ Try again.';
+      result.className = 'result no';
+      input.style.borderColor = '#dc2626';
+    }
+  }
+
+  /* ===== TASK LOCKING / UNLOCK SYSTEM ===== */
+  (function() {
+    const task2 = document.getElementById('task2');
+    const task3 = document.getElementById('task3');
+    const task4 = document.getElementById('task4');
+
+    const task2Status = document.getElementById('task2Status');
+    const task3Status = document.getElementById('task3Status');
+    const task4Status = document.getElementById('task4Status');
+
+    // Task 1 -> Task 2
+    document.getElementById('completeTask1').addEventListener('click', () => {
+      document.getElementById('task1Status').textContent = 'Complete';
+      document.getElementById('task1Status').className = 'task-status done';
+      task2.classList.remove('locked');
+      task2Status.textContent = 'In Progress';
+      task2Status.className = 'task-status pending';
+      task2.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+
+    // Task 2 -> Task 3
+    document.getElementById('completeTask2').addEventListener('click', () => {
+      task2Status.textContent = 'Complete';
+      task2Status.className = 'task-status done';
+      task3.classList.remove('locked');
+      task3Status.textContent = 'In Progress';
+      task3Status.className = 'task-status pending';
+      task3.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+
+    // Task 3 -> Main Task (which then unlocks Task 4)
+    document.getElementById('completeTask3').addEventListener('click', () => {
+      task3Status.textContent = 'Complete';
+      task3Status.className = 'task-status done';
+      document.querySelector('.card h2').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+
+    // Main Task Button -> Unlock Task 4
+    document.getElementById('completeMainTask').addEventListener('click', () => {
+      task4.classList.remove('locked');
+      task4Status.textContent = 'In Progress';
+      task4Status.className = 'task-status pending';
+      task4.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+
+    // Task 4 -> Extension
+    document.getElementById('completeTask4').addEventListener('click', () => {
+      task4Status.textContent = 'Complete';
+      task4Status.className = 'task-status done';
+      document.getElementById('extension').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  })();
+
+  /* ===== TEACHER LOCK ===== */
+  (function(){
+    const PASSWORD = 'teacher1';
+    const lockScreen = document.getElementById('lockScreen');
+    const content    = document.getElementById('teacherContent');
+    const input      = document.getElementById('lockInput');
+    const btn        = document.getElementById('lockBtn');
+    const msg        = document.getElementById('lockMsg');
+
+    function tryUnlock(){
+      if (input.value === PASSWORD){
+        lockScreen.classList.add('hidden');
+        content.classList.remove('hidden');
+        msg.textContent = '';
+      } else {
+        msg.textContent = 'Incorrect password. Try again.';
+        input.value = '';
+        input.focus();
+      }
+    }
+    btn.addEventListener('click', tryUnlock);
+    input.addEventListener('keydown', e => { if (e.key === 'Enter') tryUnlock(); });
+  })();
+</script>
+
+</body>
+</html>
