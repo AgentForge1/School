@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lesson 2 · Robotics</title>
+<style>
+  :root{
+    --navy:#0b2545;
+    --navy-2:#12315a;
+    --page-bg:#eef2f8;
+    --card:#ffffff;
+    --text:#1a2332;
+    --muted:#5a6b82;
+    --border:#dbe3ee;
+    --accent:#2563eb;
+    --accent-soft:#dbeafe;
+    --green:#15803d;
+    --green-soft:#dcfce7;
+    --amber:#b45309;
+    --amber-soft:#fef3c7;
+    --radius:20px;
+    --radius-sm:12px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+    background:var(--page-bg);
+    color:var(--text);
+    line-height:1.65;
+    font-size:16px;
+    font-weight:400;
+    padding:0;
+  }
+
+  .topbar-wrap{max-width:1080px;margin:18px auto 0;padding:0 28px;}
+  .topbar{
+    background:var(--navy);color:#fff;padding:14px 26px;border-radius:999px;
+    display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;
+    box-shadow:0 4px 18px rgba(11,37,69,.14);
+  }
+  .topbar .brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:1.05rem;color:#fff;text-decoration:none;letter-spacing:-.005em;}
+  .topbar .brand .cap{font-size:1.25rem;}
+  .topbar .navlinks{display:flex;gap:26px;flex-wrap:wrap;}
+  .topbar .navlinks a{color:#e6edf7;text-decoration:none;font-size:.95rem;font-weight:500;display:inline-flex;align-items:center;gap:6px;opacity:.92;transition:opacity .15s;}
+  .topbar .navlinks a:hover{opacity:1;text-decoration:underline;}
+
+  .page{max-width:1080px;margin:0 auto;padding:36px 28px 80px;}
+
+  .hero{margin-bottom:32px;}
+  .hero h1{
+    font-size:clamp(2.1rem,4.5vw,3.1rem);line-height:1.15;margin:0 0 20px;
+    font-weight:700;color:var(--navy);letter-spacing:-.025em;
+    display:flex;align-items:center;gap:16px;flex-wrap:wrap;
+  }
+  .hero h1 .emoji{font-size:1em;font-weight:400;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif;}
+  .hero .pill{
+    display:inline-flex;align-items:center;gap:12px;background:#e2e8f2;color:var(--navy);
+    border-radius:999px;padding:10px 24px 10px 10px;font-size:1rem;font-weight:400;
+    border-left:5px solid #2b8a9b;
+  }
+  .hero .pill .dot{width:24px;height:24px;border-radius:50%;background:var(--green);color:#fff;display:grid;place-items:center;font-size:.8rem;font-weight:700;flex-shrink:0;line-height:1;}
+
+  .card{
+    background:var(--card);border-radius:var(--radius);padding:34px 40px;margin-bottom:26px;
+    box-shadow:0 2px 4px rgba(11,37,69,.04), 0 8px 24px rgba(11,37,69,.05);
+    border:1px solid rgba(219,227,238,.5);
+  }
+  @media(max-width:640px){.card{padding:24px 20px;}.topbar-wrap{padding:0 16px;}.page{padding:28px 16px 60px;}}
+
+  .card h2{
+    font-size:1.5rem;margin:0 0 18px;font-weight:600;color:var(--navy);
+    display:flex;align-items:center;gap:10px;letter-spacing:-.01em;
+  }
+  .card h3{
+    font-size:1.1rem;margin:26px 0 12px;font-weight:600;color:var(--navy);
+    display:flex;align-items:center;gap:8px;letter-spacing:-.005em;
+  }
+  .card p{margin:0 0 14px;}
+  .card ul,.card ol{margin:0 0 14px;padding-left:24px;}
+  .card ul li,.card ol li{margin-bottom:6px;}
+
+  .callout{
+    background:#e8f1fb;border-left:4px solid var(--accent);border-radius:10px;
+    padding:16px 20px;margin:20px 0;font-size:.98rem;line-height:1.65;font-weight:400;
+  }
+  .callout strong{color:var(--navy);font-weight:600;}
+  .callout.tip{background:#dcfce7;border-left-color:var(--green);}
+  .callout.warn{background:#fef3c7;border-left-color:var(--amber);}
+
+  .btn{
+    display:inline-flex;align-items:center;gap:8px;background:var(--navy);color:#fff;
+    border:1px solid var(--navy);padding:10px 20px;border-radius:10px;text-decoration:none;
+    font-weight:500;font-size:.93rem;transition:.15s;cursor:pointer;line-height:1.4;font-family:inherit;
+  }
+  .btn:hover{background:var(--navy-2);border-color:var(--navy-2);color:#fff;text-decoration:none;}
+  .btn.green{background:var(--green);border-color:var(--green);}
+  .btn.green:hover{background:#115e30;border-color:#115e30;}
+  .btn.purple{background:#6d28d9;border-color:#6d28d9;}
+  .btn.purple:hover{background:#5b21b6;border-color:#5b21b6;}
+  .btn.red{background:#dc2626;border-color:#dc2626;}
+  .btn.red:hover{background:#b91c1c;border-color:#b91c1c;}
+  .btn.outline{background:#fff;color:var(--navy);border-color:var(--border);}
+  .btn.outline:hover{background:#f4f7fb;border-color:#b8c5d6;color:var(--navy);}
+  .btn-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:14px;}
+
+  details.reveal{
+    margin-top:16px;border:1px solid var(--border);border-radius:var(--radius-sm);
+    background:#f8fafd;overflow:hidden;
+  }
+  details.reveal summary{
+    cursor:pointer;padding:13px 18px;font-weight:600;font-size:.95rem;color:var(--accent);
+    list-style:none;display:flex;align-items:center;gap:8px;
+  }
+  details.reveal summary::-webkit-details-marker{display:none;}
+  details.reveal summary::before{content:"▶";font-size:.7rem;transition:.2s;}
+  details.reveal[open] summary::before{transform:rotate(90deg);}
+  details.reveal .body{padding:6px 18px 18px;border-top:1px solid var(--border);background:#fff;}
+
+  /* Task Panels */
+  .task-panel {
+    margin: 1.8rem 0; padding: 1.6rem 1.8rem;
+    border-radius: var(--radius); border: 2px solid var(--border);
+    background: #ffffff;
+  }
+  .task-panel.locked {
+    background: #f8fafc; border-color: #dceaf7; opacity: 0.7; position: relative;
+  }
+  .task-panel.locked .task-content {
+    pointer-events: none; user-select: none; filter: blur(3px);
+  }
+  .task-panel.locked::after {
+    content: "🔒 Complete the previous task to unlock";
+    position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    background: var(--navy); color: white;
+    padding: 0.8rem 1.6rem; border-radius: 40px;
+    font-weight: 600; font-size: 0.85rem; z-index: 10;
+    box-shadow: 0 4px 20px rgba(0,20,40,0.2); white-space: nowrap;
+  }
+  .task-header {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: 1rem; flex-wrap: wrap; gap: 0.5rem;
+  }
+  .task-header h3 {
+    margin: 0; font-size: 1.15rem;
+    display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+  }
+  .task-status {
+    font-size: 0.8rem; font-weight: 600;
+    padding: 0.3rem 0.9rem; border-radius: 30px;
+  }
+  .task-status.done { background: var(--green-soft); color: var(--green); }
+  .task-status.pending { background: var(--amber-soft); color: var(--amber); }
+  .task-status.locked-status { background: #f1f5f9; color: #64748b; }
+
+  .stars { display: inline-flex; gap: 2px; font-size: 0.75rem; margin-left: 4px; }
+  .stars .star-filled { color: #f9a825; }
+  .stars .star-empty { color: #d4e3f0; }
+
+  .encode-box { margin: 1.2rem 0; padding: 1rem; background: #f8fafc; border-radius: 12px; border: 1px solid var(--border); }
+  .encode-box h4 { margin-top: 0; margin-bottom: 0.5rem; color: var(--navy); }
+  .input-row { display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap; }
+  .input-row input { padding: 0.5rem; border: 2px solid #b6cfe5; border-radius: 8px; font-family: inherit; flex: 1; min-width: 200px; }
+  .input-row button { background: #2a6f97; color: white; border: none; padding: 0.5rem 1rem; border-radius: 8px; cursor: pointer; font-weight: 600; }
+  .input-row button:hover { background: #1f6390; }
+  .result { font-weight: 600; margin-top: 0.3rem; font-size: 0.9rem; }
+  .result.ok { color: var(--green); }
+  .result.no { color: #dc2626; }
+
+  .check-btn-pulse {
+    background: #f9a825; color: #4a2c00; border: 2px solid #e65100;
+    padding: 0.7rem 1.6rem; border-radius: 40px;
+    font-weight: 700; font-size: 0.9rem; cursor: pointer; margin-top: 0.8rem;
+    transition: 0.2s; display: inline-flex; align-items: center; gap: 8px;
+  }
+  .check-btn-pulse:hover { background: #e65100; color: white; }
+
+  .compare-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; margin: 1.2rem 0; }
+  @media (max-width: 680px) { .compare-grid { grid-template-columns: 1fr; } }
+  .compare-card { background: #f8fafd; border-radius: 16px; padding: 1.2rem 1.4rem; border: 2px solid var(--border); }
+  .compare-card h4 { margin: 0 0 0.6rem 0; color: var(--navy); display: flex; align-items: center; gap: 8px; }
+  .compare-card ul { margin: 0.3rem 0 0 1.2rem; padding-left: 0.5rem; }
+  .compare-card ul li { font-size: 0.9rem; margin-bottom: 0.3rem; }
+  .compare-card .pro { color: var(--green); font-weight: 600; }
+  .compare-card .con { color: #dc2626; font-weight: 600; }
+
+  /* Teacher panel */
+  .teacher-panel{background:#fff;border:1px solid var(--border);border-radius:var(--radius-sm);padding:0;overflow:hidden; margin-top: 2rem;}
+  .teacher-panel summary{
+    cursor:pointer;font-weight:600;color:var(--navy);font-size:.98rem;
+    list-style:none;display:flex;align-items:center;gap:10px;padding:18px 22px;
+  }
+  .teacher-panel summary::-webkit-details-marker{display:none;}
+  .teacher-panel summary::before{content:"🔒";font-size:1.05rem;}
+  .teacher-panel[open] summary{border-bottom:1px solid var(--border);}
+  .teacher-panel[open] summary::before{content:"🔓";}
+  .teacher-panel .panel-body{padding:22px;}
+  .lock-screen{text-align:center;padding:20px 12px;}
+  .lock-screen input{
+    padding:10px 14px;border-radius:10px;background:#fff;border:1px solid var(--border);
+    color:var(--text);font-size:.95rem;margin-right:8px;font-family:inherit;
+  }
+  .lock-screen input:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px rgba(37,99,235,.15);}
+  .hidden{display:none !important;}
+
+  a{color:var(--accent);text-decoration:none;}
+  a:hover{text-decoration:underline;}
+</style>
+</head>
+<body>
+
+<div class="topbar-wrap">
+  <div class="topbar">
+    <a href="#" class="brand"><span class="cap">🎓</span> IGCSE CompSci</a>
+    <nav class="navlinks">
+      <a href="#">← Back to Unit 7</a>
+      <a href="#">← Year 10</a>
+    </nav>
+  </div>
+</div>
+
+<div class="page">
+
+  <div class="hero">
+    <h1><span class="emoji">🤖</span> Robotics</h1>
+    <div class="pill">
+      <span class="dot">✓</span>
+      Lesson 2 · Characteristics, Roles, Advantages &amp; Disadvantages
+    </div>
+  </div>
+
+  <!-- ============ STARTER ============ -->
+  <section class="card">
+    <h2>🔥 Starter – Where Are Robots Used?</h2>
+    <p>Robots have many uses today. Name at least three different areas where robots are used.</p>
+    <p><em>Discuss with your partner — be ready to share your ideas.</em></p>
+
+    <details class="reveal">
+      <summary>Show suggested answer</summary>
+      <div class="body">
+        <ul>
+          <li><strong>Industry</strong> – e.g. manufacturing of food and products</li>
+          <li><strong>Transport</strong> – e.g. self-driving trains and cars</li>
+          <li><strong>Agriculture</strong> – e.g. sowing, fertilising, harvest and picking</li>
+          <li><strong>Medicine</strong> – e.g. testing and surgery</li>
+          <li><strong>Domestic</strong> – e.g. robot vacuum cleaner and lawn mowers</li>
+          <li><strong>Entertainment</strong> – e.g. toys, robot servers</li>
+        </ul>
+      </div>
+    </details>
+  </section>
+
+  <!-- ============ OBJECTIVES ============ -->
+  <section class="card">
+    <h2>🎯 Learning Objectives</h2>
+    <ul>
+      <li>Understand what robots are and describe their key characteristics.</li>
+      <li>Identify the electrical components (sensors, microprocessors, actuators) in robots.</li>
+      <li>Understand the roles that robots perform in industry, agriculture, medicine, transport, domestic and entertainment.</li>
+      <li>Analyse the advantages and disadvantages of using robots.</li>
+    </ul>
+
+    <div class="callout">
+      <strong>Why This Matters:</strong> Robotics is a branch of Computer Science that incorporates the design, construction and operation of robots. Understanding the core components and the real-world trade-offs of automation is essential for the IGCSE exam.
+    </div>
+  </section>
+
+  <!-- ============ TASK 1: CHARACTERISTICS ============ -->
+  <div class="task-panel" id="task1">
+    <div class="task-header">
+      <h3>
+        <i class="fas fa-lock" style="color:#2a6f97;"></i> Task 1: Characteristics of Robots
+        <span class="stars"><span class="star-filled">★</span><span class="star-empty">★</span><span class="star-empty">★</span></span> Mild
+      </h3>
+      <span class="task-status pending" id="task1Status">In Progress</span>
+    </div>
+    <div class="task-content">
+      <p>Read the information below and answer the questions. You must answer <strong>all 3</strong> before moving on.</p>
+
+      <div class="compare-grid">
+        <div class="compare-card">
+          <h4><i class="fas fa-cogs" style="color:#2a6f97;"></i> The Three Characteristics</h4>
+          <ul>
+            <li class="pro">✔ They have a <strong>mechanical structure</strong> or framework</li>
+            <li class="pro">✔ They have <strong>electrical components</strong> such as sensors, microprocessors and actuators</li>
+            <li class="pro">✔ They are <strong>programmable</strong></li>
+          </ul>
+        </div>
+        <div class="compare-card">
+          <h4><i class="fas fa-microchip" style="color:#2a6f97;"></i> Electrical Components</h4>
+          <ul>
+            <li><strong>Sensors</strong> – detect changes in the environment (e.g. cameras, microphones, tactile sensors)</li>
+            <li><strong>Microprocessors</strong> – process data and decide what to do</li>
+            <li><strong>Actuators</strong> – carry out actions (e.g. motors that move arms, legs or wheels)</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="encode-box">
+        <h4>🔍 Question 1: Name one characteristic of robots.</h4>
+        <div class="input-row">
+          <input type="text" id="q1" placeholder="Type your answer...">
+          <button onclick="checkAnswer('q1','mechanical structure')">Check</button>
+        </div>
+        <div class="result" id="q1Result"></div>
+      </div>
+
+      <div class="encode-box">
+        <h4>🔍 Question 2: What type of electrical component is used to detect changes in the environment?</h4>
+        <div class="input-row">
+          <input type="text" id="q2" placeholder="Type your answer...">
+          <button onclick="checkAnswer('q2','sensor')">Check</button>
+        </div>
+        <div class="result" id="q2Result"></div>
+      </div>
+
+      <div class="encode-box">
+        <h4>🔍 Question 3: What type of electrical component is used to carry out actions, such as moving a robot arm?</h4>
+        <div class="input-row">
+          <input type="text" id="q3" placeholder="Type your answer...">
+          <button onclick="checkAnswer('q3','actuator')">Check</button>
+        </div>
+        <div class="result" id="q3Result"></div>
+      </div>
+
+      <button class="check-btn-pulse" id="completeTask1">✅ Finished? Click here to unlock Task 2 →</button>
+    </div>
+  </div>
+
+  <!-- ============ VIDEO: INDUSTRIAL ROBOT ============ -->
+  <section class="card">
+    <h2>🎬 Video – Industrial Robots</h2>
+    <p>Watch how a 6-axis industrial robot is programmed and how it works.</p>
+    <div style="margin: 1rem 0;">
+      <iframe width="100%" height="315" src="https://www.youtube.com/embed/7coUcEHxnYA" title="How 6-Axis Industrial Robots Work" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="border-radius:16px; border: 2px solid var(--border);"></iframe>
+    </div>
+    <p style="font-size:0.85rem; color:var(--muted); margin-top:0.4rem;"><em>How 6-Axis industrial robots work (0m0s–2m13s) — this video shows the programming of a Fanuc robot using a handheld device.</em></p>
+  </section>
+
+  <!-- ============ TASK 2: ROLES OF ROBOTS ============ -->
+  <div class="task-panel locked" id="task2">
+    <div class="task-header">
+      <h3>
+        <i class="fas fa-lock" style="color:#2a6f97;"></i> Task 2: Roles Robots Perform
+        <span class="stars"><span class="star-filled">★</span><span class="star-filled">★</span><span class="star-empty">★</span></span> Medium
+      </h3>
+      <span class="task-status locked-status" id="task2Status">Locked</span>
+    </div>
+    <div class="task-content">
+      <p>Read the descriptions below and answer the questions. You must answer <strong>all 4</strong> before moving on.</p>
+
+      <div class="compare-grid">
+        <div class="compare-card">
+          <h4><i class="fas fa-industry" style="color:#2a6f97;"></i> Industry</h4>
+          <p>Robots are used in car manufacture and packing products. They are more accurate, can work without breaks, and can work in hazardous environments.</p>
+        </div>
+        <div class="compare-card">
+          <h4><i class="fas fa-seedling" style="color:#2a6f97;"></i> Agriculture</h4>
+          <p>Robots sow seeds, apply fertiliser, harvest crops, and use GPS for navigation. Drones survey fields.</p>
+        </div>
+      </div>
+      <div class="compare-grid">
+        <div class="compare-card">
+          <h4><i class="fas fa-stethoscope" style="color:#2a6f97;"></i> Medicine</h4>
+          <p>Robotic arms make incisions, remove tissue, and stitch patients. They are more accurate and don't have tremors like humans.</p>
+        </div>
+        <div class="compare-card">
+          <h4><i class="fas fa-home" style="color:#2a6f97;"></i> Domestic &amp; Entertainment</h4>
+          <p>Domestic robots vacuum and mow lawns. Entertainment robots (like Aibo) mimic pets and interact using sensors and actuators.</p>
+        </div>
+      </div>
+
+      <div class="encode-box">
+        <h4>🔍 Question 1: In which area are robots used to make incisions and stitch patients?</h4>
+        <div class="input-row">
+          <input type="text" id="q4" placeholder="Type your answer...">
+          <button onclick="checkAnswer('q4','medicine')">Check</button>
+        </div>
+        <div class="result" id="q4Result"></div>
+      </div>
+
+      <div class="encode-box">
+        <h4>🔍 Question 2: What technology helps tractors navigate fields in agriculture?</h4>
+        <div class="input-row">
+          <input type="text" id="q5" placeholder="Type your answer...">
+          <button onclick="checkAnswer('q5','gps')">Check</button>
+        </div>
+        <div class="result" id="q5Result"></div>
+      </div>
+
+      <div class="encode-box">
+        <h4>🔍 Question 3: Name one area where robots are used to manufacture cars.</h4>
+        <div class="input-row">
+          <input type="text" id="q6" placeholder="Type your answer...">
+          <button onclick="checkAnswer('q6','industry')">Check</button>
+        </div>
+        <div class="result" id="q6Result"></div>
+      </div>
+
+      <div class="encode-box">
+        <h4>🔍 Question 4: What type of robot is a robot vacuum cleaner?</h4>
+        <div class="input-row">
+          <input type="text" id="q7" placeholder="Type your answer...">
+          <button onclick="checkAnswer('q7','domestic')">Check</button>
+        </div>
+        <div class="result" id="q7Result"></div>
+      </div>
+
+      <button class="check-btn-pulse" id="completeTask2">✅ Finished? Click here to unlock Task 3 →</button>
+    </div>
+  </div>
+
+  <!-- ============ VIDEO: AGRICULTURE ============ -->
+  <section class="card">
+    <h2>🎬 Video – Agricultural Robots</h2>
+    <p>Watch how robotic strawberry harvesters use colour and ripeness to pick fruit.</p>
+    <div style="margin: 1rem 0;">
+      <iframe width="100%" height="315" src="https://www.youtube.com/embed/FCivsotZEjk" title="Meet the robotic strawberry harvesters" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="border-radius:16px; border: 2px solid var(--border);"></iframe>
+    </div>
+    <p style="font-size:0.85rem; color:var(--muted); margin-top:0.4rem;"><em>Meet the robotic strawberry harvesters (0m0s–1m04s) — this shows strawberries being picked by robots based on colour and ripeness.</em></p>
+  </section>
+
+  <!-- ============ TASK 3: ADVANTAGES & DISADVANTAGES ============ -->
+  <div class="task-panel locked" id="task3">
+    <div class="task-header">
+      <h3>
+        <i class="fas fa-lock" style="color:#2a6f97;"></i> Task 3: Advantages &amp; Disadvantages
+        <span class="stars"><span class="star-filled">★</span><span class="star-filled">★</span><span class="star-empty">★</span></span> Medium
+      </h3>
+      <span class="task-status locked-status" id="task3Status">Locked</span>
+    </div>
+    <div class="task-content">
+      <p>Read the information below and answer the questions. You must answer <strong>all 3</strong> before moving on.</p>
+
+      <div class="callout tip">
+        <strong>Advantages and disadvantages</strong> will be different for every robot, but common advantages and disadvantages are listed below.
+      </div>
+
+      <div class="compare-grid">
+        <div class="compare-card">
+          <h4><i class="fas fa-check-circle" style="color:var(--green);"></i> Common Advantages</h4>
+          <ul>
+            <li class="pro">✔ Reduces the cost / need for humans to do the task</li>
+            <li class="pro">✔ Works faster</li>
+            <li class="pro">✔ Is more accurate / efficient</li>
+            <li class="pro">✔ Is able to work in dangerous environments / reduces the risks to humans</li>
+            <li class="pro">✔ Is able to work 24 x 7 / works without a break</li>
+          </ul>
+        </div>
+        <div class="compare-card">
+          <h4><i class="fas fa-exclamation-circle" style="color:#dc2626;"></i> Common Disadvantages</h4>
+          <ul>
+            <li class="con">✘ The cost of purchasing the robot (or replacing it if it breaks)</li>
+            <li class="con">✘ The robot being unreliable / less reliable than a human</li>
+            <li class="con">✘ The robot not doing as good a job as a human</li>
+            <li class="con">✘ Jobs being lost as a result of the robot</li>
+            <li class="con">✘ A loss of contact with real people</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="encode-box">
+        <h4>🔍 Question 1: Give one advantage of using robots in industry.</h4>
+        <div class="input-row">
+          <input type="text" id="q8" placeholder="Type your answer...">
+          <button onclick="checkAnswer('q8','works faster')">Check</button>
+        </div>
+        <div class="result" id="q8Result"></div>
+      </div>
+
+      <div class="encode-box">
+        <h4>🔍 Question 2: Give one disadvantage of using robots.</h4>
+        <div class="input-row">
+          <input type="text" id="q9" placeholder="Type your answer...">
+          <button onclick="checkAnswer('q9','jobs being lost')">Check</button>
+        </div>
+        <div class="result" id="q9Result"></div>
+      </div>
+
+      <div class="encode-box">
+        <h4>🔍 Question 3: Why might a robot be used in a dangerous environment?</h4>
+        <div class="input-row">
+          <input type="text" id="q10" placeholder="Type your answer...">
+          <button onclick="checkAnswer('q10','reduces the risks to humans')">Check</button>
+        </div>
+        <div class="result" id="q10Result"></div>
+      </div>
+
+      <button class="check-btn-pulse" id="completeTask3">✅ Finished? Click here to unlock the Main Task →</button>
+    </div>
+  </div>
+
+  <!-- ============ MAIN TASK ============ -->
+  <section class="card">
+    <h2>⭐ Main Task – Schoolbox Worksheet</h2>
+    <p><strong>This is the task your teacher will mark to see if you understand today's work.</strong></p>
+    <p>Log in to Schoolbox: <a href="https://lms.isr-school.com/" target="_blank">https://lms.isr-school.com/</a></p>
+    <p>Complete the worksheet on <strong>Robotics</strong>. It covers the characteristics of robots, roles in different areas, and advantages/disadvantages.</p>
+    
+    <div class="btn-row" style="margin-top: 1.5rem;">
+      <a href="https://lms.isr-school.com/" target="_blank" rel="noopener" class="btn">
+        📄 Open Schoolbox Worksheet
+      </a>
+      <!-- Blooket Button -->
+      <a href="https://play.blooket.com/host/factory?id=63d2ada3948bd9bb30273ff9" target="_blank" rel="noopener" class="btn purple">
+        🎮 Blooket Factory
+      </a>
+      <!-- Button to manually unlock Task 4 -->
+      <button class="btn green" id="completeMainTask">
+        ✅ Click here when finished and submitted
+      </button>
+    </div>
+  </section>
+
+  <!-- ============ TASK 4: TRANSPORT ANALOGY CHALLENGE ============ -->
+  <div class="task-panel locked" id="task4">
+    <div class="task-header">
+      <h3>
+        <i class="fas fa-lock" style="color:#2a6f97;"></i> Task 4: Robot Bus Analysis
+        <span class="stars"><span class="star-filled">★</span><span class="star-filled">★</span><span class="star-filled">★</span></span> Spicy
+      </h3>
+      <span class="task-status locked-status" id="task4Status">Locked</span>
+    </div>
+    <div class="task-content">
+      <p><strong>Read the scenario and answer the questions.</strong></p>
+
+      <div class="callout warn">
+        <strong>The Scenario:</strong> Robot buses have been in use in Finland since 2016. They work alongside ordinary buses, taking up to 12 passengers short distances without a driver.
+      </div>
+
+      <div style="margin: 1rem 0;">
+        <iframe width="100%" height="315" src="https://www.youtube.com/embed/TZalk8jsSNs" title="Self-driving Thameslink trains" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="border-radius:16px; border: 2px solid var(--border);"></iframe>
+        <p style="font-size:0.85rem; color:var(--muted); margin-top:0.4rem;"><em>Self-driving Thameslink trains (0m0s–2m19s) — this video shows some of the advantages (extra capacity) and disadvantages (the potential for a faceless service) of such systems.</em></p>
+      </div>
+
+      <h3>(a) Discuss with a partner the advantages of this type of robot.</h3>
+      <textarea id="busAdv" rows="4" style="width:100%; padding:0.8rem 1rem; border:2px solid #d4e3f0; border-radius:10px; font-family:inherit; font-size:0.9rem; resize:vertical;" placeholder="Advantage 1...&#10;Advantage 2...&#10;Advantage 3..."></textarea>
+
+      <h3>(b) Discuss with a partner the disadvantages of this type of robot.</h3>
+      <textarea id="busDis" rows="4" style="width:100%; padding:0.8rem 1rem; border:2px solid #d4e3f0; border-radius:10px; font-family:inherit; font-size:0.9rem; resize:vertical; margin-top:0.5rem;" placeholder="Disadvantage 1...&#10;Disadvantage 2...&#10;Disadvantage 3..."></textarea>
+
+      <div class="callout tip" style="margin-top:1rem;">
+        <strong>💡 Hint:</strong> Think about cost, safety, jobs, and the environment.
+      </div>
+
+      <button class="check-btn-pulse" id="showAnswerBtn4">Show Example Answer</button>
+      <div class="teacher-answer" id="busAnswer" style="display:none; margin-top:1rem; padding:1rem 1.4rem; background:#e8f5e9; border-left:5px solid #4caf50; border-radius:10px;">
+        <strong>Example advantages:</strong> No driver required, so reduced costs; The robot can work 24 hours a day; The robot can work without breaks; The robot may be programmed to drive in the most efficient manner, reducing the environmental impact.
+        <br><br>
+        <strong>Example disadvantages:</strong> Someone may lose their job or there may be fewer jobs available; There is a high initial cost in the research/development/purchase of the vehicles; If there is an error in the safety systems/programming, the machine could harm people.
+      </div>
+
+      <button class="check-btn-pulse" id="completeTask4" style="margin-top:1rem;">✅ Finished? Click here to move to the Extension →</button>
+    </div>
+  </div>
+
+  <!-- ============ EXTENSION TASK ============ -->
+  <section class="card" id="extension">
+    <h2>⭐ Extension Task – Research a Domestic Robot</h2>
+    <p>Domestic robots include vacuum cleaners, lawn mowers and even robot kitchens.</p>
+    <p><strong>Research one of these robot types and make notes about how they work.</strong></p>
+    <p>Consider the sensors, actuators and microprocessors involved.</p>
+    <div class="btn-row">
+      <a href="https://www.youtube.com/watch?v=rNcPVvIs_tk" target="_blank" rel="noopener" class="btn outline">
+        🎬 Robot Kitchen
+      </a>
+      <a href="https://www.youtube.com/watch?v=csGdz5_gZiY" target="_blank" rel="noopener" class="btn outline">
+        🎬 Robot Vacuum Cleaner
+      </a>
+      <a href="https://www.youtube.com/watch?v=3lQhM0dkiE" target="_blank" rel="noopener" class="btn outline">
+        🎬 Robot Lawn Mower
+      </a>
+    </div>
+  </section>
+
+  <!-- ============ AI GUIDE & POWERPOINT ============ -->
+  <section class="card">
+    <h2>🤖 AI Guide</h2>
+    <p>Your personal tutor! Ask the AI any question about robotics.</p>
+    <div class="btn-row">
+      <a href="https://chatgpt.com/g/g-hyr9cmYPE-igcse-a-level-computer-science-guide" target="_blank" rel="noopener" class="btn">
+        💬 Ask the AI Tutor
+      </a>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>📊 Lesson Presentation</h2>
+    <p>Use these slides to recap the lesson.</p>
+    <div class="btn-row">
+      <a href="https://view.officeapps.live.com/op/view.aspx?src=https%3A%2F%2Fraw.githubusercontent.com%2FMr-Ellis%2FSchool%2Frefs%2Fheads%2Fmain%2Fdocs%2FResources%2FIGCSE%2520Computer%2520Science%2F7%2520Technologies%2FT2%2520Robotics.pptx&wdOrigin=BROWSELINK" target="_blank" rel="noopener" class="btn outline">
+        📊 Open PowerPoint
+      </a>
+    </div>
+  </section>
+
+  <!-- ============ TEACHER PANEL ============ -->
+  <section class="card">
+    <h2>Additional Resources</h2>
+
+    <details class="teacher-panel">
+      <summary>📋 Lesson Plan (Teacher only) — click to toggle</summary>
+      <div class="panel-body">
+
+        <div class="lock-screen" id="lockScreen">
+          <p style="color:var(--muted);margin-bottom:14px;">Enter password to view the full lesson plan.</p>
+          <input type="password" id="lockInput" placeholder="Password">
+          <button class="btn" id="lockBtn">Unlock</button>
+          <p id="lockMsg" style="color:#dc2626;font-size:.85rem;margin-top:10px;min-height:1.2em;"></p>
+        </div>
+
+        <div id="teacherContent" class="hidden">
+          <h3>Lesson Overview</h3>
+          <p>This lesson introduces students to robotics, covering what robots are, their characteristics, the roles they perform, and their advantages and disadvantages. Students will complete Tasks 1–4, the Schoolbox worksheet, and an extension research task.</p>
+
+          <h3>Timing</h3>
+          <ul>
+            <li><strong>0–10 min</strong> — Starter &amp; Objectives</li>
+            <li><strong>10–25 min</strong> — Task 1 (Characteristics of Robots)</li>
+            <li><strong>25–40 min</strong> — Task 2 (Roles of Robots) &amp; Industrial Robot Video</li>
+            <li><strong>40–55 min</strong> — Task 3 (Advantages &amp; Disadvantages) &amp; Agriculture Video</li>
+            <li><strong>55–65 min</strong> — Main Task (Schoolbox Worksheet)</li>
+            <li><strong>65–80 min</strong> — Task 4 (Robot Bus Analysis) &amp; Transport Video</li>
+            <li><strong>80–95 min</strong> — Extension Task (Domestic Robot Research)</li>
+            <li><strong>95–100 min</strong> — Review and Pack Up</li>
+          </ul>
+
+          <h3>Key Teaching Points</h3>
+          <ul>
+            <li>Use the NAO robot to illustrate sensors, microprocessors, and actuators.</li>
+            <li>Emphasise the real-world trade-offs of automation in different industries.</li>
+            <li>Ensure students understand the difference between advantages and disadvantages, and can give specific examples.</li>
+            <li>Use the videos to bring the content to life and spark discussion.</li>
+          </ul>
+        </div>
+      </div>
+    </details>
+  </section>
+
+  <!-- ============ REFERENCE ============ -->
+  <section class="card">
+    <h2>📚 Reference Material</h2>
+    <p>Additional content on robotics — The Computer Science Lab.</p>
+    <div class="btn-row">
+      <a href="https://www.thecomputersciencelab.com/chapter-7-automated-and-emerging-technologies" target="_blank" rel="noopener" class="btn outline">
+        Open Reference →
+      </a>
+    </div>
+  </section>
+
+  <p style="text-align:center;color:var(--muted);font-size:.85rem;margin-top:40px;">progress saved automatically in your browser</p>
+</div>
+
+<script>
+  /* ===== CHECK ANSWER FUNCTION ===== */
+  function checkAnswer(id, answer) {
+    const input = document.getElementById(id);
+    const result = document.getElementById(id + 'Result');
+    const value = input.value.toLowerCase().trim().replace(/[^a-z0-9\s-]/g, '');
+    if (value === answer.toLowerCase()) {
+      result.textContent = '✅ Correct!';
+      result.className = 'result ok';
+      input.style.borderColor = 'var(--green)';
+    } else {
+      result.textContent = '❌ Try again.';
+      result.className = 'result no';
+      input.style.borderColor = '#dc2626';
+    }
+  }
+
+  /* ===== TASK LOCKING / UNLOCK SYSTEM ===== */
+  (function() {
+    const task2 = document.getElementById('task2');
+    const task3 = document.getElementById('task3');
+    const task4 = document.getElementById('task4');
+
+    const task2Status = document.getElementById('task2Status');
+    const task3Status = document.getElementById('task3Status');
+    const task4Status = document.getElementById('task4Status');
+
+    // Task 1 -> Task 2
+    document.getElementById('completeTask1').addEventListener('click', () => {
+      document.getElementById('task1Status').textContent = 'Complete';
+      document.getElementById('task1Status').className = 'task-status done';
+      task2.classList.remove('locked');
+      task2Status.textContent = 'In Progress';
+      task2Status.className = 'task-status pending';
+      task2.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+
+    // Task 2 -> Task 3
+    document.getElementById('completeTask2').addEventListener('click', () => {
+      task2Status.textContent = 'Complete';
+      task2Status.className = 'task-status done';
+      task3.classList.remove('locked');
+      task3Status.textContent = 'In Progress';
+      task3Status.className = 'task-status pending';
+      task3.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+
+    // Task 3 -> Main Task (which then unlocks Task 4)
+    document.getElementById('completeTask3').addEventListener('click', () => {
+      task3Status.textContent = 'Complete';
+      task3Status.className = 'task-status done';
+      document.querySelector('.card h2').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+
+    // Main Task Button -> Unlock Task 4
+    document.getElementById('completeMainTask').addEventListener('click', () => {
+      task4.classList.remove('locked');
+      task4Status.textContent = 'In Progress';
+      task4Status.className = 'task-status pending';
+      task4.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+
+    // Task 4 -> Extension
+    document.getElementById('completeTask4').addEventListener('click', () => {
+      task4Status.textContent = 'Complete';
+      task4Status.className = 'task-status done';
+      document.getElementById('extension').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+
+    // Show answer button for Task 4
+    document.getElementById('showAnswerBtn4').addEventListener('click', () => {
+      const ans = document.getElementById('busAnswer');
+      ans.style.display = ans.style.display === 'none' ? 'block' : 'none';
+    });
+  })();
+
+  /* ===== TEACHER LOCK ===== */
+  (function(){
+    const PASSWORD = 'teacher1';
+    const lockScreen = document.getElementById('lockScreen');
+    const content    = document.getElementById('teacherContent');
+    const input      = document.getElementById('lockInput');
+    const btn        = document.getElementById('lockBtn');
+    const msg        = document.getElementById('lockMsg');
+
+    function tryUnlock(){
+      if (input.value === PASSWORD){
+        lockScreen.classList.add('hidden');
+        content.classList.remove('hidden');
+        msg.textContent = '';
+      } else {
+        msg.textContent = 'Incorrect password. Try again.';
+        input.value = '';
+        input.focus();
+      }
+    }
+    btn.addEventListener('click', tryUnlock);
+    input.addEventListener('keydown', e => { if (e.key === 'Enter') tryUnlock(); });
+  })();
+</script>
+
+</body>
+</html>
