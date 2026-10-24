@@ -635,51 +635,47 @@ else:
     <h2>🧩 Interactive: Selection Logic Reorder Puzzle</h2>
 
     <div class="card">
-      <p>Before you code Challenge 5, try reordering these blocks into a working ticket-price program. Drag them into the right order. The first line and the indentation give you clues.</p>
+      <p>Before you code Challenge 5, try reordering these lines into a working ticket-price program. Drag them into the right order, then click <strong>Check Order</strong>.</p>
 
       <div class="seq-activity" id="seqActivity">
         <div class="seq-pool" id="seqPool">
-          <div class="seq-item" draggable="true" data-order="4">
-            <span class="handle"><i class="fas fa-grip-vertical"></i></span>
-            <code>    if is_student == "y":</code>
-          </div>
-          <div class="seq-item" draggable="true" data-order="1">
+          <div class="seq-item" draggable="true" data-order="5">
             <span class="handle"><i class="fas fa-grip-vertical"></i></span>
             <code>age = int(input("Age: "))</code>
-          </div>
-          <div class="seq-item" draggable="true" data-order="6">
-            <span class="handle"><i class="fas fa-grip-vertical"></i></span>
-            <code>        price = price - 2</code>
           </div>
           <div class="seq-item" draggable="true" data-order="2">
             <span class="handle"><i class="fas fa-grip-vertical"></i></span>
             <code>is_student = input("Student? (y/n): ")</code>
           </div>
-          <div class="seq-item" draggable="true" data-order="5">
+          <div class="seq-item" draggable="true" data-order="8">
             <span class="handle"><i class="fas fa-grip-vertical"></i></span>
-            <code>    if age &gt;= 18:</code>
+            <code>if age &gt;= 18:</code>
           </div>
-          <div class="seq-item" draggable="true" data-order="3">
+          <div class="seq-item" draggable="true" data-order="1">
+            <span class="handle"><i class="fas fa-grip-vertical"></i></span>
+            <code>price = 0</code>
+          </div>
+          <div class="seq-item" draggable="true" data-order="6">
             <span class="handle"><i class="fas fa-grip-vertical"></i></span>
             <code>    price = 12</code>
           </div>
-          <div class="seq-item" draggable="true" data-order="7">
+          <div class="seq-item" draggable="true" data-order="3">
             <span class="handle"><i class="fas fa-grip-vertical"></i></span>
-            <code>    else:</code>
-          </div>
-          <div class="seq-item" draggable="true" data-order="8">
-            <span class="handle"><i class="fas fa-grip-vertical"></i></span>
-            <code>        price = 8</code>
+            <code>else:</code>
           </div>
           <div class="seq-item" draggable="true" data-order="9">
             <span class="handle"><i class="fas fa-grip-vertical"></i></span>
-            <code>    if is_student == "y":</code>
+            <code>if is_student == "y":</code>
+          </div>
+          <div class="seq-item" draggable="true" data-order="4">
+            <span class="handle"><i class="fas fa-grip-vertical"></i></span>
+            <code>    price = 8</code>
           </div>
           <div class="seq-item" draggable="true" data-order="10">
             <span class="handle"><i class="fas fa-grip-vertical"></i></span>
-            <code>        price = price - 2</code>
+            <code>    price = price - 2</code>
           </div>
-          <div class="seq-item" draggable="true" data-order="11">
+          <div class="seq-item" draggable="true" data-order="7">
             <span class="handle"><i class="fas fa-grip-vertical"></i></span>
             <code>print("Price: $", price)</code>
           </div>
@@ -692,7 +688,7 @@ else:
       </div>
 
       <div class="tip-box">
-        <strong>📌 Hint:</strong> This puzzle has a deliberate trick — the blocks are numbered for checking, but the indentation tells you which lines belong inside which block. Use the indentation to guide you, not the numbers.
+        <strong>📌 How the puzzle works:</strong> Every line is a complete, self-contained statement — including the indented ones. Drag the lines so they read top-to-bottom like a real Python program. The indentation is part of each line's text, so you can see which lines belong inside a block. When you check, each line must be in the correct position in the whole program.
       </div>
     </div>
 
