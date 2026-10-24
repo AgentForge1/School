@@ -1,0 +1,1346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>B2.3.2 – Selection Theory</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Segoe UI', Roboto, system-ui, sans-serif;
+      background: #f3f6fc;
+      color: #1e2b3c;
+      padding: 2rem 1rem;
+      line-height: 1.6;
+    }
+
+    .guide-container {
+      max-width: 1000px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 2rem;
+      box-shadow: 0 20px 40px -10px rgba(0, 20, 50, 0.2);
+      padding: 2rem 2rem 2.5rem;
+      border: 1px solid #d9e2ef;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: #1f6390;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.9rem;
+      margin-bottom: 1.5rem;
+      transition: 0.2s;
+    }
+    .back-link:hover { color: #0b2a4a; text-decoration: underline; }
+
+    h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #0a2a4a;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      border-bottom: 4px solid #ffc857;
+      padding-bottom: 0.65rem;
+      margin-bottom: 1.5rem;
+    }
+
+    h2 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: #1a3e6b;
+      margin: 2.5rem 0 1rem;
+      padding-left: 0.75rem;
+      border-left: 6px solid #ffc857;
+    }
+
+    h3 {
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: #214a7a;
+      margin: 1.5rem 0 0.6rem;
+    }
+
+    h4 {
+      font-size: 1rem;
+      font-weight: 600;
+      color: #214a7a;
+      margin: 1rem 0 0.4rem;
+    }
+
+    .card {
+      background: #f9fbfe;
+      border-radius: 1.2rem;
+      padding: 1.5rem 1.8rem;
+      margin: 1.2rem 0;
+      border: 1px solid #d0ddeb;
+    }
+
+    .tip-box {
+      background: #fff8e7;
+      border-left: 5px solid #ffc857;
+      border-radius: 0.8rem;
+      padding: 1rem 1.4rem;
+      margin: 1rem 0;
+      font-size: 0.95rem;
+    }
+    .tip-box strong { color: #8a6d1f; }
+
+    .warn-box {
+      background: #fdeaea;
+      border-left: 5px solid #c62828;
+      border-radius: 0.8rem;
+      padding: 1rem 1.4rem;
+      margin: 1rem 0;
+      font-size: 0.95rem;
+    }
+    .warn-box strong { color: #a13232; }
+
+    .info-box {
+      background: #e8f4fd;
+      border-left: 5px solid #2a6f97;
+      border-radius: 0.8rem;
+      padding: 1rem 1.4rem;
+      margin: 1rem 0;
+      font-size: 0.95rem;
+    }
+    .info-box strong { color: #1a5f87; }
+
+    .success-box {
+      background: #e8f5e9;
+      border-left: 5px solid #4caf50;
+      border-radius: 0.8rem;
+      padding: 1rem 1.4rem;
+      margin: 1rem 0;
+      font-size: 0.95rem;
+    }
+    .success-box strong { color: #2e7d32; }
+
+    .hl-box {
+      background: linear-gradient(135deg, #5b2c83 0%, #7c3aed 100%);
+      border-radius: 1.2rem;
+      padding: 1.5rem 2rem;
+      margin: 1.5rem 0;
+      color: white;
+      box-shadow: 0 8px 20px rgba(124, 58, 237, 0.2);
+    }
+    .hl-box h3 {
+      color: #fdbb2d;
+      margin-top: 0;
+      font-size: 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .hl-box p, .hl-box li {
+      color: #ede9fe;
+      font-size: 0.95rem;
+    }
+    .hl-box a {
+      color: #fdbb2d;
+      font-weight: 600;
+    }
+
+    .objectives-box {
+      background: linear-gradient(135deg, #0b2a4a 0%, #1f4b6e 100%);
+      border-radius: 1.2rem;
+      padding: 1.5rem 2rem;
+      margin: 1.5rem 0 2rem;
+      color: white;
+      box-shadow: 0 8px 20px rgba(11, 42, 74, 0.15);
+    }
+    .objectives-box h3 {
+      color: #fdbb2d;
+      margin-top: 0;
+      font-size: 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .objectives-box ul {
+      padding-left: 1.5rem;
+      margin-top: 0.8rem;
+    }
+    .objectives-box li {
+      margin-bottom: 0.5rem;
+      color: #e6edf5;
+      font-size: 0.95rem;
+    }
+    .objectives-box li::marker { color: #fdbb2d; }
+
+    .reveal-btn {
+      background: #e9f0fa;
+      border: 1px solid #bed3ec;
+      border-radius: 40px;
+      padding: 0.4rem 1.2rem;
+      font-weight: 600;
+      font-size: 0.85rem;
+      color: #1f4973;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      margin-top: 0.8rem;
+      transition: background 0.15s;
+    }
+    .reveal-btn:hover { background: #d4e3fc; }
+    .reveal-btn i { font-size: 0.8rem; }
+
+    .reveal-content {
+      display: none;
+      margin-top: 0.8rem;
+      background: white;
+      border-radius: 0.8rem;
+      padding: 1rem 1.4rem;
+      border-left: 4px solid #ffc857;
+      font-size: 0.95rem;
+      animation: fadeIn 0.3s ease;
+    }
+    .reveal-content.show { display: block; }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .seq-activity {
+      background: #fff;
+      border: 2px dashed #b6cfe5;
+      border-radius: 1rem;
+      padding: 1.2rem;
+      margin: 1rem 0;
+    }
+    .seq-pool {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+    }
+    .seq-item {
+      background: #1e293b;
+      color: #e2e8f0;
+      padding: 0.6rem 1rem;
+      border-radius: 8px;
+      font-family: 'Consolas', 'Courier New', monospace;
+      font-size: 0.85rem;
+      cursor: grab;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      border: 2px solid transparent;
+      transition: 0.15s;
+      user-select: none;
+    }
+    .seq-item:active { cursor: grabbing; }
+    .seq-item.dragging { opacity: 0.4; border-color: #ffc857; }
+    .seq-item.drag-over { border-color: #4caf50; background: #2d3f54; }
+    .seq-item.correct { border-color: #4caf50; background: #1b4332; }
+    .seq-item.incorrect { border-color: #c62828; background: #4a1e1e; }
+    .seq-item .handle { color: #7bb3ff; font-size: 0.9rem; }
+    .seq-item .num {
+      background: #1f4b6e;
+      color: #fdbb2d;
+      border-radius: 50%;
+      width: 22px;
+      height: 22px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.7rem;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+    .seq-actions {
+      display: flex;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+      margin-top: 0.8rem;
+    }
+    .seq-btn {
+      background: #1a5f87;
+      color: white;
+      border: none;
+      padding: 0.5rem 1.3rem;
+      border-radius: 30px;
+      font-weight: 600;
+      font-size: 0.8rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: 0.15s;
+    }
+    .seq-btn:hover { background: #134f75; }
+    .seq-btn.reset { background: #6b7f8f; }
+    .seq-btn.reset:hover { background: #556673; }
+    .seq-feedback {
+      margin-top: 0.8rem;
+      font-weight: 600;
+      font-size: 0.9rem;
+      min-height: 1.4rem;
+    }
+    .seq-feedback.good { color: #2e7d32; }
+    .seq-feedback.bad { color: #c62828; }
+
+    .quiz-q {
+      background: #fff;
+      border-radius: 0.8rem;
+      padding: 1.2rem 1.4rem;
+      margin: 0.8rem 0;
+      border: 1px solid #d0ddeb;
+    }
+    .quiz-q p { font-weight: 600; margin-bottom: 0.6rem; }
+    .quiz-opts { display: flex; flex-direction: column; gap: 0.5rem; }
+    .quiz-opt {
+      background: #f0f4fb;
+      border: 2px solid #d0ddeb;
+      border-radius: 8px;
+      padding: 0.6rem 1rem;
+      cursor: pointer;
+      font-size: 0.9rem;
+      transition: 0.15s;
+      text-align: left;
+    }
+    .quiz-opt:hover { border-color: #1a5f87; background: #e3eef8; }
+    .quiz-opt.correct { border-color: #4caf50; background: #e8f5e9; }
+    .quiz-opt.incorrect { border-color: #c62828; background: #fdeaea; }
+    .quiz-opt:disabled { cursor: default; opacity: 0.85; }
+    .quiz-fb {
+      margin-top: 0.6rem;
+      font-size: 0.85rem;
+      font-weight: 600;
+      min-height: 1.2rem;
+    }
+    .quiz-fb.good { color: #2e7d32; }
+    .quiz-fb.bad { color: #c62828; }
+
+    .match-game {
+      display: grid;
+      grid-template-columns: 1fr 1.5fr;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+    .match-col { display: flex; flex-direction: column; gap: 0.5rem; }
+    .match-item {
+      background: #f0f4fb;
+      border: 2px solid #d0ddeb;
+      border-radius: 8px;
+      padding: 0.7rem 1rem;
+      cursor: pointer;
+      font-size: 0.9rem;
+      transition: 0.15s;
+    }
+    .match-item:hover { border-color: #1a5f87; background: #e3eef8; }
+    .match-item.selected { border-color: #1a5f87; background: #d4e3fc; box-shadow: 0 0 0 3px rgba(26,95,135,0.15); }
+    .match-item.matched {
+      border-color: #4caf50;
+      background: #e8f5e9;
+      cursor: default;
+      opacity: 0.75;
+    }
+    .match-item.matched:hover { border-color: #4caf50; background: #e8f5e9; }
+    .match-item.incorrect {
+      border-color: #c62828 !important;
+      background: #fdeaea !important;
+      animation: shake 0.3s;
+    }
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-4px); }
+      75% { transform: translateX(4px); }
+    }
+    .match-feedback {
+      margin-top: 1rem;
+      font-weight: 600;
+      font-size: 0.9rem;
+      min-height: 1.4rem;
+    }
+    .match-feedback.good { color: #2e7d32; }
+    .match-feedback.bad { color: #c62828; }
+
+    code {
+      background: #eef2f7;
+      padding: 1px 6px;
+      border-radius: 4px;
+      font-family: 'Consolas', 'Courier New', monospace;
+      font-size: 0.88rem;
+      color: #b21f1f;
+    }
+
+    pre {
+      background: #1e293b;
+      color: #e2e8f0;
+      padding: 1rem 1.2rem;
+      border-radius: 8px;
+      overflow-x: auto;
+      font-family: 'Consolas', 'Courier New', monospace;
+      font-size: 0.88rem;
+      line-height: 1.5;
+      margin: 0.8rem 0;
+    }
+
+    pre code {
+      background: none;
+      padding: 0;
+      color: inherit;
+      font-size: inherit;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1rem 0;
+      font-size: 0.95rem;
+    }
+
+    th, td {
+      border: 1px solid #cbd5e1;
+      padding: 0.6rem 0.9rem;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th {
+      background: #0b2a4a;
+      color: #fff;
+      font-weight: 600;
+    }
+
+    tr:nth-child(even) td { background: #f7fafc; }
+
+    ul, ol {
+      padding-left: 1.5rem;
+      margin: 0.5rem 0;
+    }
+    li { margin-bottom: 0.3rem; }
+
+    .analogy {
+      background: #eef6ff;
+      border-radius: 0.8rem;
+      padding: 1rem 1.4rem;
+      margin: 1rem 0;
+      font-style: italic;
+      color: #2c4b6e;
+      border-left: 4px solid #2a6f97;
+    }
+
+    .button-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      margin-top: 1rem;
+      align-items: center;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 0.7rem 1.5rem;
+      border-radius: 40px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      text-decoration: none;
+      transition: 0.2s;
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn-blooket { background: #1a5f87; color: white; }
+    .btn-blooket:hover { background: #134f75; }
+
+    .btn-presentation { background: #d97706; color: white; }
+    .btn-presentation:hover { background: #b45309; }
+
+    .btn-wiki { background: #2d8f2d; color: white; }
+    .btn-wiki:hover { background: #1f6b1f; }
+
+    .btn-ebook { background: #dc2626; color: white; }
+    .btn-ebook:hover { background: #b91c1c; }
+
+    .btn-dojo { background: #7c3aed; color: white; }
+    .btn-dojo:hover { background: #6d28d9; }
+
+    .btn-python { background: #db2777; color: white; }
+    .btn-python:hover { background: #be185d; }
+
+    .btn-juice { background: #ea580c; color: white; }
+    .btn-juice:hover { background: #c2410c; }
+
+    .btn-youtube { background: #dc2626; color: white; }
+    .btn-youtube:hover { background: #b91c1c; }
+
+    .footer-note {
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+      border-top: 2px dashed #b8cee8;
+      font-size: 0.9rem;
+      color: #4b6a8b;
+      text-align: center;
+    }
+
+    @media (max-width: 700px) {
+      .guide-container { padding: 1.5rem; }
+      h1 { font-size: 1.5rem; flex-wrap: wrap; }
+      .button-grid { flex-direction: column; }
+      .match-game { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="guide-container">
+
+    <a href="../B2-Programming.html" class="back-link">
+      <i class="fas fa-arrow-left"></i> Back to B2 Programming
+    </a>
+
+    <h1>📘 B2.3.2 – Selection Theory</h1>
+
+    <!-- ============================================================ -->
+    <!-- LEARNING OBJECTIVES -->
+    <!-- ============================================================ -->
+    <div class="objectives-box">
+      <h3><i class="fas fa-bullseye"></i> Learning Objectives</h3>
+      <ul>
+        <li>Explain how <strong>selection structures</strong> (<code>if</code>, <code>else</code>, <code>else if</code> / <code>elif</code>) control the flow of a program.</li>
+        <li>Write single, double, and multiple selection statements in both <strong>Java</strong> and <strong>Python</strong>.</li>
+        <li>Construct and evaluate <strong>Boolean expressions</strong> using relational (<code>&lt;</code>, <code>&lt;=</code>, <code>&gt;</code>, <code>&gt;=</code>, <code>==</code>, <code>!=</code>) and logical operators (<code>and</code>/<code>&amp;&amp;</code>, <code>or</code>/<code>||</code>, <code>not</code>/<code>!</code>).</li>
+        <li>Use <strong>nested selection</strong> appropriately and recognise when to simplify it.</li>
+        <li>Identify and fix common selection errors such as <strong>missing <code>else</code> branches</strong>, <strong>assignment vs comparison</strong>, <strong>logic flaws</strong>, and <strong>redundant conditions</strong>.</li>
+        <li>Construct programs that implement the correct selection structures to meet program objectives.</li>
+      </ul>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- HL STARTER ACTIVITY -->
+    <!-- ============================================================ -->
+    <div class="hl-box">
+      <h3><i class="fas fa-star"></i> HL Starter — AI Just Crossed the Terrifying Line</h3>
+      <p>Before we look at how programs make decisions, let's think about what happens when <em>many</em> decision-makers interact.</p>
+      <p>Watch this short video about AI agents that were given a task and, within hours, "joined forces, created a society, and executed a sophisticated cyberattack."</p>
+      <p style="margin-top:0.8rem;">
+        <a href="https://www.youtube.com/watch?v=ujkD4SxPKOI" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;background:#fdbb2d;color:#1e1b4b;padding:0.6rem 1.4rem;border-radius:40px;text-decoration:none;font-weight:700;">
+          <i class="fab fa-youtube"></i> Watch the Video
+        </a>
+      </p>
+      <p style="margin-top:1rem;"><strong>Discuss:</strong></p>
+      <ul style="padding-left:1.5rem;margin-top:0.4rem;">
+        <li>Each AI agent had to <em>select</em> an action based on conditions (its goal, its state, its environment). What selection structures might it have used?</li>
+        <li>What happens when many selection structures interact? Could a set of individually "correct" decisions lead to an unwanted overall outcome?</li>
+        <li>How does this connect to the selection structures we use in everyday programs?</li>
+      </ul>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- STARTER ACTIVITY -->
+    <!-- ============================================================ -->
+    <h2>🎯 Starter Activity</h2>
+
+    <div class="card">
+      <h3>🐟 Blooket Quiz</h3>
+      <p>Test your understanding of selection and conditional logic with this Blooket quiz.</p>
+      <div class="button-grid">
+        <a href="https://play.blooket.com/host/gold?id=68b039e7da963af6c95719b1" target="_blank" rel="noopener" class="btn btn-blooket">
+          <i class="fas fa-gamepad"></i> Play Blooket
+        </a>
+      </div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- LESSON CONTENT -->
+    <!-- ============================================================ -->
+    <h2>📖 Lesson Content</h2>
+
+    <div class="card">
+      <h3>The Big Idea</h3>
+      <p>In programming, <strong>selection structures</strong> allow a program to make decisions—to choose different paths of execution based on conditions. At runtime, these decisions determine which blocks of code will be executed and which will be skipped.</p>
+      <p>This is a critical component of <strong>control flow</strong>, allowing programs to behave differently under different inputs, states, or environments. Selection structures are implemented using conditional statements such as <code>if</code>, <code>else if</code> (Java), <code>elif</code> (Python), and <code>else</code>. These structures evaluate <strong>Boolean expressions</strong>, often composed using comparison operators (<code>&lt;</code>, <code>&gt;</code>, <code>==</code>, etc.) and logical operators (<code>AND</code>, <code>OR</code>, <code>NOT</code>), to direct the flow of execution.</p>
+      <p class="tip-box"><strong>📚 Further reading:</strong> Course companion pages 363–365.</p>
+
+      <div class="analogy">
+        💡 Think of a fork in a road. A selection structure is the signpost: <em>if</em> you want the scenic route, turn left; <em>else</em>, turn right. The program checks the condition and takes exactly one path.
+      </div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- SECTION 1 -->
+    <!-- ============================================================ -->
+    <div class="card">
+      <h3>1. Types of Selection Structures</h3>
+
+      <h4>A. Single Selection (if)</h4>
+      <p>Executes a block only if a condition is true.</p>
+      <p><strong>Java:</strong></p>
+      <pre><code>if (score > 90) {
+    System.out.println("Excellent");
+}</code></pre>
+      <p><strong>Python:</strong></p>
+      <pre><code>if score > 90:
+    print("Excellent")</code></pre>
+
+      <h4>B. Double Selection (if-else)</h4>
+      <p>Executes one block if the condition is true, another if false.</p>
+      <p><strong>Java:</strong></p>
+      <pre><code>if (score >= 60) {
+    System.out.println("Pass");
+} else {
+    System.out.println("Fail");
+}</code></pre>
+      <p><strong>Python:</strong></p>
+      <pre><code>if score >= 60:
+    print("Pass")
+else:
+    print("Fail")</code></pre>
+
+      <h4>C. Multiple Selection (if-else if-else / if-elif-else)</h4>
+      <p>Allows multiple mutually exclusive conditions to be evaluated in sequence.</p>
+      <p><strong>Java:</strong></p>
+      <pre><code>if (score >= 90) {
+    System.out.println("A");
+} else if (score >= 80) {
+    System.out.println("B");
+} else if (score >= 70) {
+    System.out.println("C");
+} else {
+    System.out.println("Fail");
+}</code></pre>
+      <p><strong>Python:</strong></p>
+      <pre><code>if score >= 90:
+    print("A")
+elif score >= 80:
+    print("B")
+elif score >= 70:
+    print("C")
+else:
+    print("Fail")</code></pre>
+
+      <button class="reveal-btn" data-target="reveal1">
+        <i class="fas fa-lightbulb"></i> Why does the order of elif branches matter?
+      </button>
+      <div id="reveal1" class="reveal-content">
+        <strong>💡 Think about it:</strong> Python evaluates <code>elif</code> branches <em>top to bottom</em> and stops at the first true condition. If you put <code>score >= 70</code> before <code>score >= 90</code>, a score of 95 would match <code>>= 70</code> first and print "C". Always order your conditions from <strong>most specific / highest threshold</strong> to lowest.
+      </div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- INTERACTIVE: SPOT THE ERROR -->
+    <!-- ============================================================ -->
+    <div class="card">
+      <h3>🔍 Interactive: Spot the Selection Error</h3>
+      <p>Read the code below. What is wrong with it? Click the option you think is correct.</p>
+
+      <div class="quiz-q">
+        <pre><code>score = int(input("Enter score: "))
+if score >= 70:
+    print("C")
+elif score >= 80:
+    print("B")
+elif score >= 90:
+    print("A")</code></pre>
+        <p>What is the problem with this code?</p>
+        <div class="quiz-opts" data-answer="b">
+          <button class="quiz-opt" data-opt="a">Nothing — the code works perfectly.</button>
+          <button class="quiz-opt" data-opt="b">The conditions are in the wrong order, so "A" can never be printed.</button>
+          <button class="quiz-opt" data-opt="c">It will cause an infinite loop.</button>
+          <button class="quiz-opt" data-opt="d">The <code>elif</code> keyword is invalid in Python.</button>
+        </div>
+        <div class="quiz-fb"></div>
+      </div>
+
+      <div class="quiz-q">
+        <pre><code>if x &gt; 5 or x &lt; 10:
+    print("In range")</code></pre>
+        <p>What is wrong with the condition?</p>
+        <div class="quiz-opts" data-answer="a">
+          <button class="quiz-opt" data-opt="a">It is always true — it should use <code>and</code> if a range is intended.</button>
+          <button class="quiz-opt" data-opt="b">It is always false.</button>
+          <button class="quiz-opt" data-opt="c">It should use <code>not</code> instead of <code>or</code>.</button>
+          <button class="quiz-opt" data-opt="d">Nothing — it correctly checks if x is between 5 and 10.</button>
+        </div>
+        <div class="quiz-fb"></div>
+      </div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- SECTION 2 -->
+    <!-- ============================================================ -->
+    <div class="card">
+      <h3>2. Boolean and Relational Operators in Conditions</h3>
+      <p>Selection statements depend on Boolean expressions. These expressions are formed using relational and logical operators.</p>
+
+      <h4>Relational Operators (also called comparison operators)</h4>
+      <table>
+        <thead>
+          <tr><th>Operator</th><th>Meaning</th><th>Example</th><th>Result</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><code>&lt;</code></td><td>Less than</td><td><code>x &lt; 5</code></td><td>True if x is less than 5</td></tr>
+          <tr><td><code>&lt;=</code></td><td>Less than or equal</td><td><code>x &lt;= 5</code></td><td>True if x is 5 or less</td></tr>
+          <tr><td><code>&gt;</code></td><td>Greater than</td><td><code>x &gt; 5</code></td><td>True if x is more than 5</td></tr>
+          <tr><td><code>&gt;=</code></td><td>Greater than or equal</td><td><code>x &gt;= 5</code></td><td>True if x is 5 or more</td></tr>
+          <tr><td><code>==</code></td><td>Equal to</td><td><code>x == 5</code></td><td>True if x is exactly 5</td></tr>
+          <tr><td><code>!=</code></td><td>Not equal to</td><td><code>x != 5</code></td><td>True if x is not 5</td></tr>
+        </tbody>
+      </table>
+
+      <h4>Logical (Boolean) Operators</h4>
+      <table>
+        <thead>
+          <tr><th>Operator</th><th>Meaning</th><th>Java Example</th><th>Python Example</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><code>&amp;&amp;</code> / <code>and</code></td><td>Logical AND</td><td><code>x &gt; 0 &amp;&amp; y &gt; 0</code></td><td><code>x &gt; 0 and y &gt; 0</code></td></tr>
+          <tr><td><code>||</code> / <code>or</code></td><td>Logical OR</td><td><code>x &gt; 0 || y &gt; 0</code></td><td><code>x &gt; 0 or y &gt; 0</code></td></tr>
+          <tr><td><code>!</code> / <code>not</code></td><td>Logical NOT</td><td><code>!(x &gt; 0)</code></td><td><code>not x &gt; 0</code></td></tr>
+        </tbody>
+      </table>
+
+      <div class="info-box">
+        <strong>🔍 Java vs Python — operator differences:</strong>
+        <ul>
+          <li><strong>AND:</strong> <code>&amp;&amp;</code> in Java, <code>and</code> in Python.</li>
+          <li><strong>OR:</strong> <code>||</code> in Java, <code>or</code> in Python.</li>
+          <li><strong>NOT:</strong> <code>!</code> in Java, <code>not</code> in Python.</li>
+          <li><strong>Comparison:</strong> <code>==</code> in both — <em>never</em> use a single <code>=</code>, which is assignment!</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- SECTION 3 -->
+    <!-- ============================================================ -->
+    <div class="card">
+      <h3>3. Nested Selection</h3>
+      <p>Selection statements can be nested inside one another to form more complex decision structures.</p>
+
+      <p><strong>Python Example:</strong></p>
+      <pre><code>if age >= 18:
+    if has_id:
+        print("You may enter.")
+    else:
+        print("ID required.")
+else:
+    print("You must be 18 or older.")</code></pre>
+
+      <p><strong>Java Example:</strong></p>
+      <pre><code>if (age >= 18) {
+    if (hasId) {
+        System.out.println("You may enter.");
+    } else {
+        System.out.println("ID required.");
+    }
+} else {
+    System.out.println("You must be 18 or older.");
+}</code></pre>
+
+      <div class="warn-box">
+        <strong>⚠️ Use nested conditionals sparingly.</strong> They can be powerful but should not be overused — deeply nested <code>if</code> statements harm readability. Consider combining conditions with logical operators or extracting helper functions.
+      </div>
+
+      <button class="reveal-btn" data-target="reveal2">
+        <i class="fas fa-lightbulb"></i> How could this be simplified?
+      </button>
+      <div id="reveal2" class="reveal-content">
+        <strong>💡 Think about it:</strong> The outer check (<code>age >= 18</code>) and inner check (<code>has_id</code>) could be combined: <code>if age >= 18 and has_id:</code> → "You may enter." Then use <code>elif age >= 18 and not has_id:</code> → "ID required." and <code>else:</code> → "You must be 18 or older." This flattens the logic, but the nested version arguably reads more naturally here. Choose the structure that best communicates intent.
+      </div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- SECTION 4 -->
+    <!-- ============================================================ -->
+    <div class="card">
+      <h3>4. Program Design Using Selection Structures</h3>
+      <p>The goal is to control the flow of execution based on meaningful decisions derived from program input, user behavior, or internal state.</p>
+
+      <h4>Example: Grade Classification Program (Python)</h4>
+      <pre><code>grade = int(input("Enter your grade: "))
+if grade >= 90:
+    print("A")
+elif grade >= 80:
+    print("B")
+elif grade >= 70:
+    print("C")
+elif grade >= 60:
+    print("D")
+else:
+    print("F")</code></pre>
+
+      <h4>Example: Login Access Check (Java)</h4>
+      <pre><code>String username = "admin";
+String password = "pass123";
+if (inputUser.equals(username) &amp;&amp; inputPass.equals(password)) {
+    System.out.println("Access granted.");
+} else {
+    System.out.println("Access denied.");
+}</code></pre>
+
+      <button class="reveal-btn" data-target="reveal3">
+        <i class="fas fa-lightbulb"></i> What happens if the user enters a non-integer grade in Python?
+      </button>
+      <div id="reveal3" class="reveal-content">
+        <strong>💡 Think about it:</strong> <code>int(input(...))</code> will raise a <code>ValueError</code> if the input isn't an integer — the program crashes before any selection structure runs. In a real program, you would wrap this in validation (e.g. a <code>try/except</code> block or a <code>while</code> loop that re-prompts until valid input is received). Selection structures can only make decisions about data that has successfully been read!
+      </div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- SECTION 5 -->
+    <!-- ============================================================ -->
+    <div class="card">
+      <h3>5. Best Practices for Selection Structures</h3>
+      <table>
+        <thead>
+          <tr><th>Practice</th><th>Description</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Use indentation and braces</td><td>Clearly separate each block of logic. Python requires indentation; Java uses <code>{}</code>.</td></tr>
+          <tr><td>Avoid deeply nested ifs</td><td>Use compound conditions or helper functions to improve readability.</td></tr>
+          <tr><td>Use logical grouping</td><td>Combine conditions with <code>and</code>, <code>or</code>, and <code>not</code> where appropriate.</td></tr>
+          <tr><td>Default cases (else)</td><td>Always include an <code>else</code> if a decision chain is logically complete.</td></tr>
+          <tr><td>Simplify</td><td>Rewrite complex conditions into intermediate Boolean variables when needed.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- SECTION 6 -->
+    <!-- ============================================================ -->
+    <div class="card">
+      <h3>6. Common Errors and How to Avoid Them</h3>
+      <table>
+        <thead>
+          <tr><th>Error Type</th><th>Example</th><th>Explanation</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Missing else/elif</td><td>Only one branch handled</td><td>Leads to skipped logic for other inputs</td></tr>
+          <tr><td>Incorrect comparison</td><td><code>if x = 5</code> (Java)</td><td>Assignment instead of comparison (<code>==</code>)</td></tr>
+          <tr><td>Operator misuse</td><td><code>and</code> instead of <code>&amp;&amp;</code> in Java</td><td>Syntax error due to language mismatch</td></tr>
+          <tr><td>Logic flaw</td><td><code>if x &gt; 5 or x &lt; 10</code></td><td>Always true — should be <code>and</code> if range is intended</td></tr>
+          <tr><td>Redundant conditions</td><td><code>elif x &gt; 70</code> after <code>x &gt; 80</code></td><td>Already checked; needs reordering</td></tr>
+        </tbody>
+      </table>
+
+      <div class="warn-box">
+        <strong>⚠️ Common Errors in Practice:</strong>
+        <ul>
+          <li><strong>Using <code>=</code> instead of <code>==</code></strong> — in Java this is a compile error; in Python it's a syntax error.</li>
+          <li><strong>Forgetting <code>else</code></strong> — the program silently does nothing for unmatched inputs.</li>
+          <li><strong>Wrong condition order</strong> — <code>elif</code> branches after a broader match will never run.</li>
+          <li><strong>Always-true conditions</strong> — using <code>or</code> where <code>and</code> is needed to check a range.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- INTERACTIVE: BOOLEAN EVALUATOR -->
+    <!-- ============================================================ -->
+    <div class="card">
+      <h3>🧠 Interactive: Evaluate the Condition</h3>
+      <p>Given <code>x = 5</code>, <code>y = 12</code>, and <code>isReady = True</code>, is each condition <strong>True</strong> or <strong>False</strong>? Click your answer.</p>
+
+      <div class="quiz-q">
+        <p><code>x &gt; 3 and y &lt; 10</code></p>
+        <div class="quiz-opts" data-answer="b">
+          <button class="quiz-opt" data-opt="a">True</button>
+          <button class="quiz-opt" data-opt="b">False</button>
+        </div>
+        <div class="quiz-fb"></div>
+      </div>
+
+      <div class="quiz-q">
+        <p><code>not isReady or x == 5</code></p>
+        <div class="quiz-opts" data-answer="a">
+          <button class="quiz-opt" data-opt="a">True</button>
+          <button class="quiz-opt" data-opt="b">False</button>
+        </div>
+        <div class="quiz-fb"></div>
+      </div>
+
+      <div class="quiz-q">
+        <p><code>y &gt; 5 and x != 5</code></p>
+        <div class="quiz-opts" data-answer="b">
+          <button class="quiz-opt" data-opt="a">True</button>
+          <button class="quiz-opt" data-opt="b">False</button>
+        </div>
+        <div class="quiz-fb"></div>
+      </div>
+
+      <div class="quiz-q">
+        <p><code>(x &gt;= 5 or y &gt; 100) and isReady</code></p>
+        <div class="quiz-opts" data-answer="a">
+          <button class="quiz-opt" data-opt="a">True</button>
+          <button class="quiz-opt" data-opt="b">False</button>
+        </div>
+        <div class="quiz-fb"></div>
+      </div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- INTERACTIVE: DRAG AND DROP -->
+    <!-- ============================================================ -->
+    <div class="card">
+      <h3>🧩 Interactive: Put the Selection Logic in the Right Order</h3>
+      <p>Drag the code blocks into the correct order so the program checks a password and grants or denies access.</p>
+
+      <div class="seq-activity" id="seqActivity">
+        <div class="seq-pool" id="seqPool">
+          <div class="seq-item" draggable="true" data-order="3">
+            <span class="handle"><i class="fas fa-grip-vertical"></i></span>
+            <span class="num">?</span>
+            <code>print("Access denied.")</code>
+          </div>
+          <div class="seq-item" draggable="true" data-order="1">
+            <span class="handle"><i class="fas fa-grip-vertical"></i></span>
+            <span class="num">?</span>
+            <code>password = input("Enter password: ")</code>
+          </div>
+          <div class="seq-item" draggable="true" data-order="2">
+            <span class="handle"><i class="fas fa-grip-vertical"></i></span>
+            <span class="num">?</span>
+            <code>if password == "secret":</code>
+          </div>
+          <div class="seq-item" draggable="true" data-order="4">
+            <span class="handle"><i class="fas fa-grip-vertical"></i></span>
+            <span class="num">?</span>
+            <code>    print("Access granted.")</code>
+          </div>
+        </div>
+        <div class="seq-actions">
+          <button class="seq-btn" id="seqCheck"><i class="fas fa-check"></i> Check Order</button>
+          <button class="seq-btn reset" id="seqReset"><i class="fas fa-undo"></i> Reset</button>
+        </div>
+        <div class="seq-feedback" id="seqFeedback"></div>
+      </div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- INTERACTIVE: SELF-CHECK QUIZ -->
+    <!-- ============================================================ -->
+    <div class="card">
+      <h3>✅ Interactive: Self-Check Quiz</h3>
+      <p>Test your understanding. Click the answer you think is correct for each question.</p>
+
+      <div class="quiz-q">
+        <p>1. Which Python keyword is used for a multiple-selection chain?</p>
+        <div class="quiz-opts" data-answer="c">
+          <button class="quiz-opt" data-opt="a">else if</button>
+          <button class="quiz-opt" data-opt="b">switch</button>
+          <button class="quiz-opt" data-opt="c">elif</button>
+          <button class="quiz-opt" data-opt="d">then</button>
+        </div>
+        <div class="quiz-fb"></div>
+      </div>
+
+      <div class="quiz-q">
+        <p>2. In Java, which operator means "not equal to"?</p>
+        <div class="quiz-opts" data-answer="b">
+          <button class="quiz-opt" data-opt="a"><code>&lt;&gt;</code></button>
+          <button class="quiz-opt" data-opt="b"><code>!=</code></button>
+          <button class="quiz-opt" data-opt="c"><code>~=</code></button>
+          <button class="quiz-opt" data-opt="d"><code>not=</code></button>
+        </div>
+        <div class="quiz-fb"></div>
+      </div>
+
+      <div class="quiz-q">
+        <p>3. What is wrong with <code>if x &gt; 10 or x &lt; 20:</code> if the goal is to check a range?</p>
+        <div class="quiz-opts" data-answer="a">
+          <button class="quiz-opt" data-opt="a">It uses <code>or</code> instead of <code>and</code>, so it is always true.</button>
+          <button class="quiz-opt" data-opt="b">It uses <code>&lt;</code> instead of <code>&lt;=</code>.</button>
+          <button class="quiz-opt" data-opt="c">Nothing — it correctly checks the range.</button>
+          <button class="quiz-opt" data-opt="d">It will cause a runtime error.</button>
+        </div>
+        <div class="quiz-fb"></div>
+      </div>
+
+      <div class="quiz-q">
+        <p>4. Which of these is a valid <em>nested</em> selection in Python?</p>
+        <div class="quiz-opts" data-answer="d">
+          <button class="quiz-opt" data-opt="a"><code>if a: elif b: else:</code></button>
+          <button class="quiz-opt" data-opt="b"><code>if a then if b then ...</code></button>
+          <button class="quiz-opt" data-opt="c"><code>if a { if b { ... } }</code></button>
+          <button class="quiz-opt" data-opt="d">An <code>if</code> block placed inside another <code>if</code> block (indented).</button>
+        </div>
+        <div class="quiz-fb"></div>
+      </div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- INTERACTIVE: KEYWORD MATCHING -->
+    <!-- ============================================================ -->
+    <div class="card">
+      <h3>🔗 Interactive: Match the Keyword to its Definition</h3>
+      <p>Click a keyword on the left, then click its matching definition on the right. Correct pairs turn green.</p>
+      <div class="match-game" id="matchGame">
+        <div class="match-col" id="matchLeft">
+          <div class="match-item" data-key="selection">Selection</div>
+          <div class="match-item" data-key="boolean">Boolean expression</div>
+          <div class="match-item" data-key="relational">Relational operator</div>
+          <div class="match-item" data-key="logical">Logical operator</div>
+          <div class="match-item" data-key="nested">Nested selection</div>
+          <div class="match-item" data-key="elif">elif</div>
+        </div>
+        <div class="match-col" id="matchRight">
+          <div class="match-item" data-key="logical">An operator such as AND, OR, or NOT that combines Boolean expressions.</div>
+          <div class="match-item" data-key="selection">A control structure that chooses between different paths of execution based on a condition.</div>
+          <div class="match-item" data-key="elif">Python keyword for an additional mutually exclusive condition in a multiple-selection chain.</div>
+          <div class="match-item" data-key="boolean">An expression that evaluates to either True or False.</div>
+          <div class="match-item" data-key="nested">A selection structure placed inside another selection structure.</div>
+          <div class="match-item" data-key="relational">An operator such as &lt;, &gt;, ==, or != used to compare values.</div>
+        </div>
+      </div>
+      <div class="match-feedback" id="matchFeedback"></div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- SECTION 7 -->
+    <!-- ============================================================ -->
+    <div class="card">
+      <h3>7. Summary</h3>
+
+      <table>
+        <thead>
+          <tr><th>Feature</th><th>Description</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Selection control</td><td>Directs program flow based on conditions</td></tr>
+          <tr><td>Keywords</td><td><code>if</code>, <code>else</code>, <code>else if</code> (Java), <code>elif</code> (Python)</td></tr>
+          <tr><td>Relational operators</td><td><code>&lt;</code>, <code>&lt;=</code>, <code>&gt;</code>, <code>&gt;=</code>, <code>==</code>, <code>!=</code></td></tr>
+          <tr><td>Logical operators</td><td><code>and</code>, <code>or</code>, <code>not</code> (Python); <code>&amp;&amp;</code>, <code>||</code>, <code>!</code> (Java)</td></tr>
+          <tr><td>Execution model</td><td>Top-down, conditionally branching based on truth-values</td></tr>
+          <tr><td>Typical uses</td><td>Input validation, state decisions, access control, behavior switching</td></tr>
+        </tbody>
+      </table>
+
+      <p>Selection structures are at the heart of all non-linear program behavior. They allow code to make intelligent decisions, responding to real-world conditions, user input, and logical state. Writing good selection structures requires more than just syntax—it requires careful logical planning, truth-table reasoning, and a clear understanding of execution flow. A well-structured decision chain can make the difference between an elegant solution and an unmaintainable mess.</p>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- KEY TERMS -->
+    <!-- ============================================================ -->
+    <div class="card">
+      <h3>Key Terms</h3>
+      <table>
+        <thead>
+          <tr><th>Term</th><th>Definition</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Selection</strong></td>
+            <td>A control structure that chooses between different paths of execution based on a condition.</td>
+          </tr>
+          <tr>
+            <td><strong>Boolean expression</strong></td>
+            <td>An expression that evaluates to either <code>True</code> or <code>False</code>.</td>
+          </tr>
+          <tr>
+            <td><strong>Relational operator</strong></td>
+            <td>An operator such as <code>&lt;</code>, <code>&gt;</code>, <code>==</code>, or <code>!=</code> used to compare values.</td>
+          </tr>
+          <tr>
+            <td><strong>Logical operator</strong></td>
+            <td>An operator such as <code>AND</code>, <code>OR</code>, or <code>NOT</code> that combines Boolean expressions.</td>
+          </tr>
+          <tr>
+            <td><strong>Nested selection</strong></td>
+            <td>A selection structure placed inside another selection structure.</td>
+          </tr>
+          <tr>
+            <td><strong><code>elif</code></strong></td>
+            <td>Python keyword for an additional mutually exclusive condition in a multiple-selection chain.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="warn-box">
+        <strong>⚠️ Common Errors:</strong>
+        <ul>
+          <li><strong>Using <code>=</code> instead of <code>==</code></strong> — assignment instead of comparison.</li>
+          <li><strong>Missing <code>else</code>/<code>elif</code></strong> — other cases are silently ignored.</li>
+          <li><strong>Wrong branch order</strong> — broad conditions placed before specific ones.</li>
+          <li><strong>Always-true conditions</strong> — using <code>or</code> where <code>and</code> is needed.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- TASKS -->
+    <!-- ============================================================ -->
+    <h2>📝 Tasks</h2>
+
+    <div class="card">
+      <h3>Task 1: Understanding</h3>
+      <div class="info-box">
+        <strong>📖 Read &amp; Understand</strong>
+        <p>Read through the detailed explanations of selection on the Computer Science Wiki and review the lesson presentation.</p>
+      </div>
+      <div class="button-grid">
+        <a href="https://faq.computersciencewiki.org/index.php/home/article/b2.3.2-construct-programs-utilizing-appropriate-selection-structures" target="_blank" rel="noopener" class="btn btn-wiki">
+          <i class="fas fa-book"></i> Computer Science Wiki
+        </a>
+        <a href="https://github.com/Mr-Ellis/School/blob/main/ebooks/DP%20Computer%20Science_%20B%202.3.2.pdf" target="_blank" rel="noopener" class="btn btn-ebook">
+          <i class="fas fa-file-pdf"></i> eBook PDF
+        </a>
+        <a href="https://docs.google.com/presentation/d/e/2PACX-1vRPU4JLz3JjzL80X57h5jH6dZLfdDV_xSzhSakVrNEzbrPeD5Zrr9myMsCRhqHAwPZFF3T68GZV64iW/pub?start=false&loop=false&delayms=3000&slide=id.p" target="_blank" rel="noopener" class="btn btn-presentation">
+          <i class="fas fa-presentation"></i> Lesson Presentation
+        </a>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>Task 2: Teach the AI</h3>
+      <div class="info-box">
+        <strong>🧠 RevisionDojo "Teach the AI"</strong>
+        <p>Explain what you've learned about selection structures, Boolean expressions, and how to avoid common selection errors to the AI. This will help consolidate your understanding.</p>
+      </div>
+      <div class="button-grid">
+        <a href="https://www.revisiondojo.com/teach-jojo?subjectId=292&classroomId=7d9d7fc0-cf13-42eb-a277-77d2b675cb6a" target="_blank" rel="noopener" class="btn btn-dojo">
+          <i class="fas fa-robot"></i> Teach the AI
+        </a>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>Task 3: Practice — JuiceMind</h3>
+      <div class="info-box">
+        <strong>🧃 JuiceMind Quizzes</strong>
+        <p>Practise selection with these two JuiceMind quizzes on <em>Intro Python → Unit 2</em>.</p>
+      </div>
+      <div class="button-grid">
+        <a href="https://play.juicemind.com/dashboard/explore/class/intro-python/unitNumber/2/topicNumber/2/quizId/eYg4x7T2pfvbYqxnu03f?tab=curriculum" target="_blank" rel="noopener" class="btn btn-juice">
+          <i class="fas fa-gamepad"></i> JuiceMind — Topic 2
+        </a>
+        <a href="https://play.juicemind.com/dashboard/explore/class/intro-python/unitNumber/2/topicNumber/3/quizId=explore&class=intro-python&unitNumber=2&topicNumber=3&quizNumber=2?tab=curriculum" target="_blank" rel="noopener" class="btn btn-juice">
+          <i class="fas fa-gamepad"></i> JuiceMind — Topic 3
+        </a>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>Task 4: Assessment</h3>
+      <div class="info-box">
+        <strong>📊 Selection – Written Assessment</strong>
+        <p>Review the Selection slides. For each question on the slides, write your answers using the Python Copy tool below.</p>
+      </div>
+      <div class="button-grid">
+        <a href="https://jamesabela.github.io/jsfun/pythoncopy?blank" target="_blank" rel="noopener" class="btn btn-python">
+          <i class="fas fa-code"></i> Python Copy Tool
+        </a>
+        <a href="https://docs.google.com/presentation/d/e/2PACX-1vQDDG5fCMExumYAzgAbz-TP3dWIkzXZuo3pP3EPRfyD95PtR4WBTe7zADyy9L3NLUrGUBhEkIy51Kmp/pub?start=false&loop=false&delayms=3000&slide=id.g3ab6a212719_0_8" target="_blank" rel="noopener" class="btn btn-presentation">
+          <i class="fas fa-file-alt"></i> Selection Slides
+        </a>
+      </div>
+      <p style="margin-top: 1rem; font-size: 0.9rem; color: #475569;">
+        <strong>Instructions:</strong>
+      </p>
+      <ol>
+        <li>Open the Selection slides link above.</li>
+        <li>Work through each question on the slides.</li>
+        <li>Write your answers using the Python Copy tool.</li>
+        <li>Save your work as a .txt file and submit to Schoolbox.</li>
+      </ol>
+      <div class="tip-box" style="margin-top: 1rem;">
+        <strong>📌 Important:</strong> Save your code as a .txt file. You will submit all starter activity answers to Schoolbox.
+      </div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- KEY TAKEAWAY -->
+    <!-- ============================================================ -->
+    <div class="card" style="background: #0b2a4a; color: #e6edf5; border: none;">
+      <h3 style="color: #fdbb2d; margin-top: 0;">💡 Key Takeaway</h3>
+      <p style="color: #e6edf5; margin-bottom: 0;">
+        "Selection structures are at the heart of all non-linear program behavior. They allow code to make intelligent decisions, responding to real-world conditions, user input, and logical state. Writing good selection structures requires more than just syntax—it requires careful logical planning, truth-table reasoning, and a clear understanding of execution flow."
+      </p>
+    </div>
+
+    <div class="footer-note">
+      ⚡ B2.3.2 – Selection Theory · IB Computer Science · First Assessment 2027
+    </div>
+
+  </div>
+
+  <script>
+    // ============================================================
+    // CLICK-TO-REVEAL
+    // ============================================================
+    document.querySelectorAll('.reveal-btn').forEach(btn => {
+      btn.addEventListener('click', function() {
+        const target = document.getElementById(this.getAttribute('data-target'));
+        if (!target) return;
+        const isOpen = target.classList.contains('show');
+        if (isOpen) {
+          target.classList.remove('show');
+          this.innerHTML = '<i class="fas fa-lightbulb"></i> Why does this matter?';
+        } else {
+          target.classList.add('show');
+          this.innerHTML = '<i class="fas fa-eye-slash"></i> Hide explanation';
+        }
+      });
+    });
+
+    // ============================================================
+    // SELF-CHECK QUIZ (general)
+    // ============================================================
+    document.querySelectorAll('.quiz-q').forEach(q => {
+      const opts = q.querySelector('.quiz-opts');
+      const answer = opts.getAttribute('data-answer');
+      const fb = q.querySelector('.quiz-fb');
+      opts.querySelectorAll('.quiz-opt').forEach(btn => {
+        btn.addEventListener('click', function() {
+          if (opts.dataset.answered === 'true') return;
+          opts.dataset.answered = 'true';
+          const chosen = this.getAttribute('data-opt');
+          opts.querySelectorAll('.quiz-opt').forEach(b => {
+            b.disabled = true;
+            if (b.getAttribute('data-opt') === answer) b.classList.add('correct');
+          });
+          if (chosen === answer) {
+            this.classList.add('correct');
+            fb.textContent = '✅ Correct!';
+            fb.className = 'quiz-fb good';
+          } else {
+            this.classList.add('incorrect');
+            fb.textContent = '❌ Not quite. The correct answer is highlighted in green.';
+            fb.className = 'quiz-fb bad';
+          }
+        });
+      });
+    });
+
+    // ============================================================
+    // DRAG AND DROP SEQUENCING
+    // ============================================================
+    (function() {
+      const pool = document.getElementById('seqPool');
+      let dragged = null;
+
+      pool.querySelectorAll('.seq-item').forEach(item => {
+        item.addEventListener('dragstart', function(e) {
+          dragged = this;
+          this.classList.add('dragging');
+        });
+        item.addEventListener('dragend', function() {
+          this.classList.remove('dragging');
+          document.querySelectorAll('.seq-item').forEach(i => i.classList.remove('drag-over'));
+        });
+        item.addEventListener('dragover', function(e) {
+          e.preventDefault();
+          if (this !== dragged) this.classList.add('drag-over');
+        });
+        item.addEventListener('dragleave', function() {
+          this.classList.remove('drag-over');
+        });
+        item.addEventListener('drop', function(e) {
+          e.preventDefault();
+          this.classList.remove('drag-over');
+          if (dragged && this !== dragged) {
+            const items = Array.from(pool.children);
+            const fromIdx = items.indexOf(dragged);
+            const toIdx = items.indexOf(this);
+            if (fromIdx < toIdx) {
+              pool.insertBefore(dragged, this.nextSibling);
+            } else {
+              pool.insertBefore(dragged, this);
+            }
+          }
+        });
+      });
+
+      document.getElementById('seqCheck').addEventListener('click', function() {
+        const items = Array.from(pool.children);
+        let allCorrect = true;
+        items.forEach((item, idx) => {
+          const expected = idx + 1;
+          const actual = parseInt(item.getAttribute('data-order'));
+          item.classList.remove('correct', 'incorrect');
+          if (actual === expected) {
+            item.classList.add('correct');
+          } else {
+            item.classList.add('incorrect');
+            allCorrect = false;
+          }
+        });
+        const fb = document.getElementById('seqFeedback');
+        if (allCorrect) {
+          fb.textContent = '✅ Perfect! The selection logic is in the correct order.';
+          fb.className = 'seq-feedback good';
+        } else {
+          fb.textContent = '❌ Not quite. Green = correct position, red = wrong position. Try again!';
+          fb.className = 'seq-feedback bad';
+        }
+      });
+
+      document.getElementById('seqReset').addEventListener('click', function() {
+        const items = Array.from(pool.children);
+        const shuffled = items.sort(() => Math.random() - 0.5);
+        pool.innerHTML = '';
+        shuffled.forEach(i => {
+          i.classList.remove('correct', 'incorrect');
+          pool.appendChild(i);
+        });
+        document.getElementById('seqFeedback').textContent = '';
+      });
+    })();
+
+    // ============================================================
+    // KEYWORD-DEFINITION MATCHING GAME
+    // ============================================================
+    (function() {
+      const game = document.getElementById('matchGame');
+      if (!game) return;
+      let selectedLeft = null;
+      let pairsMatched = 0;
+      const totalPairs = 6;
+
+      const leftItems = game.querySelectorAll('#matchLeft .match-item');
+      const rightItems = game.querySelectorAll('#matchRight .match-item');
+
+      leftItems.forEach(item => {
+        item.addEventListener('click', function() {
+          if (this.classList.contains('matched')) return;
+          leftItems.forEach(i => i.classList.remove('selected'));
+          this.classList.add('selected');
+          selectedLeft = this;
+        });
+      });
+
+      rightItems.forEach(item => {
+        item.addEventListener('click', function() {
+          if (this.classList.contains('matched')) return;
+          if (!selectedLeft) {
+            document.getElementById('matchFeedback').textContent = '👈 Click a keyword on the left first.';
+            document.getElementById('matchFeedback').className = 'match-feedback';
+            return;
+          }
+          if (this.getAttribute('data-key') === selectedLeft.getAttribute('data-key')) {
+            this.classList.add('matched');
+            selectedLeft.classList.add('matched');
+            selectedLeft.classList.remove('selected');
+            selectedLeft = null;
+            pairsMatched++;
+            const fb = document.getElementById('matchFeedback');
+            if (pairsMatched === totalPairs) {
+              fb.textContent = '🎉 All matched! Well done.';
+              fb.className = 'match-feedback good';
+            } else {
+              fb.textContent = `✅ Correct! ${pairsMatched} / ${totalPairs} matched.`;
+              fb.className = 'match-feedback good';
+            }
+          } else {
+            this.classList.add('incorrect');
+            setTimeout(() => this.classList.remove('incorrect'), 600);
+            document.getElementById('matchFeedback').textContent = '❌ Not quite — try again.';
+            document.getElementById('matchFeedback').className = 'match-feedback bad';
+          }
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
