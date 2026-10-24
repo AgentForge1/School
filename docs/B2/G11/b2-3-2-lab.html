@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>B2.3.2 – Selection Lab Session</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Segoe UI', Roboto, system-ui, sans-serif;
+      background: #f3f6fc;
+      color: #1e2b3c;
+      padding: 2rem 1rem;
+      line-height: 1.6;
+    }
+
+    .guide-container {
+      max-width: 1000px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 2rem;
+      box-shadow: 0 20px 40px -10px rgba(0, 20, 50, 0.2);
+      padding: 2rem 2rem 2.5rem;
+      border: 1px solid #d9e2ef;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: #1f6390;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.9rem;
+      margin-bottom: 1.5rem;
+      transition: 0.2s;
+    }
+    .back-link:hover { color: #0b2a4a; text-decoration: underline; }
+
+    h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #0a2a4a;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      border-bottom: 4px solid #ffc857;
+      padding-bottom: 0.65rem;
+      margin-bottom: 1.5rem;
+    }
+
+    h2 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: #1a3e6b;
+      margin: 2.5rem 0 1rem;
+      padding-left: 0.75rem;
+      border-left: 6px solid #ffc857;
+    }
+
+    h3 {
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: #214a7a;
+      margin: 1.5rem 0 0.6rem;
+    }
+
+    h4 {
+      font-size: 1rem;
+      font-weight: 600;
+      color: #214a7a;
+      margin: 1rem 0 0.4rem;
+    }
+
+    .card {
+      background: #f9fbfe;
+      border-radius: 1.2rem;
+      padding: 1.5rem 1.8rem;
+      margin: 1.2rem 0;
+      border: 1px solid #d0ddeb;
+    }
+
+    .tip-box {
+      background: #fff8e7;
+      border-left: 5px solid #ffc857;
+      border-radius: 0.8rem;
+      padding: 1rem 1.4rem;
+      margin: 1rem 0;
+      font-size: 0.95rem;
+    }
+    .tip-box strong { color: #8a6d1f; }
+
+    .warn-box {
+      background: #fdeaea;
+      border-left: 5px solid #c62828;
+      border-radius: 0.8rem;
+      padding: 1rem 1.4rem;
+      margin: 1rem 0;
+      font-size: 0.95rem;
+    }
+    .warn-box strong { color: #a13232; }
+
+    .info-box {
+      background: #e8f4fd;
+      border-left: 5px solid #2a6f97;
+      border-radius: 0.8rem;
+      padding: 1rem 1.4rem;
+      margin: 1rem 0;
+      font-size: 0.95rem;
+    }
+    .info-box strong { color: #1a5f87; }
+
+    .success-box {
+      background: #e8f5e9;
+      border-left: 5px solid #4caf50;
+      border-radius: 0.8rem;
+      padding: 1rem 1.4rem;
+      margin: 1rem 0;
+      font-size: 0.95rem;
+    }
+    .success-box strong { color: #2e7d32; }
+
+    .objectives-box {
+      background: linear-gradient(135deg, #0b2a4a 0%, #1f4b6e 100%);
+      border-radius: 1.2rem;
+      padding: 1.5rem 2rem;
+      margin: 1.5rem 0 2rem;
+      color: white;
+      box-shadow: 0 8px 20px rgba(11, 42, 74, 0.15);
+    }
+    .objectives-box h3 {
+      color: #fdbb2d;
+      margin-top: 0;
+      font-size: 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .objectives-box ul {
+      padding-left: 1.5rem;
+      margin-top: 0.8rem;
+    }
+    .objectives-box li {
+      margin-bottom: 0.5rem;
+      color: #e6edf5;
+      font-size: 0.95rem;
+    }
+    .objectives-box li::marker { color: #fdbb2d; }
+
+    .ide-frame {
+      width: 100%;
+      height: 700px;
+      border: 2px solid #d0ddeb;
+      border-radius: 1rem;
+      margin: 1rem 0;
+      background: #1e293b;
+      overflow: hidden;
+    }
+    .ide-frame iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    .task-card {
+      background: #fff;
+      border-radius: 1.2rem;
+      padding: 1.5rem 1.8rem;
+      margin: 1.2rem 0;
+      border: 1px solid #d0ddeb;
+      border-left: 6px solid #2a6f97;
+    }
+    .task-card h3 {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 0;
+    }
+    .task-num {
+      background: #2a6f97;
+      color: white;
+      border-radius: 50%;
+      width: 30px;
+      height: 30px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    pre {
+      background: #1e293b;
+      color: #e2e8f0;
+      padding: 1rem 1.2rem;
+      border-radius: 8px;
+      overflow-x: auto;
+      font-family: 'Consolas', 'Courier New', monospace;
+      font-size: 0.88rem;
+      line-height: 1.5;
+      margin: 0.8rem 0;
+    }
+    pre code {
+      background: none;
+      padding: 0;
+      color: inherit;
+      font-size: inherit;
+    }
+    code {
+      background: #eef2f7;
+      padding: 1px 6px;
+      border-radius: 4px;
+      font-family: 'Consolas', 'Courier New', monospace;
+      font-size: 0.88rem;
+      color: #b21f1f;
+    }
+
+    .button-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      margin-top: 1rem;
+      align-items: center;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 0.7rem 1.5rem;
+      border-radius: 40px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      text-decoration: none;
+      transition: 0.2s;
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn-ide { background: #1a5f87; color: white; }
+    .btn-ide:hover { background: #134f75; }
+
+    .btn-python { background: #db2777; color: white; }
+    .btn-python:hover { background: #be185d; }
+
+    .btn-theory { background: #d97706; color: white; }
+    .btn-theory:hover { background: #b45309; }
+
+    .btn-w3 { background: #2d8f2d; color: white; }
+    .btn-w3:hover { background: #1f6b1f; }
+
+    .btn-juice { background: #ea580c; color: white; }
+    .btn-juice:hover { background: #c2410c; }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1rem 0;
+      font-size: 0.95rem;
+    }
+    th, td {
+      border: 1px solid #cbd5e1;
+      padding: 0.6rem 0.9rem;
+      text-align: left;
+      vertical-align: top;
+    }
+    th {
+      background: #0b2a4a;
+      color: #fff;
+      font-weight: 600;
+    }
+    tr:nth-child(even) td { background: #f7fafc; }
+
+    .trace-table input {
+      width: 90px;
+      padding: 0.4rem 0.6rem;
+      border: 2px solid #d0ddeb;
+      border-radius: 6px;
+      font-family: 'Consolas', 'Courier New', monospace;
+      font-size: 0.9rem;
+      text-align: center;
+      transition: 0.15s;
+    }
+    .trace-table input:focus {
+      outline: none;
+      border-color: #1a5f87;
+      box-shadow: 0 0 0 3px rgba(26,95,135,0.15);
+    }
+    .trace-table input.correct {
+      border-color: #4caf50;
+      background: #e8f5e9;
+      color: #2e7d32;
+      font-weight: 600;
+    }
+    .trace-table input.incorrect {
+      border-color: #c62828;
+      background: #fdeaea;
+      color: #c62828;
+      font-weight: 600;
+    }
+    .trace-btn {
+      background: #2d8f2d;
+      color: white;
+      border: none;
+      padding: 0.6rem 1.5rem;
+      border-radius: 30px;
+      font-weight: 600;
+      font-size: 0.85rem;
+      cursor: pointer;
+      margin-top: 0.8rem;
+      margin-right: 0.5rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: 0.15s;
+    }
+    .trace-btn:hover { background: #1f6b1f; }
+    .trace-btn.reveal { background: #6b7f8f; }
+    .trace-btn.reveal:hover { background: #556673; }
+    .trace-btn.reset { background: #c62828; }
+    .trace-btn.reset:hover { background: #a02020; }
+    .trace-feedback {
+      margin-top: 0.8rem;
+      font-weight: 600;
+      font-size: 0.9rem;
+      min-height: 1.4rem;
+    }
+    .trace-feedback.good { color: #2e7d32; }
+    .trace-feedback.bad { color: #c62828; }
+    .trace-feedback.hint { color: #8a6d1f; }
+
+    .seq-activity {
+      background: #fff;
+      border: 2px dashed #b6cfe5;
+      border-radius: 1rem;
+      padding: 1.2rem;
+      margin: 1rem 0;
+    }
+    .seq-pool {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+    }
+    .seq-item {
+      background: #1e293b;
+      color: #e2e8f0;
+      padding: 0.6rem 1rem;
+      border-radius: 8px;
+      font-family: 'Consolas', 'Courier New', monospace;
+      font-size: 0.85rem;
+      cursor: grab;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      border: 2px solid transparent;
+      transition: 0.15s;
+      user-select: none;
+    }
+    .seq-item.correct { border-color: #4caf50; background: #1b4332; }
+    .seq-item.incorrect { border-color: #c62828; background: #4a1e1e; }
+    .seq-item .handle { color: #7bb3ff; font-size: 0.9rem; }
+    .seq-actions {
+      display: flex;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+      margin-top: 0.8rem;
+    }
+    .seq-btn {
+      background: #1a5f87;
+      color: white;
+      border: none;
+      padding: 0.5rem 1.3rem;
+      border-radius: 30px;
+      font-weight: 600;
+      font-size: 0.8rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: 0.15s;
+    }
+    .seq-btn:hover { background: #134f75; }
+    .seq-btn.reset { background: #6b7f8f; }
+    .seq-btn.reset:hover { background: #556673; }
+    .seq-feedback {
+      margin-top: 0.8rem;
+      font-weight: 600;
+      font-size: 0.9rem;
+      min-height: 1.4rem;
+    }
+    .seq-feedback.good { color: #2e7d32; }
+    .seq-feedback.bad { color: #c62828; }
+
+    .footer-note {
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+      border-top: 2px dashed #b8cee8;
+      font-size: 0.9rem;
+      color: #4b6a8b;
+      text-align: center;
+    }
+
+    @media (max-width: 700px) {
+      .guide-container { padding: 1.5rem; }
+      h1 { font-size: 1.5rem; flex-wrap: wrap; }
+      .button-grid { flex-direction: column; }
+      .ide-frame { height: 500px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="guide-container">
+
+    <a href="b2-3-2-theory.html" class="back-link">
+      <i class="fas fa-arrow-left"></i> Back to B2.3.2 Theory
+    </a>
+
+    <h1>💻 B2.3.2 – Selection Lab Session</h1>
+
+    <!-- ============================================================ -->
+    <!-- LEARNING OBJECTIVES -->
+    <!-- ============================================================ -->
+    <div class="objectives-box">
+      <h3><i class="fas fa-bullseye"></i> Lab Objectives</h3>
+      <ul>
+        <li>Practise writing Python code with <strong>if</strong>, <strong>elif</strong>, and <strong>else</strong> selection structures.</li>
+        <li>Use the <strong>Python Code Lab</strong> IDE to write, run, and step-trace your programs.</li>
+        <li>Debug common selection errors such as <strong>wrong branch order</strong>, <strong>always-true conditions</strong>, and <strong>missing <code>else</code> branches</strong>.</li>
+        <li>Apply <strong>trace tables</strong> to verify which branch executes under different inputs.</li>
+      </ul>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- MAIN ACTIVITY -->
+    <!-- ============================================================ -->
+    <h2>💻 Main Activity</h2>
+
+    <div class="card">
+      <h3>📝 Complete Your Theory Assessment</h3>
+      <div class="info-box">
+        <strong>📌 Reminder:</strong> If you haven't finished the assessment from the Theory lesson, complete it now:
+      </div>
+      <div class="button-grid">
+        <a href="b2-3-2-theory.html" class="btn btn-theory">
+          <i class="fas fa-book-open"></i> B2.3.2 Theory Page
+        </a>
+      </div>
+      <p style="margin-top: 1rem;">If you have already completed the assessment, move on to the practical coding activity below.</p>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- REFERENCE + PRACTICE -->
+    <!-- ============================================================ -->
+    <div class="card">
+      <h3>📚 Reference &amp; Extra Practice</h3>
+      <p>Use these resources alongside the lab challenges below:</p>
+      <div class="button-grid">
+        <a href="https://www.w3schools.com/python/python_conditions.asp" target="_blank" rel="noopener" class="btn btn-w3">
+          <i class="fas fa-book"></i> W3Schools — Python If...Else
+        </a>
+        <a href="https://play.juicemind.com/dashboard/explore/class/intro-python/unitNumber/2/topicNumber/4/quizId/explore&class=intro-python&unitNumber=2&topicNumber=4&quizNumber=1?tab=curriculum" target="_blank" rel="noopener" class="btn btn-juice">
+          <i class="fas fa-gamepad"></i> JuiceMind — Topic 4
+        </a>
+      </div>
+      <div class="tip-box" style="margin-top: 1rem;">
+        <strong>📌 Tip:</strong> The W3Schools page is a quick reference for syntax and the JuiceMind quiz gives you extra practice on selection. Do the JuiceMind quiz after Challenge 3 if you want more repetition.
+      </div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- PYTHON CODE LAB -->
+    <!-- ============================================================ -->
+    <div class="card">
+      <h3>🐍 Python Code Lab — Your IDE</h3>
+      <div class="info-box">
+        <strong>💡 How to use it:</strong> Write your code in the editor, click <strong>Run</strong> to execute it, or use <strong>Step</strong> to trace through the program line by line. Watch which branch executes when the condition is True or False.
+      </div>
+      <div class="ide-frame">
+        <iframe src="https://jamesabela.github.io/jsfun/pythoncopy?blank" title="Python Code Lab IDE" allow="clipboard-write"></iframe>
+      </div>
+      <div class="tip-box">
+        <strong>📌 Tip:</strong> If the IDE doesn't load properly, open it directly: 
+        <a href="https://jamesabela.github.io/jsfun/pythoncopy?blank" target="_blank" rel="noopener">Python Code Lab →</a>
+      </div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- CODING CHALLENGES -->
+    <!-- ============================================================ -->
+    <h2>🧪 Coding Challenges</h2>
+
+    <p>Work through these challenges in order. Each one focuses on a different aspect of selection. Write your code in the Python Code Lab above.</p>
+
+    <!-- Challenge 1 -->
+    <div class="task-card">
+      <h3><span class="task-num">1</span> Fix the Broken Selection</h3>
+      <p>The following code is supposed to print "Pass" if the score is 50 or above and "Fail" otherwise, but the branches are in the wrong order and one condition is always true. Copy it into the IDE, fix it, and test it with scores of 30, 50, and 90.</p>
+      <pre><code>score = int(input("Enter score: "))
+if score &gt; 50:
+    print("Fail")
+else:
+    print("Pass")</code></pre>
+      <div class="info-box">
+        <strong>What to do:</strong> Fix the comparison so that 50 counts as a pass, and swap the branches so the output is correct. Then test all three scores.
+      </div>
+      <div class="success-box">
+        <strong>✅ Success criteria:</strong> 30 → "Fail", 50 → "Pass", 90 → "Pass".
+      </div>
+    </div>
+
+    <!-- Challenge 2 -->
+    <div class="task-card">
+      <h3><span class="task-num">2</span> Fix the Wrong Branch Order</h3>
+      <p>The following code is meant to award grades A–F, but "A" can never be printed. Find the bug and fix it.</p>
+      <pre><code>grade = int(input("Enter grade: "))
+if grade &gt;= 60:
+    print("D")
+elif grade &gt;= 70:
+    print("C")
+elif grade &gt;= 80:
+    print("B")
+elif grade &gt;= 90:
+    print("A")
+else:
+    print("F")</code></pre>
+      <div class="info-box">
+        <strong>What to do:</strong> Reorder the <code>elif</code> branches so that the highest threshold is checked first. Test with 95, 85, 75, and 65.
+      </div>
+      <div class="success-box">
+        <strong>✅ Success criteria:</strong> 95 → "A", 85 → "B", 75 → "C", 65 → "D".
+      </div>
+    </div>
+
+    <!-- Challenge 3 -->
+    <div class="task-card">
+      <h3><span class="task-num">3</span> Range Check with <code>and</code></h3>
+      <p>Write a Python program that asks the user for a number and prints <code>"In range"</code> if it is between 10 and 20 (inclusive), otherwise prints <code>"Out of range"</code>.</p>
+      <div class="warn-box">
+        <strong>⚠️ Watch out:</strong> Use <code>and</code>, not <code>or</code>. A condition like <code>x &gt;= 10 or x &lt;= 20</code> is always true! Ask yourself: does the number need to satisfy <em>both</em> limits at once?
+      </div>
+      <div class="success-box">
+        <strong>✅ Success criteria:</strong> 5 → "Out of range", 10 → "In range", 15 → "In range", 20 → "In range", 25 → "Out of range".
+      </div>
+    </div>
+
+    <!-- Challenge 4 -->
+    <div class="task-card">
+      <h3><span class="task-num">4</span> Login Check with Logical Operators</h3>
+      <p>Write a program that sets <code>username = "admin"</code> and <code>password = "pass123"</code>. Ask the user to enter both, then print <code>"Access granted."</code> only if <em>both</em> match; otherwise print <code>"Access denied."</code></p>
+      <div class="info-box">
+        <strong>Hint:</strong> Use <code>==</code> for each comparison and combine them with <code>and</code>.
+      </div>
+      <div class="success-box">
+        <strong>✅ Success criteria:</strong> Correct username + correct password → granted. Anything else → denied.
+      </div>
+    </div>
+
+    <!-- Challenge 5 -->
+    <div class="task-card">
+      <h3><span class="task-num">5</span> Nested Selection — Ticket Price</h3>
+      <p>A cinema charges: <strong>$12</strong> for adults (18+), <strong>$8</strong> for children (under 18). Students (any age) get <strong>$2 off</strong>. Write a program that asks for age and whether the customer is a student (<code>y</code>/<code>n</code>), then prints the correct price.</p>
+      <div class="info-box">
+        <strong>Suggested structure:</strong> Use a nested <code>if</code> for the age check, then a separate <code>if</code> (or <code>elif</code>) for the student discount.
+      </div>
+      <div class="success-box">
+        <strong>✅ Success criteria:</strong>
+        <ul>
+          <li>Adult, not student → $12</li>
+          <li>Adult student → $10</li>
+          <li>Child, not student → $8</li>
+          <li>Child student → $6</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Challenge 6 -->
+    <div class="task-card">
+      <h3><span class="task-num">6</span> Trace the Selection</h3>
+      <p>Without running the code, work out which message is printed for each input. Fill in the trace table below, then click <strong>Check</strong>. Verify in the IDE using the <strong>Step</strong> button.</p>
+      <pre><code>score = int(input("Score: "))
+is_member = input("Member? (y/n): ") == "y"
+
+if score &gt;= 80 and is_member:
+    print("Gold discount")
+elif score &gt;= 80 or is_member:
+    print("Silver discount")
+else:
+    print("No discount")</code></pre>
+
+      <table class="trace-table">
+        <thead>
+          <tr><th>Score</th><th>Member?</th><th>Message printed</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>90</td>
+            <td>y</td>
+            <td><input type="text" data-answer="Gold discount" placeholder="?"></td>
+          </tr>
+          <tr>
+            <td>90</td>
+            <td>n</td>
+            <td><input type="text" data-answer="Silver discount" placeholder="?"></td>
+          </tr>
+          <tr>
+            <td>70</td>
+            <td>y</td>
+            <td><input type="text" data-answer="Silver discount" placeholder="?"></td>
+          </tr>
+          <tr>
+            <td>70</td>
+            <td>n</td>
+            <td><input type="text" data-answer="No discount" placeholder="?"></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <button class="trace-btn" id="traceCheck"><i class="fas fa-check"></i> Check Answers</button>
+      <button class="trace-btn reveal" id="traceReveal"><i class="fas fa-eye"></i> Reveal All</button>
+      <button class="trace-btn reset" id="traceReset"><i class="fas fa-undo"></i> Reset</button>
+      <div class="trace-feedback" id="traceFeedback"></div>
+
+      <div class="info-box" style="margin-top: 1rem;">
+        <strong>💡 Think about it:</strong> In the second row, <code>score &gt;= 80</code> is True but <code>is_member</code> is False, so the <code>and</code> condition is False. The <code>or</code> condition is True — which is why "Silver discount" is printed. This is the key to understanding how <code>and</code>/<code>or</code> interact.
+      </div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- INTERACTIVE: SELECTION SEQUENCE PUZZLE -->
+    <!-- ============================================================ -->
+    <h2>🧩 Interactive: Selection Logic Reorder Puzzle</h2>
+
+    <div class="card">
+      <p>Before you code Challenge 5, try reordering these blocks into a working ticket-price program. Drag them into the right order. The first line and the indentation give you clues.</p>
+
+      <div class="seq-activity" id="seqActivity">
+        <div class="seq-pool" id="seqPool">
+          <div class="seq-item" draggable="true" data-order="4">
+            <span class="handle"><i class="fas fa-grip-vertical"></i></span>
+            <code>    if is_student == "y":</code>
+          </div>
+          <div class="seq-item" draggable="true" data-order="1">
+            <span class="handle"><i class="fas fa-grip-vertical"></i></span>
+            <code>age = int(input("Age: "))</code>
+          </div>
+          <div class="seq-item" draggable="true" data-order="6">
+            <span class="handle"><i class="fas fa-grip-vertical"></i></span>
+            <code>        price = price - 2</code>
+          </div>
+          <div class="seq-item" draggable="true" data-order="2">
+            <span class="handle"><i class="fas fa-grip-vertical"></i></span>
+            <code>is_student = input("Student? (y/n): ")</code>
+          </div>
+          <div class="seq-item" draggable="true" data-order="5">
+            <span class="handle"><i class="fas fa-grip-vertical"></i></span>
+            <code>    if age &gt;= 18:</code>
+          </div>
+          <div class="seq-item" draggable="true" data-order="3">
+            <span class="handle"><i class="fas fa-grip-vertical"></i></span>
+            <code>    price = 12</code>
+          </div>
+          <div class="seq-item" draggable="true" data-order="7">
+            <span class="handle"><i class="fas fa-grip-vertical"></i></span>
+            <code>    else:</code>
+          </div>
+          <div class="seq-item" draggable="true" data-order="8">
+            <span class="handle"><i class="fas fa-grip-vertical"></i></span>
+            <code>        price = 8</code>
+          </div>
+          <div class="seq-item" draggable="true" data-order="9">
+            <span class="handle"><i class="fas fa-grip-vertical"></i></span>
+            <code>    if is_student == "y":</code>
+          </div>
+          <div class="seq-item" draggable="true" data-order="10">
+            <span class="handle"><i class="fas fa-grip-vertical"></i></span>
+            <code>        price = price - 2</code>
+          </div>
+          <div class="seq-item" draggable="true" data-order="11">
+            <span class="handle"><i class="fas fa-grip-vertical"></i></span>
+            <code>print("Price: $", price)</code>
+          </div>
+        </div>
+        <div class="seq-actions">
+          <button class="seq-btn" id="seqCheck"><i class="fas fa-check"></i> Check Order</button>
+          <button class="seq-btn reset" id="seqReset"><i class="fas fa-undo"></i> Reset</button>
+        </div>
+        <div class="seq-feedback" id="seqFeedback"></div>
+      </div>
+
+      <div class="tip-box">
+        <strong>📌 Hint:</strong> This puzzle has a deliberate trick — the blocks are numbered for checking, but the indentation tells you which lines belong inside which block. Use the indentation to guide you, not the numbers.
+      </div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- KEY TAKEAWAY -->
+    <!-- ============================================================ -->
+    <div class="card" style="background: #0b2a4a; color: #e6edf5; border: none;">
+      <h3 style="color: #fdbb2d; margin-top: 0;">💡 Key Takeaway</h3>
+      <p style="color: #e6edf5; margin-bottom: 0;">
+        "Selection structures let your program make decisions. The condition must be written correctly, the branches must be in the right order, and the logic must match your intention. <strong>Test each branch</strong> — every path through your <code>if</code>/<code>elif</code>/<code>else</code> chain should be checked with real values."
+      </p>
+    </div>
+
+    <div class="footer-note">
+      ⚡ B2.3.2 – Selection Lab Session · IB Computer Science · First Assessment 2027
+    </div>
+
+  </div>
+
+  <script>
+    // ============================================================
+    // INTERACTIVE TRACE TABLE (Challenge 6)
+    // ============================================================
+    (function() {
+      const checkBtn = document.getElementById('traceCheck');
+      const revealBtn = document.getElementById('traceReveal');
+      const resetBtn = document.getElementById('traceReset');
+      const feedback = document.getElementById('traceFeedback');
+
+      if (!checkBtn) return;
+
+      checkBtn.addEventListener('click', function() {
+        const inputs = document.querySelectorAll('.trace-table input');
+        let allCorrect = true;
+        let filledCount = 0;
+        inputs.forEach(inp => {
+          const ans = inp.getAttribute('data-answer');
+          const val = inp.value.trim();
+          inp.classList.remove('correct', 'incorrect');
+          if (val === '') {
+            allCorrect = false;
+            return;
+          }
+          filledCount++;
+          if (val === ans) {
+            inp.classList.add('correct');
+          } else {
+            inp.classList.add('incorrect');
+            allCorrect = false;
+          }
+        });
+
+        if (filledCount === 0) {
+          feedback.textContent = '✏️ Fill in some answers first, then click Check.';
+          feedback.className = 'trace-feedback hint';
+          return;
+        }
+
+        if (allCorrect) {
+          feedback.textContent = '🎉 All correct! Gold requires both score ≥ 80 and membership; Silver requires either.';
+          feedback.className = 'trace-feedback good';
+        } else {
+          feedback.textContent = '❌ Some answers are incorrect (marked in red). Try again or click Reveal All.';
+          feedback.className = 'trace-feedback bad';
+        }
+      });
+
+      revealBtn.addEventListener('click', function() {
+        document.querySelectorAll('.trace-table input').forEach(inp => {
+          inp.value = inp.getAttribute('data-answer');
+          inp.classList.remove('incorrect');
+          inp.classList.add('correct');
+        });
+        feedback.textContent = '👀 All answers revealed. Try running each case in the IDE to confirm!';
+        feedback.className = 'trace-feedback hint';
+      });
+
+      resetBtn.addEventListener('click', function() {
+        document.querySelectorAll('.trace-table input').forEach(inp => {
+          inp.value = '';
+          inp.classList.remove('correct', 'incorrect');
+        });
+        feedback.textContent = '';
+        feedback.className = 'trace-feedback';
+      });
+    })();
+
+    // ============================================================
+    // DRAG AND DROP SEQUENCING (selection puzzle)
+    // ============================================================
+    (function() {
+      const pool = document.getElementById('seqPool');
+      if (!pool) return;
+      let dragged = null;
+
+      pool.querySelectorAll('.seq-item').forEach(item => {
+        item.addEventListener('dragstart', function(e) {
+          dragged = this;
+          this.classList.add('dragging');
+        });
+        item.addEventListener('dragend', function() {
+          this.classList.remove('dragging');
+          document.querySelectorAll('.seq-item').forEach(i => i.classList.remove('drag-over'));
+        });
+        item.addEventListener('dragover', function(e) {
+          e.preventDefault();
+          if (this !== dragged) this.classList.add('drag-over');
+        });
+        item.addEventListener('dragleave', function() {
+          this.classList.remove('drag-over');
+        });
+        item.addEventListener('drop', function(e) {
+          e.preventDefault();
+          this.classList.remove('drag-over');
+          if (dragged && this !== dragged) {
+            const items = Array.from(pool.children);
+            const fromIdx = items.indexOf(dragged);
+            const toIdx = items.indexOf(this);
+            if (fromIdx < toIdx) {
+              pool.insertBefore(dragged, this.nextSibling);
+            } else {
+              pool.insertBefore(dragged, this);
+            }
+          }
+        });
+      });
+
+      document.getElementById('seqCheck').addEventListener('click', function() {
+        const items = Array.from(pool.children);
+        let allCorrect = true;
+        items.forEach((item, idx) => {
+          const expected = idx + 1;
+          const actual = parseInt(item.getAttribute('data-order'));
+          item.classList.remove('correct', 'incorrect');
+          if (actual === expected) {
+            item.classList.add('correct');
+          } else {
+            item.classList.add('incorrect');
+            allCorrect = false;
+          }
+        });
+        const fb = document.getElementById('seqFeedback');
+        if (allCorrect) {
+          fb.textContent = '✅ Perfect! The selection logic is in the correct order.';
+          fb.className = 'seq-feedback good';
+        } else {
+          fb.textContent = '❌ Not quite. Green = correct position, red = wrong position. Try again!';
+          fb.className = 'seq-feedback bad';
+        }
+      });
+
+      document.getElementById('seqReset').addEventListener('click', function() {
+        const items = Array.from(pool.children);
+        const shuffled = items.sort(() => Math.random() - 0.5);
+        pool.innerHTML = '';
+        shuffled.forEach(i => {
+          i.classList.remove('correct', 'incorrect');
+          pool.appendChild(i);
+        });
+        document.getElementById('seqFeedback').textContent = '';
+      });
+    })();
+  </script>
+</body>
+</html>
