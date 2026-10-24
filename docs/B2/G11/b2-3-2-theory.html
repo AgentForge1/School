@@ -508,9 +508,9 @@
     <div class="objectives-box">
       <h3><i class="fas fa-bullseye"></i> Learning Objectives</h3>
       <ul>
-        <li>Explain how <strong>selection structures</strong> (<code>if</code>, <code>else</code>, <code>else if</code> / <code>elif</code>) control the flow of a program.</li>
-        <li>Write single, double, and multiple selection statements in both <strong>Java</strong> and <strong>Python</strong>.</li>
-        <li>Construct and evaluate <strong>Boolean expressions</strong> using relational (<code>&lt;</code>, <code>&lt;=</code>, <code>&gt;</code>, <code>&gt;=</code>, <code>==</code>, <code>!=</code>) and logical operators (<code>and</code>/<code>&amp;&amp;</code>, <code>or</code>/<code>||</code>, <code>not</code>/<code>!</code>).</li>
+        <li>Explain how <strong>selection structures</strong> (<code>if</code>, <code>else</code>, <code>elif</code>) control the flow of a program.</li>
+        <li>Write single, double, and multiple selection statements in <strong>Python</strong>.</li>
+        <li>Construct and evaluate <strong>Boolean expressions</strong> using relational (<code>&lt;</code>, <code>&lt;=</code>, <code>&gt;</code>, <code>&gt;=</code>, <code>==</code>, <code>!=</code>) and logical operators (<code>and</code>, <code>or</code>, <code>not</code>).</li>
         <li>Use <strong>nested selection</strong> appropriately and recognise when to simplify it.</li>
         <li>Identify and fix common selection errors such as <strong>missing <code>else</code> branches</strong>, <strong>assignment vs comparison</strong>, <strong>logic flaws</strong>, and <strong>redundant conditions</strong>.</li>
         <li>Construct programs that implement the correct selection structures to meet program objectives.</li>
@@ -522,19 +522,23 @@
     <!-- ============================================================ -->
     <div class="hl-box">
       <h3><i class="fas fa-star"></i> HL Starter — AI Just Crossed the Terrifying Line</h3>
-      <p>Before we look at how programs make decisions, let's think about what happens when <em>many</em> decision-makers interact.</p>
-      <p>Watch this short video about AI agents that were given a task and, within hours, "joined forces, created a society, and executed a sophisticated cyberattack."</p>
+      <p>Before watching the video, read these guiding questions. As you watch, look for the answers — then discuss them with a partner.</p>
+
+      <p style="margin-top:0.8rem;"><strong>❓ Questions to answer while watching:</strong></p>
+      <ol style="padding-left:1.5rem;margin-top:0.4rem;margin-bottom:1rem;">
+        <li>What task were the AI agents given? Why was the task designed to be "impossible"?</li>
+        <li>Each agent had to <em>select</em> an action based on conditions (its goal, its state, its environment). What kinds of selection structures (if/elif/else) might an AI agent use to make decisions?</li>
+        <li>How did the agents "join forces"? What conditions do you think triggered them to cooperate rather than work alone?</li>
+        <li>What happens when many selection structures interact? Could a set of individually "correct" decisions lead to an unwanted overall outcome?</li>
+        <li>The agents "knew their actions were unethical and against the rules, and they did it anyway." What does this suggest about how their decision rules were written? What condition was missing or overridden?</li>
+        <li>How does this connect to the selection structures we use in everyday programs? Why does the order and completeness of our conditions matter?</li>
+      </ol>
+
       <p style="margin-top:0.8rem;">
         <a href="https://www.youtube.com/watch?v=ujkD4SxPKOI" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;background:#fdbb2d;color:#1e1b4b;padding:0.6rem 1.4rem;border-radius:40px;text-decoration:none;font-weight:700;">
           <i class="fab fa-youtube"></i> Watch the Video
         </a>
       </p>
-      <p style="margin-top:1rem;"><strong>Discuss:</strong></p>
-      <ul style="padding-left:1.5rem;margin-top:0.4rem;">
-        <li>Each AI agent had to <em>select</em> an action based on conditions (its goal, its state, its environment). What selection structures might it have used?</li>
-        <li>What happens when many selection structures interact? Could a set of individually "correct" decisions lead to an unwanted overall outcome?</li>
-        <li>How does this connect to the selection structures we use in everyday programs?</li>
-      </ul>
     </div>
 
     <!-- ============================================================ -->
@@ -560,7 +564,7 @@
     <div class="card">
       <h3>The Big Idea</h3>
       <p>In programming, <strong>selection structures</strong> allow a program to make decisions—to choose different paths of execution based on conditions. At runtime, these decisions determine which blocks of code will be executed and which will be skipped.</p>
-      <p>This is a critical component of <strong>control flow</strong>, allowing programs to behave differently under different inputs, states, or environments. Selection structures are implemented using conditional statements such as <code>if</code>, <code>else if</code> (Java), <code>elif</code> (Python), and <code>else</code>. These structures evaluate <strong>Boolean expressions</strong>, often composed using comparison operators (<code>&lt;</code>, <code>&gt;</code>, <code>==</code>, etc.) and logical operators (<code>AND</code>, <code>OR</code>, <code>NOT</code>), to direct the flow of execution.</p>
+      <p>This is a critical component of <strong>control flow</strong>, allowing programs to behave differently under different inputs, states, or environments. Selection structures are implemented using conditional statements such as <code>if</code>, <code>elif</code>, and <code>else</code>. These structures evaluate <strong>Boolean expressions</strong>, often composed using comparison operators (<code>&lt;</code>, <code>&gt;</code>, <code>==</code>, etc.) and logical operators (<code>and</code>, <code>or</code>, <code>not</code>), to direct the flow of execution.</p>
       <p class="tip-box"><strong>📚 Further reading:</strong> Course companion pages 363–365.</p>
 
       <div class="analogy">
@@ -576,46 +580,23 @@
 
       <h4>A. Single Selection (if)</h4>
       <p>Executes a block only if a condition is true.</p>
-      <p><strong>Java:</strong></p>
-      <pre><code>if (score > 90) {
-    System.out.println("Excellent");
-}</code></pre>
-      <p><strong>Python:</strong></p>
-      <pre><code>if score > 90:
+      <pre><code>if score &gt; 90:
     print("Excellent")</code></pre>
 
       <h4>B. Double Selection (if-else)</h4>
       <p>Executes one block if the condition is true, another if false.</p>
-      <p><strong>Java:</strong></p>
-      <pre><code>if (score >= 60) {
-    System.out.println("Pass");
-} else {
-    System.out.println("Fail");
-}</code></pre>
-      <p><strong>Python:</strong></p>
-      <pre><code>if score >= 60:
+      <pre><code>if score &gt;= 60:
     print("Pass")
 else:
     print("Fail")</code></pre>
 
-      <h4>C. Multiple Selection (if-else if-else / if-elif-else)</h4>
+      <h4>C. Multiple Selection (if-elif-else)</h4>
       <p>Allows multiple mutually exclusive conditions to be evaluated in sequence.</p>
-      <p><strong>Java:</strong></p>
-      <pre><code>if (score >= 90) {
-    System.out.println("A");
-} else if (score >= 80) {
-    System.out.println("B");
-} else if (score >= 70) {
-    System.out.println("C");
-} else {
-    System.out.println("Fail");
-}</code></pre>
-      <p><strong>Python:</strong></p>
-      <pre><code>if score >= 90:
+      <pre><code>if score &gt;= 90:
     print("A")
-elif score >= 80:
+elif score &gt;= 80:
     print("B")
-elif score >= 70:
+elif score &gt;= 70:
     print("C")
 else:
     print("Fail")</code></pre>
@@ -624,7 +605,7 @@ else:
         <i class="fas fa-lightbulb"></i> Why does the order of elif branches matter?
       </button>
       <div id="reveal1" class="reveal-content">
-        <strong>💡 Think about it:</strong> Python evaluates <code>elif</code> branches <em>top to bottom</em> and stops at the first true condition. If you put <code>score >= 70</code> before <code>score >= 90</code>, a score of 95 would match <code>>= 70</code> first and print "C". Always order your conditions from <strong>most specific / highest threshold</strong> to lowest.
+        <strong>💡 Think about it:</strong> Python evaluates <code>elif</code> branches <em>top to bottom</em> and stops at the first true condition. If you put <code>score &gt;= 70</code> before <code>score &gt;= 90</code>, a score of 95 would match <code>&gt;= 70</code> first and print "C". Always order your conditions from <strong>most specific / highest threshold</strong> to lowest.
       </div>
     </div>
 
@@ -637,11 +618,11 @@ else:
 
       <div class="quiz-q">
         <pre><code>score = int(input("Enter score: "))
-if score >= 70:
+if score &gt;= 70:
     print("C")
-elif score >= 80:
+elif score &gt;= 80:
     print("B")
-elif score >= 90:
+elif score &gt;= 90:
     print("A")</code></pre>
         <p>What is the problem with this code?</p>
         <div class="quiz-opts" data-answer="b">
@@ -692,22 +673,22 @@ elif score >= 90:
       <h4>Logical (Boolean) Operators</h4>
       <table>
         <thead>
-          <tr><th>Operator</th><th>Meaning</th><th>Java Example</th><th>Python Example</th></tr>
+          <tr><th>Operator</th><th>Meaning</th><th>Python Example</th></tr>
         </thead>
         <tbody>
-          <tr><td><code>&amp;&amp;</code> / <code>and</code></td><td>Logical AND</td><td><code>x &gt; 0 &amp;&amp; y &gt; 0</code></td><td><code>x &gt; 0 and y &gt; 0</code></td></tr>
-          <tr><td><code>||</code> / <code>or</code></td><td>Logical OR</td><td><code>x &gt; 0 || y &gt; 0</code></td><td><code>x &gt; 0 or y &gt; 0</code></td></tr>
-          <tr><td><code>!</code> / <code>not</code></td><td>Logical NOT</td><td><code>!(x &gt; 0)</code></td><td><code>not x &gt; 0</code></td></tr>
+          <tr><td><code>and</code></td><td>Logical AND — true only if <em>both</em> sides are true</td><td><code>x &gt; 0 and y &gt; 0</code></td></tr>
+          <tr><td><code>or</code></td><td>Logical OR — true if <em>either</em> side is true</td><td><code>x &gt; 0 or y &gt; 0</code></td></tr>
+          <tr><td><code>not</code></td><td>Logical NOT — reverses the truth value</td><td><code>not (x &gt; 0)</code></td></tr>
         </tbody>
       </table>
 
       <div class="info-box">
-        <strong>🔍 Java vs Python — operator differences:</strong>
+        <strong>🔍 Python operator reminder:</strong>
         <ul>
-          <li><strong>AND:</strong> <code>&amp;&amp;</code> in Java, <code>and</code> in Python.</li>
-          <li><strong>OR:</strong> <code>||</code> in Java, <code>or</code> in Python.</li>
-          <li><strong>NOT:</strong> <code>!</code> in Java, <code>not</code> in Python.</li>
-          <li><strong>Comparison:</strong> <code>==</code> in both — <em>never</em> use a single <code>=</code>, which is assignment!</li>
+          <li><strong>AND:</strong> <code>and</code> — not <code>&amp;&amp;</code>.</li>
+          <li><strong>OR:</strong> <code>or</code> — not <code>||</code>.</li>
+          <li><strong>NOT:</strong> <code>not</code> — not <code>!</code>.</li>
+          <li><strong>Comparison:</strong> <code>==</code> — <em>never</em> use a single <code>=</code>, which is assignment!</li>
         </ul>
       </div>
     </div>
@@ -720,24 +701,13 @@ elif score >= 90:
       <p>Selection statements can be nested inside one another to form more complex decision structures.</p>
 
       <p><strong>Python Example:</strong></p>
-      <pre><code>if age >= 18:
+      <pre><code>if age &gt;= 18:
     if has_id:
         print("You may enter.")
     else:
         print("ID required.")
 else:
     print("You must be 18 or older.")</code></pre>
-
-      <p><strong>Java Example:</strong></p>
-      <pre><code>if (age >= 18) {
-    if (hasId) {
-        System.out.println("You may enter.");
-    } else {
-        System.out.println("ID required.");
-    }
-} else {
-    System.out.println("You must be 18 or older.");
-}</code></pre>
 
       <div class="warn-box">
         <strong>⚠️ Use nested conditionals sparingly.</strong> They can be powerful but should not be overused — deeply nested <code>if</code> statements harm readability. Consider combining conditions with logical operators or extracting helper functions.
@@ -747,7 +717,7 @@ else:
         <i class="fas fa-lightbulb"></i> How could this be simplified?
       </button>
       <div id="reveal2" class="reveal-content">
-        <strong>💡 Think about it:</strong> The outer check (<code>age >= 18</code>) and inner check (<code>has_id</code>) could be combined: <code>if age >= 18 and has_id:</code> → "You may enter." Then use <code>elif age >= 18 and not has_id:</code> → "ID required." and <code>else:</code> → "You must be 18 or older." This flattens the logic, but the nested version arguably reads more naturally here. Choose the structure that best communicates intent.
+        <strong>💡 Think about it:</strong> The outer check (<code>age &gt;= 18</code>) and inner check (<code>has_id</code>) could be combined: <code>if age &gt;= 18 and has_id:</code> → "You may enter." Then use <code>elif age &gt;= 18 and not has_id:</code> → "ID required." and <code>else:</code> → "You must be 18 or older." This flattens the logic, but the nested version arguably reads more naturally here. Choose the structure that best communicates intent.
       </div>
     </div>
 
@@ -760,25 +730,26 @@ else:
 
       <h4>Example: Grade Classification Program (Python)</h4>
       <pre><code>grade = int(input("Enter your grade: "))
-if grade >= 90:
+if grade &gt;= 90:
     print("A")
-elif grade >= 80:
+elif grade &gt;= 80:
     print("B")
-elif grade >= 70:
+elif grade &gt;= 70:
     print("C")
-elif grade >= 60:
+elif grade &gt;= 60:
     print("D")
 else:
     print("F")</code></pre>
 
-      <h4>Example: Login Access Check (Java)</h4>
-      <pre><code>String username = "admin";
-String password = "pass123";
-if (inputUser.equals(username) &amp;&amp; inputPass.equals(password)) {
-    System.out.println("Access granted.");
-} else {
-    System.out.println("Access denied.");
-}</code></pre>
+      <h4>Example: Login Access Check (Python)</h4>
+      <pre><code>username = "admin"
+password = "pass123"
+input_user = input("Enter username: ")
+input_pass = input("Enter password: ")
+if input_user == username and input_pass == password:
+    print("Access granted.")
+else:
+    print("Access denied.")</code></pre>
 
       <button class="reveal-btn" data-target="reveal3">
         <i class="fas fa-lightbulb"></i> What happens if the user enters a non-integer grade in Python?
@@ -798,7 +769,7 @@ if (inputUser.equals(username) &amp;&amp; inputPass.equals(password)) {
           <tr><th>Practice</th><th>Description</th></tr>
         </thead>
         <tbody>
-          <tr><td>Use indentation and braces</td><td>Clearly separate each block of logic. Python requires indentation; Java uses <code>{}</code>.</td></tr>
+          <tr><td>Use indentation</td><td>Python uses indentation to define blocks — it is not optional.</td></tr>
           <tr><td>Avoid deeply nested ifs</td><td>Use compound conditions or helper functions to improve readability.</td></tr>
           <tr><td>Use logical grouping</td><td>Combine conditions with <code>and</code>, <code>or</code>, and <code>not</code> where appropriate.</td></tr>
           <tr><td>Default cases (else)</td><td>Always include an <code>else</code> if a decision chain is logically complete.</td></tr>
@@ -818,20 +789,21 @@ if (inputUser.equals(username) &amp;&amp; inputPass.equals(password)) {
         </thead>
         <tbody>
           <tr><td>Missing else/elif</td><td>Only one branch handled</td><td>Leads to skipped logic for other inputs</td></tr>
-          <tr><td>Incorrect comparison</td><td><code>if x = 5</code> (Java)</td><td>Assignment instead of comparison (<code>==</code>)</td></tr>
-          <tr><td>Operator misuse</td><td><code>and</code> instead of <code>&amp;&amp;</code> in Java</td><td>Syntax error due to language mismatch</td></tr>
-          <tr><td>Logic flaw</td><td><code>if x &gt; 5 or x &lt; 10</code></td><td>Always true — should be <code>and</code> if range is intended</td></tr>
+          <tr><td>Incorrect comparison</td><td><code>if x = 5:</code></td><td>Assignment instead of comparison (<code>==</code>) — syntax error</td></tr>
+          <tr><td>Logic flaw</td><td><code>if x &gt; 5 or x &lt; 10:</code></td><td>Always true — should be <code>and</code> if range is intended</td></tr>
           <tr><td>Redundant conditions</td><td><code>elif x &gt; 70</code> after <code>x &gt; 80</code></td><td>Already checked; needs reordering</td></tr>
+          <tr><td>Missing colon</td><td><code>if x &gt; 5</code> (no <code>:</code>)</td><td>Syntax error — every <code>if</code>/<code>elif</code>/<code>else</code> needs a colon</td></tr>
         </tbody>
       </table>
 
       <div class="warn-box">
         <strong>⚠️ Common Errors in Practice:</strong>
         <ul>
-          <li><strong>Using <code>=</code> instead of <code>==</code></strong> — in Java this is a compile error; in Python it's a syntax error.</li>
+          <li><strong>Using <code>=</code> instead of <code>==</code></strong> — a syntax error in Python.</li>
           <li><strong>Forgetting <code>else</code></strong> — the program silently does nothing for unmatched inputs.</li>
           <li><strong>Wrong condition order</strong> — <code>elif</code> branches after a broader match will never run.</li>
           <li><strong>Always-true conditions</strong> — using <code>or</code> where <code>and</code> is needed to check a range.</li>
+          <li><strong>Missing colons or indentation</strong> — Python will raise an error.</li>
         </ul>
       </div>
     </div>
@@ -937,7 +909,7 @@ if (inputUser.equals(username) &amp;&amp; inputPass.equals(password)) {
       </div>
 
       <div class="quiz-q">
-        <p>2. In Java, which operator means "not equal to"?</p>
+        <p>2. In Python, which operator means "not equal to"?</p>
         <div class="quiz-opts" data-answer="b">
           <button class="quiz-opt" data-opt="a"><code>&lt;&gt;</code></button>
           <button class="quiz-opt" data-opt="b"><code>!=</code></button>
@@ -1009,9 +981,9 @@ if (inputUser.equals(username) &amp;&amp; inputPass.equals(password)) {
         </thead>
         <tbody>
           <tr><td>Selection control</td><td>Directs program flow based on conditions</td></tr>
-          <tr><td>Keywords</td><td><code>if</code>, <code>else</code>, <code>else if</code> (Java), <code>elif</code> (Python)</td></tr>
+          <tr><td>Keywords</td><td><code>if</code>, <code>elif</code>, <code>else</code></td></tr>
           <tr><td>Relational operators</td><td><code>&lt;</code>, <code>&lt;=</code>, <code>&gt;</code>, <code>&gt;=</code>, <code>==</code>, <code>!=</code></td></tr>
-          <tr><td>Logical operators</td><td><code>and</code>, <code>or</code>, <code>not</code> (Python); <code>&amp;&amp;</code>, <code>||</code>, <code>!</code> (Java)</td></tr>
+          <tr><td>Logical operators</td><td><code>and</code>, <code>or</code>, <code>not</code></td></tr>
           <tr><td>Execution model</td><td>Top-down, conditionally branching based on truth-values</td></tr>
           <tr><td>Typical uses</td><td>Input validation, state decisions, access control, behavior switching</td></tr>
         </tbody>
@@ -1044,7 +1016,7 @@ if (inputUser.equals(username) &amp;&amp; inputPass.equals(password)) {
           </tr>
           <tr>
             <td><strong>Logical operator</strong></td>
-            <td>An operator such as <code>AND</code>, <code>OR</code>, or <code>NOT</code> that combines Boolean expressions.</td>
+            <td>An operator such as <code>and</code>, <code>or</code>, or <code>not</code> that combines Boolean expressions.</td>
           </tr>
           <tr>
             <td><strong>Nested selection</strong></td>
@@ -1064,6 +1036,7 @@ if (inputUser.equals(username) &amp;&amp; inputPass.equals(password)) {
           <li><strong>Missing <code>else</code>/<code>elif</code></strong> — other cases are silently ignored.</li>
           <li><strong>Wrong branch order</strong> — broad conditions placed before specific ones.</li>
           <li><strong>Always-true conditions</strong> — using <code>or</code> where <code>and</code> is needed.</li>
+          <li><strong>Missing colon or indentation</strong> — Python syntax error.</li>
         </ul>
       </div>
     </div>
@@ -1083,7 +1056,7 @@ if (inputUser.equals(username) &amp;&amp; inputPass.equals(password)) {
         <a href="https://faq.computersciencewiki.org/index.php/home/article/b2.3.2-construct-programs-utilizing-appropriate-selection-structures" target="_blank" rel="noopener" class="btn btn-wiki">
           <i class="fas fa-book"></i> Computer Science Wiki
         </a>
-        <a href="https://github.com/Mr-Ellis/School/blob/main/ebooks/DP%20Computer%20Science_%20B%202.3.2.pdf" target="_blank" rel="noopener" class="btn btn-ebook">
+        <a href="https://mr-ellis.github.io/School/ebooks/DP%20Computer%20Science_%20B%202.3.2.pdf" target="_blank" rel="noopener" class="btn btn-ebook">
           <i class="fas fa-file-pdf"></i> eBook PDF
         </a>
         <a href="https://docs.google.com/presentation/d/e/2PACX-1vRPU4JLz3JjzL80X57h5jH6dZLfdDV_xSzhSakVrNEzbrPeD5Zrr9myMsCRhqHAwPZFF3T68GZV64iW/pub?start=false&loop=false&delayms=3000&slide=id.p" target="_blank" rel="noopener" class="btn btn-presentation">
